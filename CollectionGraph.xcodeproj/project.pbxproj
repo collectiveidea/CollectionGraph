@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5717848E1D95A2B20074879A /* CollectionGraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5717848D1D95A2B20074879A /* CollectionGraphView.swift */; };
+		5717848F1D95A3540074879A /* CollectionGraph.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57EA98971D958C82000D6C55 /* CollectionGraph.framework */; };
+		571784901D95A3540074879A /* CollectionGraph.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 57EA98971D958C82000D6C55 /* CollectionGraph.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		57EA989B1D958C82000D6C55 /* CollectionGraph.h in Headers */ = {isa = PBXBuildFile; fileRef = 57EA989A1D958C82000D6C55 /* CollectionGraph.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		57EA98A21D958C82000D6C55 /* CollectionGraph.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57EA98971D958C82000D6C55 /* CollectionGraph.framework */; };
 		57EA98A71D958C82000D6C55 /* CollectionGraphTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EA98A61D958C82000D6C55 /* CollectionGraphTests.swift */; };
@@ -19,6 +22,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		571784911D95A3540074879A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 57EA988E1D958C82000D6C55 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 57EA98961D958C82000D6C55;
+			remoteInfo = CollectionGraph;
+		};
 		57EA98A31D958C82000D6C55 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 57EA988E1D958C82000D6C55 /* Project object */;
@@ -28,7 +38,22 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		571784931D95A3540074879A /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				571784901D95A3540074879A /* CollectionGraph.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		5717848D1D95A2B20074879A /* CollectionGraphView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionGraphView.swift; sourceTree = "<group>"; };
 		57EA98971D958C82000D6C55 /* CollectionGraph.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CollectionGraph.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		57EA989A1D958C82000D6C55 /* CollectionGraph.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CollectionGraph.h; sourceTree = "<group>"; };
 		57EA989C1D958C82000D6C55 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -65,6 +90,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5717848F1D95A3540074879A /* CollectionGraph.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -94,6 +120,7 @@
 		57EA98991D958C82000D6C55 /* CollectionGraph */ = {
 			isa = PBXGroup;
 			children = (
+				5717848D1D95A2B20074879A /* CollectionGraphView.swift */,
 				57EA989A1D958C82000D6C55 /* CollectionGraph.h */,
 				57EA989C1D958C82000D6C55 /* Info.plist */,
 			);
@@ -180,10 +207,12 @@
 				A7B2B0F51D958F1500F3A410 /* Sources */,
 				A7B2B0F61D958F1500F3A410 /* Frameworks */,
 				A7B2B0F71D958F1500F3A410 /* Resources */,
+				571784931D95A3540074879A /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				571784921D95A3540074879A /* PBXTargetDependency */,
 			);
 			name = CollectionGraphExample;
 			productName = CollectionGraphExample;
@@ -266,6 +295,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5717848E1D95A2B20074879A /* CollectionGraphView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -290,6 +320,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		571784921D95A3540074879A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 57EA98961D958C82000D6C55 /* CollectionGraph */;
+			targetProxy = 571784911D95A3540074879A /* PBXContainerItemProxy */;
+		};
 		57EA98A41D958C82000D6C55 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 57EA98961D958C82000D6C55 /* CollectionGraph */;
@@ -418,6 +453,7 @@
 		57EA98AC1D958C82000D6C55 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -429,6 +465,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.collectiveidea.CollectionGraph;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -436,6 +473,7 @@
 		57EA98AD1D958C82000D6C55 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -454,6 +492,7 @@
 		57EA98AF1D958C82000D6C55 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				INFOPLIST_FILE = CollectionGraphTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.collectiveidea.CollectionGraphTests;
@@ -465,6 +504,7 @@
 		57EA98B01D958C82000D6C55 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				INFOPLIST_FILE = CollectionGraphTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.collectiveidea.CollectionGraphTests;
@@ -476,6 +516,7 @@
 		A7B2B10B1D958F1500F3A410 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
@@ -493,6 +534,7 @@
 		A7B2B10C1D958F1500F3A410 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;

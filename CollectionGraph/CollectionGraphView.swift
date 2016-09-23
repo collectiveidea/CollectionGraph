@@ -8,14 +8,12 @@
 
 import UIKit
 
-class CollectionGraphView: UIView {
+@IBDesignable
+public class CollectionGraphView: UIView {
 
-    /*
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func draw(_ rect: CGRect) {
-        // Drawing code
+    @IBInspectable public var myColor: UIColor = UIColor.red {
+        didSet {
+            backgroundColor = myColor
+        }
     }
-    */
-
 }
