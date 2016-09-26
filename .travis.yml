@@ -1,0 +1,5 @@
+language: objective-c 
+osx_image: xcode8
+xcode_project: CollectionGraph.xcodeproj
+xcode_scheme: CollectionGraph
+xcode_sdk: iphoneos
