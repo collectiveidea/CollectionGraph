@@ -33,9 +33,15 @@ public class CollectionGraphView: UIView {
         }
     }
 
+    @IBOutlet weak var graphCollectionView: UICollectionView!
+
     @IBOutlet public var layout: UICollectionViewLayout? {
         didSet {
-            print("* Set Layout *")
+            if let layout = layout {
+                print("* Set Layout *")
+
+                graphCollectionView.collectionViewLayout = layout
+            }
         }
     }
 
@@ -50,15 +56,33 @@ public class CollectionGraphView: UIView {
     required public init(frame: CGRect, type: GraphType) {
         super.init(frame: frame)
 
+        setupXib()
+
         self.type = type
     }
 
     override init(frame: CGRect) {
         super.init(frame: frame)
+        setupXib()
     }
 
     required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
+        setupXib()
+    }
+
+    func setupXib() {
+        let bundle = Bundle(for: type(of: self))
+
+        let nib = UINib(nibName: "CollectionGraph", bundle: bundle)
+
+        let nibView = nib.instantiate(withOwner: self, options: nil)[0] as? UIView
+
+        nibView?.frame = bounds
+
+        if let nibView = nibView {
+            addSubview(nibView)
+        }
     }
 
 }
