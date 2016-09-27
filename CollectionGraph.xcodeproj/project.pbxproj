@@ -240,6 +240,7 @@
 					};
 					A7B2B0F81D958F1500F3A410 = {
 						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = 3MXD5J8GME;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -539,6 +540,7 @@
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				DEVELOPMENT_TEAM = 3MXD5J8GME;
 				INFOPLIST_FILE = CollectionGraphExample/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -557,6 +559,7 @@
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				DEVELOPMENT_TEAM = 3MXD5J8GME;
 				INFOPLIST_FILE = CollectionGraphExample/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
