@@ -1,5 +1,3 @@
 language: objective-c 
 osx_image: xcode8
-xcode_project: CollectionGraph.xcodeproj
-xcode_scheme: CollectionGraphTests
-xcode_sdk: iphoneos
+script: xcodebuild -scheme CollectionGraph -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 6S,OS=10.0' build test
