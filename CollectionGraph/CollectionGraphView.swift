@@ -11,7 +11,7 @@ import UIKit
 @IBDesignable
 public class CollectionGraphView: UIView {
 
-    @IBInspectable public var layout: UICollectionViewLayout? {
+    @IBInspectable public var layout: GraphLayout? {
         didSet {
             if let layout = layout {
                 self.graphCollectionView.collectionViewLayout = layout
@@ -22,8 +22,8 @@ public class CollectionGraphView: UIView {
     @IBOutlet weak var graphCollectionView: UICollectionView!
 
     // MARK: - View Lifecycle
-    
-    required public init(frame: CGRect, layout: UICollectionViewLayout) {
+
+    required public init(frame: CGRect, layout: GraphLayout) {
         super.init(frame: frame)
 
         addCollectionView()
