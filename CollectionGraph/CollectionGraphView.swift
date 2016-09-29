@@ -18,21 +18,21 @@ public class CollectionGraphView: UIView {
             }
         }
     }
-    
+
     var collectionView: UICollectionView!
-    
+
     required public init(frame: CGRect, layout: UICollectionViewLayout) {
         super.init(frame: frame)
-        
+
         self.layout = layout
     }
-    
+
     override init(frame: CGRect) {
         super.init(frame: frame)
     }
-    
+
     required public init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
 }
