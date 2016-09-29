@@ -11,7 +11,7 @@ import UIKit
 @IBDesignable
 public class CollectionGraphView: UIView {
 
-    var layout: UICollectionViewLayout? {
+    @IBInspectable var layout: UICollectionViewLayout? {
         didSet {
             if let layout = layout {
                 self.collectionView.collectionViewLayout = layout
