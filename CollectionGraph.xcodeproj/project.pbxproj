@@ -123,9 +123,9 @@
 			isa = PBXGroup;
 			children = (
 				5717848D1D95A2B20074879A /* CollectionGraphView.swift */,
+				57074E701D9B11D600B9AAC4 /* CollectionGraph.xib */,
 				57EA989A1D958C82000D6C55 /* CollectionGraph.h */,
 				57EA989C1D958C82000D6C55 /* Info.plist */,
-				57074E701D9B11D600B9AAC4 /* CollectionGraph.xib */,
 			);
 			path = CollectionGraph;
 			sourceTree = "<group>";
