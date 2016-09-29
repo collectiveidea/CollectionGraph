@@ -15,7 +15,7 @@ struct GraphInfo {
 
 struct GraphData {
     var data: [[GraphInfo]]
-    
+
     var sectionCount: Int {
         get {
             return data.count
@@ -25,7 +25,7 @@ struct GraphData {
 
 @IBDesignable
 public class CollectionGraphView: UIView {
-    
+
     var data: GraphData = GraphData(data: [[GraphInfo(x: "•", y: 1)]])
 
     @IBInspectable public var layout: GraphLayout? {
