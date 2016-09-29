@@ -11,28 +11,46 @@ import UIKit
 @IBDesignable
 public class CollectionGraphView: UIView {
 
-    @IBInspectable var layout: UICollectionViewLayout? {
+    @IBInspectable public var layout: UICollectionViewLayout? {
         didSet {
             if let layout = layout {
-                self.collectionView.collectionViewLayout = layout
+                self.graphCollectionView.collectionViewLayout = layout
             }
         }
     }
 
-    var collectionView: UICollectionView!
+    @IBOutlet weak var graphCollectionView: UICollectionView!
 
+    // MARK: - View Lifecycle
+    
     required public init(frame: CGRect, layout: UICollectionViewLayout) {
         super.init(frame: frame)
+
+        addCollectionView()
 
         self.layout = layout
     }
 
     override init(frame: CGRect) {
         super.init(frame: frame)
+
+        addCollectionView()
     }
 
     required public init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        super.init(coder: aDecoder)
+
+        addCollectionView()
+    }
+
+    func addCollectionView() {
+        let xibView = XibLoader.viewFromXib(name: "GraphCollectionView", owner: self)
+
+        xibView?.frame = bounds
+
+        if let xibView = xibView {
+            addSubview(xibView)
+        }
     }
 
 }
