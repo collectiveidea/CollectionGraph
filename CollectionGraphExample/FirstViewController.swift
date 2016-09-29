@@ -7,12 +7,18 @@
 //
 
 import UIKit
+import CollectionGraph
 
 class FirstViewController: UIViewController {
+
+    @IBOutlet weak var graph: CollectionGraphView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+
+        let layout = UICollectionViewLayout()
+        graph.layout = layout
     }
 
     override func didReceiveMemoryWarning() {
