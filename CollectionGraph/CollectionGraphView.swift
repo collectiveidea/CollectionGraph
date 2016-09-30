@@ -31,7 +31,12 @@ public class CollectionGraphView: UIView {
         }
     }
 
-    @IBOutlet weak var graphCollectionView: UICollectionView!
+    @IBOutlet weak var graphCollectionView: UICollectionView! {
+        didSet {
+            graphCollectionView.dataSource = collectionGraphDataSource
+            collectionGraphDataSource.graphData = graphData
+        }
+    }
 
     // MARK: - View Lifecycle
 
