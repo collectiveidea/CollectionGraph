@@ -8,12 +8,12 @@
 
 import UIKit
 
-struct GraphInfo {
+public struct GraphInfo {
     var x: String
     var y: CGFloat
 }
 
-struct GraphData {
+public struct GraphData {
     var data: [[GraphInfo]]
 
     var sectionCount: Int {
@@ -26,7 +26,7 @@ struct GraphData {
 @IBDesignable
 public class CollectionGraphView: UIView {
 
-    var graphData: GraphData = GraphData(data: [[GraphInfo(x: "•", y: 1)]])
+    public var graphData: GraphData = GraphData(data: [[GraphInfo(x: "•", y: 1)]])
     
     var collectionGraphDataSource = CollectionGraphDataSource()
 
