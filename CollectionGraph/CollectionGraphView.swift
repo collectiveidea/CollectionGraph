@@ -11,9 +11,46 @@ import UIKit
 @IBDesignable
 public class CollectionGraphView: UIView {
 
-    @IBInspectable public var myColor: UIColor = UIColor.red {
+    @IBInspectable public var layout: GraphLayout? {
         didSet {
-            backgroundColor = myColor
+            if let layout = layout {
+                self.graphCollectionView.collectionViewLayout = layout
+            }
         }
     }
+
+    @IBOutlet weak var graphCollectionView: UICollectionView!
+
+    // MARK: - View Lifecycle
+
+    required public init(frame: CGRect, layout: GraphLayout) {
+        super.init(frame: frame)
+
+        addCollectionView()
+
+        self.layout = layout
+    }
+
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+
+        addCollectionView()
+    }
+
+    required public init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+
+        addCollectionView()
+    }
+
+    func addCollectionView() {
+        let xibView = XibLoader.viewFromXib(name: "GraphCollectionView", owner: self)
+
+        xibView?.frame = bounds
+
+        if let xibView = xibView {
+            addSubview(xibView)
+        }
+    }
+
 }
