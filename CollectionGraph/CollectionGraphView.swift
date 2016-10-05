@@ -38,6 +38,12 @@ public enum ReuseIDs: String {
     case XLabelView = "XLabel"
 }
 
+public enum ReuseIDs: String {
+    case GraphCell = "GraphCell"
+    case LineSupplementaryView = "LineView"
+    case BarSupplementaryView = "BarView"
+}
+
 @IBDesignable
 public class CollectionGraphView: UIView {
 
