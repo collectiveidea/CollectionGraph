@@ -9,19 +9,21 @@
 import UIKit
 
 class CollectionGraphDataSource: NSObject, UICollectionViewDataSource {
-    
+
     var graphData: GraphData = GraphData(data: [])
 
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return graphData.sectionCount
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return graphData.data[section].count
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        //
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ReuseIDs.GraphCell.rawValue, for: indexPath)
+
+        return cell
     }
-    
+
 }
