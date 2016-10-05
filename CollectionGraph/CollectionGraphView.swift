@@ -31,6 +31,14 @@ public class CollectionGraphView: UIView {
 
     var collectionGraphDataSource = CollectionGraphDataSource()
 
+    public var graphCell: UICollectionViewCell? {
+        didSet {
+            if let graphCell = graphCell {
+                self.graphCollectionView.register(graphCell.classForCoder, forCellWithReuseIdentifier: ReuseIDs.GraphCell.rawValue)
+            }
+        }
+    }
+
     @IBInspectable public var layout: GraphLayout? {
         didSet {
             if let layout = layout {
@@ -48,12 +56,13 @@ public class CollectionGraphView: UIView {
 
     // MARK: - View Lifecycle
 
-    required public init(frame: CGRect, layout: GraphLayout) {
+    required public init(frame: CGRect, layout: GraphLayout, graphCell: UICollectionViewCell) {
         super.init(frame: frame)
 
         addCollectionView()
 
         self.layout = layout
+        self.graphCell = graphCell
     }
 
     override init(frame: CGRect) {
