@@ -33,10 +33,16 @@ public enum ReuseIDs: String {
 public class CollectionGraphView: UIView {
 
     public var graphData: GraphData = GraphData(data: [[GraphInfo(x: "•", y: 1)]])
-    
-    var collectionGraphDataSource = CollectionGraphDataSource()
 
     var collectionGraphDataSource = CollectionGraphDataSource()
+
+    public var graphCell: UICollectionViewCell? {
+        didSet {
+            if let graphCell = graphCell {
+                self.graphCollectionView.register(graphCell.classForCoder, forCellWithReuseIdentifier: ReuseIDs.GraphCell.rawValue)
+            }
+        }
+    }
 
     @IBInspectable public var layout: GraphLayout? {
         didSet {
@@ -55,12 +61,13 @@ public class CollectionGraphView: UIView {
 
     // MARK: - View Lifecycle
 
-    required public init(frame: CGRect, layout: GraphLayout) {
+    required public init(frame: CGRect, layout: GraphLayout, graphCell: UICollectionViewCell) {
         super.init(frame: frame)
 
         addCollectionView()
 
         self.layout = layout
+        self.graphCell = graphCell
     }
 
     override init(frame: CGRect) {

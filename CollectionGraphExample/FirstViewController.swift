@@ -18,6 +18,11 @@ class FirstViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
 
         graph.layout = GraphLayout()
+
+        let cell = UICollectionViewCell(frame: CGRect(x: 0, y: 0, width: 10, height: 10))
+        cell.contentView.backgroundColor = UIColor.red
+
+        graph.graphCell = cell
     }
 
     override func didReceiveMemoryWarning() {
