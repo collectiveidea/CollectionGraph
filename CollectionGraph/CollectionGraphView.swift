@@ -21,7 +21,7 @@ struct GraphData {
 @IBDesignable
 public class CollectionGraphView: UIView {
 
-    var data: GraphData = GraphData(data: [[CGPoint(x: 1, y: 1)]])
+    var graphData: GraphData = GraphData(data: [[CGPoint(x: 1, y: 1)]])
 
     @IBInspectable public var layout: GraphLayout? {
         didSet {
