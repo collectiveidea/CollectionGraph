@@ -27,7 +27,7 @@ public struct GraphData {
 public class CollectionGraphView: UIView {
 
     public var graphData: GraphData = GraphData(data: [[GraphInfo(x: "•", y: 1)]])
-    
+
     var collectionGraphDataSource = CollectionGraphDataSource()
 
     @IBInspectable public var layout: GraphLayout? {
