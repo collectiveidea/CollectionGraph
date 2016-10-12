@@ -8,13 +8,8 @@
 
 import UIKit
 
-struct GraphInfo {
-    var x: String
-    var y: CGFloat
-}
-
 struct GraphData {
-    var data: [[GraphInfo]]
+    var data: [[CGPoint]]
 
     var sectionCount: Int {
         get {
@@ -26,7 +21,7 @@ struct GraphData {
 @IBDesignable
 public class CollectionGraphView: UIView {
 
-    var data: GraphData = GraphData(data: [[GraphInfo(x: "•", y: 1)]])
+    var data: GraphData = GraphData(data: [[CGPoint(x: 1, y: 1)]])
 
     @IBInspectable public var layout: GraphLayout? {
         didSet {
