@@ -27,6 +27,7 @@ public enum ReuseIDs: String {
     case GraphCell = "GraphCell"
     case LineSupplementaryView = "LineView"
     case BarSupplementaryView = "BarView"
+    case YDividerSupplementaryView = "YDivider"
 }
 
 @IBDesignable
@@ -48,6 +49,8 @@ public class CollectionGraphView: UIView {
         didSet {
             if let layout = layout {
                 self.graphCollectionView.collectionViewLayout = layout
+
+                self.graphCollectionView.register(YDividerLineView.classForCoder(), forSupplementaryViewOfKind: ReuseIDs.YDividerSupplementaryView.rawValue, withReuseIdentifier: ReuseIDs.YDividerSupplementaryView.rawValue)
             }
         }
     }
