@@ -8,8 +8,12 @@
 
 import UIKit
 
-struct GraphData {
-    var data: [[CGPoint]]
+public struct GraphData {
+    public var data: [[CGPoint]]
+
+    public init(data: [[CGPoint]]) {
+        self.data = data
+    }
 
     var sectionCount: Int {
         get {
@@ -27,7 +31,14 @@ public enum ReuseIDs: String {
 @IBDesignable
 public class CollectionGraphView: UIView {
 
-    var graphData: GraphData = GraphData(data: [[CGPoint(x: 1, y: 1)]])
+    public var graphData: GraphData = GraphData(data: []) {
+        didSet {
+            if let layout = layout {
+                layout.graphData = graphData
+                collectionGraphDataSource.graphData = graphData
+            }
+        }
+    }
 
     var collectionGraphDataSource = CollectionGraphDataSource()
 
@@ -50,7 +61,7 @@ public class CollectionGraphView: UIView {
     @IBOutlet weak var graphCollectionView: UICollectionView! {
         didSet {
             graphCollectionView.dataSource = collectionGraphDataSource
-            collectionGraphDataSource.graphData = graphData
+            graphCollectionView.backgroundColor = backgroundColor
         }
     }
 
