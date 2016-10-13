@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		570379C11DAFFD2A00A88C6B /* YDividerLayoutAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570379C01DAFFD2A00A88C6B /* YDividerLayoutAttributes.swift */; };
 		570379C31DB0006B00A88C6B /* YDividerLineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570379C21DB0006B00A88C6B /* YDividerLineView.swift */; };
+		570379C81DB02C5700A88C6B /* LineConnectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570379C71DB02C5700A88C6B /* LineConnectorView.swift */; };
+		570379CA1DB02CB500A88C6B /* LineConnectorAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570379C91DB02CB500A88C6B /* LineConnectorAttributes.swift */; };
 		5717848E1D95A2B20074879A /* CollectionGraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5717848D1D95A2B20074879A /* CollectionGraphView.swift */; };
 		5717848F1D95A3540074879A /* CollectionGraph.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57EA98971D958C82000D6C55 /* CollectionGraph.framework */; };
 		571784901D95A3540074879A /* CollectionGraph.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 57EA98971D958C82000D6C55 /* CollectionGraph.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -63,6 +65,8 @@
 /* Begin PBXFileReference section */
 		570379C01DAFFD2A00A88C6B /* YDividerLayoutAttributes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YDividerLayoutAttributes.swift; sourceTree = "<group>"; };
 		570379C21DB0006B00A88C6B /* YDividerLineView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YDividerLineView.swift; sourceTree = "<group>"; };
+		570379C71DB02C5700A88C6B /* LineConnectorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LineConnectorView.swift; sourceTree = "<group>"; };
+		570379C91DB02CB500A88C6B /* LineConnectorAttributes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LineConnectorAttributes.swift; sourceTree = "<group>"; };
 		5717848D1D95A2B20074879A /* CollectionGraphView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionGraphView.swift; sourceTree = "<group>"; };
 		571B7EC71D9D9AA000FCE88E /* XibLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XibLoader.swift; sourceTree = "<group>"; };
 		571B7EC91D9D9CF500FCE88E /* GraphCollectionView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GraphCollectionView.xib; sourceTree = "<group>"; };
@@ -128,6 +132,7 @@
 			isa = PBXGroup;
 			children = (
 				570379C01DAFFD2A00A88C6B /* YDividerLayoutAttributes.swift */,
+				570379C91DB02CB500A88C6B /* LineConnectorAttributes.swift */,
 				570379C61DB02B5E00A88C6B /* Supplementary Views */,
 			);
 			name = "Layout Attributes";
@@ -137,6 +142,7 @@
 			isa = PBXGroup;
 			children = (
 				570379C21DB0006B00A88C6B /* YDividerLineView.swift */,
+				570379C71DB02C5700A88C6B /* LineConnectorView.swift */,
 			);
 			name = "Supplementary Views";
 			sourceTree = "<group>";
@@ -366,9 +372,11 @@
 				570379C11DAFFD2A00A88C6B /* YDividerLayoutAttributes.swift in Sources */,
 				571B7ED21D9DBAC300FCE88E /* CollectionGraphDataSource.swift in Sources */,
 				571B7ED01D9DADAA00FCE88E /* BarGraphLayout.swift in Sources */,
+				570379CA1DB02CB500A88C6B /* LineConnectorAttributes.swift in Sources */,
 				570379C31DB0006B00A88C6B /* YDividerLineView.swift in Sources */,
 				571B7EC81D9D9AA000FCE88E /* XibLoader.swift in Sources */,
 				5717848E1D95A2B20074879A /* CollectionGraphView.swift in Sources */,
+				570379C81DB02C5700A88C6B /* LineConnectorView.swift in Sources */,
 				571B7ECC1D9DAD4B00FCE88E /* GraphLayout.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
