@@ -113,6 +113,34 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		570379C41DB02B1800A88C6B /* Layouts */ = {
+			isa = PBXGroup;
+			children = (
+				571B7ECB1D9DAD4B00FCE88E /* GraphLayout.swift */,
+				571B7ECD1D9DAD8B00FCE88E /* LineGraphLayout.swift */,
+				571B7ECF1D9DADAA00FCE88E /* BarGraphLayout.swift */,
+				570379C51DB02B3D00A88C6B /* Layout Attributes */,
+			);
+			name = Layouts;
+			sourceTree = "<group>";
+		};
+		570379C51DB02B3D00A88C6B /* Layout Attributes */ = {
+			isa = PBXGroup;
+			children = (
+				570379C01DAFFD2A00A88C6B /* YDividerLayoutAttributes.swift */,
+				570379C61DB02B5E00A88C6B /* Supplementary Views */,
+			);
+			name = "Layout Attributes";
+			sourceTree = "<group>";
+		};
+		570379C61DB02B5E00A88C6B /* Supplementary Views */ = {
+			isa = PBXGroup;
+			children = (
+				570379C21DB0006B00A88C6B /* YDividerLineView.swift */,
+			);
+			name = "Supplementary Views";
+			sourceTree = "<group>";
+		};
 		57EA988D1D958C82000D6C55 = {
 			isa = PBXGroup;
 			children = (
@@ -139,12 +167,8 @@
 				57EA989A1D958C82000D6C55 /* CollectionGraph.h */,
 				57EA989C1D958C82000D6C55 /* Info.plist */,
 				5717848D1D95A2B20074879A /* CollectionGraphView.swift */,
-				570379C21DB0006B00A88C6B /* YDividerLineView.swift */,
-				570379C01DAFFD2A00A88C6B /* YDividerLayoutAttributes.swift */,
 				571B7ED11D9DBAC300FCE88E /* CollectionGraphDataSource.swift */,
-				571B7ECB1D9DAD4B00FCE88E /* GraphLayout.swift */,
-				571B7ECD1D9DAD8B00FCE88E /* LineGraphLayout.swift */,
-				571B7ECF1D9DADAA00FCE88E /* BarGraphLayout.swift */,
+				570379C41DB02B1800A88C6B /* Layouts */,
 				571B7EC71D9D9AA000FCE88E /* XibLoader.swift */,
 				571B7EC91D9D9CF500FCE88E /* GraphCollectionView.xib */,
 			);
