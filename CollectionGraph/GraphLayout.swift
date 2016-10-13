@@ -86,7 +86,7 @@ public class GraphLayout: UICollectionViewLayout {
         if let collectionView = collectionView {
 
             let width = graphWidth ?? collectionView.bounds.width
-            let height = collectionView.bounds.height
+            let height = collectionView.bounds.height - (collectionView.contentInset.top + collectionView.contentInset.bottom)
 
             let contentSize = CGSize(width: width, height: height)
 
