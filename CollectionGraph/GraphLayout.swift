@@ -124,6 +124,7 @@ public class GraphLayout: UICollectionViewLayout {
                                    height: height)
 
                 attributes.frame = frame
+                attributes.inset = collectionView.contentInset.left
 
                 attributes.text = "\(Int((yIncrements * CGFloat(ySteps)) - (yIncrements * CGFloat(indexPath.row))))"
             }
