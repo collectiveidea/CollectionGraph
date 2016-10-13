@@ -51,8 +51,8 @@ public class CollectionGraphView: UIView {
                 self.graphCollectionView.collectionViewLayout = layout
 
                 self.graphCollectionView.register(YDividerLineView.classForCoder(), forSupplementaryViewOfKind: ReuseIDs.YDividerSupplementaryView.rawValue, withReuseIdentifier: ReuseIDs.YDividerSupplementaryView.rawValue)
-                
-                self.graphCollectionView.register(LineConnectorView.classForCoder(), forSupplementaryViewOfKind: ReuseIDs.YDividerSupplementaryView.rawValue, withReuseIdentifier: ReuseIDs.YDividerSupplementaryView.rawValue)
+
+                self.graphCollectionView.register(LineConnectorView.classForCoder(), forSupplementaryViewOfKind: ReuseIDs.LineSupplementaryView.rawValue, withReuseIdentifier: ReuseIDs.LineSupplementaryView.rawValue)
             }
         }
     }

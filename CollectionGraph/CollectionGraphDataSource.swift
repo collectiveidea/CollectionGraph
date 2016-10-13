@@ -35,9 +35,9 @@ class CollectionGraphDataSource: NSObject, UICollectionViewDataSource {
         case ReuseIDs.YDividerSupplementaryView.rawValue:
 
             return collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: ReuseIDs.YDividerSupplementaryView.rawValue, for: indexPath)
-            
+
         case ReuseIDs.LineSupplementaryView.rawValue:
-            
+
             return collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: ReuseIDs.LineSupplementaryView.rawValue, for: indexPath)
 
         default:
