@@ -39,6 +39,10 @@ public class GraphLayout: UICollectionViewLayout {
 
     // MARK: - Layout Setup
 
+    public override func shouldInvalidateLayout(forBoundsChange newBounds: CGRect) -> Bool {
+        return true
+    }
+
     override public func prepare() {
 
         if let collectionView = collectionView {
