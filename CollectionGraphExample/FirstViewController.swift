@@ -21,11 +21,10 @@ class FirstViewController: UIViewController {
         graph.layout?.graphWidth = 400
 
         let cell = UICollectionViewCell(frame: CGRect(x: 0, y: 0, width: 10, height: 10))
-        cell.contentView.backgroundColor = UIColor.red
 
         graph.graphCell = cell
 
-        graph.graphData = GraphData(data: [[CGPoint(x: 1, y: 1), CGPoint(x: 2, y: 2), CGPoint(x: 4, y: 5)]])
+        graph.graphData = GraphData(data: [[CGPoint(x: 0, y: 0), CGPoint(x: 2, y: 2), CGPoint(x: 3.2, y: 3.4), CGPoint(x: 4, y: 5)]])
 
     }
 
