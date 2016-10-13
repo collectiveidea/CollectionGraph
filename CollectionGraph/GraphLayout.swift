@@ -19,8 +19,14 @@ public class GraphLayout: UICollectionViewLayout {
 
     private var xDataRange: CGFloat = 0
     private var yDataRange: CGFloat = 0
-    
+
     private var minXVal: CGFloat = 0
+
+    private var yIncrements: CGFloat {
+        get {
+            return  yDataRange / CGFloat(ySteps)
+        }
+    }
 
     internal var graphData: GraphData? {
         didSet {
@@ -55,31 +61,22 @@ public class GraphLayout: UICollectionViewLayout {
                 }
             }
 
-//            for number in 0 ..< ySteps {
-//
-//                let indexPath = NSIndexPath(forItem: number, inSection: 0)
-//                
-//                let supplementaryAttribute = layoutAttributesForSupplementaryViewOfKind(String(YDividerLineView), atIndexPath: indexPath)
-//                
-//                if let supplementaryAttribute = supplementaryAttribute {
-//                    tempAttributes += [supplementaryAttribute]
-//                }
-//            }
-//            
-//            for number in 0...numberOfXDividerLines {
-//                
-//                let indexPath = NSIndexPath(forItem: number, inSection: 0)
-//                
-//                let supplementaryAttribute = layoutAttributesForSupplementaryViewOfKind(String(XDataView), atIndexPath: indexPath)
-//                
-//                if let supplementaryAttribute = supplementaryAttribute {
-//                    tempAttributes += [supplementaryAttribute]
-//                }
-//            }
-            
+            for number in 0 ..< ySteps {
+
+                let indexPath = IndexPath(item: number, section: 0)
+
+                let supplementaryAttribute = layoutAttributesForSupplementaryView(ofKind: ReuseIDs.YDividerSupplementaryView.rawValue, at: indexPath)
+
+                if let supplementaryAttribute = supplementaryAttribute {
+                    tempAttributes += [supplementaryAttribute]
+                }
+            }
+
             layoutAttributes = tempAttributes
         }
     }
+
+    // MARK: - Layout
 
     public override var collectionViewContentSize: CGSize {
         if let collectionView = collectionView {
@@ -106,6 +103,32 @@ public class GraphLayout: UICollectionViewLayout {
         }
 
         return attributesInRect
+    }
+
+    public override func layoutAttributesForSupplementaryView(ofKind elementKind: String, at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
+
+        if elementKind == ReuseIDs.YDividerSupplementaryView.rawValue {
+            let attributes = YDividerLayoutAttributes(forSupplementaryViewOfKind: elementKind, with: indexPath)
+
+            if let collectionView = collectionView {
+
+                let height = (collectionView.frame.height - collectionView.contentInset.top - collectionView.contentInset.bottom) / CGFloat(ySteps)
+
+                let frame = CGRect(x: collectionView.contentOffset.x,
+                                   y: height * CGFloat(indexPath.row),
+                                   width: collectionView.frame.width,
+                                   height: height)
+
+                attributes.frame = frame
+
+                attributes.text = "\(Int((yIncrements * CGFloat(ySteps)) - (yIncrements * CGFloat(indexPath.row))))"
+
+            }
+
+            return attributes
+        }
+
+        return nil
     }
 
     // MARK: - Helpers
@@ -138,9 +161,9 @@ public class GraphLayout: UICollectionViewLayout {
 
     func xGraphPosition(indexPath: IndexPath) -> CGFloat {
         if let graphData = graphData, let collectionView = collectionView {
-            
+
             let width = graphWidth ?? collectionView.bounds.width
-            
+
             let xValPercent = (graphData.data[indexPath.section][indexPath.item].x - minXVal) / xDataRange
             let xPos = width * xValPercent
             return xPos
