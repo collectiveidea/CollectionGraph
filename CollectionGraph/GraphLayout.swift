@@ -125,7 +125,7 @@ public class GraphLayout: UICollectionViewLayout {
             
             for sectionNumber in 0..<collectionView.numberOfSections {
                 for itemNumber in 0 ..< collectionView.numberOfItems(inSection: sectionNumber) {
-                    
+
                     let indexPath = IndexPath(item: itemNumber, section: sectionNumber)
                     
                     let supplementaryAttributes = layoutAttributesForSupplementaryView(ofKind: ReuseIDs.LineConnectorView.rawValue, at: indexPath)
@@ -135,6 +135,28 @@ public class GraphLayout: UICollectionViewLayout {
                     }
                 }
             }
+
+//            for number in 0 ..< ySteps {
+//
+//                let indexPath = NSIndexPath(forItem: number, inSection: 0)
+//                
+//                let supplementaryAttribute = layoutAttributesForSupplementaryViewOfKind(String(YDividerLineView), atIndexPath: indexPath)
+//                
+//                if let supplementaryAttribute = supplementaryAttribute {
+//                    tempAttributes += [supplementaryAttribute]
+//                }
+//            }
+//            
+//            for number in 0...numberOfXDividerLines {
+//                
+//                let indexPath = NSIndexPath(forItem: number, inSection: 0)
+//                
+//                let supplementaryAttribute = layoutAttributesForSupplementaryViewOfKind(String(XDataView), atIndexPath: indexPath)
+//                
+//                if let supplementaryAttribute = supplementaryAttribute {
+//                    tempAttributes += [supplementaryAttribute]
+//                }
+//            }
             
             layoutAttributes += tempAttributes
         }
