@@ -55,7 +55,7 @@ public class CollectionGraphView: UIView {
     @IBOutlet weak var graphCollectionView: UICollectionView! {
         didSet {
             graphCollectionView.dataSource = collectionGraphDataSource
-            collectionGraphDataSource.graphData = graphData
+            graphCollectionView.backgroundColor = backgroundColor
         }
     }
 

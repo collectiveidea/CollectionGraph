@@ -10,99 +10,150 @@ import UIKit
 
 public class GraphLayout: UICollectionViewLayout {
 
-    @IBInspectable var xSteps: Int = 2
-    @IBInspectable var ySteps: Int = 6
-
     @IBInspectable var cellSize: CGSize = CGSize(width: 3.0, height: 3.0)
+
+    @IBInspectable public var ySteps: Int = 6
+    @IBInspectable public var xSteps: Int = 3
+
+    @IBInspectable public var graphWidth: CGFloat? // width of graph in points
+
+    private var xDataRange: CGFloat = 0
+    private var yDataRange: CGFloat = 0
     
-    @IBInspectable var cellSpacing: CGFloat = 20.0
-    
-    internal var graphData: GraphData?
+    private var minXVal: CGFloat = 0
+
+    internal var graphData: GraphData? {
+        didSet {
+            calculateXDataRange()
+            calculateYDataRange()
+        }
+    }
 
     internal var layoutAttributes = [UICollectionViewLayoutAttributes]()
-    
+
+    // MARK: - Layout Setup
+
     override public func prepare() {
-        
-        if let collectionView = collectionView, let graphData = graphData {
-            
+
+        if let collectionView = collectionView {
+
             var tempAttributes = [UICollectionViewLayoutAttributes]()
-            
+
             for sectionNumber in 0 ..< collectionView.numberOfSections {
-                
+
                 for itemNumber in 0 ..< collectionView.numberOfItems(inSection: sectionNumber) {
-                    
+
                     let indexPath = IndexPath(item: itemNumber, section: sectionNumber)
-                    
+
                     let attributes = UICollectionViewLayoutAttributes(forCellWith: indexPath)
-                    
-                    let frame = CGRect(x: itemNumber * cellSpacing, y: yGraphPosition(points[sectionNumber][itemNumber].y) - cellSize.height / 2, width: cellSize.width, height: cellSize.height)
-                    
+
+                    let frame = CGRect(x: xGraphPosition(indexPath: indexPath) - cellSize.width / 2, y: yGraphPosition(indexPath: indexPath) - cellSize.height / 2, width: cellSize.width, height: cellSize.height)
+
                     attributes.frame = frame
-                    
+
                     tempAttributes += [attributes]
                 }
             }
-            
-            for number in 0 ..< ySteps {
-                
-                let indexPath = NSIndexPath(forItem: number, inSection: 0)
-                
-                let supplementaryAttribute = layoutAttributesForSupplementaryViewOfKind(String(YDividerLineView), atIndexPath: indexPath)
-                
-                if let supplementaryAttribute = supplementaryAttribute {
-                    tempAttributes += [supplementaryAttribute]
-                }
-            }
-            
-            for number in 0...numberOfXDividerLines {
-                
-                let indexPath = NSIndexPath(forItem: number, inSection: 0)
-                
-                let supplementaryAttribute = layoutAttributesForSupplementaryViewOfKind(String(XDataView), atIndexPath: indexPath)
-                
-                if let supplementaryAttribute = supplementaryAttribute {
-                    tempAttributes += [supplementaryAttribute]
-                }
-            }
+
+//            for number in 0 ..< ySteps {
+//
+//                let indexPath = NSIndexPath(forItem: number, inSection: 0)
+//                
+//                let supplementaryAttribute = layoutAttributesForSupplementaryViewOfKind(String(YDividerLineView), atIndexPath: indexPath)
+//                
+//                if let supplementaryAttribute = supplementaryAttribute {
+//                    tempAttributes += [supplementaryAttribute]
+//                }
+//            }
+//            
+//            for number in 0...numberOfXDividerLines {
+//                
+//                let indexPath = NSIndexPath(forItem: number, inSection: 0)
+//                
+//                let supplementaryAttribute = layoutAttributesForSupplementaryViewOfKind(String(XDataView), atIndexPath: indexPath)
+//                
+//                if let supplementaryAttribute = supplementaryAttribute {
+//                    tempAttributes += [supplementaryAttribute]
+//                }
+//            }
             
             layoutAttributes = tempAttributes
         }
     }
-    
-    //MARK: - Helpers
-    
-    func calculateTotalYDistance() {
-        
-        var yVals = [CGFloat]()
-        
-        let data = graphData.flatMap { array in
-            
-        }
-        
-        
-        for point in points {
-            yVals += point.map { return $0.y }
-        }
-        
-        let maxY = yVals.maxElement() ?? 0
-        
-        let remainder = maxY % CGFloat(ySteps)
-        if remainder == 0 {
-            yDelta = maxY
-        } else {
-            yDelta = maxY - remainder + CGFloat(ySteps)
-        }
-    }
-    
-    func yGraphPosition(val: CGFloat) -> CGFloat {
-        
+
+    public override var collectionViewContentSize: CGSize {
         if let collectionView = collectionView {
-            let delta = collectionView.bounds.height - collectionView.contentInset.top - collectionView.contentInset.bottom
-            return delta - (delta * (val / yDelta))
+
+            let width = graphWidth ?? collectionView.bounds.width
+            let height = collectionView.bounds.height
+
+            let contentSize = CGSize(width: width, height: height)
+
+            return contentSize
         }
-        
-        return 0
+
+        return CGSize.zero
     }
 
+    override public func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
+
+        var attributesInRect = [UICollectionViewLayoutAttributes]()
+
+        for attributes in layoutAttributes {
+            if attributes.frame.intersects(rect) {
+                attributesInRect += [attributes]
+            }
+        }
+
+        return attributesInRect
+    }
+
+    // MARK: - Helpers
+
+    func calculateXDataRange() {
+        let xVals = graphData?.data.flatMap {
+            return $0.map { return $0.x }
+        }
+        if let min = xVals?.min(), let max = xVals?.max() {
+            xDataRange = max - min
+            minXVal = min
+        }
+    }
+
+    func calculateYDataRange() {
+
+        let yVals = graphData?.data.flatMap {
+            return $0.map { return $0.y }
+        }
+
+        let maxY = yVals?.max() ?? 0
+
+        let remainder = maxY.truncatingRemainder(dividingBy: CGFloat(ySteps))
+        if remainder == 0 {
+            yDataRange = maxY
+        } else {
+            yDataRange = maxY - remainder + CGFloat(ySteps)
+        }
+    }
+
+    func xGraphPosition(indexPath: IndexPath) -> CGFloat {
+        if let graphData = graphData, let collectionView = collectionView {
+            
+            let width = graphWidth ?? collectionView.bounds.width
+            
+            let xValPercent = (graphData.data[indexPath.section][indexPath.item].x - minXVal) / xDataRange
+            let xPos = width * xValPercent
+            return xPos
+        }
+       return 0
+    }
+
+    func yGraphPosition(indexPath: IndexPath) -> CGFloat {
+        if let collectionView = collectionView, let graphData = graphData {
+            let delta = collectionView.bounds.height - collectionView.contentInset.top - collectionView.contentInset.bottom
+            return delta - (delta * (graphData.data[indexPath.section][indexPath.item].y / yDataRange))
+        }
+        return 0
+    }
 
 }
