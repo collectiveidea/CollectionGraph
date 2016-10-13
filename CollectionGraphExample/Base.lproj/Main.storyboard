@@ -21,7 +21,7 @@
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lKD-sb-K3J" customClass="CollectionGraphView" customModule="CollectionGraph">
                                 <frame key="frameInset" minX="74" minY="89" width="240" height="128"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.69793057290000005" green="0.86186079550000005" blue="0.025485588199999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.1019607843" green="0.1019607843" blue="0.1019607843" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
