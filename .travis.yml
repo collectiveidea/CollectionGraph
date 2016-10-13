@@ -3,3 +3,7 @@ osx_image: xcode8
 script: xcodebuild -scheme CollectionGraph -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 6S,OS=10.0' build test
 notifications:
   slack: collectiveidea:UAduo5riNzgVWHyExXgSnZWk
+  webhooks:
+    urls:
+      - https://buildlight.collectiveidea.com/
+    on_start: always
