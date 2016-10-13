@@ -126,12 +126,9 @@ public class GraphLayout: UICollectionViewLayout {
                 attributes.frame = frame
 
                 attributes.text = "\(Int((yIncrements * CGFloat(ySteps)) - (yIncrements * CGFloat(indexPath.row))))"
-
             }
-
             return attributes
         }
-
         return nil
     }
 

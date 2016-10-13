@@ -55,10 +55,32 @@ public class CollectionGraphView: UIView {
         }
     }
 
+    @IBInspectable public var topInset: CGFloat = 10 {
+        didSet {
+            graphCollectionView.contentInset.top = topInset
+        }
+    }
+    @IBInspectable public var leftInset: CGFloat = 20 {
+        didSet {
+            graphCollectionView.contentInset.left = leftInset
+        }
+    }
+    @IBInspectable public var bottomInset: CGFloat = 10 {
+        didSet {
+            graphCollectionView.contentInset.bottom = bottomInset
+        }
+    }
+    @IBInspectable public var rightInset: CGFloat = 10 {
+        didSet {
+            graphCollectionView.contentInset.right = rightInset
+        }
+    }
+
     @IBOutlet weak var graphCollectionView: UICollectionView! {
         didSet {
             graphCollectionView.dataSource = collectionGraphDataSource
             graphCollectionView.backgroundColor = backgroundColor
+            graphCollectionView.contentInset = UIEdgeInsets(top: topInset, left: leftInset, bottom: bottomInset, right: rightInset)
         }
     }
 
