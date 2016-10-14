@@ -28,6 +28,7 @@ public enum ReuseIDs: String {
     case LineSupplementaryView = "LineView"
     case BarSupplementaryView = "BarView"
     case YDividerSupplementaryView = "YDivider"
+    case XLabelView = "XLabel"
 }
 
 @IBDesignable
@@ -53,6 +54,8 @@ public class CollectionGraphView: UIView {
                 self.graphCollectionView.register(YDividerLineView.classForCoder(), forSupplementaryViewOfKind: ReuseIDs.YDividerSupplementaryView.rawValue, withReuseIdentifier: ReuseIDs.YDividerSupplementaryView.rawValue)
 
                 self.graphCollectionView.register(LineConnectorView.classForCoder(), forSupplementaryViewOfKind: ReuseIDs.LineSupplementaryView.rawValue, withReuseIdentifier: ReuseIDs.LineSupplementaryView.rawValue)
+                
+                self.graphCollectionView.register(XLabelView.classForCoder(), forSupplementaryViewOfKind: ReuseIDs.XLabelView.rawValue, withReuseIdentifier: ReuseIDs.XLabelView.rawValue)
             }
         }
     }
