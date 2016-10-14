@@ -24,8 +24,7 @@ class FirstViewController: UIViewController {
 
         graph.graphCell = cell
 
-        graph.graphData = GraphData(data: [[CGPoint(x: 0, y: 0), CGPoint(x: 2, y: 2), CGPoint(x: 3.2, y: 3.4), CGPoint(x: 4, y: 5)]])
-
+        graph.graphData = Parser.parseExampleData(data: ExampleDataFromServer().json)
     }
 
     override func didReceiveMemoryWarning() {

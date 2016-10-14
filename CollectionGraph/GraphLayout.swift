@@ -136,7 +136,7 @@ public class GraphLayout: UICollectionViewLayout {
     // MARK: - Helpers
 
     func calculateXDataRange() {
-        let xVals = graphData?.data.flatMap {
+        let xVals = graphData?.values.flatMap {
             return $0.map { return $0.x }
         }
         if let min = xVals?.min(), let max = xVals?.max() {
@@ -147,7 +147,7 @@ public class GraphLayout: UICollectionViewLayout {
 
     func calculateYDataRange() {
 
-        let yVals = graphData?.data.flatMap {
+        let yVals = graphData?.values.flatMap {
             return $0.map { return $0.y }
         }
 
@@ -166,7 +166,7 @@ public class GraphLayout: UICollectionViewLayout {
 
             let width = graphWidth ?? collectionView.bounds.width
 
-            let xValPercent = (graphData.data[indexPath.section][indexPath.item].x - minXVal) / xDataRange
+            let xValPercent = (graphData.values[indexPath.section][indexPath.item].x - minXVal) / xDataRange
             let xPos = width * xValPercent
             return xPos
         }
@@ -176,7 +176,7 @@ public class GraphLayout: UICollectionViewLayout {
     func yGraphPosition(indexPath: IndexPath) -> CGFloat {
         if let collectionView = collectionView, let graphData = graphData {
             let delta = collectionView.bounds.height - collectionView.contentInset.top - collectionView.contentInset.bottom
-            return delta - (delta * (graphData.data[indexPath.section][indexPath.item].y / yDataRange))
+            return delta - (delta * (graphData.values[indexPath.section][indexPath.item].y / yDataRange))
         }
         return 0
     }

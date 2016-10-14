@@ -8,19 +8,8 @@
 
 import UIKit
 
-public struct GraphInfo {
-    var x: String
-    var y: CGFloat
-}
-
-public struct GraphData {
-    var data: [[GraphInfo]]
-
-    var sectionCount: Int {
-        get {
-            return data.count
-        }
-    }
+public protocol GraphData {
+    var values: [[CGPoint]] { get set }
 }
 
 public enum ReuseIDs: String {
@@ -34,7 +23,14 @@ public enum ReuseIDs: String {
 @IBDesignable
 public class CollectionGraphView: UIView {
 
-    public var graphData: GraphData = GraphData(data: [[GraphInfo(x: "•", y: 1)]])
+    public var graphData: GraphData? {
+        didSet {
+            if let graphData = graphData, let layout = layout {
+                layout.graphData = graphData
+                collectionGraphDataSource.graphData = graphData
+            }
+        }
+    }
 
     var collectionGraphDataSource = CollectionGraphDataSource()
 
