@@ -10,14 +10,14 @@ import UIKit
 
 class CollectionGraphDataSource: NSObject, UICollectionViewDataSource {
 
-    var graphData: GraphData = GraphData(data: [])
+    var graphData: GraphData?
 
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return graphData.sectionCount
+        return graphData?.values.count ?? 0
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return graphData.data[section].count
+        return graphData?.values[section].count ?? 0
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
