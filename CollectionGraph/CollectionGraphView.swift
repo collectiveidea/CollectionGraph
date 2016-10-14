@@ -49,12 +49,13 @@ public class CollectionGraphView: UIView {
     @IBInspectable public var layout: GraphLayout? {
         didSet {
             if let layout = layout {
+                // place in layout and loop to create
                 self.graphCollectionView.collectionViewLayout = layout
 
                 self.graphCollectionView.register(YDividerLineView.classForCoder(), forSupplementaryViewOfKind: ReuseIDs.YDividerSupplementaryView.rawValue, withReuseIdentifier: ReuseIDs.YDividerSupplementaryView.rawValue)
 
                 self.graphCollectionView.register(LineConnectorView.classForCoder(), forSupplementaryViewOfKind: ReuseIDs.LineSupplementaryView.rawValue, withReuseIdentifier: ReuseIDs.LineSupplementaryView.rawValue)
-                
+
                 self.graphCollectionView.register(XLabelView.classForCoder(), forSupplementaryViewOfKind: ReuseIDs.XLabelView.rawValue, withReuseIdentifier: ReuseIDs.XLabelView.rawValue)
             }
         }
