@@ -9,7 +9,12 @@
 import UIKit
 
 public protocol GraphData {
-    var values: [[CGPoint]] { get set }
+    var point: CGPoint { get set }
+    var section: Int { get set }
+}
+
+public protocol GraphCellUpdatable: class {
+    func update(data: GraphData?)
 }
 
 public enum ReuseIDs: String {
@@ -23,7 +28,7 @@ public enum ReuseIDs: String {
 @IBDesignable
 public class CollectionGraphView: UIView {
 
-    public var graphData: GraphData? {
+    public var graphData: [[GraphData]]? {
         didSet {
             if let graphData = graphData, let layout = layout {
                 layout.graphData = graphData

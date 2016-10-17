@@ -10,7 +10,8 @@ import UIKit
 import CollectionGraph
 
 struct Data: GraphData {
-    var values: [[CGPoint]]
+    var section: Int
+    var point: CGPoint
     var information: [String: CGPoint]
 }
 
@@ -33,10 +34,9 @@ struct ExampleDataFromServer {
 
 class Parser {
 
-    class func parseExampleData(data: [[String: String]]) -> Data {
+    class func parseExampleData(data: [[String: String]]) -> [[Data]] {
 
-        var tempData: [String: CGPoint] = [:]
-        var tempPoints: [[CGPoint]] = []
+        var dataAry: [[Data]] = [[]]
 
         for (index, item) in data.enumerated() {
 
@@ -47,12 +47,12 @@ class Parser {
 
             let point = CGPoint(x: CGFloat(index), y: population)
 
-            tempData[city] = point
+            let data = Data(section: 1, point: point, information: [city: point])
 
-            tempPoints.append([point])
+            dataAry[0].append(data)
         }
 
-        return Data(values: tempPoints, information: tempData)
+        return dataAry
     }
 
 }

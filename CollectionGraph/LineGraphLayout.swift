@@ -47,7 +47,7 @@ public class LineGraphLayout: GraphLayout {
             let attributes = LineConnectorAttributes(forSupplementaryViewOfKind: elementKind, with: indexPath)
             if let graphData = graphData {
 
-                if indexPath.item < graphData.values[indexPath.section].count - 1 {
+                if indexPath.item < graphData[indexPath.section].count - 1 {
 
                     let xOffset = xGraphPosition(indexPath: indexPath) + cellSize.width / 2
                     let yOffset = yGraphPosition(indexPath: indexPath)
