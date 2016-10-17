@@ -13,6 +13,14 @@ public protocol GraphData {
     var section: Int { get set }
 }
 
+extension Sequence where Iterator.Element == GraphData {
+
+    func section(_ section: Int) -> [GraphData] {
+        return filter { $0.section == section }
+    }
+
+}
+
 public protocol GraphCellUpdatable: class {
     func update(data: GraphData?)
 }
@@ -28,7 +36,7 @@ public enum ReuseIDs: String {
 @IBDesignable
 public class CollectionGraphView: UIView {
 
-    public var graphData: [[GraphData]]? {
+    public var graphData: [GraphData]? {
         didSet {
             if let graphData = graphData, let layout = layout {
                 layout.graphData = graphData

@@ -10,14 +10,15 @@ import UIKit
 
 class CollectionGraphDataSource: NSObject, UICollectionViewDataSource {
 
-    var graphData: [[GraphData]]?
+    var graphData: [GraphData]?
 
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return graphData?.count ?? 0
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return graphData?[section].count ?? 0
+
+        return graphData?.section(section).count ?? 0
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -25,7 +26,7 @@ class CollectionGraphDataSource: NSObject, UICollectionViewDataSource {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ReuseIDs.GraphCell.rawValue, for: indexPath)
 
         if let cell = cell as? GraphCellUpdatable {
-            cell.update(data: graphData?[indexPath.section][indexPath.item])
+            cell.update(data: graphData?.section(indexPath.section)[indexPath.item])
         }
 
         return cell
