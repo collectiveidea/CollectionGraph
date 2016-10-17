@@ -47,7 +47,7 @@ class Parser {
 
             let point = CGPoint(x: CGFloat(index), y: population)
 
-            let data = Data(section: 1, point: point, information: [city: point])
+            let data = Data(section: index, point: point, information: [city: point])
 
             dataAry[0].append(data)
         }
