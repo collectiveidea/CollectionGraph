@@ -28,7 +28,7 @@ public class GraphLayout: UICollectionViewLayout {
         }
     }
 
-    internal var graphData: GraphData? {
+    internal var graphData: [[GraphData]]? {
         didSet {
             calculateXDataRange()
             calculateYDataRange()
@@ -136,8 +136,8 @@ public class GraphLayout: UICollectionViewLayout {
     // MARK: - Helpers
 
     func calculateXDataRange() {
-        let xVals = graphData?.values.flatMap {
-            return $0.map { return $0.x }
+        let xVals = graphData?.flatMap {
+            return $0.map { return $0.point.x }
         }
         if let min = xVals?.min(), let max = xVals?.max() {
             xDataRange = max - min
@@ -147,8 +147,8 @@ public class GraphLayout: UICollectionViewLayout {
 
     func calculateYDataRange() {
 
-        let yVals = graphData?.values.flatMap {
-            return $0.map { return $0.y }
+        let yVals = graphData?.flatMap {
+            return $0.map { return $0.point.y }
         }
 
         let maxY = yVals?.max() ?? 0
@@ -166,7 +166,7 @@ public class GraphLayout: UICollectionViewLayout {
 
             let width = graphWidth ?? collectionView.bounds.width
 
-            let xValPercent = (graphData.values[indexPath.section][indexPath.item].x - minXVal) / xDataRange
+            let xValPercent = (graphData[indexPath.section][indexPath.item].point.x - minXVal) / xDataRange
             let xPos = width * xValPercent
             return xPos
         }
@@ -176,7 +176,7 @@ public class GraphLayout: UICollectionViewLayout {
     func yGraphPosition(indexPath: IndexPath) -> CGFloat {
         if let collectionView = collectionView, let graphData = graphData {
             let delta = collectionView.bounds.height - collectionView.contentInset.top - collectionView.contentInset.bottom
-            return delta - (delta * (graphData.values[indexPath.section][indexPath.item].y / yDataRange))
+            return delta - (delta * (graphData[indexPath.section][indexPath.item].point.y / yDataRange))
         }
         return 0
     }

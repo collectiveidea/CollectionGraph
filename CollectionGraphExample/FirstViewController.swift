@@ -20,7 +20,7 @@ class FirstViewController: UIViewController {
         graph.layout = LineGraphLayout()
         graph.layout?.graphWidth = 400
 
-        let cell = UICollectionViewCell(frame: CGRect(x: 0, y: 0, width: 10, height: 10))
+        let cell = MyGraphCell()
 
         graph.graphCell = cell
 

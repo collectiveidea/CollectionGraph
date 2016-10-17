@@ -10,21 +10,23 @@ import UIKit
 
 class CollectionGraphDataSource: NSObject, UICollectionViewDataSource {
 
-    var graphData: GraphData?
+    var graphData: [[GraphData]]?
 
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return graphData?.values.count ?? 0
+        return graphData?.count ?? 0
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return graphData?.values[section].count ?? 0
+        return graphData?[section].count ?? 0
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ReuseIDs.GraphCell.rawValue, for: indexPath)
 
-        cell.contentView.backgroundColor = UIColor.red
+        if let cell = cell as? GraphCellUpdatable {
+            cell.update(data: graphData?[indexPath.section][indexPath.item])
+        }
 
         return cell
     }
