@@ -49,6 +49,8 @@ public class LineGraphLayout: GraphLayout {
 
                 if indexPath.item < graphData.filterBySection(indexPath.section).count - 1 {
 
+                    let cellSize = cell(sizeAtIndex: indexPath)
+
                     let xOffset = xGraphPosition(indexPath: indexPath) + cellSize.width / 2
                     let yOffset = yGraphPosition(indexPath: indexPath)
 

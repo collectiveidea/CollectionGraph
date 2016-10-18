@@ -8,14 +8,20 @@
 
 import UIKit
 
+public protocol GraphLayoutConfigurable {
+    func cellSize(fromData data: GraphData) -> CGSize
+    var ySteps: Int { get }
+    var xSteps: Int { get }
+    var graphWidth: CGFloat? { get set }
+}
+
+public protocol LineGraphLayoutUpdatable: GraphLayoutConfigurable {
+
+}
+
 public class GraphLayout: UICollectionViewLayout {
 
-    @IBInspectable var cellSize: CGSize = CGSize(width: 3.0, height: 3.0)
-
-    @IBInspectable public var ySteps: Int = 6
-    @IBInspectable public var xSteps: Int = 3
-
-    @IBInspectable public var graphWidth: CGFloat? // width of graph in points
+    public var config: GraphLayoutConfigurable!
 
     private var xDataRange: CGFloat = 0
     private var yDataRange: CGFloat = 0
@@ -24,7 +30,7 @@ public class GraphLayout: UICollectionViewLayout {
 
     private var yIncrements: CGFloat {
         get {
-            return  yDataRange / CGFloat(ySteps)
+            return  yDataRange / CGFloat(config.ySteps)
         }
     }
 
@@ -43,6 +49,15 @@ public class GraphLayout: UICollectionViewLayout {
         return true
     }
 
+    public required init(config: GraphLayoutConfigurable) {
+        super.init()
+        self.config = config
+    }
+
+    required public init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
     override public func prepare() {
 
         if let collectionView = collectionView {
@@ -57,6 +72,8 @@ public class GraphLayout: UICollectionViewLayout {
 
                     let attributes = UICollectionViewLayoutAttributes(forCellWith: indexPath)
 
+                    let cellSize = cell(sizeAtIndex: indexPath)
+
                     let frame = CGRect(x: xGraphPosition(indexPath: indexPath) - cellSize.width / 2, y: yGraphPosition(indexPath: indexPath) - cellSize.height / 2, width: cellSize.width, height: cellSize.height)
 
                     attributes.frame = frame
@@ -65,7 +82,7 @@ public class GraphLayout: UICollectionViewLayout {
                 }
             }
 
-            for number in 0 ..< ySteps {
+            for number in 0 ..< config.ySteps {
 
                 let indexPath = IndexPath(item: number, section: 0)
 
@@ -85,7 +102,7 @@ public class GraphLayout: UICollectionViewLayout {
     public override var collectionViewContentSize: CGSize {
         if let collectionView = collectionView {
 
-            let width = graphWidth ?? collectionView.bounds.width
+            let width = config.graphWidth ?? collectionView.bounds.width
             let height = collectionView.bounds.height - (collectionView.contentInset.top + collectionView.contentInset.bottom)
 
             let contentSize = CGSize(width: width, height: height)
@@ -116,7 +133,7 @@ public class GraphLayout: UICollectionViewLayout {
 
             if let collectionView = collectionView {
 
-                let height = (collectionView.frame.height - collectionView.contentInset.top - collectionView.contentInset.bottom) / CGFloat(ySteps)
+                let height = (collectionView.frame.height - collectionView.contentInset.top - collectionView.contentInset.bottom) / CGFloat(config.ySteps)
 
                 let frame = CGRect(x: collectionView.contentOffset.x,
                                    y: height * CGFloat(indexPath.row),
@@ -126,7 +143,7 @@ public class GraphLayout: UICollectionViewLayout {
                 attributes.frame = frame
                 attributes.inset = collectionView.contentInset.left
 
-                attributes.text = "\(Int((yIncrements * CGFloat(ySteps)) - (yIncrements * CGFloat(indexPath.row))))"
+                attributes.text = "\(Int((yIncrements * CGFloat(config.ySteps)) - (yIncrements * CGFloat(indexPath.row))))"
             }
             return attributes
         }
@@ -134,6 +151,13 @@ public class GraphLayout: UICollectionViewLayout {
     }
 
     // MARK: - Helpers
+
+    func cell(sizeAtIndex indexPath: IndexPath) -> CGSize {
+        if let graphData = graphData {
+            return config.cellSize(fromData: graphData[indexPath.item])
+        }
+        return CGSize.zero
+    }
 
     func calculateXDataRange() {
         let xVals = graphData?.map {
@@ -153,18 +177,18 @@ public class GraphLayout: UICollectionViewLayout {
 
         let maxY = yVals?.max() ?? 0
 
-        let remainder = maxY.truncatingRemainder(dividingBy: CGFloat(ySteps))
+        let remainder = maxY.truncatingRemainder(dividingBy: CGFloat(config.ySteps))
         if remainder == 0 {
             yDataRange = maxY
         } else {
-            yDataRange = maxY - remainder + CGFloat(ySteps)
+            yDataRange = maxY - remainder + CGFloat(config.ySteps)
         }
     }
 
     func xGraphPosition(indexPath: IndexPath) -> CGFloat {
         if let graphData = graphData, let collectionView = collectionView {
 
-            let width = graphWidth ?? collectionView.bounds.width
+            let width = config.graphWidth ?? collectionView.bounds.width
 
             let xValPercent = (graphData.filterBySection(indexPath.section)[indexPath.item].point.x - minXVal) / xDataRange
             let xPos = width * xValPercent
