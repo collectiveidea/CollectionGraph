@@ -49,9 +49,7 @@ public class LineGraphLayout: GraphLayout {
 
                 if indexPath.item < graphData.filterBySection(indexPath.section).count - 1 {
 
-                    let cellSize = cell(sizeAtIndex: indexPath)
-
-                    let xOffset = xGraphPosition(indexPath: indexPath) + cellSize.width / 2
+                    let xOffset = xGraphPosition(indexPath: indexPath)
                     let yOffset = yGraphPosition(indexPath: indexPath)
 
                     let p1 = CGPoint(x: xOffset,
@@ -59,7 +57,7 @@ public class LineGraphLayout: GraphLayout {
 
                     let nextIndex = IndexPath(item: indexPath.item + 1, section: indexPath.section)
 
-                    let xOffset2 = xGraphPosition(indexPath: nextIndex) + cellSize.width / 2
+                    let xOffset2 = xGraphPosition(indexPath: nextIndex)
                     let yOffset2 = yGraphPosition(indexPath: nextIndex)
 
                     let p2 = CGPoint(x: xOffset2,

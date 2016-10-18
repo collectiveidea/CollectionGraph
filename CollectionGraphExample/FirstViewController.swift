@@ -20,7 +20,7 @@ class FirstViewController: UIViewController {
         var layoutConfig = GraphLayoutConfig()
         layoutConfig.graphWidth = 400
 
-        let layout = GraphLayout(config: layoutConfig)
+        let layout = LineGraphLayout(config: layoutConfig)
 
         graph.layout = layout
 
