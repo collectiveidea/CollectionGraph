@@ -11,8 +11,17 @@ import CollectionGraph
 
 class MyGraphCell: UICollectionViewCell, GraphCellUpdatable {
 
-    func update(data: GraphData?) {
+    override init(frame: CGRect) {
+        super.init(frame: frame)
         backgroundColor = UIColor.red
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    func update(data: GraphData?) {
+        
     }
 
 }
