@@ -17,8 +17,12 @@ class FirstViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
 
-        graph.layout = LineGraphLayout()
-        graph.layout?.graphWidth = 400
+        var layoutConfig = GraphLayoutConfig()
+        layoutConfig.graphWidth = 400
+
+        let layout = GraphLayout(config: layoutConfig)
+
+        graph.layout = layout
 
         let cell = MyGraphCell()
 

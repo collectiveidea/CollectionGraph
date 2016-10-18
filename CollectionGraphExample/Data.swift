@@ -19,11 +19,11 @@ struct ExampleDataFromServer {
     let json = [
         [
             "city": "chicago",
-            "population": "100000"
+            "population": "100"
         ],
         [
             "city": "los angeles",
-            "population": "130000"
+            "population": "137990"
         ],
         [
             "city": "grand rapids",

@@ -21,7 +21,12 @@ class MyGraphCell: UICollectionViewCell, GraphCellUpdatable {
     }
 
     func update(data: GraphData?) {
-
+        if let data = data as? Data {
+            if data.information["los angeles"] == data.point {
+                backgroundColor = UIColor.magenta
+                layer.cornerRadius = bounds.width / 2
+            }
+        }
     }
 
 }
