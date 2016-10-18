@@ -21,7 +21,7 @@ class MyGraphCell: UICollectionViewCell, GraphCellUpdatable {
     }
 
     func update(data: GraphData?) {
-        
+
     }
 
 }
