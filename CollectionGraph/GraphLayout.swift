@@ -166,7 +166,7 @@ public class GraphLayout: UICollectionViewLayout {
 
             let width = graphWidth ?? collectionView.bounds.width
 
-            let xValPercent = (graphData.section(indexPath.section)[indexPath.item].point.x - minXVal) / xDataRange
+            let xValPercent = (graphData.filterBySection(indexPath.section)[indexPath.item].point.x - minXVal) / xDataRange
             let xPos = width * xValPercent
             return xPos
         }
@@ -177,7 +177,7 @@ public class GraphLayout: UICollectionViewLayout {
         if let collectionView = collectionView, let graphData = graphData {
             let delta = collectionView.bounds.height - collectionView.contentInset.top - collectionView.contentInset.bottom
 
-            return delta - (delta * (graphData.section(indexPath.section)[indexPath.item].point.y / yDataRange))
+            return delta - (delta * (graphData.filterBySection(indexPath.section)[indexPath.item].point.y / yDataRange))
         }
         return 0
     }
