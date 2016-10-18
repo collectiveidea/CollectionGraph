@@ -34,9 +34,9 @@ struct ExampleDataFromServer {
 
 class Parser {
 
-    class func parseExampleData(data: [[String: String]]) -> [[Data]] {
+    class func parseExampleData(data: [[String: String]]) -> [Data] {
 
-        var dataAry: [[Data]] = [[]]
+        var dataAry: [Data] = []
 
         for (index, item) in data.enumerated() {
 
@@ -47,9 +47,9 @@ class Parser {
 
             let point = CGPoint(x: CGFloat(index), y: population)
 
-            let data = Data(section: index, point: point, information: [city: point])
+            let data = Data(section: 0, point: point, information: [city: point])
 
-            dataAry[0].append(data)
+            dataAry.append(data)
         }
 
         return dataAry

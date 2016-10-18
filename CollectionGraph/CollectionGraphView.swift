@@ -15,8 +15,16 @@ public protocol GraphData {
 
 extension Sequence where Iterator.Element == GraphData {
 
-    func section(_ section: Int) -> [GraphData] {
+    func filterBySection(_ section: Int) -> [GraphData] {
         return filter { $0.section == section }
+    }
+
+    func numberOfSections() -> Int {
+        var numbers = Set<Int>()
+        forEach { graphData in
+            numbers.insert(graphData.section)
+        }
+        return numbers.count
     }
 
 }

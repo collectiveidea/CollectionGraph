@@ -13,20 +13,21 @@ class CollectionGraphDataSource: NSObject, UICollectionViewDataSource {
     var graphData: [GraphData]?
 
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return graphData?.count ?? 0
+        return graphData?.numberOfSections() ?? 0
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
 
-        return graphData?.section(section).count ?? 0
+        return graphData?.filterBySection(section).count ?? 0
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ReuseIDs.GraphCell.rawValue, for: indexPath)
+        print("Cell BG color: \(cell.backgroundColor)")
 
         if let cell = cell as? GraphCellUpdatable {
-            cell.update(data: graphData?.section(indexPath.section)[indexPath.item])
+            cell.update(data: graphData?.filterBySection(indexPath.section)[indexPath.item])
         }
 
         return cell
