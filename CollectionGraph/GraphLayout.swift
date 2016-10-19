@@ -26,7 +26,6 @@ public protocol BarGraphLayoutConfigurable: GraphLayoutConfigurable {
 
 }
 
-
 public class GraphLayout: UICollectionViewLayout {
 
     public var config: GraphLayoutConfigurable!
@@ -68,9 +67,20 @@ public class GraphLayout: UICollectionViewLayout {
 
     override public func prepare() {
 
-        if let collectionView = collectionView {
+        var tempAttributes = [UICollectionViewLayoutAttributes]()
 
-            var tempAttributes = [UICollectionViewLayoutAttributes]()
+        tempAttributes += attributesForGraphCell()
+
+        tempAttributes += attributesForYDividerLines()
+
+        layoutAttributes = tempAttributes
+    }
+
+    func attributesForGraphCell() -> [UICollectionViewLayoutAttributes] {
+
+        var tempAttributes = [UICollectionViewLayoutAttributes]()
+
+        if let collectionView = collectionView {
 
             for sectionNumber in 0 ..< collectionView.numberOfSections {
 
@@ -78,31 +88,30 @@ public class GraphLayout: UICollectionViewLayout {
 
                     let indexPath = IndexPath(item: itemNumber, section: sectionNumber)
 
-                    let attributes = UICollectionViewLayoutAttributes(forCellWith: indexPath)
-
-                    let cellSize = cell(sizeAtIndex: indexPath)
-
-                    let frame = CGRect(x: xGraphPosition(indexPath: indexPath) - cellSize.width / 2, y: yGraphPosition(indexPath: indexPath) - cellSize.height / 2, width: cellSize.width, height: cellSize.height)
-
-                    attributes.frame = frame
+                    let attributes = layoutAttributesForItem(at: indexPath)!
 
                     tempAttributes += [attributes]
                 }
             }
-
-            for number in 0 ..< config.ySteps {
-
-                let indexPath = IndexPath(item: number, section: 0)
-
-                let supplementaryAttribute = layoutAttributesForSupplementaryView(ofKind: ReuseIDs.YDividerSupplementaryView.rawValue, at: indexPath)
-
-                if let supplementaryAttribute = supplementaryAttribute {
-                    tempAttributes += [supplementaryAttribute]
-                }
-            }
-
-            layoutAttributes = tempAttributes
         }
+        return tempAttributes
+    }
+
+    func attributesForYDividerLines() -> [UICollectionViewLayoutAttributes] {
+
+        var tempAttributes = [UICollectionViewLayoutAttributes]()
+
+        for number in 0 ..< config.ySteps {
+
+            let indexPath = IndexPath(item: number, section: 0)
+
+            let supplementaryAttribute = layoutAttributesForSupplementaryView(ofKind: ReuseIDs.YDividerSupplementaryView.rawValue, at: indexPath)
+
+            if let supplementaryAttribute = supplementaryAttribute {
+                tempAttributes += [supplementaryAttribute]
+            }
+        }
+        return tempAttributes
     }
 
     // MARK: - Layout
@@ -132,6 +141,18 @@ public class GraphLayout: UICollectionViewLayout {
         }
 
         return attributesInRect
+    }
+
+    public override func layoutAttributesForItem(at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
+        let attributes = UICollectionViewLayoutAttributes(forCellWith: indexPath)
+
+        let cellSize = cell(sizeAtIndex: indexPath)
+
+        let frame = CGRect(x: xGraphPosition(indexPath: indexPath) - cellSize.width / 2, y: yGraphPosition(indexPath: indexPath) - cellSize.height / 2, width: cellSize.width, height: cellSize.height)
+
+        attributes.frame = frame
+
+        return attributes
     }
 
     public override func layoutAttributesForSupplementaryView(ofKind elementKind: String, at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {

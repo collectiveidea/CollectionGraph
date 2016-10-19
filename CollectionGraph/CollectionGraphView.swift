@@ -9,6 +9,9 @@
 import UIKit
 
 public protocol GraphData {
+    // TODO: - Rethink how to link points to data and define a way for the end user
+    // Does it make sense to drop it in a Dictionary with an ID?
+    //  What if the user only cares about the actual points?  Is the Dictionary unnecessary and its purpose confusing?
     var point: CGPoint { get set }
     var section: Int { get set }
 }

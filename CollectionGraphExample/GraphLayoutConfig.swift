@@ -9,10 +9,11 @@
 import UIKit
 import CollectionGraph
 
-struct GraphLayoutConfig: GraphLayoutConfigurable {
+struct GraphLayoutConfig: LineGraphLayoutConfigurable {
     var ySteps: Int = 6
     var xSteps: Int = 3
     var graphWidth: CGFloat?
+    var straightLines: Bool = true
 
     func cellSize(fromData data: GraphData) -> CGSize {
 
@@ -23,6 +24,10 @@ struct GraphLayoutConfig: GraphLayoutConfigurable {
         }
 
         return CGSize(width: 5, height: 5)
+    }
+
+    func lineWidth(fromData data: GraphData) -> CGFloat {
+        return 3
     }
 
 }
