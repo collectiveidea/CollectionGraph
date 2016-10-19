@@ -44,8 +44,21 @@ public enum ReuseIDs: String {
     case XLabelView = "XLabel"
 }
 
+public protocol GraphCellDelegate: class {
+    func update(data: GraphData?)
+    
+    var cell: UICollectionViewCell { get }
+}
+
 @IBDesignable
 public class CollectionGraphView: UIView {
+
+    public weak var delegate: GraphCellDelegate? {
+        didSet {
+            collectionGraphDataSource.delegate = delegate
+            self.graphCollectionView.register(delegate?.cell.classForCoder, forCellWithReuseIdentifier: ReuseIDs.GraphCell.rawValue)
+        }
+    }
 
     public var graphData: [GraphData]? {
         didSet {
@@ -57,14 +70,6 @@ public class CollectionGraphView: UIView {
     }
 
     var collectionGraphDataSource = CollectionGraphDataSource()
-
-    public var graphCell: UICollectionViewCell? {
-        didSet {
-            if let graphCell = graphCell {
-                self.graphCollectionView.register(graphCell.classForCoder, forCellWithReuseIdentifier: ReuseIDs.GraphCell.rawValue)
-            }
-        }
-    }
 
     @IBInspectable public var layout: GraphLayout? {
         didSet {
