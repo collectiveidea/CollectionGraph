@@ -71,7 +71,7 @@ public class CollectionGraphView: UIView {
 
     var collectionGraphDataSource = CollectionGraphDataSource()
 
-    @IBInspectable public var layout: GraphLayout? {
+    public var layout: GraphLayout? {
         didSet {
             if let layout = layout {
                 // place in layout and loop to create
@@ -117,13 +117,12 @@ public class CollectionGraphView: UIView {
 
     // MARK: - View Lifecycle
 
-    required public init(frame: CGRect, layout: GraphLayout, graphCell: UICollectionViewCell) {
+    required public init(frame: CGRect, layout: GraphLayout) {
         super.init(frame: frame)
 
         addCollectionView()
 
         self.layout = layout
-        self.graphCell = graphCell
     }
 
     override init(frame: CGRect) {
