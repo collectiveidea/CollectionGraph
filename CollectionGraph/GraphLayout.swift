@@ -9,15 +9,23 @@
 import UIKit
 
 public protocol GraphLayoutConfigurable {
-    func cellSize(fromData data: GraphData) -> CGSize
+    var graphWidth: CGFloat? { get set }
     var ySteps: Int { get }
     var xSteps: Int { get }
-    var graphWidth: CGFloat? { get set }
+
+    func cellSize(fromData data: GraphData) -> CGSize
 }
 
-public protocol LineGraphLayoutUpdatable: GraphLayoutConfigurable {
+public protocol LineGraphLayoutConfigurable: GraphLayoutConfigurable {
+    var straightLines: Bool { get }
+
+    func lineWidth(fromData data: GraphData) -> CGFloat
+}
+
+public protocol BarGraphLayoutConfigurable: GraphLayoutConfigurable {
 
 }
+
 
 public class GraphLayout: UICollectionViewLayout {
 

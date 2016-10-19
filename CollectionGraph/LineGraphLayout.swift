@@ -12,8 +12,6 @@ import UIKit
 public class LineGraphLayout: GraphLayout {
 
     var colors = [UIColor.gray]
-    @IBInspectable var straightLines: Bool = false
-    @IBInspectable var lineWidth: CGFloat = 1
 
     override public func prepare() {
         super.prepare()
@@ -77,8 +75,10 @@ public class LineGraphLayout: GraphLayout {
                         (xOffset > xOffset2 && yOffset < yOffset2)
                         ? false : true
 
-                    attributes.lineWidth = lineWidth
-                    attributes.straightLines = straightLines
+                    if let config = config as? LineGraphLayoutConfigurable {
+                        attributes.lineWidth = config.lineWidth(fromData: graphData[indexPath.item])
+                        attributes.straightLines = config.straightLines
+                    }
 
                     return attributes
                 }
