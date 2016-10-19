@@ -102,7 +102,6 @@ public class CollectionGraphView: UIView {
     @IBOutlet weak var graphCollectionView: UICollectionView! {
         didSet {
             graphCollectionView.dataSource = collectionGraphDataSource
-            graphCollectionView.backgroundColor = backgroundColor
             graphCollectionView.contentInset = UIEdgeInsets(top: topInset, left: leftInset, bottom: bottomInset, right: rightInset)
             graphCollectionView.contentOffset.x = -leftInset
         }
