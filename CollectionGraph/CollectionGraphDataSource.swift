@@ -24,11 +24,6 @@ class CollectionGraphDataSource: NSObject, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ReuseIDs.GraphCell.rawValue, for: indexPath)
-        print("Cell BG color: \(cell.backgroundColor)")
-
-        if let cell = cell as? GraphCellUpdatable {
-            cell.update(data: graphData?.filterBySection(indexPath.section)[indexPath.item])
-        }
 
         return cell
     }
