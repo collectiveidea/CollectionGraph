@@ -15,16 +15,19 @@ class FirstViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
 
         graph.layout = LineGraphLayout()
         graph.layout?.graphWidth = 400
 
-        let cell = MyGraphCell()
-
-        graph.graphCell = cell
-
         graph.graphData = Parser.parseExampleData(data: ExampleDataFromServer().json)
+
+        graph.setCellProperties { (cell, graphData) in
+            cell.backgroundColor = UIColor.lightGray
+        }
+
+        graph.setCellLayout{ (graphData) -> (GraphCellLayoutAttribues) in
+            return GraphCellLayoutAttribues(size: CGSize(width: 10, height: 10))
+        }
     }
 
     override func didReceiveMemoryWarning() {
