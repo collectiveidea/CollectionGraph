@@ -9,7 +9,7 @@
 import UIKit
 import CollectionGraph
 
-class MyGraphCell: UICollectionViewCell, GraphCellUpdatable {
+class MyGraphCell: UICollectionViewCell {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -18,10 +18,6 @@ class MyGraphCell: UICollectionViewCell, GraphCellUpdatable {
 
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-
-    func update(data: GraphData?) {
-
     }
 
 }

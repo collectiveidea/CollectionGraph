@@ -29,10 +29,6 @@ extension Sequence where Iterator.Element == GraphData {
 
 }
 
-public protocol GraphCellUpdatable: class {
-    func update(data: GraphData?)
-}
-
 public enum ReuseIDs: String {
     case GraphCell = "GraphCell"
     case LineSupplementaryView = "LineView"
