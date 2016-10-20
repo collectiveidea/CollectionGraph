@@ -11,6 +11,8 @@ import UIKit
 class CollectionGraphDataSource: NSObject, UICollectionViewDataSource {
 
     var graphData: [GraphData]?
+    
+    internal var cellCallback: ((_ cell: UICollectionViewCell, _ data: GraphData) -> ())?
 
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return graphData?.numberOfSections() ?? 0
@@ -24,6 +26,10 @@ class CollectionGraphDataSource: NSObject, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ReuseIDs.GraphCell.rawValue, for: indexPath)
+
+        if let graphData = graphData, let cellCallback = cellCallback {
+            cellCallback(cell, graphData.filterBySection(indexPath.section)[indexPath.item])
+        }
 
         return cell
     }

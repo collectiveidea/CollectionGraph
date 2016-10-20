@@ -9,6 +9,8 @@
 import UIKit
 
 public class GraphLayout: UICollectionViewLayout {
+    
+    internal var layoutCallback: ((_ data: GraphData) -> (GraphCellLayoutAttribues))?
 
     @IBInspectable var cellSize: CGSize = CGSize(width: 3.0, height: 3.0)
 
@@ -56,6 +58,10 @@ public class GraphLayout: UICollectionViewLayout {
                     let indexPath = IndexPath(item: itemNumber, section: sectionNumber)
 
                     let attributes = UICollectionViewLayoutAttributes(forCellWith: indexPath)
+                    
+                    if let graphData = graphData, let layoutCallback = layoutCallback {
+                        cellSize = layoutCallback(graphData.filterBySection(sectionNumber)[itemNumber]).size
+                    }
 
                     let frame = CGRect(x: xGraphPosition(indexPath: indexPath) - cellSize.width / 2, y: yGraphPosition(indexPath: indexPath) - cellSize.height / 2, width: cellSize.width, height: cellSize.height)
 

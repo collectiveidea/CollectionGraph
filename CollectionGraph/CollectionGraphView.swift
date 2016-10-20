@@ -13,6 +13,13 @@ public protocol GraphData {
     var section: Int { get set }
 }
 
+public struct GraphCellLayoutAttribues {
+    public var size: CGSize
+    public init(size: CGSize) {
+        self.size = size
+    }
+}
+
 extension Sequence where Iterator.Element == GraphData {
 
     func filterBySection(_ section: Int) -> [GraphData] {
@@ -103,6 +110,16 @@ public class CollectionGraphView: UIView {
             graphCollectionView.contentOffset.x = -leftInset
         }
     }
+    
+    // MARK: - Callbacks
+    
+    public func setCellProperties(cellCallback: @escaping (_ cell: UICollectionViewCell, _ data: GraphData) -> ()) {
+        collectionGraphDataSource.cellCallback = cellCallback
+    }
+    
+    public func setCellLayout(layoutCallback: @escaping (_ data: GraphData) -> (GraphCellLayoutAttribues)) {
+        layout?.layoutCallback = layoutCallback
+    }
 
     // MARK: - View Lifecycle
 
@@ -125,6 +142,10 @@ public class CollectionGraphView: UIView {
         super.init(coder: aDecoder)
 
         addCollectionView()
+        
+        defer {
+            graphCell = UICollectionViewCell()
+        }
     }
 
     func addCollectionView() {
