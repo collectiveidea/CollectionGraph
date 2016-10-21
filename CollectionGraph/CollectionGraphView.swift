@@ -94,19 +94,17 @@ public class CollectionGraphView: UIView {
         didSet {
             graphCollectionView.dataSource = collectionGraphDataSource
             graphCollectionView.collectionViewLayout = layout
-            
-            graphCollectionView.backgroundColor = backgroundColor
-            
+
             graphCollectionView.contentInset = UIEdgeInsets(top: topInset, left: leftInset, bottom: bottomInset, right: rightInset)
             graphCollectionView.contentOffset.x = -leftInset
-            
+
             registerDefaultCells()
         }
     }
     
     func registerDefaultCells() {
         self.graphCollectionView.register(YDividerLineView.classForCoder(), forSupplementaryViewOfKind: ReuseIDs.YDividerSupplementaryView.rawValue, withReuseIdentifier: ReuseIDs.YDividerSupplementaryView.rawValue)
-        
+
         self.graphCollectionView.register(XLabelView.classForCoder(), forSupplementaryViewOfKind: ReuseIDs.XLabelView.rawValue, withReuseIdentifier: ReuseIDs.XLabelView.rawValue)
     }
     
