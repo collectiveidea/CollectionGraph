@@ -50,7 +50,7 @@ public class CollectionGraphView: UIView {
 
     public var graphData: [GraphData]? {
         didSet {
-            if let graphData = graphData, let layout = layout {
+            if let graphData = graphData {
                 layout.graphData = graphData
                 collectionGraphDataSource.graphData = graphData
             }
@@ -67,20 +67,7 @@ public class CollectionGraphView: UIView {
         }
     }
 
-    @IBInspectable public var layout: GraphLayout? {
-        didSet {
-            if let layout = layout {
-                // place in layout and loop to create
-                self.graphCollectionView.collectionViewLayout = layout
-
-                self.graphCollectionView.register(YDividerLineView.classForCoder(), forSupplementaryViewOfKind: ReuseIDs.YDividerSupplementaryView.rawValue, withReuseIdentifier: ReuseIDs.YDividerSupplementaryView.rawValue)
-
-                self.graphCollectionView.register(LineConnectorView.classForCoder(), forSupplementaryViewOfKind: ReuseIDs.LineSupplementaryView.rawValue, withReuseIdentifier: ReuseIDs.LineSupplementaryView.rawValue)
-
-                self.graphCollectionView.register(XLabelView.classForCoder(), forSupplementaryViewOfKind: ReuseIDs.XLabelView.rawValue, withReuseIdentifier: ReuseIDs.XLabelView.rawValue)
-            }
-        }
-    }
+    private var layout = GraphLayout()
 
     @IBInspectable public var topInset: CGFloat = 10 {
         didSet {
@@ -106,10 +93,21 @@ public class CollectionGraphView: UIView {
     @IBOutlet weak var graphCollectionView: UICollectionView! {
         didSet {
             graphCollectionView.dataSource = collectionGraphDataSource
+            graphCollectionView.collectionViewLayout = layout
+            
             graphCollectionView.backgroundColor = backgroundColor
+            
             graphCollectionView.contentInset = UIEdgeInsets(top: topInset, left: leftInset, bottom: bottomInset, right: rightInset)
             graphCollectionView.contentOffset.x = -leftInset
+            
+            registerDefaultCells()
         }
+    }
+    
+    func registerDefaultCells() {
+        self.graphCollectionView.register(YDividerLineView.classForCoder(), forSupplementaryViewOfKind: ReuseIDs.YDividerSupplementaryView.rawValue, withReuseIdentifier: ReuseIDs.YDividerSupplementaryView.rawValue)
+        
+        self.graphCollectionView.register(XLabelView.classForCoder(), forSupplementaryViewOfKind: ReuseIDs.XLabelView.rawValue, withReuseIdentifier: ReuseIDs.XLabelView.rawValue)
     }
     
     // MARK: - Callbacks
@@ -119,7 +117,7 @@ public class CollectionGraphView: UIView {
     }
     
     public func setCellLayout(layoutCallback: @escaping (_ data: GraphData) -> (GraphCellLayoutAttribues)) {
-        layout?.layoutCallback = layoutCallback
+        layout.layoutCallback = layoutCallback
     }
 
     // MARK: - View Lifecycle
