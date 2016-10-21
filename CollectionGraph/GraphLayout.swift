@@ -56,18 +56,10 @@ public class GraphLayout: UICollectionViewLayout {
                 for itemNumber in 0 ..< collectionView.numberOfItems(inSection: sectionNumber) {
 
                     let indexPath = IndexPath(item: itemNumber, section: sectionNumber)
-
-                    let attributes = UICollectionViewLayoutAttributes(forCellWith: indexPath)
                     
-                    if let graphData = graphData, let layoutCallback = layoutCallback {
-                        cellSize = layoutCallback(graphData.filterBySection(sectionNumber)[itemNumber]).size
+                    if let attributes = layoutAttributesForItem(at: indexPath) {
+                        tempAttributes += [attributes]
                     }
-
-                    let frame = CGRect(x: xGraphPosition(indexPath: indexPath) - cellSize.width / 2, y: yGraphPosition(indexPath: indexPath) - cellSize.height / 2, width: cellSize.width, height: cellSize.height)
-
-                    attributes.frame = frame
-
-                    tempAttributes += [attributes]
                 }
             }
 
@@ -113,6 +105,20 @@ public class GraphLayout: UICollectionViewLayout {
         }
 
         return attributesInRect
+    }
+    
+    public override func layoutAttributesForItem(at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
+        let attributes = UICollectionViewLayoutAttributes(forCellWith: indexPath)
+        
+        if let graphData = graphData, let layoutCallback = layoutCallback {
+            cellSize = layoutCallback(graphData.filterBySection(indexPath.section)[indexPath.item]).size
+        }
+        
+        let frame = CGRect(x: xGraphPosition(indexPath: indexPath) - cellSize.width / 2, y: yGraphPosition(indexPath: indexPath) - cellSize.height / 2, width: cellSize.width, height: cellSize.height)
+        
+        attributes.frame = frame
+        
+        return attributes
     }
 
     public override func layoutAttributesForSupplementaryView(ofKind elementKind: String, at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
