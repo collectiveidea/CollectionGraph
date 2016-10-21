@@ -25,7 +25,7 @@ class FirstViewController: UIViewController {
             cell.backgroundColor = UIColor.lightGray
         }
 
-        graph.setCellLayout{ (graphData) -> (GraphCellLayoutAttribues) in
+        graph.setCellLayout { (graphData) -> (GraphCellLayoutAttribues) in
             return GraphCellLayoutAttribues(size: CGSize(width: 10, height: 10))
         }
     }

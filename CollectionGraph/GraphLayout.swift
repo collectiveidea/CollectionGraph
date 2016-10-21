@@ -12,12 +12,12 @@ public class GraphLayout: UICollectionViewLayout {
     
     internal var layoutCallback: ((_ data: GraphData) -> (GraphCellLayoutAttribues))?
 
-    @IBInspectable var cellSize: CGSize = CGSize(width: 3.0, height: 3.0)
-
     @IBInspectable public var ySteps: Int = 6
     @IBInspectable public var xSteps: Int = 3
 
     @IBInspectable public var graphWidth: CGFloat? // width of graph in points
+    
+    internal var cellSize: CGSize = CGSize(width: 3.0, height: 3.0)
 
     private var xDataRange: CGFloat = 0
     private var yDataRange: CGFloat = 0
