@@ -46,11 +46,20 @@ public class GraphLayout: UICollectionViewLayout {
     }
 
     override public func prepare() {
+        var tempAttributes = [UICollectionViewLayoutAttributes]()
+
+        tempAttributes += layoutAttributesForCell()
+        tempAttributes += layoutAttributesForYDividerLines()
+
+        layoutAttributes = tempAttributes
+    }
+    
+    func layoutAttributesForCell() -> [UICollectionViewLayoutAttributes] {
+
+        var tempAttributes = [UICollectionViewLayoutAttributes]()
 
         if let collectionView = collectionView {
-
-            var tempAttributes = [UICollectionViewLayoutAttributes]()
-
+            
             for sectionNumber in 0 ..< collectionView.numberOfSections {
 
                 for itemNumber in 0 ..< collectionView.numberOfItems(inSection: sectionNumber) {
@@ -62,49 +71,31 @@ public class GraphLayout: UICollectionViewLayout {
                     }
                 }
             }
-
-            for number in 0 ..< ySteps {
-
-                let indexPath = IndexPath(item: number, section: 0)
-
-                let supplementaryAttribute = layoutAttributesForSupplementaryView(ofKind: ReuseIDs.YDividerSupplementaryView.rawValue, at: indexPath)
-
-                if let supplementaryAttribute = supplementaryAttribute {
-                    tempAttributes += [supplementaryAttribute]
-                }
-            }
-
-            layoutAttributes = tempAttributes
         }
+        return tempAttributes
     }
 
-    // MARK: - Layout
+    func layoutAttributesForYDividerLines() -> [UICollectionViewLayoutAttributes] {
 
-    public override var collectionViewContentSize: CGSize {
+        var tempAttributes = [UICollectionViewLayoutAttributes]()
+
         if let collectionView = collectionView {
 
-            let width = graphWidth ?? collectionView.bounds.width
-            let height = collectionView.bounds.height - (collectionView.contentInset.top + collectionView.contentInset.bottom)
+            if collectionView.numberOfSections > 0 {
 
-            let contentSize = CGSize(width: width, height: height)
+                for number in 0 ..< ySteps {
 
-            return contentSize
-        }
+                    let indexPath = IndexPath(item: number, section: 0)
 
-        return CGSize.zero
-    }
+                    let supplementaryAttribute = layoutAttributesForSupplementaryView(ofKind: ReuseIDs.YDividerSupplementaryView.rawValue, at: indexPath)
 
-    override public func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
-
-        var attributesInRect = [UICollectionViewLayoutAttributes]()
-
-        for attributes in layoutAttributes {
-            if attributes.frame.intersects(rect) {
-                attributesInRect += [attributes]
+                    if let supplementaryAttribute = supplementaryAttribute {
+                        tempAttributes += [supplementaryAttribute]
+                    }
+                }
             }
         }
-
-        return attributesInRect
+        return tempAttributes
     }
     
     public override func layoutAttributesForItem(at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
@@ -143,6 +134,35 @@ public class GraphLayout: UICollectionViewLayout {
             return attributes
         }
         return nil
+    }
+
+    // MARK: - Layout
+
+    public override var collectionViewContentSize: CGSize {
+        if let collectionView = collectionView {
+
+            let width = graphWidth ?? collectionView.bounds.width
+            let height = collectionView.bounds.height - (collectionView.contentInset.top + collectionView.contentInset.bottom)
+
+            let contentSize = CGSize(width: width, height: height)
+
+            return contentSize
+        }
+
+        return CGSize.zero
+    }
+
+    override public func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
+
+        var attributesInRect = [UICollectionViewLayoutAttributes]()
+
+        for attributes in layoutAttributes {
+            if attributes.frame.intersects(rect) {
+                attributesInRect += [attributes]
+            }
+        }
+
+        return attributesInRect
     }
 
     // MARK: - Helpers
