@@ -8,6 +8,7 @@
 
 import UIKit
 
+// TODO: - reconsider what GraphdData should be to more easily identify it
 public protocol GraphData {
     var point: CGPoint { get set }
     var section: Int { get set }
