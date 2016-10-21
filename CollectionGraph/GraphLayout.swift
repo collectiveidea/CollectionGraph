@@ -10,12 +10,19 @@ import UIKit
 
 public class GraphLayout: UICollectionViewLayout {
     
+    internal var graphData: [GraphData]? {
+        didSet {
+            calculateXDataRange()
+            calculateYDataRange()
+        }
+    }
+
     internal var layoutCallback: ((_ data: GraphData) -> (GraphCellLayoutAttribues))?
 
-    @IBInspectable public var ySteps: Int = 6
-    @IBInspectable public var xSteps: Int = 3
+    internal var ySteps: Int = 6
+    internal var xSteps: Int = 3
 
-    @IBInspectable public var graphWidth: CGFloat? // width of graph in points
+    internal var graphWidth: CGFloat? // width of graph in points
     
     internal var cellSize: CGSize = CGSize(width: 3.0, height: 3.0)
 
@@ -27,13 +34,6 @@ public class GraphLayout: UICollectionViewLayout {
     private var yIncrements: CGFloat {
         get {
             return  yDataRange / CGFloat(ySteps)
-        }
-    }
-
-    internal var graphData: [GraphData]? {
-        didSet {
-            calculateXDataRange()
-            calculateYDataRange()
         }
     }
 

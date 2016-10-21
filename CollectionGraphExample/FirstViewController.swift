@@ -16,9 +16,6 @@ class FirstViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        graph.layout = LineGraphLayout()
-        graph.layout?.graphWidth = 400
-
         graph.graphData = Parser.parseExampleData(data: ExampleDataFromServer().json)
 
         graph.setCellProperties { (cell, graphData) in
