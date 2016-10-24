@@ -68,6 +68,17 @@ public class CollectionGraphView: UIView {
     }
 
     private var layout = GraphLayout()
+    
+    @IBInspectable var ySteps: Int = 6 {
+        didSet{
+            layout.ySteps = ySteps
+        }
+    }
+    @IBInspectable var xSteps: Int = 3 {
+        didSet {
+            layout.xSteps = xSteps
+        }
+    }
 
     @IBInspectable public var topInset: CGFloat = 10 {
         didSet {
@@ -79,12 +90,12 @@ public class CollectionGraphView: UIView {
             graphCollectionView.contentInset.left = leftInset
         }
     }
-    @IBInspectable public var bottomInset: CGFloat = 10 {
+    @IBInspectable public var bottomInset: CGFloat = 20 {
         didSet {
             graphCollectionView.contentInset.bottom = bottomInset
         }
     }
-    @IBInspectable public var rightInset: CGFloat = 10 {
+    @IBInspectable public var rightInset: CGFloat = 20 {
         didSet {
             graphCollectionView.contentInset.right = rightInset
         }
@@ -106,6 +117,8 @@ public class CollectionGraphView: UIView {
         self.graphCollectionView.register(YDividerLineView.classForCoder(), forSupplementaryViewOfKind: ReuseIDs.YDividerSupplementaryView.rawValue, withReuseIdentifier: ReuseIDs.YDividerSupplementaryView.rawValue)
 
         self.graphCollectionView.register(XLabelView.classForCoder(), forSupplementaryViewOfKind: ReuseIDs.XLabelView.rawValue, withReuseIdentifier: ReuseIDs.XLabelView.rawValue)
+        
+        self.graphCollectionView.register(LineConnectorView.classForCoder(), forSupplementaryViewOfKind: ReuseIDs.LineSupplementaryView.rawValue, withReuseIdentifier: ReuseIDs.LineSupplementaryView.rawValue)
     }
     
     // MARK: - Callbacks
