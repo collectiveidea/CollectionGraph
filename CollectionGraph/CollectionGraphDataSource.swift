@@ -15,7 +15,7 @@ class CollectionGraphDataSource: NSObject, UICollectionViewDataSource {
     internal var cellCallback: ((_ cell: UICollectionViewCell, _ data: GraphData) -> ())?
 
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return graphData?.numberOfSections() ?? 0
+        return graphData?.numberOfSections() ?? 1
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
