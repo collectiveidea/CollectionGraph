@@ -17,8 +17,6 @@
 		571B7EC81D9D9AA000FCE88E /* XibLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 571B7EC71D9D9AA000FCE88E /* XibLoader.swift */; };
 		571B7ECA1D9D9CF500FCE88E /* GraphCollectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 571B7EC91D9D9CF500FCE88E /* GraphCollectionView.xib */; };
 		571B7ECC1D9DAD4B00FCE88E /* GraphLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 571B7ECB1D9DAD4B00FCE88E /* GraphLayout.swift */; };
-		571B7ECE1D9DAD8B00FCE88E /* LineGraphLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 571B7ECD1D9DAD8B00FCE88E /* LineGraphLayout.swift */; };
-		571B7ED01D9DADAA00FCE88E /* BarGraphLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 571B7ECF1D9DADAA00FCE88E /* BarGraphLayout.swift */; };
 		571B7ED21D9DBAC300FCE88E /* CollectionGraphDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 571B7ED11D9DBAC300FCE88E /* CollectionGraphDataSource.swift */; };
 		5756122A1DB1098700F94EAF /* XLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 575612291DB1098700F94EAF /* XLabelView.swift */; };
 		5756122C1DB109F100F94EAF /* XLabelViewAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5756122B1DB109F100F94EAF /* XLabelViewAttributes.swift */; };
@@ -75,8 +73,6 @@
 		571B7EC71D9D9AA000FCE88E /* XibLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XibLoader.swift; sourceTree = "<group>"; };
 		571B7EC91D9D9CF500FCE88E /* GraphCollectionView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GraphCollectionView.xib; sourceTree = "<group>"; };
 		571B7ECB1D9DAD4B00FCE88E /* GraphLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GraphLayout.swift; sourceTree = "<group>"; };
-		571B7ECD1D9DAD8B00FCE88E /* LineGraphLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LineGraphLayout.swift; sourceTree = "<group>"; };
-		571B7ECF1D9DADAA00FCE88E /* BarGraphLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BarGraphLayout.swift; sourceTree = "<group>"; };
 		571B7ED11D9DBAC300FCE88E /* CollectionGraphDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionGraphDataSource.swift; sourceTree = "<group>"; };
 		575612291DB1098700F94EAF /* XLabelView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XLabelView.swift; sourceTree = "<group>"; };
 		5756122B1DB109F100F94EAF /* XLabelViewAttributes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XLabelViewAttributes.swift; sourceTree = "<group>"; };
@@ -129,8 +125,6 @@
 			isa = PBXGroup;
 			children = (
 				571B7ECB1D9DAD4B00FCE88E /* GraphLayout.swift */,
-				571B7ECD1D9DAD8B00FCE88E /* LineGraphLayout.swift */,
-				571B7ECF1D9DADAA00FCE88E /* BarGraphLayout.swift */,
 				570379C51DB02B3D00A88C6B /* Layout Attributes */,
 			);
 			name = Layouts;
@@ -380,10 +374,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				571B7ECE1D9DAD8B00FCE88E /* LineGraphLayout.swift in Sources */,
 				570379C11DAFFD2A00A88C6B /* YDividerLayoutAttributes.swift in Sources */,
 				571B7ED21D9DBAC300FCE88E /* CollectionGraphDataSource.swift in Sources */,
-				571B7ED01D9DADAA00FCE88E /* BarGraphLayout.swift in Sources */,
 				5756122A1DB1098700F94EAF /* XLabelView.swift in Sources */,
 				570379CA1DB02CB500A88C6B /* LineConnectorAttributes.swift in Sources */,
 				570379C31DB0006B00A88C6B /* YDividerLineView.swift in Sources */,
