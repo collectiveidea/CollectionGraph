@@ -18,12 +18,13 @@ class FirstViewController: UIViewController {
 
         graph.graphData = Parser.parseExampleData(data: ExampleDataFromServer().json)
 
-        graph.setCellProperties { (cell, graphData) in
+        graph.setCellProperties { (cell, graphDatum) in
             cell.backgroundColor = UIColor.lightGray
+            cell.layer.cornerRadius = cell.frame.width / 2
         }
 
-        graph.setCellLayout { (graphData) -> (GraphCellLayoutAttribues) in
-            return GraphCellLayoutAttribues(size: CGSize(width: 10, height: 10))
+        graph.setCellLayout { (graphDatum) -> (GraphCellLayoutAttribues) in
+            return GraphCellLayoutAttribues(size: CGSize(width: 3, height: 3))
         }
     }
 

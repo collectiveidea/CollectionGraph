@@ -10,14 +10,14 @@ import UIKit
 
 public class GraphLayout: UICollectionViewLayout {
     
-    internal var graphData: [GraphData]? {
+    internal var graphData: [GraphDatum]? {
         didSet {
             calculateXDataRange()
             calculateYDataRange()
         }
     }
 
-    internal var layoutCallback: ((_ data: GraphData) -> (GraphCellLayoutAttribues))?
+    internal var layoutCallback: ((_ data: GraphDatum) -> (GraphCellLayoutAttribues))?
 
     internal var ySteps: Int = 6
     internal var xSteps: Int = 3
@@ -89,7 +89,7 @@ public class GraphLayout: UICollectionViewLayout {
 
                     let indexPath = IndexPath(item: number, section: 0)
 
-                    let supplementaryAttribute = layoutAttributesForSupplementaryView(ofKind: ReuseIDs.YDividerSupplementaryView.rawValue, at: indexPath)
+                    let supplementaryAttribute = layoutAttributesForSupplementaryView(ofKind: ReuseIDs.YDividerView.rawValue, at: indexPath)
 
                     if let supplementaryAttribute = supplementaryAttribute {
                         tempAttributes += [supplementaryAttribute]
@@ -128,7 +128,7 @@ public class GraphLayout: UICollectionViewLayout {
                     
                     let indexPath = IndexPath(item: itemNumber, section: sectionNumber)
                     
-                    let supplementaryAttributes = layoutAttributesForSupplementaryView(ofKind: ReuseIDs.LineSupplementaryView.rawValue, at: indexPath)
+                    let supplementaryAttributes = layoutAttributesForSupplementaryView(ofKind: ReuseIDs.LineConnectorView.rawValue, at: indexPath)
                     
                     if let supplementaryAttributes = supplementaryAttributes {
                         tempAttributes += [supplementaryAttributes]
@@ -142,7 +142,7 @@ public class GraphLayout: UICollectionViewLayout {
     }
 
     func layoutAttributsForBar() -> [UICollectionViewLayoutAttributes] {
-        
+
         var tempAttributes = [UICollectionViewLayoutAttributes]()
         return tempAttributes
     }
@@ -160,104 +160,126 @@ public class GraphLayout: UICollectionViewLayout {
         
         return attributes
     }
+    
+    // MARK: Set Attributes
 
     public override func layoutAttributesForSupplementaryView(ofKind elementKind: String, at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
-
-        if elementKind == ReuseIDs.YDividerSupplementaryView.rawValue {
-            let attributes = YDividerLayoutAttributes(forSupplementaryViewOfKind: elementKind, with: indexPath)
-
-            if let collectionView = collectionView {
-
-                let height = (collectionView.frame.height - collectionView.contentInset.top - collectionView.contentInset.bottom) / CGFloat(ySteps)
-                let width = collectionView.bounds.width
-
-                let frame = CGRect(x: collectionView.contentOffset.x,
-                                   y: height * CGFloat(indexPath.row),
-                                   width: width,
-                                   height: height)
-
-                attributes.frame = frame
-                attributes.inset = collectionView.contentInset.left
-
-                attributes.text = "\(Int((yIncrements * CGFloat(ySteps)) - (yIncrements * CGFloat(indexPath.row))))"
-            }
-            return attributes
         
-        } else if elementKind == ReuseIDs.LineSupplementaryView.rawValue {
+        if elementKind == ReuseIDs.YDividerView.rawValue {
             
-            let attributes = LineConnectorAttributes(forSupplementaryViewOfKind: elementKind, with: indexPath)
-            if let graphData = graphData {
-                
-                if indexPath.item < graphData.filterBySection(indexPath.section).count - 1 {
-                    
-                    let xOffset = xGraphPosition(indexPath: indexPath)
-                    let yOffset = yGraphPosition(indexPath: indexPath)
-                    
-                    let p1 = CGPoint(x: xOffset,
-                                     y: yOffset)
-                    
-                    let nextIndex = IndexPath(item: indexPath.item + 1, section: indexPath.section)
-                    
-                    let xOffset2 = xGraphPosition(indexPath: nextIndex)
-                    let yOffset2 = yGraphPosition(indexPath: nextIndex)
-                    
-                    let p2 = CGPoint(x: xOffset2,
-                                     y: yOffset2)
-                    
-                    // create a Rect between the two points
-                    let rect = CGRect(x: min(p1.x, p2.x),
-                                      y: min(p1.y, p2.y),
-                                      width: fabs(p1.x - p2.x),
-                                      height: fabs(p1.y - p2.y))
-                    
-                    attributes.frame = rect
-                    
-                    // decide which way the line should go
-                    attributes.lineStartsAtTop =
-                        (xOffset < xOffset2 && yOffset > yOffset2) ||
-                        (xOffset > xOffset2 && yOffset < yOffset2)
-                        ? false : true
-                    
-//                    attributes.lineWidth = lineWidth
-//                    attributes.straightLines = straightLines
-                    
-                    return attributes
-                }
-            }
+            return setAttributesForYDivider(fromIndex: indexPath)
+        
+        } else if elementKind == ReuseIDs.LineConnectorView.rawValue {
+            
+            return setAttributesForLineConnector(fromIndex: indexPath)
+            
         } else if elementKind == ReuseIDs.XLabelView.rawValue {
             
-            let attributes = XLabelViewAttributes(forSupplementaryViewOfKind: elementKind, with: indexPath)
+            return setAttributesForXLabel(fromIndex: indexPath)
             
-            if let collectionView = collectionView {
-                
-                let height = collectionView.contentInset.bottom
-                let collectionWidth = graphWidth ?? collectionView.bounds.width - (collectionView.contentInset.left + collectionView.contentInset.right)
-
-                var width: CGFloat = 0
-                var xPosition: CGFloat = 0
-
-                if xSteps == 1 {
-                    width = collectionWidth
-                    attributes.text = "\(xDataRange * CGFloat(indexPath.item) + minXVal)"
-                    xPosition = collectionWidth / 2
-                } else {
-                    width = collectionWidth / CGFloat(xSteps - 1)
-                    attributes.text = "\(xDataRange / CGFloat(xSteps - 1) * CGFloat(indexPath.item) + minXVal)"
-                    xPosition = width * CGFloat(indexPath.item) - width / 2
-                }
-
-                let yPosition = collectionView.frame.height - collectionView.contentInset.top - collectionView.contentInset.bottom
-
-                let frame = CGRect(x: xPosition,
-                                   y: yPosition,
-                                   width: width,
-                                   height: height)
-
-                attributes.frame = frame
-            }
-            return attributes
         }
         return nil
+    }
+    
+    func setAttributesForYDivider(fromIndex indexPath: IndexPath) -> YDividerLayoutAttributes {
+        
+        let attributes = YDividerLayoutAttributes(forSupplementaryViewOfKind: ReuseIDs.YDividerView.rawValue, with: indexPath)
+        
+        if let collectionView = collectionView {
+            
+            let height = (collectionView.frame.height - collectionView.contentInset.top - collectionView.contentInset.bottom) / CGFloat(ySteps)
+            let width = collectionView.bounds.width
+            
+            let frame = CGRect(x: collectionView.contentOffset.x,
+                               y: height * CGFloat(indexPath.row),
+                               width: width,
+                               height: height)
+            
+            attributes.frame = frame
+            attributes.inset = collectionView.contentInset.left
+            
+            attributes.text = "\(Int((yIncrements * CGFloat(ySteps)) - (yIncrements * CGFloat(indexPath.row))))"
+        }
+        return attributes
+    }
+    
+    func setAttributesForLineConnector(fromIndex indexPath: IndexPath) -> LineConnectorAttributes? {
+        
+        let attributes = LineConnectorAttributes(forSupplementaryViewOfKind: ReuseIDs.LineConnectorView.rawValue, with: indexPath)
+        
+        if let graphData = graphData {
+            
+            if indexPath.item < graphData.filterBySection(indexPath.section).count - 1 {
+                
+                let xOffset = xGraphPosition(indexPath: indexPath)
+                let yOffset = yGraphPosition(indexPath: indexPath)
+                
+                let p1 = CGPoint(x: xOffset,
+                                 y: yOffset)
+                
+                let nextIndex = IndexPath(item: indexPath.item + 1, section: indexPath.section)
+                
+                let xOffset2 = xGraphPosition(indexPath: nextIndex)
+                let yOffset2 = yGraphPosition(indexPath: nextIndex)
+                
+                let p2 = CGPoint(x: xOffset2,
+                                 y: yOffset2)
+                
+                // create a Rect between the two points
+                let rect = CGRect(x: min(p1.x, p2.x),
+                                  y: min(p1.y, p2.y),
+                                  width: fabs(p1.x - p2.x),
+                                  height: fabs(p1.y - p2.y))
+                
+                attributes.frame = rect
+                
+                // decide which way the line should go
+                attributes.lineStartsAtTop =
+                    (xOffset < xOffset2 && yOffset > yOffset2) ||
+                    (xOffset > xOffset2 && yOffset < yOffset2)
+                    ? false : true
+                
+                //                    attributes.lineWidth = lineWidth
+                //                    attributes.straightLines = straightLines
+                
+                return attributes
+            }
+        }
+        return nil
+    }
+    
+    func setAttributesForXLabel(fromIndex indexPath: IndexPath) -> XLabelViewAttributes {
+        
+        let attributes = XLabelViewAttributes(forSupplementaryViewOfKind: ReuseIDs.XLabelView.rawValue, with: indexPath)
+        
+        if let collectionView = collectionView {
+            
+            let height = collectionView.contentInset.bottom
+            let collectionWidth = graphWidth ?? collectionView.bounds.width - (collectionView.contentInset.left + collectionView.contentInset.right)
+            
+            var width: CGFloat = 0
+            var xPosition: CGFloat = 0
+            
+            if xSteps == 1 {
+                width = collectionWidth
+                attributes.text = "\(xDataRange * CGFloat(indexPath.item) + minXVal)"
+                xPosition = collectionWidth / 2
+            } else {
+                width = collectionWidth / CGFloat(xSteps - 1)
+                attributes.text = "\(xDataRange / CGFloat(xSteps - 1) * CGFloat(indexPath.item) + minXVal)"
+                xPosition = width * CGFloat(indexPath.item) - width / 2
+            }
+            
+            let yPosition = collectionView.frame.height - collectionView.contentInset.top - collectionView.contentInset.bottom
+            
+            let frame = CGRect(x: xPosition,
+                               y: yPosition,
+                               width: width,
+                               height: height)
+            
+            attributes.frame = frame
+        }
+        return attributes
     }
 
     // MARK: - Layout
@@ -285,7 +307,6 @@ public class GraphLayout: UICollectionViewLayout {
                 attributesInRect += [attributes]
             }
         }
-
         return attributesInRect
     }
 
@@ -327,6 +348,7 @@ public class GraphLayout: UICollectionViewLayout {
 
             let xValPercent = (graphData.filterBySection(indexPath.section)[indexPath.item].point.x - minXVal) / xDataRange
             let xPos = width * xValPercent
+
             return xPos
         }
        return 0

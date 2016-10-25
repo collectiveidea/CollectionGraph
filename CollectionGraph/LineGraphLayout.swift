@@ -27,7 +27,7 @@ public class LineGraphLayout: GraphLayout {
 
                     let indexPath = IndexPath(item: itemNumber, section: sectionNumber)
 
-                    let supplementaryAttributes = layoutAttributesForSupplementaryView(ofKind: ReuseIDs.LineSupplementaryView.rawValue, at: indexPath)
+                    let supplementaryAttributes = layoutAttributesForSupplementaryView(ofKind: ReuseIDs.LineConnectorView.rawValue, at: indexPath)
 
                     if let supplementaryAttributes = supplementaryAttributes {
                         tempAttributes += [supplementaryAttributes]
@@ -43,7 +43,7 @@ public class LineGraphLayout: GraphLayout {
 
         let attributes = super.layoutAttributesForSupplementaryView(ofKind: elementKind, at: indexPath)
 
-        if elementKind == ReuseIDs.LineSupplementaryView.rawValue {
+        if elementKind == ReuseIDs.LineConnectorView.rawValue {
             let attributes = LineConnectorAttributes(forSupplementaryViewOfKind: elementKind, with: indexPath)
             if let graphData = graphData {
 
