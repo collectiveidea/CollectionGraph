@@ -9,7 +9,7 @@
 import UIKit
 
 // TODO: - reconsider what GraphdData should be to more easily identify it
-public protocol GraphData {
+public protocol GraphDatum {
     var point: CGPoint { get set }
     var section: Int { get set }
 }
@@ -21,9 +21,9 @@ public struct GraphCellLayoutAttribues {
     }
 }
 
-extension Sequence where Iterator.Element == GraphData {
+extension Sequence where Iterator.Element == GraphDatum {
 
-    func filterBySection(_ section: Int) -> [GraphData] {
+    func filterBySection(_ section: Int) -> [GraphDatum] {
         return filter { $0.section == section }
     }
 
@@ -39,16 +39,20 @@ extension Sequence where Iterator.Element == GraphData {
 
 public enum ReuseIDs: String {
     case GraphCell = "GraphCell"
-    case LineSupplementaryView = "LineView"
-    case BarSupplementaryView = "BarView"
-    case YDividerSupplementaryView = "YDivider"
+    case LineConnectorView = "LineView"
+    case BarView = "BarView"
+    case YDividerView = "YDivider"
     case XLabelView = "XLabel"
+}
+
+extension ReuseIDs {
+    
 }
 
 @IBDesignable
 public class CollectionGraphView: UIView {
 
-    public var graphData: [GraphData]? {
+    public var graphData: [GraphDatum]? {
         didSet {
             if let graphData = graphData {
                 layout.graphData = graphData
@@ -114,20 +118,20 @@ public class CollectionGraphView: UIView {
     }
     
     func registerDefaultCells() {
-        self.graphCollectionView.register(YDividerLineView.classForCoder(), forSupplementaryViewOfKind: ReuseIDs.YDividerSupplementaryView.rawValue, withReuseIdentifier: ReuseIDs.YDividerSupplementaryView.rawValue)
+        self.graphCollectionView.register(YDividerLineView.classForCoder(), forSupplementaryViewOfKind: ReuseIDs.YDividerView.rawValue, withReuseIdentifier: ReuseIDs.YDividerView.rawValue)
 
         self.graphCollectionView.register(XLabelView.classForCoder(), forSupplementaryViewOfKind: ReuseIDs.XLabelView.rawValue, withReuseIdentifier: ReuseIDs.XLabelView.rawValue)
         
-        self.graphCollectionView.register(LineConnectorView.classForCoder(), forSupplementaryViewOfKind: ReuseIDs.LineSupplementaryView.rawValue, withReuseIdentifier: ReuseIDs.LineSupplementaryView.rawValue)
+        self.graphCollectionView.register(LineConnectorView.classForCoder(), forSupplementaryViewOfKind: ReuseIDs.LineConnectorView.rawValue, withReuseIdentifier: ReuseIDs.LineConnectorView.rawValue)
     }
     
     // MARK: - Callbacks
     
-    public func setCellProperties(cellCallback: @escaping (_ cell: UICollectionViewCell, _ data: GraphData) -> ()) {
+    public func setCellProperties(cellCallback: @escaping (_ cell: UICollectionViewCell, _ data: GraphDatum) -> ()) {
         collectionGraphDataSource.cellCallback = cellCallback
     }
     
-    public func setCellLayout(layoutCallback: @escaping (_ data: GraphData) -> (GraphCellLayoutAttribues)) {
+    public func setCellLayout(layoutCallback: @escaping (_ data: GraphDatum) -> (GraphCellLayoutAttribues)) {
         layout.layoutCallback = layoutCallback
     }
 

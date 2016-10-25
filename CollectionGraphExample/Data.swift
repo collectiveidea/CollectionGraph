@@ -9,7 +9,7 @@
 import UIKit
 import CollectionGraph
 
-struct Data: GraphData {
+struct Data: GraphDatum {
     var section: Int
     var point: CGPoint
     var information: [String: CGPoint]
