@@ -45,10 +45,6 @@ public enum ReuseIDs: String {
     case XLabelView = "XLabel"
 }
 
-extension ReuseIDs {
-    
-}
-
 @IBDesignable
 public class CollectionGraphView: UIView {
 
