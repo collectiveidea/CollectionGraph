@@ -48,10 +48,14 @@ class CollectionGraphDataSource: NSObject, UICollectionViewDataSource {
         case ReuseIDs.XLabelView.rawValue:
 
             return collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: ReuseIDs.XLabelView.rawValue, for: indexPath)
+            
+        case ReuseIDs.BarView.rawValue:
+            
+            return collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: ReuseIDs.BarView.rawValue, for: indexPath)
 
         default:
 
-            return collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: ReuseIDs.YDividerView.rawValue, for: indexPath)
+            return UICollectionReusableView()
         }
     }
 

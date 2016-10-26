@@ -70,6 +70,14 @@ public class CollectionGraphView: UIView {
             }
         }
     }
+    
+    public var barCell: UICollectionReusableView? {
+        didSet {
+            if let barCell = barCell {
+                self.graphCollectionView.register(barCell.classForCoder, forSupplementaryViewOfKind: ReuseIDs.BarView.rawValue, withReuseIdentifier: ReuseIDs.BarView.rawValue)
+            }
+        }
+    }
 
     private var layout = GraphLayout()
     
@@ -159,6 +167,7 @@ public class CollectionGraphView: UIView {
         
         defer {
             graphCell = UICollectionViewCell()
+            barCell = UICollectionReusableView()
         }
     }
 
