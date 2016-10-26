@@ -329,7 +329,7 @@ public class GraphLayout: UICollectionViewLayout {
         
         let attributes = UICollectionViewLayoutAttributes(forSupplementaryViewOfKind: ReuseIDs.BarView.rawValue, with: indexPath)
         
-        let width: CGFloat = 4 // Get from callback
+        let width: CGFloat = cellSize.width // Get from callback
         
         var heightOfCollectionView:CGFloat = 0
         
@@ -337,9 +337,10 @@ public class GraphLayout: UICollectionViewLayout {
             heightOfCollectionView = collectionView.bounds.height - collectionView.contentInset.top - collectionView.contentInset.bottom
         }
         
-        let barHeight = heightOfCollectionView - (heightOfCollectionView - yGraphPosition(indexPath: indexPath))
+        let barHeight = heightOfCollectionView - yGraphPosition(indexPath: indexPath)
+        let yPosition = heightOfCollectionView - (heightOfCollectionView - yGraphPosition(indexPath: indexPath))
         
-        attributes.frame = CGRect(x: xGraphPosition(indexPath: indexPath) - width / 2, y: yGraphPosition(indexPath: indexPath), width: width, height: barHeight)
+        attributes.frame = CGRect(x: xGraphPosition(indexPath: indexPath) - width / 2, y: yPosition, width: width, height: barHeight)
         
         return attributes
     }

@@ -13,6 +13,8 @@ class CollectionGraphDataSource: NSObject, UICollectionViewDataSource {
     var graphData: [GraphDatum]?
     
     internal var cellCallback: ((_ cell: UICollectionViewCell, _ data: GraphDatum) -> ())?
+    
+    internal var barCallback: ((_ cell: UICollectionReusableView, _ data: GraphDatum) -> ())?
 
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return graphData?.numberOfSections() ?? 1
@@ -51,7 +53,13 @@ class CollectionGraphDataSource: NSObject, UICollectionViewDataSource {
             
         case ReuseIDs.BarView.rawValue:
             
-            return collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: ReuseIDs.BarView.rawValue, for: indexPath)
+            let view = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: ReuseIDs.BarView.rawValue, for: indexPath)
+            
+            if let graphData = graphData, let barCallback = barCallback {
+                barCallback(view, graphData.filterBySection(indexPath.section)[indexPath.item])
+            }
+            
+            return view
 
         default:
 

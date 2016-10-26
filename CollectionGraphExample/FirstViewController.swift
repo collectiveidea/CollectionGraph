@@ -26,6 +26,10 @@ class FirstViewController: UIViewController {
         graph.setCellLayout { (graphDatum) -> (GraphCellLayoutAttribues) in
             return GraphCellLayoutAttribues(size: CGSize(width: 3, height: 3))
         }
+
+        graph.setBarViewProperties { (cell, graphDatum) in
+            cell.backgroundColor = UIColor.lightGray
+        }
     }
 
     override func didReceiveMemoryWarning() {
