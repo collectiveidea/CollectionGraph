@@ -52,6 +52,7 @@ public class GraphLayout: UICollectionViewLayout {
         tempAttributes += layoutAttributesForYDividerLines()
         tempAttributes += layoutAttributesForLineConnector()
         tempAttributes += layoutAttributesForXLabel()
+        tempAttributes += layoutAttributesForBar()
 
         layoutAttributes = tempAttributes
     }
@@ -163,9 +164,25 @@ public class GraphLayout: UICollectionViewLayout {
         return tempAttributes
     }
 
-    func layoutAttributsForBar() -> [UICollectionViewLayoutAttributes] {
-
-        let tempAttributes = [UICollectionViewLayoutAttributes]()
+    func layoutAttributesForBar() -> [UICollectionViewLayoutAttributes] {
+        
+        var tempAttributes = [UICollectionViewLayoutAttributes]()
+        
+        if let collectionView = collectionView {
+            
+            for sectionNumber in 0..<collectionView.numberOfSections {
+                for itemNumber in 0 ..< collectionView.numberOfItems(inSection: sectionNumber) {
+                    
+                    let indexPath = IndexPath(item: itemNumber, section: sectionNumber)
+                    
+                    let supplementaryAttributes = layoutAttributesForSupplementaryView(ofKind: ReuseIDs.BarView.rawValue, at: indexPath)
+                    
+                    if let supplementaryAttributes = supplementaryAttributes {
+                        tempAttributes += [supplementaryAttributes]
+                    }
+                }
+            }
+        }
         return tempAttributes
     }
 
@@ -198,6 +215,10 @@ public class GraphLayout: UICollectionViewLayout {
         } else if elementKind == ReuseIDs.XLabelView.rawValue {
             
             return setAttributesForXLabel(fromIndex: indexPath)
+            
+        } else if elementKind == ReuseIDs.BarView.rawValue {
+            
+            return setAttributesForBar(fromIndex: indexPath)
             
         }
         return nil
@@ -301,6 +322,25 @@ public class GraphLayout: UICollectionViewLayout {
             
             attributes.frame = frame
         }
+        return attributes
+    }
+    
+     func setAttributesForBar(fromIndex indexPath: IndexPath) -> UICollectionViewLayoutAttributes {
+        
+        let attributes = UICollectionViewLayoutAttributes(forSupplementaryViewOfKind: ReuseIDs.BarView.rawValue, with: indexPath)
+        
+        let width: CGFloat = 4 // Get from callback
+        
+        var heightOfCollectionView:CGFloat = 0
+        
+        if let collectionView = collectionView {
+            heightOfCollectionView = collectionView.bounds.height - collectionView.contentInset.top - collectionView.contentInset.bottom
+        }
+        
+        let barHeight = heightOfCollectionView - (heightOfCollectionView - yGraphPosition(indexPath: indexPath))
+        
+        attributes.frame = CGRect(x: xGraphPosition(indexPath: indexPath) - width / 2, y: yGraphPosition(indexPath: indexPath), width: width, height: barHeight)
+        
         return attributes
     }
 
