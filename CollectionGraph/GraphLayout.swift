@@ -17,7 +17,8 @@ public class GraphLayout: UICollectionViewLayout {
         }
     }
 
-    internal var layoutCallback: ((_ data: GraphDatum) -> (GraphCellLayoutAttribues))?
+    internal var cellLayoutCallback: ((_ data: GraphDatum) -> (GraphCellLayoutAttribues))?
+    internal var barLayoutCallback: ((_ data: GraphDatum) -> (CGFloat))?
 
     internal var ySteps: Int = 6
     internal var xSteps: Int = 3
@@ -189,7 +190,7 @@ public class GraphLayout: UICollectionViewLayout {
     public override func layoutAttributesForItem(at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
         let attributes = UICollectionViewLayoutAttributes(forCellWith: indexPath)
         
-        if let graphData = graphData, let layoutCallback = layoutCallback {
+        if let graphData = graphData, let layoutCallback = cellLayoutCallback {
             cellSize = layoutCallback(graphData.filterBySection(indexPath.section)[indexPath.item]).size
         }
         
@@ -329,8 +330,12 @@ public class GraphLayout: UICollectionViewLayout {
         
         let attributes = UICollectionViewLayoutAttributes(forSupplementaryViewOfKind: ReuseIDs.BarView.rawValue, with: indexPath)
         
-        let width: CGFloat = cellSize.width // Get from callback
+        var width: CGFloat = cellSize.width
         
+        if let graphData = graphData, let layoutCallback = barLayoutCallback {
+            width = layoutCallback(graphData.filterBySection(indexPath.section)[indexPath.item])
+        }
+
         var heightOfCollectionView:CGFloat = 0
         
         if let collectionView = collectionView {

@@ -136,11 +136,15 @@ public class CollectionGraphView: UIView {
     }
     
     public func setCellLayout(layoutCallback: @escaping (_ data: GraphDatum) -> (GraphCellLayoutAttribues)) {
-        layout.layoutCallback = layoutCallback
+        layout.cellLayoutCallback = layoutCallback
     }
     
     public func setBarViewProperties(cellCallback: @escaping (_ cell: UICollectionReusableView, _ data: GraphDatum) -> ()) {
         collectionGraphDataSource.barCallback = cellCallback
+    }
+    
+    public func setBarViewWidth(layoutCallback: @escaping (_ data: GraphDatum) -> (CGFloat)) {
+        layout.barLayoutCallback = layoutCallback
     }
 
     // MARK: - View Lifecycle

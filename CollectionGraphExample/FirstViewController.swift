@@ -30,6 +30,10 @@ class FirstViewController: UIViewController {
         graph.setBarViewProperties { (cell, graphDatum) in
             cell.backgroundColor = UIColor.lightGray
         }
+
+        graph.setBarViewWidth { (graphDatum) -> (CGFloat) in
+            return CGFloat(10)
+        }
     }
 
     override func didReceiveMemoryWarning() {
