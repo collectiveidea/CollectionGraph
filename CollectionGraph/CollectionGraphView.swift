@@ -14,13 +14,6 @@ public protocol GraphDatum {
     var section: Int { get set }
 }
 
-public struct GraphCellLayoutAttribues {
-    public var size: CGSize
-    public init(size: CGSize) {
-        self.size = size
-    }
-}
-
 extension Sequence where Iterator.Element == GraphDatum {
 
     func filterBySection(_ section: Int) -> [GraphDatum] {
