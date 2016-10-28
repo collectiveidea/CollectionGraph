@@ -143,7 +143,7 @@ public class GraphLayout: UICollectionViewLayout {
 
     func layoutAttributsForBar() -> [UICollectionViewLayoutAttributes] {
 
-        var tempAttributes = [UICollectionViewLayoutAttributes]()
+        let tempAttributes = [UICollectionViewLayoutAttributes]()
         return tempAttributes
     }
 
