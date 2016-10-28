@@ -10,19 +10,19 @@ import UIKit
 
 class CollectionGraphDataSource: NSObject, UICollectionViewDataSource {
 
-    var graphData: [GraphDatum]?
+    var graphData: [[GraphDatum]]?
     
     internal var cellCallback: ((_ cell: UICollectionViewCell, _ data: GraphDatum) -> ())?
     
     internal var barCallback: ((_ cell: UICollectionReusableView, _ data: GraphDatum) -> ())?
 
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return graphData?.numberOfSections() ?? 1
+        return graphData?.count ?? 1
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
 
-        return graphData?.filterBySection(section).count ?? 0
+        return graphData?[section].count ?? 0
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -30,7 +30,7 @@ class CollectionGraphDataSource: NSObject, UICollectionViewDataSource {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ReuseIDs.GraphCell.rawValue, for: indexPath)
 
         if let graphData = graphData, let cellCallback = cellCallback {
-            cellCallback(cell, graphData.filterBySection(indexPath.section)[indexPath.item])
+            cellCallback(cell, graphData[indexPath.section][indexPath.item])
         }
 
         return cell
@@ -56,7 +56,7 @@ class CollectionGraphDataSource: NSObject, UICollectionViewDataSource {
             let view = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: ReuseIDs.BarView.rawValue, for: indexPath)
             
             if let graphData = graphData, let barCallback = barCallback {
-                barCallback(view, graphData.filterBySection(indexPath.section)[indexPath.item])
+                barCallback(view, graphData[indexPath.section][indexPath.item])
             }
             
             return view
