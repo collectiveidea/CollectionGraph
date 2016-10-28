@@ -17,7 +17,7 @@ public class GraphLayout: UICollectionViewLayout {
         }
     }
 
-    internal var cellLayoutCallback: ((_ data: GraphDatum) -> (GraphCellLayoutAttribues))?
+    internal var cellLayoutCallback: ((_ data: GraphDatum) -> (CGSize))?
     internal var barLayoutCallback: ((_ data: GraphDatum) -> (CGFloat))?
 
     internal var ySteps: Int = 6
@@ -191,7 +191,7 @@ public class GraphLayout: UICollectionViewLayout {
         let attributes = UICollectionViewLayoutAttributes(forCellWith: indexPath)
         
         if let graphData = graphData, let layoutCallback = cellLayoutCallback {
-            cellSize = layoutCallback(graphData.filterBySection(indexPath.section)[indexPath.item]).size
+            cellSize = layoutCallback(graphData.filterBySection(indexPath.section)[indexPath.item])
         }
         
         let frame = CGRect(x: xGraphPosition(indexPath: indexPath) - cellSize.width / 2, y: yGraphPosition(indexPath: indexPath) - cellSize.height / 2, width: cellSize.width, height: cellSize.height)

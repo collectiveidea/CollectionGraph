@@ -23,8 +23,8 @@ class FirstViewController: UIViewController {
             cell.layer.cornerRadius = cell.frame.width / 2
         }
 
-        graph.setCellLayout { (graphDatum) -> (GraphCellLayoutAttribues) in
-            return GraphCellLayoutAttribues(size: CGSize(width: 3, height: 3))
+        graph.setCellSize { (graphDatum) -> (CGSize) in
+            return CGSize(width: 3, height: 3)
         }
 
         graph.setBarViewProperties { (cell, graphDatum) in

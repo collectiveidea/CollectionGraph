@@ -135,7 +135,7 @@ public class CollectionGraphView: UIView {
         collectionGraphDataSource.cellCallback = cellCallback
     }
     
-    public func setCellLayout(layoutCallback: @escaping (_ data: GraphDatum) -> (GraphCellLayoutAttribues)) {
+    public func setCellSize(layoutCallback: @escaping (_ data: GraphDatum) -> (CGSize)) {
         layout.cellLayoutCallback = layoutCallback
     }
     
