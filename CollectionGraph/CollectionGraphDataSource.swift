@@ -34,6 +34,8 @@ class CollectionGraphDataSource: NSObject, UICollectionViewDataSource {
         if let graphData = graphData, let cellCallback = cellCallback {
             cellCallback(cell, graphData[indexPath.section][indexPath.item])
         }
+        
+        cell.layer.zPosition = 10
 
         return cell
     }
@@ -48,7 +50,7 @@ class CollectionGraphDataSource: NSObject, UICollectionViewDataSource {
         case ReuseIDs.LineConnectorView.rawValue:
 
             let line = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: ReuseIDs.LineConnectorView.rawValue, for: indexPath)
-            
+
             if let line = line as? LineConnectorView, let graphData = graphData, let lineCallback = lineCallback {
                 lineCallback(line.line, graphData[indexPath.section][indexPath.item])
             }
