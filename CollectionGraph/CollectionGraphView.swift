@@ -160,6 +160,12 @@ public class CollectionGraphView: UIView {
             graphCell = UICollectionViewCell()
         }
     }
+    
+    public override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        layout.invalidateLayout()
+    }
 
     func addCollectionView() {
         let xibView = XibLoader.viewFromXib(name: "GraphCollectionView", owner: self)
