@@ -9,8 +9,5 @@
 import UIKit
 
 class LineConnectorAttributes: UICollectionViewLayoutAttributes {
-    var color: UIColor = UIColor.gray
     var lineStartsAtTop: Bool = true
-    var lineWidth: CGFloat = 1
-    var straightLines: Bool = false
 }

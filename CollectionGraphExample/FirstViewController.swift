@@ -24,22 +24,23 @@ class FirstViewController: UIViewController {
         }
 
         graph.setCellSize { (graphDatum) -> (CGSize) in
-            return CGSize(width: 3, height: 3)
+            return CGSize(width: 8, height: 8)
         }
 
         graph.setBarViewProperties { (cell, graphDatum) in
-            cell.backgroundColor = UIColor.lightGray
+            cell.backgroundColor = UIColor.darkGray
         }
 
         graph.setBarViewWidth { (graphDatum) -> (CGFloat) in
-            return CGFloat(10)
+            return CGFloat(2)
         }
 
         graph.setLineViewProperties { (graphLine, graphDatum) -> () in
-            graphLine.lineWidth = 10
-            graphLine.straightLines = true
-            graphLine.lineCap = kCALineCapRound
-            graphLine.strokeColor = UIColor.red.cgColor
+            graphLine.lineWidth = 2
+            graphLine.lineDashPattern = [4, 2]
+            // graphLine.straightLines = true
+            // graphLine.lineCap = kCALineCapRound
+            graphLine.strokeColor = UIColor.lightGray.cgColor
         }
     }
 

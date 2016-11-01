@@ -17,7 +17,6 @@ class LineConnectorView: UICollectionReusableView {
     var line: GraphLineShapeLayer = GraphLineShapeLayer()
     var lineStartsAtTop = true
     var lineWidth: CGFloat = 1
-//    var straightLines: Bool = false
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -40,9 +39,6 @@ class LineConnectorView: UICollectionReusableView {
     override func apply(_ layoutAttributes: UICollectionViewLayoutAttributes) {
         if let attributes = layoutAttributes as? LineConnectorAttributes {
             self.lineStartsAtTop = attributes.lineStartsAtTop
-//            line.strokeColor = attributes.color.cgColor
-//            line.lineWidth = attributes.lineWidth
-//            straightLines = attributes.straightLines
         }
     }
 
