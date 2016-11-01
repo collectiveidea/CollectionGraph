@@ -101,8 +101,6 @@ public class CollectionGraphView: UIView {
         self.graphCollectionView.register(YDividerLineView.classForCoder(), forSupplementaryViewOfKind: ReuseIDs.YDividerView.rawValue, withReuseIdentifier: ReuseIDs.YDividerView.rawValue)
 
         self.graphCollectionView.register(XLabelView.classForCoder(), forSupplementaryViewOfKind: ReuseIDs.XLabelView.rawValue, withReuseIdentifier: ReuseIDs.XLabelView.rawValue)
-        
-        self.graphCollectionView.register(LineConnectorView.classForCoder(), forSupplementaryViewOfKind: ReuseIDs.LineConnectorView.rawValue, withReuseIdentifier: ReuseIDs.LineConnectorView.rawValue)
     }
     
     // MARK: - Callbacks
@@ -126,6 +124,14 @@ public class CollectionGraphView: UIView {
     
     public func setBarViewWidth(layoutCallback: @escaping (_ data: GraphDatum) -> (CGFloat)) {
         layout.barLayoutCallback = layoutCallback
+    }
+    
+    public func setLineViewProperties(lineCallback: @escaping (_ line: GraphLineShapeLayer, _ data: GraphDatum) -> ()) {
+        layout.displayLineConnectors = true
+        
+        self.graphCollectionView.register(LineConnectorView.classForCoder(), forSupplementaryViewOfKind: ReuseIDs.LineConnectorView.rawValue, withReuseIdentifier: ReuseIDs.LineConnectorView.rawValue)
+        
+        collectionGraphDataSource.lineCallback = lineCallback
     }
 
     // MARK: - View Lifecycle

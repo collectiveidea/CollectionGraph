@@ -34,6 +34,13 @@ class FirstViewController: UIViewController {
         graph.setBarViewWidth { (graphDatum) -> (CGFloat) in
             return CGFloat(10)
         }
+
+        graph.setLineViewProperties { (graphLine, graphDatum) -> () in
+            graphLine.lineWidth = 10
+            graphLine.straightLines = true
+            graphLine.lineCap = kCALineCapRound
+            graphLine.strokeColor = UIColor.red.cgColor
+        }
     }
 
     override func didReceiveMemoryWarning() {

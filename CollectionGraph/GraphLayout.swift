@@ -18,6 +18,7 @@ public class GraphLayout: UICollectionViewLayout {
     }
     
     internal var displayBars = false
+    internal var displayLineConnectors = false
 
     internal var cellLayoutCallback: ((_ data: GraphDatum) -> (CGSize))?
     internal var barLayoutCallback: ((_ data: GraphDatum) -> (CGFloat))?
@@ -53,9 +54,12 @@ public class GraphLayout: UICollectionViewLayout {
 
         tempAttributes += layoutAttributesForCell()
         tempAttributes += layoutAttributesForYDividerLines()
-        tempAttributes += layoutAttributesForLineConnector()
         tempAttributes += layoutAttributesForXLabel()
         
+        if displayLineConnectors {
+            tempAttributes += layoutAttributesForLineConnector()
+        }
+
         if displayBars {
             tempAttributes += layoutAttributesForBar()
         }
