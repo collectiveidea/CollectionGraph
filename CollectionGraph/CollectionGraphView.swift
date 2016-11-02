@@ -116,6 +116,11 @@ public class CollectionGraphView: UIView {
     }
     
     public func setBarViewProperties(cellCallback: @escaping (_ cell: UICollectionReusableView, _ data: GraphDatum) -> ()) {
+        if barCell == nil {
+            barCell = UICollectionReusableView()
+        }
+        
+        layout.displayBars = true
         collectionGraphDataSource.barCallback = cellCallback
     }
     
@@ -147,7 +152,6 @@ public class CollectionGraphView: UIView {
         
         defer {
             graphCell = UICollectionViewCell()
-            barCell = UICollectionReusableView()
         }
     }
 
