@@ -56,52 +56,52 @@ public class CollectionGraphView: UIView {
     @IBInspectable public var textColor: UIColor = UIColor.darkText {
         didSet {
             collectionGraphDataSource.textColor = textColor
-            graphCollectionView.setNeedsDisplay()
+            graphCollectionView.reloadData()
         }
     }
 
     @IBInspectable var yDividerLineColor: UIColor = UIColor.lightGray {
         didSet {
             collectionGraphDataSource.yDividerLineColor = yDividerLineColor
-            graphCollectionView.setNeedsDisplay()
+            graphCollectionView.reloadData()
         }
     }
 
     @IBInspectable var ySteps: Int = 6 {
         didSet{
             layout.ySteps = ySteps
-            graphCollectionView.setNeedsDisplay()
+            graphCollectionView.reloadData()
         }
     }
     @IBInspectable var xSteps: Int = 3 {
         didSet {
             layout.xSteps = xSteps
-            graphCollectionView.setNeedsDisplay()
+            graphCollectionView.reloadData()
         }
     }
 
     @IBInspectable public var topInset: CGFloat = 10 {
         didSet {
             graphCollectionView.contentInset.top = topInset
-            graphCollectionView.setNeedsDisplay()
+            graphCollectionView.reloadData()
         }
     }
     @IBInspectable public var leftInset: CGFloat = 20 {
         didSet {
             graphCollectionView.contentInset.left = leftInset
-            graphCollectionView.setNeedsDisplay()
+            graphCollectionView.reloadData()
         }
     }
     @IBInspectable public var bottomInset: CGFloat = 20 {
         didSet {
             graphCollectionView.contentInset.bottom = bottomInset
-            graphCollectionView.setNeedsDisplay()
+            graphCollectionView.reloadData()
         }
     }
     @IBInspectable public var rightInset: CGFloat = 20 {
         didSet {
             graphCollectionView.contentInset.right = rightInset
-            graphCollectionView.setNeedsDisplay()
+            graphCollectionView.reloadData()
         }
     }
 
