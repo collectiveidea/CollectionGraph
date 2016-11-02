@@ -21,7 +21,9 @@ struct GraphData {
 @IBDesignable
 public class CollectionGraphView: UIView {
 
-    var data: GraphData = GraphData(data: [[CGPoint(x: 1, y: 1)]])
+    var graphData: GraphData = GraphData(data: [[CGPoint(x: 1, y: 1)]])
+
+    var collectionGraphDataSource = CollectionGraphDataSource()
 
     @IBInspectable public var layout: GraphLayout? {
         didSet {
@@ -31,7 +33,12 @@ public class CollectionGraphView: UIView {
         }
     }
 
-    @IBOutlet weak var graphCollectionView: UICollectionView!
+    @IBOutlet weak var graphCollectionView: UICollectionView! {
+        didSet {
+            graphCollectionView.dataSource = collectionGraphDataSource
+            collectionGraphDataSource.graphData = graphData
+        }
+    }
 
     // MARK: - View Lifecycle
 
