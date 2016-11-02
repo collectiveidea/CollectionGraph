@@ -17,7 +17,8 @@ public class GraphLayout: UICollectionViewLayout {
         }
     }
 
-    internal var layoutCallback: ((_ data: GraphDatum) -> (GraphCellLayoutAttribues))?
+    internal var cellLayoutCallback: ((_ data: GraphDatum) -> (CGSize))?
+    internal var barLayoutCallback: ((_ data: GraphDatum) -> (CGFloat))?
 
     internal var ySteps: Int = 6
     internal var xSteps: Int = 3
@@ -52,6 +53,7 @@ public class GraphLayout: UICollectionViewLayout {
         tempAttributes += layoutAttributesForYDividerLines()
         tempAttributes += layoutAttributesForLineConnector()
         tempAttributes += layoutAttributesForXLabel()
+        tempAttributes += layoutAttributesForBar()
 
         layoutAttributes = tempAttributes
     }
@@ -125,7 +127,7 @@ public class GraphLayout: UICollectionViewLayout {
             
             for sectionNumber in 0..<collectionView.numberOfSections {
                 for itemNumber in 0 ..< collectionView.numberOfItems(inSection: sectionNumber) {
-                    
+
                     let indexPath = IndexPath(item: itemNumber, section: sectionNumber)
                     
                     let supplementaryAttributes = layoutAttributesForSupplementaryView(ofKind: ReuseIDs.LineConnectorView.rawValue, at: indexPath)
@@ -135,23 +137,61 @@ public class GraphLayout: UICollectionViewLayout {
                     }
                 }
             }
+
+//            for number in 0 ..< ySteps {
+//
+//                let indexPath = NSIndexPath(forItem: number, inSection: 0)
+//                
+//                let supplementaryAttribute = layoutAttributesForSupplementaryViewOfKind(String(YDividerLineView), atIndexPath: indexPath)
+//                
+//                if let supplementaryAttribute = supplementaryAttribute {
+//                    tempAttributes += [supplementaryAttribute]
+//                }
+//            }
+//            
+//            for number in 0...numberOfXDividerLines {
+//                
+//                let indexPath = NSIndexPath(forItem: number, inSection: 0)
+//                
+//                let supplementaryAttribute = layoutAttributesForSupplementaryViewOfKind(String(XDataView), atIndexPath: indexPath)
+//                
+//                if let supplementaryAttribute = supplementaryAttribute {
+//                    tempAttributes += [supplementaryAttribute]
+//                }
+//            }
             
             layoutAttributes += tempAttributes
         }
         return tempAttributes
     }
 
-    func layoutAttributsForBar() -> [UICollectionViewLayoutAttributes] {
-
-        let tempAttributes = [UICollectionViewLayoutAttributes]()
+    func layoutAttributesForBar() -> [UICollectionViewLayoutAttributes] {
+        
+        var tempAttributes = [UICollectionViewLayoutAttributes]()
+        
+        if let collectionView = collectionView {
+            
+            for sectionNumber in 0..<collectionView.numberOfSections {
+                for itemNumber in 0 ..< collectionView.numberOfItems(inSection: sectionNumber) {
+                    
+                    let indexPath = IndexPath(item: itemNumber, section: sectionNumber)
+                    
+                    let supplementaryAttributes = layoutAttributesForSupplementaryView(ofKind: ReuseIDs.BarView.rawValue, at: indexPath)
+                    
+                    if let supplementaryAttributes = supplementaryAttributes {
+                        tempAttributes += [supplementaryAttributes]
+                    }
+                }
+            }
+        }
         return tempAttributes
     }
 
     public override func layoutAttributesForItem(at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
         let attributes = UICollectionViewLayoutAttributes(forCellWith: indexPath)
         
-        if let graphData = graphData, let layoutCallback = layoutCallback {
-            cellSize = layoutCallback(graphData.filterBySection(indexPath.section)[indexPath.item]).size
+        if let graphData = graphData, let layoutCallback = cellLayoutCallback {
+            cellSize = layoutCallback(graphData.filterBySection(indexPath.section)[indexPath.item])
         }
         
         let frame = CGRect(x: xGraphPosition(indexPath: indexPath) - cellSize.width / 2, y: yGraphPosition(indexPath: indexPath) - cellSize.height / 2, width: cellSize.width, height: cellSize.height)
@@ -176,6 +216,10 @@ public class GraphLayout: UICollectionViewLayout {
         } else if elementKind == ReuseIDs.XLabelView.rawValue {
             
             return setAttributesForXLabel(fromIndex: indexPath)
+            
+        } else if elementKind == ReuseIDs.BarView.rawValue {
+            
+            return setAttributesForBar(fromIndex: indexPath)
             
         }
         return nil
@@ -279,6 +323,30 @@ public class GraphLayout: UICollectionViewLayout {
             
             attributes.frame = frame
         }
+        return attributes
+    }
+    
+     func setAttributesForBar(fromIndex indexPath: IndexPath) -> UICollectionViewLayoutAttributes {
+        
+        let attributes = UICollectionViewLayoutAttributes(forSupplementaryViewOfKind: ReuseIDs.BarView.rawValue, with: indexPath)
+        
+        var width: CGFloat = cellSize.width
+        
+        if let graphData = graphData, let layoutCallback = barLayoutCallback {
+            width = layoutCallback(graphData.filterBySection(indexPath.section)[indexPath.item])
+        }
+
+        var heightOfCollectionView:CGFloat = 0
+        
+        if let collectionView = collectionView {
+            heightOfCollectionView = collectionView.bounds.height - collectionView.contentInset.top - collectionView.contentInset.bottom
+        }
+        
+        let barHeight = heightOfCollectionView - yGraphPosition(indexPath: indexPath)
+        let yPosition = heightOfCollectionView - (heightOfCollectionView - yGraphPosition(indexPath: indexPath))
+        
+        attributes.frame = CGRect(x: xGraphPosition(indexPath: indexPath) - width / 2, y: yPosition, width: width, height: barHeight)
+        
         return attributes
     }
 

@@ -14,13 +14,6 @@ public protocol GraphDatum {
     var section: Int { get set }
 }
 
-public struct GraphCellLayoutAttribues {
-    public var size: CGSize
-    public init(size: CGSize) {
-        self.size = size
-    }
-}
-
 extension Sequence where Iterator.Element == GraphDatum {
 
     func filterBySection(_ section: Int) -> [GraphDatum] {
@@ -45,10 +38,6 @@ public enum ReuseIDs: String {
     case XLabelView = "XLabel"
 }
 
-extension ReuseIDs {
-    
-}
-
 @IBDesignable
 public class CollectionGraphView: UIView {
 
@@ -67,6 +56,14 @@ public class CollectionGraphView: UIView {
         didSet {
             if let graphCell = graphCell {
                 self.graphCollectionView.register(graphCell.classForCoder, forCellWithReuseIdentifier: ReuseIDs.GraphCell.rawValue)
+            }
+        }
+    }
+    
+    public var barCell: UICollectionReusableView? {
+        didSet {
+            if let barCell = barCell {
+                self.graphCollectionView.register(barCell.classForCoder, forSupplementaryViewOfKind: ReuseIDs.BarView.rawValue, withReuseIdentifier: ReuseIDs.BarView.rawValue)
             }
         }
     }
@@ -131,8 +128,16 @@ public class CollectionGraphView: UIView {
         collectionGraphDataSource.cellCallback = cellCallback
     }
     
-    public func setCellLayout(layoutCallback: @escaping (_ data: GraphDatum) -> (GraphCellLayoutAttribues)) {
-        layout.layoutCallback = layoutCallback
+    public func setCellSize(layoutCallback: @escaping (_ data: GraphDatum) -> (CGSize)) {
+        layout.cellLayoutCallback = layoutCallback
+    }
+    
+    public func setBarViewProperties(cellCallback: @escaping (_ cell: UICollectionReusableView, _ data: GraphDatum) -> ()) {
+        collectionGraphDataSource.barCallback = cellCallback
+    }
+    
+    public func setBarViewWidth(layoutCallback: @escaping (_ data: GraphDatum) -> (CGFloat)) {
+        layout.barLayoutCallback = layoutCallback
     }
 
     // MARK: - View Lifecycle
@@ -159,6 +164,7 @@ public class CollectionGraphView: UIView {
         
         defer {
             graphCell = UICollectionViewCell()
+            barCell = UICollectionReusableView()
         }
     }
 
