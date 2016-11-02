@@ -23,6 +23,8 @@ public class CollectionGraphView: UIView {
 
     var graphData: GraphData = GraphData(data: [[CGPoint(x: 1, y: 1)]])
 
+    var collectionGraphDataSource = CollectionGraphDataSource()
+
     @IBInspectable public var layout: GraphLayout? {
         didSet {
             if let layout = layout {
