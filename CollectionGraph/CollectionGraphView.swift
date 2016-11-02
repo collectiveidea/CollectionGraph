@@ -11,23 +11,6 @@ import UIKit
 // TODO: - reconsider what GraphdData should be to more easily identify it
 public protocol GraphDatum {
     var point: CGPoint { get set }
-    var section: Int { get set }
-}
-
-extension Sequence where Iterator.Element == GraphDatum {
-
-    func filterBySection(_ section: Int) -> [GraphDatum] {
-        return filter { $0.section == section }
-    }
-
-    func numberOfSections() -> Int {
-        var numbers = Set<Int>()
-        forEach { graphData in
-            numbers.insert(graphData.section)
-        }
-        return numbers.count
-    }
-
 }
 
 public enum ReuseIDs: String {
@@ -41,7 +24,7 @@ public enum ReuseIDs: String {
 @IBDesignable
 public class CollectionGraphView: UIView {
 
-    public var graphData: [GraphDatum]? {
+    public var graphData: [[GraphDatum]]? {
         didSet {
             if let graphData = graphData {
                 layout.graphData = graphData

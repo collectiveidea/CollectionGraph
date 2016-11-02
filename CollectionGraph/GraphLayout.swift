@@ -10,7 +10,7 @@ import UIKit
 
 public class GraphLayout: UICollectionViewLayout {
     
-    internal var graphData: [GraphDatum]? {
+    internal var graphData: [[GraphDatum]]? {
         didSet {
             calculateXDataRange()
             calculateYDataRange()
@@ -191,7 +191,7 @@ public class GraphLayout: UICollectionViewLayout {
         let attributes = UICollectionViewLayoutAttributes(forCellWith: indexPath)
         
         if let graphData = graphData, let layoutCallback = cellLayoutCallback {
-            cellSize = layoutCallback(graphData.filterBySection(indexPath.section)[indexPath.item])
+            cellSize = layoutCallback(graphData[indexPath.section][indexPath.item])
         }
         
         let frame = CGRect(x: xGraphPosition(indexPath: indexPath) - cellSize.width / 2, y: yGraphPosition(indexPath: indexPath) - cellSize.height / 2, width: cellSize.width, height: cellSize.height)
@@ -253,7 +253,7 @@ public class GraphLayout: UICollectionViewLayout {
         
         if let graphData = graphData {
             
-            if indexPath.item < graphData.filterBySection(indexPath.section).count - 1 {
+            if indexPath.item < graphData[indexPath.section].count - 1 {
                 
                 let xOffset = xGraphPosition(indexPath: indexPath)
                 let yOffset = yGraphPosition(indexPath: indexPath)
@@ -333,7 +333,7 @@ public class GraphLayout: UICollectionViewLayout {
         var width: CGFloat = cellSize.width
         
         if let graphData = graphData, let layoutCallback = barLayoutCallback {
-            width = layoutCallback(graphData.filterBySection(indexPath.section)[indexPath.item])
+            width = layoutCallback(graphData[indexPath.section][indexPath.item])
         }
 
         var heightOfCollectionView:CGFloat = 0
@@ -381,8 +381,8 @@ public class GraphLayout: UICollectionViewLayout {
     // MARK: - Helpers
 
     func calculateXDataRange() {
-        let xVals = graphData?.map {
-            return $0.point.x
+        let xVals = graphData?.flatMap {
+            return $0.map { return $0.point.x }
         }
         if let min = xVals?.min(), let max = xVals?.max() {
             xDataRange = max - min
@@ -392,8 +392,8 @@ public class GraphLayout: UICollectionViewLayout {
 
     func calculateYDataRange() {
 
-        let yVals = graphData?.map {
-            return $0.point.y
+        let yVals = graphData?.flatMap {
+            return $0.map { return $0.point.y }
         }
 
         let maxY = yVals?.max() ?? 0
@@ -414,7 +414,7 @@ public class GraphLayout: UICollectionViewLayout {
 
             let width = graphWidth ?? collectionView.bounds.width - (collectionView.contentInset.left + collectionView.contentInset.right)
 
-            let xValPercent = (graphData.filterBySection(indexPath.section)[indexPath.item].point.x - minXVal) / xDataRange
+            let xValPercent = (graphData[indexPath.section][indexPath.item].point.x - minXVal) / xDataRange
             let xPos = width * xValPercent
 
             return xPos
@@ -426,7 +426,7 @@ public class GraphLayout: UICollectionViewLayout {
         if let collectionView = collectionView, let graphData = graphData {
             let delta = collectionView.bounds.height - collectionView.contentInset.top - collectionView.contentInset.bottom
 
-            return delta - (delta * (graphData.filterBySection(indexPath.section)[indexPath.item].point.y / yDataRange))
+            return delta - (delta * (graphData[indexPath.section][indexPath.item].point.y / yDataRange))
         }
         return 0
     }
