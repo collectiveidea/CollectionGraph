@@ -60,20 +60,20 @@ public class CollectionGraphView: UIView {
         }
     }
 
-    @IBInspectable var yDividerLineColor: UIColor = UIColor.lightGray {
+    @IBInspectable public var yDividerLineColor: UIColor = UIColor.lightGray {
         didSet {
             collectionGraphDataSource.yDividerLineColor = yDividerLineColor
             graphCollectionView.reloadData()
         }
     }
 
-    @IBInspectable var ySteps: Int = 6 {
+    @IBInspectable public var ySteps: Int = 6 {
         didSet{
             layout.ySteps = ySteps
             graphCollectionView.reloadData()
         }
     }
-    @IBInspectable var xSteps: Int = 3 {
+    @IBInspectable public var xSteps: Int = 3 {
         didSet {
             layout.xSteps = xSteps
             graphCollectionView.reloadData()
