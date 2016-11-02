@@ -11,6 +11,7 @@ import UIKit
 class XLabelView: UICollectionReusableView {
 
     var label = UILabel()
+    var textColor: UIColor = UIColor.darkText
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -25,7 +26,7 @@ class XLabelView: UICollectionReusableView {
     func setup() {
         label.font = UIFont.systemFont(ofSize: 8)
         label.textAlignment = .center
-        label.textColor = UIColor.white
+        label.textColor = textColor
         addSubview(label)
     }
 

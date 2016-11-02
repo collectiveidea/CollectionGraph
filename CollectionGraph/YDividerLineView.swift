@@ -13,7 +13,8 @@ class YDividerLineView: UICollectionReusableView {
     var label: UILabel = UILabel()
     var line: CAShapeLayer = CAShapeLayer()
     var lineWidth: CGFloat = 1
-    var lineColor: UIColor = UIColor (red: 0.2353, green: 0.2353, blue: 0.2353, alpha: 1.0)
+    var lineColor: UIColor = UIColor.lightGray
+    var textColor: UIColor = UIColor.darkText
     var inset: CGFloat = 0
 
     override init(frame: CGRect) {
@@ -35,6 +36,7 @@ class YDividerLineView: UICollectionReusableView {
 
         label.font = UIFont.systemFont(ofSize: 8)
         label.textAlignment = .center
+        label.textColor = textColor
         addSubview(label)
     }
 
@@ -42,11 +44,9 @@ class YDividerLineView: UICollectionReusableView {
     override func apply(_ layoutAttributes: UICollectionViewLayoutAttributes) {
 
         if let attributes = layoutAttributes as? YDividerLayoutAttributes {
-            lineColor = attributes.lineColor
 
             inset = attributes.inset
 
-            label.textColor = attributes.textColor
             label.text = attributes.text
 
             label.sizeToFit()

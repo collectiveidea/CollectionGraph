@@ -17,6 +17,10 @@ class CollectionGraphDataSource: NSObject, UICollectionViewDataSource {
     internal var barCallback: ((_ cell: UICollectionReusableView, _ data: GraphDatum) -> ())?
     
     internal var lineCallback: ((_ line: GraphLineShapeLayer, _ data: GraphDatum) -> ())?
+    
+    internal var yDividerLineColor: UIColor = UIColor.lightGray
+    
+    internal var textColor: UIColor = UIColor.darkText
 
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return graphData?.count ?? 1
@@ -44,8 +48,14 @@ class CollectionGraphDataSource: NSObject, UICollectionViewDataSource {
 
         switch kind {
         case ReuseIDs.YDividerView.rawValue:
-
-            return collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: ReuseIDs.YDividerView.rawValue, for: indexPath)
+            let yDividerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: ReuseIDs.YDividerView.rawValue, for: indexPath)
+            
+            if let yDividerView = yDividerView as? YDividerLineView {
+                yDividerView.label.textColor = textColor
+                yDividerView.line.strokeColor = yDividerLineColor.cgColor
+            }
+            
+            return yDividerView
 
         case ReuseIDs.LineConnectorView.rawValue:
 
@@ -59,7 +69,13 @@ class CollectionGraphDataSource: NSObject, UICollectionViewDataSource {
 
         case ReuseIDs.XLabelView.rawValue:
 
-            return collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: ReuseIDs.XLabelView.rawValue, for: indexPath)
+            let xLabelView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: ReuseIDs.XLabelView.rawValue, for: indexPath)
+            
+            if let xLabelView = xLabelView as? XLabelView {
+                xLabelView.label.textColor = textColor
+            }
+            
+            return xLabelView
             
         case ReuseIDs.BarView.rawValue:
             

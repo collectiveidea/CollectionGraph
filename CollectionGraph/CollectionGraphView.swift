@@ -52,7 +52,19 @@ public class CollectionGraphView: UIView {
     }
 
     private var layout = GraphLayout()
-    
+
+    @IBInspectable var textColor: UIColor = UIColor.darkText {
+        didSet {
+            collectionGraphDataSource.textColor = textColor
+        }
+    }
+
+    @IBInspectable var yDividerLineColor: UIColor = UIColor.lightGray {
+        didSet {
+            collectionGraphDataSource.yDividerLineColor = yDividerLineColor
+        }
+    }
+
     @IBInspectable var ySteps: Int = 6 {
         didSet{
             layout.ySteps = ySteps
@@ -155,7 +167,7 @@ public class CollectionGraphView: UIView {
         super.init(coder: aDecoder)
 
         addCollectionView()
-        
+
         defer {
             graphCell = UICollectionViewCell()
         }
