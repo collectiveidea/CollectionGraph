@@ -7,8 +7,11 @@
 //
 
 import UIKit
+import CollectionGraph
 
 class FirstViewController: UIViewController {
+
+    @IBOutlet weak var graph: CollectionGraphView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
