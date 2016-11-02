@@ -7,15 +7,21 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		570379C11DAFFD2A00A88C6B /* YDividerLayoutAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570379C01DAFFD2A00A88C6B /* YDividerLayoutAttributes.swift */; };
+		570379C31DB0006B00A88C6B /* YDividerLineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570379C21DB0006B00A88C6B /* YDividerLineView.swift */; };
+		570379C81DB02C5700A88C6B /* LineConnectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570379C71DB02C5700A88C6B /* LineConnectorView.swift */; };
+		570379CA1DB02CB500A88C6B /* LineConnectorAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570379C91DB02CB500A88C6B /* LineConnectorAttributes.swift */; };
 		5717848E1D95A2B20074879A /* CollectionGraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5717848D1D95A2B20074879A /* CollectionGraphView.swift */; };
 		5717848F1D95A3540074879A /* CollectionGraph.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57EA98971D958C82000D6C55 /* CollectionGraph.framework */; };
 		571784901D95A3540074879A /* CollectionGraph.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 57EA98971D958C82000D6C55 /* CollectionGraph.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		571B7EC81D9D9AA000FCE88E /* XibLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 571B7EC71D9D9AA000FCE88E /* XibLoader.swift */; };
 		571B7ECA1D9D9CF500FCE88E /* GraphCollectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 571B7EC91D9D9CF500FCE88E /* GraphCollectionView.xib */; };
 		571B7ECC1D9DAD4B00FCE88E /* GraphLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 571B7ECB1D9DAD4B00FCE88E /* GraphLayout.swift */; };
-		571B7ECE1D9DAD8B00FCE88E /* LineGraphLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 571B7ECD1D9DAD8B00FCE88E /* LineGraphLayout.swift */; };
-		571B7ED01D9DADAA00FCE88E /* BarGraphLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 571B7ECF1D9DADAA00FCE88E /* BarGraphLayout.swift */; };
 		571B7ED21D9DBAC300FCE88E /* CollectionGraphDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 571B7ED11D9DBAC300FCE88E /* CollectionGraphDataSource.swift */; };
+		5756122A1DB1098700F94EAF /* XLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 575612291DB1098700F94EAF /* XLabelView.swift */; };
+		5756122C1DB109F100F94EAF /* XLabelViewAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5756122B1DB109F100F94EAF /* XLabelViewAttributes.swift */; };
+		5756122E1DB122C200F94EAF /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5756122D1DB122C200F94EAF /* Data.swift */; };
+		576DD7841DB55BA90084498B /* MyGraphCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576DD7831DB55BA90084498B /* MyGraphCell.swift */; };
 		57EA989B1D958C82000D6C55 /* CollectionGraph.h in Headers */ = {isa = PBXBuildFile; fileRef = 57EA989A1D958C82000D6C55 /* CollectionGraph.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		57EA98A21D958C82000D6C55 /* CollectionGraph.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57EA98971D958C82000D6C55 /* CollectionGraph.framework */; };
 		57EA98A71D958C82000D6C55 /* CollectionGraphTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EA98A61D958C82000D6C55 /* CollectionGraphTests.swift */; };
@@ -59,13 +65,19 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		570379C01DAFFD2A00A88C6B /* YDividerLayoutAttributes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YDividerLayoutAttributes.swift; sourceTree = "<group>"; };
+		570379C21DB0006B00A88C6B /* YDividerLineView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YDividerLineView.swift; sourceTree = "<group>"; };
+		570379C71DB02C5700A88C6B /* LineConnectorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LineConnectorView.swift; sourceTree = "<group>"; };
+		570379C91DB02CB500A88C6B /* LineConnectorAttributes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LineConnectorAttributes.swift; sourceTree = "<group>"; };
 		5717848D1D95A2B20074879A /* CollectionGraphView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionGraphView.swift; sourceTree = "<group>"; };
 		571B7EC71D9D9AA000FCE88E /* XibLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XibLoader.swift; sourceTree = "<group>"; };
 		571B7EC91D9D9CF500FCE88E /* GraphCollectionView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GraphCollectionView.xib; sourceTree = "<group>"; };
 		571B7ECB1D9DAD4B00FCE88E /* GraphLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GraphLayout.swift; sourceTree = "<group>"; };
-		571B7ECD1D9DAD8B00FCE88E /* LineGraphLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LineGraphLayout.swift; sourceTree = "<group>"; };
-		571B7ECF1D9DADAA00FCE88E /* BarGraphLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BarGraphLayout.swift; sourceTree = "<group>"; };
 		571B7ED11D9DBAC300FCE88E /* CollectionGraphDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionGraphDataSource.swift; sourceTree = "<group>"; };
+		575612291DB1098700F94EAF /* XLabelView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XLabelView.swift; sourceTree = "<group>"; };
+		5756122B1DB109F100F94EAF /* XLabelViewAttributes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XLabelViewAttributes.swift; sourceTree = "<group>"; };
+		5756122D1DB122C200F94EAF /* Data.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
+		576DD7831DB55BA90084498B /* MyGraphCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyGraphCell.swift; sourceTree = "<group>"; };
 		57EA98971D958C82000D6C55 /* CollectionGraph.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CollectionGraph.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		57EA989A1D958C82000D6C55 /* CollectionGraph.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CollectionGraph.h; sourceTree = "<group>"; };
 		57EA989C1D958C82000D6C55 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -109,6 +121,36 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		570379C41DB02B1800A88C6B /* Layouts */ = {
+			isa = PBXGroup;
+			children = (
+				571B7ECB1D9DAD4B00FCE88E /* GraphLayout.swift */,
+				570379C51DB02B3D00A88C6B /* Layout Attributes */,
+			);
+			name = Layouts;
+			sourceTree = "<group>";
+		};
+		570379C51DB02B3D00A88C6B /* Layout Attributes */ = {
+			isa = PBXGroup;
+			children = (
+				570379C01DAFFD2A00A88C6B /* YDividerLayoutAttributes.swift */,
+				570379C91DB02CB500A88C6B /* LineConnectorAttributes.swift */,
+				5756122B1DB109F100F94EAF /* XLabelViewAttributes.swift */,
+				570379C61DB02B5E00A88C6B /* Supplementary Views */,
+			);
+			name = "Layout Attributes";
+			sourceTree = "<group>";
+		};
+		570379C61DB02B5E00A88C6B /* Supplementary Views */ = {
+			isa = PBXGroup;
+			children = (
+				570379C21DB0006B00A88C6B /* YDividerLineView.swift */,
+				570379C71DB02C5700A88C6B /* LineConnectorView.swift */,
+				575612291DB1098700F94EAF /* XLabelView.swift */,
+			);
+			name = "Supplementary Views";
+			sourceTree = "<group>";
+		};
 		57EA988D1D958C82000D6C55 = {
 			isa = PBXGroup;
 			children = (
@@ -136,9 +178,7 @@
 				57EA989C1D958C82000D6C55 /* Info.plist */,
 				5717848D1D95A2B20074879A /* CollectionGraphView.swift */,
 				571B7ED11D9DBAC300FCE88E /* CollectionGraphDataSource.swift */,
-				571B7ECB1D9DAD4B00FCE88E /* GraphLayout.swift */,
-				571B7ECD1D9DAD8B00FCE88E /* LineGraphLayout.swift */,
-				571B7ECF1D9DADAA00FCE88E /* BarGraphLayout.swift */,
+				570379C41DB02B1800A88C6B /* Layouts */,
 				571B7EC71D9D9AA000FCE88E /* XibLoader.swift */,
 				571B7EC91D9D9CF500FCE88E /* GraphCollectionView.xib */,
 			);
@@ -159,6 +199,8 @@
 			children = (
 				A7B2B0FB1D958F1500F3A410 /* AppDelegate.swift */,
 				A7B2B0FD1D958F1500F3A410 /* FirstViewController.swift */,
+				5756122D1DB122C200F94EAF /* Data.swift */,
+				576DD7831DB55BA90084498B /* MyGraphCell.swift */,
 				A7B2B0FF1D958F1500F3A410 /* SecondViewController.swift */,
 				A7B2B1011D958F1500F3A410 /* Main.storyboard */,
 				A7B2B1041D958F1500F3A410 /* Assets.xcassets */,
@@ -332,12 +374,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				571B7ECE1D9DAD8B00FCE88E /* LineGraphLayout.swift in Sources */,
+				570379C11DAFFD2A00A88C6B /* YDividerLayoutAttributes.swift in Sources */,
 				571B7ED21D9DBAC300FCE88E /* CollectionGraphDataSource.swift in Sources */,
-				571B7ED01D9DADAA00FCE88E /* BarGraphLayout.swift in Sources */,
+				5756122A1DB1098700F94EAF /* XLabelView.swift in Sources */,
+				570379CA1DB02CB500A88C6B /* LineConnectorAttributes.swift in Sources */,
+				570379C31DB0006B00A88C6B /* YDividerLineView.swift in Sources */,
 				571B7EC81D9D9AA000FCE88E /* XibLoader.swift in Sources */,
 				5717848E1D95A2B20074879A /* CollectionGraphView.swift in Sources */,
+				570379C81DB02C5700A88C6B /* LineConnectorView.swift in Sources */,
 				571B7ECC1D9DAD4B00FCE88E /* GraphLayout.swift in Sources */,
+				5756122C1DB109F100F94EAF /* XLabelViewAttributes.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -356,6 +402,8 @@
 				A7B2B1001D958F1500F3A410 /* SecondViewController.swift in Sources */,
 				A7B2B0FC1D958F1500F3A410 /* AppDelegate.swift in Sources */,
 				A7B2B0FE1D958F1500F3A410 /* FirstViewController.swift in Sources */,
+				576DD7841DB55BA90084498B /* MyGraphCell.swift in Sources */,
+				5756122E1DB122C200F94EAF /* Data.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

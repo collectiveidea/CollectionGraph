@@ -15,14 +15,17 @@ class FirstViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
 
-        graph.layout = GraphLayout()
+        graph.graphData = Parser.parseExampleData(data: ExampleDataFromServer().json)
 
-        let cell = UICollectionViewCell(frame: CGRect(x: 0, y: 0, width: 10, height: 10))
-        cell.contentView.backgroundColor = UIColor.red
+        graph.setCellProperties { (cell, graphDatum) in
+            cell.backgroundColor = UIColor.lightGray
+            cell.layer.cornerRadius = cell.frame.width / 2
+        }
 
-        graph.graphCell = cell
+        graph.setCellLayout { (graphDatum) -> (GraphCellLayoutAttribues) in
+            return GraphCellLayoutAttribues(size: CGSize(width: 3, height: 3))
+        }
     }
 
     override func didReceiveMemoryWarning() {
