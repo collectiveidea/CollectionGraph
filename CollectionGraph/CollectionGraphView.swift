@@ -8,8 +8,13 @@
 
 import UIKit
 
-struct GraphData {
-    var data: [[CGPoint]]
+public struct GraphInfo {
+    var x: String
+    var y: CGFloat
+}
+
+public struct GraphData {
+    var data: [[GraphInfo]]
 
     var sectionCount: Int {
         get {
@@ -18,12 +23,26 @@ struct GraphData {
     }
 }
 
+public enum ReuseIDs: String {
+    case GraphCell = "GraphCell"
+    case LineSupplementaryView = "LineView"
+    case BarSupplementaryView = "BarView"
+}
+
 @IBDesignable
 public class CollectionGraphView: UIView {
 
-    var graphData: GraphData = GraphData(data: [[CGPoint(x: 1, y: 1)]])
+    public var graphData: GraphData = GraphData(data: [[GraphInfo(x: "•", y: 1)]])
 
     var collectionGraphDataSource = CollectionGraphDataSource()
+
+    public var graphCell: UICollectionViewCell? {
+        didSet {
+            if let graphCell = graphCell {
+                self.graphCollectionView.register(graphCell.classForCoder, forCellWithReuseIdentifier: ReuseIDs.GraphCell.rawValue)
+            }
+        }
+    }
 
     @IBInspectable public var layout: GraphLayout? {
         didSet {
@@ -42,12 +61,13 @@ public class CollectionGraphView: UIView {
 
     // MARK: - View Lifecycle
 
-    required public init(frame: CGRect, layout: GraphLayout) {
+    required public init(frame: CGRect, layout: GraphLayout, graphCell: UICollectionViewCell) {
         super.init(frame: frame)
 
         addCollectionView()
 
         self.layout = layout
+        self.graphCell = graphCell
     }
 
     override init(frame: CGRect) {
