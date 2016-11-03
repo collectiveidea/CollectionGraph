@@ -19,7 +19,7 @@ class FirstViewController: UIViewController {
         graph.graphData = Parser.parseExampleData(data: ExampleDataFromServer().json)
 
         graph.setCellProperties { (cell, graphDatum) in
-            cell.backgroundColor = UIColor.lightGray
+            cell.backgroundColor = UIColor.white
             cell.layer.cornerRadius = cell.frame.width / 2
         }
 
