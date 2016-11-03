@@ -42,8 +42,6 @@ class Parser {
             let population = CGFloat((item["population"]! as NSString).floatValue)
             let city = item["city"]!
 
-            print(population)
-
             let point = CGPoint(x: CGFloat(index), y: population)
 
             let data = Data(point: point, information: [city: point])

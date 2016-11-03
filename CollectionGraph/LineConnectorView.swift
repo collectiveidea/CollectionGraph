@@ -8,12 +8,15 @@
 
 import UIKit
 
+public class GraphLineShapeLayer: CAShapeLayer {
+    public var straightLines: Bool = false
+}
+
 class LineConnectorView: UICollectionReusableView {
 
-    var line: CAShapeLayer = CAShapeLayer()
+    var line: GraphLineShapeLayer = GraphLineShapeLayer()
     var lineStartsAtTop = true
     var lineWidth: CGFloat = 1
-    var straightLines: Bool = false
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -36,13 +39,11 @@ class LineConnectorView: UICollectionReusableView {
     override func apply(_ layoutAttributes: UICollectionViewLayoutAttributes) {
         if let attributes = layoutAttributes as? LineConnectorAttributes {
             self.lineStartsAtTop = attributes.lineStartsAtTop
-            line.strokeColor = attributes.color.cgColor
-            line.lineWidth = attributes.lineWidth
-            straightLines = attributes.straightLines
         }
     }
 
     func drawLine() {
+
         var start = CGPoint(x: self.bounds.minX, y: self.bounds.maxY)
         var end = CGPoint(x: self.bounds.maxX, y: self.bounds.minY)
 
@@ -53,8 +54,9 @@ class LineConnectorView: UICollectionReusableView {
 
         let path = UIBezierPath()
         path.move(to: start)
+        path.lineWidth = 50
 
-        if straightLines {
+        if line.straightLines {
             path.addLine(to: end)
         } else {
             let cp1 = CGPoint(x: (start.x + end.x) / 2, y: start.y)
