@@ -8,7 +8,6 @@
 
 import UIKit
 
-// TODO: - reconsider what GraphdData should be to more easily identify it
 public protocol GraphDatum {
     var point: CGPoint { get set }
 }
@@ -52,36 +51,56 @@ public class CollectionGraphView: UIView {
     }
 
     private var layout = GraphLayout()
-    
-    @IBInspectable var ySteps: Int = 6 {
-        didSet{
-            layout.ySteps = ySteps
+
+    @IBInspectable public var textColor: UIColor = UIColor.darkText {
+        didSet {
+            collectionGraphDataSource.textColor = textColor
+            graphCollectionView.reloadData()
         }
     }
-    @IBInspectable var xSteps: Int = 3 {
+
+    @IBInspectable public var yDividerLineColor: UIColor = UIColor.lightGray {
+        didSet {
+            collectionGraphDataSource.yDividerLineColor = yDividerLineColor
+            graphCollectionView.reloadData()
+        }
+    }
+
+    @IBInspectable public var ySteps: Int = 6 {
+        didSet{
+            layout.ySteps = ySteps
+            graphCollectionView.reloadData()
+        }
+    }
+    @IBInspectable public var xSteps: Int = 3 {
         didSet {
             layout.xSteps = xSteps
+            graphCollectionView.reloadData()
         }
     }
 
     @IBInspectable public var topInset: CGFloat = 10 {
         didSet {
             graphCollectionView.contentInset.top = topInset
+            graphCollectionView.reloadData()
         }
     }
     @IBInspectable public var leftInset: CGFloat = 20 {
         didSet {
             graphCollectionView.contentInset.left = leftInset
+            graphCollectionView.reloadData()
         }
     }
     @IBInspectable public var bottomInset: CGFloat = 20 {
         didSet {
             graphCollectionView.contentInset.bottom = bottomInset
+            graphCollectionView.reloadData()
         }
     }
     @IBInspectable public var rightInset: CGFloat = 20 {
         didSet {
             graphCollectionView.contentInset.right = rightInset
+            graphCollectionView.reloadData()
         }
     }
 
@@ -155,7 +174,7 @@ public class CollectionGraphView: UIView {
         super.init(coder: aDecoder)
 
         addCollectionView()
-        
+
         defer {
             graphCell = UICollectionViewCell()
         }
