@@ -8,7 +8,6 @@
 
 import UIKit
 
-// TODO: - reconsider what GraphdData should be to more easily identify it
 public protocol GraphDatum {
     var point: CGPoint { get set }
 }
