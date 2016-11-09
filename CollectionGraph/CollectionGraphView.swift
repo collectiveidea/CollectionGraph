@@ -69,6 +69,12 @@ public class CollectionGraphView: UIView {
             graphCollectionView.reloadData()
         }
     }
+    
+    @IBInspectable public var textSize: CGFloat = 8 {
+        didSet {
+            collectionGraphDataSource.textSize = textSize
+        }
+    }
 
     /// The color of the horizontal lines that run across the graph.
     @IBInspectable public var yDividerLineColor: UIColor = UIColor.lightGray {
