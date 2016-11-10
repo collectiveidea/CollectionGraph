@@ -31,8 +31,6 @@ class LineConnectorView: UICollectionReusableView {
     func setup() {
         line.fillColor = UIColor.clear.cgColor
 
-        self.backgroundColor = UIColor.gray.withAlphaComponent(0.10)
-
         layer.addSublayer(line)
     }
 
