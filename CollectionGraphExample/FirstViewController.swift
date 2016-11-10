@@ -19,7 +19,7 @@ class FirstViewController: UIViewController {
         graph.graphData = Parser.parseExampleData(data: ExampleDataFromServer().json)
 
         graph.setCellProperties { (cell, graphDatum) in
-            cell.backgroundColor = UIColor.white
+            cell.backgroundColor = UIColor.darkText
             cell.layer.cornerRadius = cell.frame.width / 2
         }
 
@@ -28,7 +28,7 @@ class FirstViewController: UIViewController {
         }
 
         graph.setBarViewProperties { (cell, graphDatum) in
-            cell.backgroundColor = UIColor.darkGray
+            cell.backgroundColor = UIColor.lightGray
         }
 
         graph.setBarViewWidth { (graphDatum) -> (CGFloat) in
@@ -40,7 +40,7 @@ class FirstViewController: UIViewController {
             graphLine.lineDashPattern = [4, 2]
             // graphLine.straightLines = true
             // graphLine.lineCap = kCALineCapRound
-            graphLine.strokeColor = UIColor.lightGray.cgColor
+            graphLine.strokeColor = UIColor.darkGray.cgColor
         }
     }
 
