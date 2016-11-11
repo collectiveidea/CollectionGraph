@@ -35,6 +35,7 @@ public class CollectionGraphView: UIView {
             if let graphData = graphData {
                 layout.graphData = graphData
                 collectionGraphDataSource.graphData = graphData
+                graphCollectionView.reloadData()
             }
         }
     }
