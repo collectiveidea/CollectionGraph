@@ -42,7 +42,6 @@ public class CollectionGraphView: UIView {
 
     var collectionGraphDataSource = CollectionGraphDataSource()
 
-    
     /// A graphCell represents a data point on the graph.
     public var graphCell: UICollectionViewCell? {
         didSet {

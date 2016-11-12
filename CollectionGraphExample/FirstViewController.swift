@@ -16,8 +16,6 @@ class FirstViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        graph.graphData = Parser.parseExampleData(data: ExampleDataFromServer().json)
-
         graph.setCellProperties { (cell, graphDatum) in
             cell.backgroundColor = UIColor.darkText
             cell.layer.cornerRadius = cell.frame.width / 2
@@ -42,6 +40,11 @@ class FirstViewController: UIViewController {
             // graphLine.lineCap = kCALineCapRound
             graphLine.strokeColor = UIColor.darkGray.cgColor
         }
+        
+        // Simulate fetch delay from server
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0, execute: {
+            self.graph.graphData = Parser.parseExampleData(data: ExampleDataFromServer().json)
+        })
     }
 
     override func didReceiveMemoryWarning() {
