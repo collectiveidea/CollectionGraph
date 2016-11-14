@@ -26,7 +26,7 @@ public class GraphLayout: UICollectionViewLayout {
     internal var ySteps: Int = 6
     internal var xSteps: Int = 3
 
-    internal var graphWidth: CGFloat? // width of graph in points
+    internal var graphContentWidth: CGFloat? // width of graph in points
     
     internal var cellSize: CGSize = CGSize(width: 3.0, height: 3.0)
 
@@ -285,7 +285,7 @@ public class GraphLayout: UICollectionViewLayout {
         if let collectionView = collectionView {
             
             let height = collectionView.contentInset.bottom
-            let collectionWidth = graphWidth ?? collectionView.bounds.width - (collectionView.contentInset.left + collectionView.contentInset.right)
+            let collectionWidth = graphContentWidth ?? collectionView.bounds.width - (collectionView.contentInset.left + collectionView.contentInset.right)
             
             var width: CGFloat = 0
             var xPosition: CGFloat = 0
@@ -341,7 +341,7 @@ public class GraphLayout: UICollectionViewLayout {
     public override var collectionViewContentSize: CGSize {
         if let collectionView = collectionView {
 
-            let width = graphWidth ?? collectionView.bounds.width - (collectionView.contentInset.left + collectionView.contentInset.right)
+            let width = graphContentWidth ?? collectionView.bounds.width - (collectionView.contentInset.left + collectionView.contentInset.right)
             let height = collectionView.bounds.height - (collectionView.contentInset.top + collectionView.contentInset.bottom)
 
             let contentSize = CGSize(width: width, height: height)
@@ -398,7 +398,7 @@ public class GraphLayout: UICollectionViewLayout {
     func xGraphPosition(indexPath: IndexPath) -> CGFloat {
         if let graphData = graphData, let collectionView = collectionView {
 
-            let width = graphWidth ?? collectionView.bounds.width - (collectionView.contentInset.left + collectionView.contentInset.right)
+            let width = graphContentWidth ?? collectionView.bounds.width - (collectionView.contentInset.left + collectionView.contentInset.right)
 
             let xValPercent = (graphData[indexPath.section][indexPath.item].point.x - minXVal) / xDataRange
             let xPos = width * xValPercent
