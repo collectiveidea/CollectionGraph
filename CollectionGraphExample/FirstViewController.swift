@@ -18,7 +18,7 @@ class FirstViewController: UIViewController {
 
         graph.graphContentWidth = 400
 
-        graph.setCellProperties { (cell, graphDatum) in
+        graph.setCellProperties { (cell, graphDatum, section) in
             cell.backgroundColor = UIColor.darkText
             cell.layer.cornerRadius = cell.frame.width / 2
         }
@@ -27,7 +27,7 @@ class FirstViewController: UIViewController {
             return CGSize(width: 8, height: 8)
         }
 
-        graph.setBarViewProperties { (cell, graphDatum) in
+        graph.setBarViewProperties { (cell, graphDatum, section) in
             cell.backgroundColor = UIColor.lightGray
         }
 
@@ -35,7 +35,7 @@ class FirstViewController: UIViewController {
             return CGFloat(2)
         }
 
-        graph.setLineViewProperties { (graphLine, graphDatum) -> () in
+        graph.setLineViewProperties { (graphLine, graphDatum, section) -> () in
             graphLine.lineWidth = 2
             graphLine.lineDashPattern = [4, 2]
             // graphLine.straightLines = true
