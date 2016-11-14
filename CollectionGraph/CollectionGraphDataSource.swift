@@ -12,11 +12,11 @@ class CollectionGraphDataSource: NSObject, UICollectionViewDataSource {
 
     var graphData: [[GraphDatum]]?
 
-    internal var cellCallback: ((_ cell: UICollectionViewCell, _ data: GraphDatum) -> ())?
+    internal var cellCallback: ((_ cell: UICollectionViewCell, _ data: GraphDatum, _ section: Int) -> ())?
 
-    internal var barCallback: ((_ cell: UICollectionReusableView, _ data: GraphDatum) -> ())?
+    internal var barCallback: ((_ cell: UICollectionReusableView, _ data: GraphDatum, _ section: Int) -> ())?
 
-    internal var lineCallback: ((_ line: GraphLineShapeLayer, _ data: GraphDatum) -> ())?
+    internal var lineCallback: ((_ line: GraphLineShapeLayer, _ data: GraphDatum, _ section: Int) -> ())?
 
     internal var yDividerLineColor: UIColor = UIColor.lightGray
 
@@ -38,7 +38,7 @@ class CollectionGraphDataSource: NSObject, UICollectionViewDataSource {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ReuseIDs.GraphCell.rawValue, for: indexPath)
 
         if let graphData = graphData, let cellCallback = cellCallback {
-            cellCallback(cell, graphData[indexPath.section][indexPath.item])
+            cellCallback(cell, graphData[indexPath.section][indexPath.item], indexPath.section)
         }
 
         cell.layer.zPosition = 10
@@ -65,7 +65,7 @@ class CollectionGraphDataSource: NSObject, UICollectionViewDataSource {
             let line = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: ReuseIDs.LineConnectorView.rawValue, for: indexPath)
 
             if let line = line as? LineConnectorView, let graphData = graphData, let lineCallback = lineCallback {
-                lineCallback(line.line, graphData[indexPath.section][indexPath.item])
+                lineCallback(line.line, graphData[indexPath.section][indexPath.item], indexPath.section)
             }
 
             return line
@@ -86,7 +86,7 @@ class CollectionGraphDataSource: NSObject, UICollectionViewDataSource {
             let view = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: ReuseIDs.BarView.rawValue, for: indexPath)
 
             if let graphData = graphData, let barCallback = barCallback {
-                barCallback(view, graphData[indexPath.section][indexPath.item])
+                barCallback(view, graphData[indexPath.section][indexPath.item], indexPath.section)
             }
 
             return view

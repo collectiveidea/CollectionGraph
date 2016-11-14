@@ -178,12 +178,12 @@ public class CollectionGraphView: UIView {
      
      Use this to set any properties on the graphCell like color, layer properties, or any custom visual properties from your subclass.
     */
-    public func setCellProperties(cellCallback: @escaping (_ cell: UICollectionViewCell, _ data: GraphDatum) -> ()) {
+    public func setCellProperties(cellCallback: @escaping (_ cell: UICollectionViewCell, _ data: GraphDatum, _ section: Int) -> ()) {
         collectionGraphDataSource.cellCallback = cellCallback
     }
 
     /// Callback to set the size of the graphCell
-    public func setCellSize(layoutCallback: @escaping (_ data: GraphDatum) -> (CGSize)) {
+    public func setCellSize(layoutCallback: @escaping (_ data: GraphDatum, _ section: Int) -> (CGSize)) {
         layout.cellLayoutCallback = layoutCallback
     }
     
@@ -192,7 +192,7 @@ public class CollectionGraphView: UIView {
      
      Use this to set any properties on the barCell like color, layer properties, or any custom visual properties from your subclass.
     */
-    public func setBarViewProperties(cellCallback: @escaping (_ cell: UICollectionReusableView, _ data: GraphDatum) -> ()) {
+    public func setBarViewProperties(cellCallback: @escaping (_ cell: UICollectionReusableView, _ data: GraphDatum, _ section: Int) -> ()) {
         if barCell == nil {
             barCell = UICollectionReusableView()
         }
@@ -202,7 +202,7 @@ public class CollectionGraphView: UIView {
     }
     
     /// Callback to set the width of the barCell
-    public func setBarViewWidth(layoutCallback: @escaping (_ data: GraphDatum) -> (CGFloat)) {
+    public func setBarViewWidth(layoutCallback: @escaping (_ data: GraphDatum, _ section: Int) -> (CGFloat)) {
         layout.barLayoutCallback = layoutCallback
     }
     
@@ -213,7 +213,7 @@ public class CollectionGraphView: UIView {
      
      - parameter line: GraphLineShapeLayer is a CAShapeLayer subclass with an extra straightLines Bool you can set.  The default is false.
     */
-    public func setLineViewProperties(lineCallback: @escaping (_ line: GraphLineShapeLayer, _ data: GraphDatum) -> ()) {
+    public func setLineViewProperties(lineCallback: @escaping (_ line: GraphLineShapeLayer, _ data: GraphDatum, _ section: Int) -> ()) {
         layout.displayLineConnectors = true
         
         self.graphCollectionView.register(LineConnectorView.classForCoder(), forSupplementaryViewOfKind: ReuseIDs.LineConnectorView.rawValue, withReuseIdentifier: ReuseIDs.LineConnectorView.rawValue)

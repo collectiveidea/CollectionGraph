@@ -20,8 +20,8 @@ public class GraphLayout: UICollectionViewLayout {
     internal var displayBars = false
     internal var displayLineConnectors = false
 
-    internal var cellLayoutCallback: ((_ data: GraphDatum) -> (CGSize))?
-    internal var barLayoutCallback: ((_ data: GraphDatum) -> (CGFloat))?
+    internal var cellLayoutCallback: ((_ data: GraphDatum, _ section: Int) -> (CGSize))?
+    internal var barLayoutCallback: ((_ data: GraphDatum, _ section: Int) -> (CGFloat))?
 
     internal var ySteps: Int = 6
     internal var xSteps: Int = 3
@@ -177,7 +177,7 @@ public class GraphLayout: UICollectionViewLayout {
         let attributes = UICollectionViewLayoutAttributes(forCellWith: indexPath)
         
         if let graphData = graphData, let layoutCallback = cellLayoutCallback {
-            cellSize = layoutCallback(graphData[indexPath.section][indexPath.item])
+            cellSize = layoutCallback(graphData[indexPath.section][indexPath.item], indexPath.section)
         }
         
         let frame = CGRect(x: xGraphPosition(indexPath: indexPath) - cellSize.width / 2, y: yGraphPosition(indexPath: indexPath) - cellSize.height / 2, width: cellSize.width, height: cellSize.height)
@@ -319,7 +319,7 @@ public class GraphLayout: UICollectionViewLayout {
         var width: CGFloat = cellSize.width
         
         if let graphData = graphData, let layoutCallback = barLayoutCallback {
-            width = layoutCallback(graphData[indexPath.section][indexPath.item])
+            width = layoutCallback(graphData[indexPath.section][indexPath.item], indexPath.section)
         }
 
         var heightOfCollectionView:CGFloat = 0
