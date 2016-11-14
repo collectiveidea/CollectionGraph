@@ -61,6 +61,19 @@ public class CollectionGraphView: UIView {
     }
 
     private var layout = GraphLayout()
+    
+    /**
+    The width of the scrollable graph content.
+     
+    - Default is is the width of the CollectionGraphView.
+    - All data points will plot to fit within specified width.
+    */
+    @IBInspectable public var graphContentWidth: CGFloat = 0 {
+        didSet {
+            layout.graphContentWidth = graphContentWidth
+            graphCollectionView.contentOffset.x = -leftInset
+        }
+    }
 
     /// The color of the labels on the x and y axes.
     @IBInspectable public var textColor: UIColor = UIColor.darkText {
@@ -196,9 +209,9 @@ public class CollectionGraphView: UIView {
     /**
      Callback that returns the Connector Lines and corresponding GraphDatum.
      
-     This is a CAShapeLayer with an extra straightLines Bool.
-     
      Use this to set any properties on the line like color, dot patter, cap, or any custom visual properties from your subclass.
+     
+     - parameter line: GraphLineShapeLayer is a CAShapeLayer subclass with an extra straightLines Bool you can set.  The default is false.
     */
     public func setLineViewProperties(lineCallback: @escaping (_ line: GraphLineShapeLayer, _ data: GraphDatum) -> ()) {
         layout.displayLineConnectors = true
