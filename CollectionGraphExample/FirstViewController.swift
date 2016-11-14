@@ -16,6 +16,8 @@ class FirstViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        graph.graphContentWidth = 400
+
         graph.setCellProperties { (cell, graphDatum) in
             cell.backgroundColor = UIColor.darkText
             cell.layer.cornerRadius = cell.frame.width / 2
@@ -42,7 +44,7 @@ class FirstViewController: UIViewController {
         }
 
         // Simulate fetch delay from server
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0, execute: {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0, execute: {
             self.graph.graphData = Parser.parseExampleData(data: ExampleDataFromServer().json)
         })
     }
