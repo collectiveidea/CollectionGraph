@@ -10,7 +10,7 @@ import UIKit
 
 class XLabelViewAttributes: UICollectionViewLayoutAttributes {
     var text = ""
-    
+
     override func copy(with zone: NSZone? = nil) -> Any {
         let copy = super.copy(with: zone)
         if let copy = copy as? XLabelViewAttributes {
@@ -18,7 +18,7 @@ class XLabelViewAttributes: UICollectionViewLayoutAttributes {
         }
         return copy
     }
-    
+
     override func isEqual(_ object: Any?) -> Bool {
         if let attributes = object as? XLabelViewAttributes {
             if attributes.text == text {
@@ -27,4 +27,5 @@ class XLabelViewAttributes: UICollectionViewLayoutAttributes {
         }
         return false
     }
+
 }
