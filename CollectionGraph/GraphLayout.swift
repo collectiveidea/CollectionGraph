@@ -95,7 +95,6 @@ public class GraphLayout: UICollectionViewLayout {
         if let collectionView = collectionView {
 
             if collectionView.numberOfSections > 0 {
-
                 for number in 0 ..< ySteps {
 
                     let indexPath = IndexPath(item: number, section: 0)
@@ -146,28 +145,6 @@ public class GraphLayout: UICollectionViewLayout {
                     }
                 }
             }
-
-//            for number in 0 ..< ySteps {
-//
-//                let indexPath = NSIndexPath(forItem: number, inSection: 0)
-//                
-//                let supplementaryAttribute = layoutAttributesForSupplementaryViewOfKind(String(YDividerLineView), atIndexPath: indexPath)
-//                
-//                if let supplementaryAttribute = supplementaryAttribute {
-//                    tempAttributes += [supplementaryAttribute]
-//                }
-//            }
-//            
-//            for number in 0...numberOfXDividerLines {
-//                
-//                let indexPath = NSIndexPath(forItem: number, inSection: 0)
-//                
-//                let supplementaryAttribute = layoutAttributesForSupplementaryViewOfKind(String(XDataView), atIndexPath: indexPath)
-//                
-//                if let supplementaryAttribute = supplementaryAttribute {
-//                    tempAttributes += [supplementaryAttribute]
-//                }
-//            }
             
             layoutAttributes += tempAttributes
         }
@@ -215,7 +192,7 @@ public class GraphLayout: UICollectionViewLayout {
     public override func layoutAttributesForSupplementaryView(ofKind elementKind: String, at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
         
         if elementKind == ReuseIDs.YDividerView.rawValue {
-            
+
             return setAttributesForYDivider(fromIndex: indexPath)
         
         } else if elementKind == ReuseIDs.LineConnectorView.rawValue {

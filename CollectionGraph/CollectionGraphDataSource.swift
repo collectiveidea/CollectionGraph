@@ -55,7 +55,6 @@ class CollectionGraphDataSource: NSObject, UICollectionViewDataSource {
             if let yDividerView = yDividerView as? YDividerLineView {
                 yDividerView.label.font = UIFont(name: yDividerView.label.font.fontName, size: textSize)
                 yDividerView.label.textColor = textColor
-                yDividerView.label.sizeToFit()
                 yDividerView.line.strokeColor = yDividerLineColor.cgColor
             }
 
@@ -78,7 +77,6 @@ class CollectionGraphDataSource: NSObject, UICollectionViewDataSource {
             if let xLabelView = xLabelView as? XLabelView {
                 xLabelView.label.font = UIFont(name: xLabelView.label.font.fontName, size: textSize)
                 xLabelView.label.textColor = textColor
-                xLabelView.label.sizeToFit()
             }
 
             return xLabelView
