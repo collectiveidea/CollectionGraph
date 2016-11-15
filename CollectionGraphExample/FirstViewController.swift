@@ -38,10 +38,14 @@ class FirstViewController: UIViewController {
         graph.setLineViewProperties { (graphLine, graphDatum, section) -> () in
             graphLine.lineWidth = 2
             graphLine.lineDashPattern = [4, 2]
-            // graphLine.straightLines = true
-            // graphLine.lineCap = kCALineCapRound
+//            graphLine.straightLines = true
+//            graphLine.lineCap = kCALineCapRound
             graphLine.strokeColor = UIColor.darkGray.cgColor
         }
+
+//        graph.setXLabelText { (graphDatum) -> (String) in
+//            return "•"
+//        }
 
         // Simulate fetch delay from server
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.0, execute: {

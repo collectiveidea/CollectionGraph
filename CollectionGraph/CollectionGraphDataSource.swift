@@ -18,7 +18,7 @@ class CollectionGraphDataSource: NSObject, UICollectionViewDataSource {
 
     internal var lineCallback: ((_ line: GraphLineShapeLayer, _ data: GraphDatum, _ section: Int) -> ())?
     
-    internal var xLabelCallback: ((_ data: GraphDatum) -> (String))?
+    internal var xLabelCallback: ((_ currentString: String, _ section: Int) -> (String))?
 
     internal var yDividerLineColor: UIColor = UIColor.lightGray
 
@@ -80,8 +80,8 @@ class CollectionGraphDataSource: NSObject, UICollectionViewDataSource {
                 xLabelView.label.font = UIFont(name: xLabelView.label.font.fontName, size: textSize)
                 xLabelView.label.textColor = textColor
                 
-                if let graphData = graphData, let xLabelCallback = xLabelCallback {
-                    xLabelView.label.text = xLabelCallback(graphData[indexPath.section][indexPath.item])
+                if let xLabelCallback = xLabelCallback {
+                    xLabelView.label.text = xLabelCallback(xLabelView.label.text!, indexPath.item)
                 }
             }
 

@@ -224,11 +224,11 @@ public class CollectionGraphView: UIView {
     /**
      Callback to set the text of label along the x axis
      
-     - data: provides the corresponding GraphDatum
+     - data: provides the current String and its section number
      
      - Tip: Useful for converting Dates that were converted to Ints back to Dates
     */
-    public func setXLabelText(xLabelCallback: @escaping (_ data: GraphDatum) -> (String)) {
+    public func setXLabelText(xLabelCallback: @escaping (_ currentString: String, _ section: Int) -> (String)) {
         collectionGraphDataSource.xLabelCallback = xLabelCallback
     }
 
