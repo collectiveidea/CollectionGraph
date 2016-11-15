@@ -80,8 +80,8 @@ class CollectionGraphDataSource: NSObject, UICollectionViewDataSource {
                 xLabelView.label.font = UIFont(name: xLabelView.label.font.fontName, size: textSize)
                 xLabelView.label.textColor = textColor
                 
-                if let graphData = graphData, let xLabelCallback = xlabelCallback {
-                    xLabelView.text = xlabelCallback(graphData[indexPath.section][indexPath.item])
+                if let graphData = graphData, let xLabelCallback = xLabelCallback {
+                    xLabelView.label.text = xLabelCallback(graphData[indexPath.section][indexPath.item])
                 }
             }
 
