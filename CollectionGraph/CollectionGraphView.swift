@@ -220,6 +220,17 @@ public class CollectionGraphView: UIView {
         
         collectionGraphDataSource.lineCallback = lineCallback
     }
+    
+    /**
+     Callback to set the text of label along the x axis
+     
+     - data: provides the current String and its section number
+     
+     - Tip: Useful for converting Dates that were converted to Ints back to Dates
+    */
+    public func setXLabelText(xLabelCallback: @escaping (_ currentString: String, _ section: Int) -> (String)) {
+        collectionGraphDataSource.xLabelCallback = xLabelCallback
+    }
 
     // MARK: - View Lifecycle
 
