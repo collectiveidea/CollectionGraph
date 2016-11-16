@@ -50,6 +50,8 @@ class FirstViewController: UIViewController {
         // Simulate fetch delay from server
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.0, execute: {
             self.graph.graphData = Parser.parseExampleData(data: ExampleDataFromServer().json)
+
+            self.graph.scrollToDataPoint(graphDatum: self.graph.graphData![0].last!, withAnimation: true, andScrollPosition: .centeredHorizontally)
         })
     }
 

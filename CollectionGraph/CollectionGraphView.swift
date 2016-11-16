@@ -165,10 +165,33 @@ public class CollectionGraphView: UIView {
         }
     }
     
-    func registerDefaultCells() {
+    private func registerDefaultCells() {
         self.graphCollectionView.register(YDividerLineView.classForCoder(), forSupplementaryViewOfKind: ReuseIDs.YDividerView.rawValue, withReuseIdentifier: ReuseIDs.YDividerView.rawValue)
 
         self.graphCollectionView.register(XLabelView.classForCoder(), forSupplementaryViewOfKind: ReuseIDs.XLabelView.rawValue, withReuseIdentifier: ReuseIDs.XLabelView.rawValue)
+    }
+    
+    /// Scroll the graph to a data point
+    public func scrollToDataPoint(graphDatum: GraphDatum, withAnimation animation: Bool, andScrollPosition scrollPosition: UICollectionViewScrollPosition) {
+        
+        var sectionNumber: Int?
+        var itemNumber: Int?
+        
+        //go thru graphData find matching datum
+        if let graphData = graphData {
+            for section in 0 ... graphData.count - 1 {
+                
+                itemNumber = graphData[section].index(where: { (data) -> Bool in
+                    sectionNumber = section
+                    return data.point == graphDatum.point
+                })
+            }
+        }
+        
+        if let sectionNumber = sectionNumber, let itemNumber = itemNumber {
+            let indexPath = IndexPath(item: itemNumber, section: sectionNumber)
+            graphCollectionView.scrollToItem(at: indexPath, at: scrollPosition, animated: animation)
+        }
     }
     
     // MARK: - Callbacks
