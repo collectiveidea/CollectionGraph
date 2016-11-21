@@ -27,7 +27,7 @@ public enum ReuseIDs: String {
 }
 
 @IBDesignable
-public class CollectionGraphView: UIView {
+public class CollectionGraphView: UIView, UICollectionViewDelegate {
 
     /// Each GraphDatum array will define a new section in the graph.
     public var graphData: [[GraphDatum]]? {
@@ -41,7 +41,9 @@ public class CollectionGraphView: UIView {
     }
 
     var collectionGraphDataSource = CollectionGraphDataSource()
-
+    
+    var collectionGraphDelegate:CollectionGraphDelegate!
+    
     /// A graphCell represents a data point on the graph.
     public var graphCell: UICollectionViewCell? {
         didSet {
@@ -156,6 +158,10 @@ public class CollectionGraphView: UIView {
     @IBOutlet internal weak var graphCollectionView: UICollectionView! {
         didSet {
             graphCollectionView.dataSource = collectionGraphDataSource
+            
+            collectionGraphDelegate = CollectionGraphDelegate(graphCollectionView)
+            graphCollectionView.delegate = collectionGraphDelegate
+            
             graphCollectionView.collectionViewLayout = layout
 
             graphCollectionView.contentInset = UIEdgeInsets(top: topInset, left: leftInset, bottom: bottomInset, right: rightInset)
@@ -169,6 +175,12 @@ public class CollectionGraphView: UIView {
         self.graphCollectionView.register(YDividerLineView.classForCoder(), forSupplementaryViewOfKind: ReuseIDs.YDividerView.rawValue, withReuseIdentifier: ReuseIDs.YDividerView.rawValue)
 
         self.graphCollectionView.register(XLabelView.classForCoder(), forSupplementaryViewOfKind: ReuseIDs.XLabelView.rawValue, withReuseIdentifier: ReuseIDs.XLabelView.rawValue)
+    }
+    
+    public var contentOffset: CGPoint {
+        get {
+            return graphCollectionView.contentOffset
+        }
     }
     
     /// Scroll the graph to a data point
@@ -195,6 +207,13 @@ public class CollectionGraphView: UIView {
     }
     
     // MARK: - Callbacks
+    
+    /**
+     Callback that returns the visible IndexPaths when scrolling stops
+    */
+    public func didEndDecelerating(callback: @escaping (_ indexPaths: [IndexPath]) -> ()) {
+        collectionGraphDelegate.didEndDeceleratingCallback = callback
+    }
     
     /**
      Callback that returns the graphCell and corresponding GraphDatum.

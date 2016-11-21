@@ -53,6 +53,14 @@ class FirstViewController: UIViewController {
 
             self.graph.scrollToDataPoint(graphDatum: self.graph.graphData![0].last!, withAnimation: true, andScrollPosition: .centeredHorizontally)
         })
+
+        graph.didEndDecelerating { (indexPaths) in
+            indexPaths.forEach {
+                let data = self.graph.graphData?[$0.section][$0.item]
+                print("Data: \(data)")
+            }
+        }
+
     }
 
     override func didReceiveMemoryWarning() {
