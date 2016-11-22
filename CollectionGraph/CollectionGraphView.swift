@@ -40,9 +40,15 @@ public class CollectionGraphView: UIView, UICollectionViewDelegate {
         }
     }
 
-    var collectionGraphDataSource = CollectionGraphDataSource()
+    private var collectionGraphDataSource = CollectionGraphDataSource()
     
-    var collectionGraphDelegate:CollectionGraphDelegate!
+    private var collectionGraphDelegate:CollectionGraphDelegate!
+    
+    public var visibleIndices: [IndexPath] {
+        get {
+            return graphCollectionView.indexPathsForVisibleItems
+        }
+    }
     
     /// A graphCell represents a data point on the graph.
     public var graphCell: UICollectionViewCell? {
