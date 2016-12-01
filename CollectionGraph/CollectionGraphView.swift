@@ -187,6 +187,10 @@ public class CollectionGraphView: UIView, UICollectionViewDelegate {
         get {
             return graphCollectionView.contentOffset
         }
+        
+        set {
+            graphCollectionView.contentOffset = newValue
+        }
     }
     
     /// Scroll the graph to a data point

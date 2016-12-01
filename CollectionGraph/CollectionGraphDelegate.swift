@@ -12,7 +12,7 @@ class CollectionGraphDelegate: NSObject, UICollectionViewDelegate {
     
     let collectionView: UICollectionView
     
-    var didEndDeceleratingCallback: ((_ indexPaths: [IndexPath]) -> ())?
+    internal var didEndDeceleratingCallback: ((_ indexPaths: [IndexPath]) -> ())?
     
     public init(_ collectionView: UICollectionView) {
         self.collectionView = collectionView
