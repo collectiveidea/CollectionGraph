@@ -12,22 +12,30 @@ class CollectionGraphDelegate: NSObject, UICollectionViewDelegate {
     
     let collectionView: UICollectionView
     
-    internal var didEndDeceleratingCallback: ((_ indexPaths: [IndexPath]) -> ())?
+    var visibleIndices = Set<IndexPath>() {
+        didSet {
+            let sections = visibleIndices.map {
+                $0.section
+            }
+            
+            let sectionSet = Set<Int>(sections)
+            
+            didUpdateVisibleIndicesCallback?(visibleIndices, sectionSet)
+        }
+    }
+    
+    internal var didUpdateVisibleIndicesCallback: ((_ indexPaths: Set<IndexPath>, _ sections: Set<Int>) -> ())?
     
     public init(_ collectionView: UICollectionView) {
         self.collectionView = collectionView
     }
     
-    internal func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        didEndDeceleratingCallback?(collectionView.indexPathsForVisibleItems)
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        visibleIndices.insert(indexPath)
     }
     
-    internal func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
-        didEndDeceleratingCallback?(collectionView.indexPathsForVisibleItems)
-    }
-    
-    internal func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-        didEndDeceleratingCallback?(collectionView.indexPathsForVisibleItems)
+    func collectionView(_ collectionView: UICollectionView, didEndDisplaying cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        visibleIndices.remove(indexPath)
     }
     
 }

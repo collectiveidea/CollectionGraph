@@ -221,8 +221,8 @@ public class CollectionGraphView: UIView, UICollectionViewDelegate {
     /**
      Callback that returns the visible IndexPaths when scrolling stops
     */
-    public func didEndDecelerating(callback: @escaping (_ indexPaths: [IndexPath]) -> ()) {
-        collectionGraphDelegate.didEndDeceleratingCallback = callback
+    public func didUpdateVisibleIndices(callback: @escaping (_ indexPaths: Set<IndexPath>, _ sections: Set<Int>) -> ()) {
+        collectionGraphDelegate.didUpdateVisibleIndicesCallback = callback
     }
     
     /**

@@ -56,7 +56,7 @@ class FirstViewController: UIViewController {
             self.graph.contentOffset = CGPoint(x: 30, y: self.graph.contentOffset.y)
         })
 
-        graph.didEndDecelerating { (indexPaths) in
+        graph.didUpdateVisibleIndices { (indexPaths, sections) in
             indexPaths.forEach {
                 let data = self.graph.graphData?[$0.section][$0.item]
                 print("Data: \(data)")
