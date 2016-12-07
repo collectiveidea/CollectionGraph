@@ -23,6 +23,7 @@ public enum ReuseIDs: String {
     case LineConnectorView = "LineView"
     case BarView = "BarView"
     case YDividerView = "YDivider"
+    case YLabelView = "YLabel"
     case XLabelView = "XLabel"
 }
 
@@ -187,6 +188,8 @@ public class CollectionGraphView: UIView, UICollectionViewDelegate {
         self.graphCollectionView.register(YDividerLineView.classForCoder(), forSupplementaryViewOfKind: ReuseIDs.YDividerView.rawValue, withReuseIdentifier: ReuseIDs.YDividerView.rawValue)
 
         self.graphCollectionView.register(XLabelView.classForCoder(), forSupplementaryViewOfKind: ReuseIDs.XLabelView.rawValue, withReuseIdentifier: ReuseIDs.XLabelView.rawValue)
+        
+        self.graphCollectionView.register(XLabelView.classForCoder(), forSupplementaryViewOfKind: ReuseIDs.YLabelView.rawValue, withReuseIdentifier: ReuseIDs.YLabelView.rawValue)
     }
     
     public var contentOffset: CGPoint {

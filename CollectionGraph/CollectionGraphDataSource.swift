@@ -79,6 +79,27 @@ class CollectionGraphDataSource: NSObject, UICollectionViewDataSource {
             }
 
             return line
+            
+        case ReuseIDs.YLabelView.rawValue:
+            
+            let xLabelView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: ReuseIDs.YLabelView.rawValue, for: indexPath)
+            
+            if let xLabelView = xLabelView as? XLabelView {
+                
+                if let fontName = fontName {
+                    xLabelView.label.font = UIFont(name: fontName, size: textSize)
+                } else {
+                    xLabelView.label.font = UIFont(name: xLabelView.label.font.fontName, size: textSize)
+                }
+                
+                xLabelView.label.textColor = textColor
+                
+                if let xLabelCallback = xLabelCallback {
+                    xLabelView.label.text = xLabelCallback(xLabelView.label.text!, indexPath.item)
+                }
+            }
+            
+            return xLabelView
 
         case ReuseIDs.XLabelView.rawValue:
 
