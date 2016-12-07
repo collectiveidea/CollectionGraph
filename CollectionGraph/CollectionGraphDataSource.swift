@@ -55,14 +55,6 @@ class CollectionGraphDataSource: NSObject, UICollectionViewDataSource {
             let yDividerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: ReuseIDs.YDividerView.rawValue, for: indexPath)
 
             if let yDividerView = yDividerView as? YDividerLineView {
-                
-                if let fontName = fontName {
-                    yDividerView.label.font = UIFont(name: fontName, size: textSize)
-                } else {
-                    yDividerView.label.font = UIFont(name: yDividerView.label.font.fontName, size: textSize)
-                }
-                
-                yDividerView.label.textColor = textColor
                 yDividerView.line.strokeColor = yDividerLineColor.cgColor
             }
 
