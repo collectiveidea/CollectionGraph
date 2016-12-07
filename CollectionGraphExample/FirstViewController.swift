@@ -17,7 +17,7 @@ class FirstViewController: UIViewController {
         super.viewDidLoad()
 
         graph.graphContentWidth = 400
-        
+
 //        graph.fontName = "chalkduster"
 
         graph.setCellProperties { (cell, graphDatum, section) in
