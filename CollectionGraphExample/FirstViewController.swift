@@ -17,6 +17,8 @@ class FirstViewController: UIViewController {
         super.viewDidLoad()
 
         graph.graphContentWidth = 400
+        
+//        graph.fontName = "chalkduster"
 
         graph.setCellProperties { (cell, graphDatum, section) in
             cell.backgroundColor = UIColor.darkText
@@ -51,7 +53,7 @@ class FirstViewController: UIViewController {
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.0, execute: {
             self.graph.graphData = Parser.parseExampleData(data: ExampleDataFromServer().json)
 
-            // self.graph.scrollToDataPoint(graphDatum: self.graph.graphData![0].last!, withAnimation: true, andScrollPosition: .centeredHorizontally)
+//            self.graph.scrollToDataPoint(graphDatum: self.graph.graphData![0].last!, withAnimation: true, andScrollPosition: .centeredHorizontally)
 
             self.graph.contentOffset = CGPoint(x: 30, y: self.graph.contentOffset.y)
         })

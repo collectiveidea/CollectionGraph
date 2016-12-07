@@ -96,6 +96,12 @@ public class CollectionGraphView: UIView, UICollectionViewDelegate {
             collectionGraphDataSource.textSize = textSize
         }
     }
+    
+    public var fontName: String? {
+        didSet {
+            collectionGraphDataSource.fontName = fontName
+        }
+    }
 
     /// The color of the horizontal lines that run across the graph.
     @IBInspectable public var yDividerLineColor: UIColor = UIColor.lightGray {
