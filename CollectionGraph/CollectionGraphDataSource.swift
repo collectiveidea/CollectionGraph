@@ -25,6 +25,8 @@ class CollectionGraphDataSource: NSObject, UICollectionViewDataSource {
     internal var textColor: UIColor = UIColor.darkText
     
     internal var textSize: CGFloat = 8
+    
+    internal var fontName: String?
 
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return graphData?.count ?? 1
@@ -55,7 +57,13 @@ class CollectionGraphDataSource: NSObject, UICollectionViewDataSource {
             let yDividerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: ReuseIDs.YDividerView.rawValue, for: indexPath)
 
             if let yDividerView = yDividerView as? YDividerLineView {
-                yDividerView.label.font = UIFont(name: yDividerView.label.font.fontName, size: textSize)
+                
+                if let fontName = fontName {
+                    yDividerView.label.font = UIFont(name: fontName, size: textSize)
+                } else {
+                    yDividerView.label.font = UIFont(name: yDividerView.label.font.fontName, size: textSize)
+                }
+                
                 yDividerView.label.textColor = textColor
                 yDividerView.line.strokeColor = yDividerLineColor.cgColor
             }
@@ -77,7 +85,13 @@ class CollectionGraphDataSource: NSObject, UICollectionViewDataSource {
             let xLabelView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: ReuseIDs.XLabelView.rawValue, for: indexPath)
 
             if let xLabelView = xLabelView as? XLabelView {
-                xLabelView.label.font = UIFont(name: xLabelView.label.font.fontName, size: textSize)
+                
+                if let fontName = fontName {
+                    xLabelView.label.font = UIFont(name: fontName, size: textSize)
+                } else {
+                    xLabelView.label.font = UIFont(name: xLabelView.label.font.fontName, size: textSize)
+                }
+                
                 xLabelView.label.textColor = textColor
                 
                 if let xLabelCallback = xLabelCallback {

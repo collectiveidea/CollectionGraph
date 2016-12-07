@@ -269,9 +269,6 @@ public class GraphLayout: UICollectionViewLayout {
                     (xOffset > xOffset2 && yOffset < yOffset2)
                     ? false : true
                 
-                //                    attributes.lineWidth = lineWidth
-                //                    attributes.straightLines = straightLines
-                
                 return attributes
             }
         }
