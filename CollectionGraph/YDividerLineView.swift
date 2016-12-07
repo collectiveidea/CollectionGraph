@@ -10,7 +10,6 @@ import UIKit
 
 class YDividerLineView: UICollectionReusableView {
 
-    var label: UILabel = UILabel()
     var line: CAShapeLayer = CAShapeLayer()
     var lineWidth: CGFloat = 1
     var lineColor: UIColor = UIColor.lightGray
@@ -33,11 +32,6 @@ class YDividerLineView: UICollectionReusableView {
         line.lineDashPattern = [1.0, 4.0]
         line.lineWidth = lineWidth
         layer.addSublayer(line)
-
-        label.font = UIFont.systemFont(ofSize: 8)
-        label.textAlignment = .center
-        label.textColor = textColor
-        addSubview(label)
     }
 
     // TODO: - adjust properties in IB and apply them here
@@ -46,12 +40,6 @@ class YDividerLineView: UICollectionReusableView {
         if let attributes = layoutAttributes as? YDividerLayoutAttributes {
 
             inset = attributes.inset
-
-            label.text = attributes.text
-
-            label.sizeToFit()
-
-            label.center = CGPoint(x: inset / 2, y: 0)
         }
     }
 

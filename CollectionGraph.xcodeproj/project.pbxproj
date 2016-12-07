@@ -19,7 +19,7 @@
 		571B7ECC1D9DAD4B00FCE88E /* GraphLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 571B7ECB1D9DAD4B00FCE88E /* GraphLayout.swift */; };
 		571B7ED21D9DBAC300FCE88E /* CollectionGraphDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 571B7ED11D9DBAC300FCE88E /* CollectionGraphDataSource.swift */; };
 		574F020C1DE393B9001ACC27 /* CollectionGraphDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574F020B1DE393B9001ACC27 /* CollectionGraphDelegate.swift */; };
-		5756122A1DB1098700F94EAF /* XLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 575612291DB1098700F94EAF /* XLabelView.swift */; };
+		5756122A1DB1098700F94EAF /* LabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 575612291DB1098700F94EAF /* LabelView.swift */; };
 		5756122C1DB109F100F94EAF /* XLabelViewAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5756122B1DB109F100F94EAF /* XLabelViewAttributes.swift */; };
 		5756122E1DB122C200F94EAF /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5756122D1DB122C200F94EAF /* Data.swift */; };
 		576DD7841DB55BA90084498B /* MyGraphCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576DD7831DB55BA90084498B /* MyGraphCell.swift */; };
@@ -76,7 +76,7 @@
 		571B7ECB1D9DAD4B00FCE88E /* GraphLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GraphLayout.swift; sourceTree = "<group>"; };
 		571B7ED11D9DBAC300FCE88E /* CollectionGraphDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionGraphDataSource.swift; sourceTree = "<group>"; };
 		574F020B1DE393B9001ACC27 /* CollectionGraphDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionGraphDelegate.swift; sourceTree = "<group>"; };
-		575612291DB1098700F94EAF /* XLabelView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XLabelView.swift; sourceTree = "<group>"; };
+		575612291DB1098700F94EAF /* LabelView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LabelView.swift; sourceTree = "<group>"; };
 		5756122B1DB109F100F94EAF /* XLabelViewAttributes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XLabelViewAttributes.swift; sourceTree = "<group>"; };
 		5756122D1DB122C200F94EAF /* Data.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
 		576DD7831DB55BA90084498B /* MyGraphCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyGraphCell.swift; sourceTree = "<group>"; };
@@ -148,7 +148,7 @@
 			children = (
 				570379C21DB0006B00A88C6B /* YDividerLineView.swift */,
 				570379C71DB02C5700A88C6B /* LineConnectorView.swift */,
-				575612291DB1098700F94EAF /* XLabelView.swift */,
+				575612291DB1098700F94EAF /* LabelView.swift */,
 			);
 			name = "Supplementary Views";
 			sourceTree = "<group>";
@@ -379,7 +379,7 @@
 			files = (
 				570379C11DAFFD2A00A88C6B /* YDividerLayoutAttributes.swift in Sources */,
 				571B7ED21D9DBAC300FCE88E /* CollectionGraphDataSource.swift in Sources */,
-				5756122A1DB1098700F94EAF /* XLabelView.swift in Sources */,
+				5756122A1DB1098700F94EAF /* LabelView.swift in Sources */,
 				574F020C1DE393B9001ACC27 /* CollectionGraphDelegate.swift in Sources */,
 				570379CA1DB02CB500A88C6B /* LineConnectorAttributes.swift in Sources */,
 				570379C31DB0006B00A88C6B /* YDividerLineView.swift in Sources */,

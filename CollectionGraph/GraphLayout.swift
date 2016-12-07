@@ -54,7 +54,8 @@ public class GraphLayout: UICollectionViewLayout {
 
         tempAttributes += layoutAttributesForCell()
         tempAttributes += layoutAttributesForYDividerLines()
-        tempAttributes += layoutAttributesForXLabel()
+        tempAttributes += layoutAttributesForYLabels()
+        tempAttributes += layoutAttributesForXLabels()
         
         if displayLineConnectors {
             tempAttributes += layoutAttributesForLineConnector()
@@ -109,12 +110,29 @@ public class GraphLayout: UICollectionViewLayout {
         }
         return tempAttributes
     }
+    
+    func layoutAttributesForYLabels() -> [UICollectionViewLayoutAttributes] {
+        
+        var tempAttributes = [UICollectionViewLayoutAttributes]()
+        
+        for number in 0 ..< ySteps {
+            
+            let indexPath = IndexPath(item: number, section: 0)
 
-    func layoutAttributesForXLabel() -> [UICollectionViewLayoutAttributes] {
+            let supplementaryAttribute = layoutAttributesForSupplementaryView(ofKind: ReuseIDs.YLabelView.rawValue, at: indexPath)
+            
+            if let supplementaryAttribute = supplementaryAttribute {
+                tempAttributes += [supplementaryAttribute]
+            }
+        }
+        return tempAttributes
+    }
+
+    func layoutAttributesForXLabels() -> [UICollectionViewLayoutAttributes] {
 
         var tempAttributes = [UICollectionViewLayoutAttributes]()
         
-        for number in 0..<xSteps {
+        for number in 0 ..< xSteps {
             
             let indexPath = IndexPath(item: number, section: 0)
             
@@ -137,7 +155,7 @@ public class GraphLayout: UICollectionViewLayout {
                 for itemNumber in 0 ..< collectionView.numberOfItems(inSection: sectionNumber) {
 
                     let indexPath = IndexPath(item: itemNumber, section: sectionNumber)
-                    
+
                     let supplementaryAttributes = layoutAttributesForSupplementaryView(ofKind: ReuseIDs.LineConnectorView.rawValue, at: indexPath)
                     
                     if let supplementaryAttributes = supplementaryAttributes {
@@ -183,6 +201,7 @@ public class GraphLayout: UICollectionViewLayout {
         let frame = CGRect(x: xGraphPosition(indexPath: indexPath) - cellSize.width / 2, y: yGraphPosition(indexPath: indexPath) - cellSize.height / 2, width: cellSize.width, height: cellSize.height)
         
         attributes.frame = frame
+        attributes.zIndex = 2
         
         return attributes
     }
@@ -198,6 +217,10 @@ public class GraphLayout: UICollectionViewLayout {
         } else if elementKind == ReuseIDs.LineConnectorView.rawValue {
             
             return setAttributesForLineConnector(fromIndex: indexPath)
+            
+        } else if elementKind == ReuseIDs.YLabelView.rawValue {
+            
+            return setAttributesForYLabel(fromIndex: indexPath)
             
         } else if elementKind == ReuseIDs.XLabelView.rawValue {
             
@@ -227,8 +250,6 @@ public class GraphLayout: UICollectionViewLayout {
             
             attributes.frame = frame
             attributes.inset = collectionView.contentInset.left
-            
-            attributes.text = "\(Int((yIncrements * CGFloat(ySteps)) - (yIncrements * CGFloat(indexPath.row))))"
         }
         return attributes
     }
@@ -273,6 +294,29 @@ public class GraphLayout: UICollectionViewLayout {
             }
         }
         return nil
+    }
+    
+    func setAttributesForYLabel(fromIndex indexPath: IndexPath) -> XLabelViewAttributes {
+        
+        let attributes = XLabelViewAttributes(forSupplementaryViewOfKind: ReuseIDs.YLabelView.rawValue, with: indexPath)
+        
+        if let collectionView = collectionView {
+            
+            let height = (collectionView.frame.height - collectionView.contentInset.top - collectionView.contentInset.bottom) / CGFloat(ySteps)
+            let width = collectionView.contentInset.left
+            
+            let frame = CGRect(x: collectionView.contentOffset.x,
+                               y: (height * CGFloat(indexPath.row)) - (height / 2),
+                               width: width,
+                               height: height)
+            
+            attributes.frame = frame
+            
+            attributes.zIndex = Int.max
+            
+            attributes.text = "\(Int((yIncrements * CGFloat(ySteps)) - (yIncrements * CGFloat(indexPath.row))))"
+        }
+        return attributes
     }
     
     func setAttributesForXLabel(fromIndex indexPath: IndexPath) -> XLabelViewAttributes {
@@ -354,6 +398,12 @@ public class GraphLayout: UICollectionViewLayout {
         var attributesInRect = [UICollectionViewLayoutAttributes]()
 
         for attributes in layoutAttributes {
+//            if attributes.representedElementCategory == .cell {
+//                attributes.zIndex = -100
+//            } else {
+//                attributes.zIndex = 1000
+//            }
+            
             if attributes.frame.intersects(rect) {
                 attributesInRect += [attributes]
             }

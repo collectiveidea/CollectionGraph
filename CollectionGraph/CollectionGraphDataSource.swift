@@ -45,8 +45,6 @@ class CollectionGraphDataSource: NSObject, UICollectionViewDataSource {
             cellCallback(cell, graphData[indexPath.section][indexPath.item], indexPath.section)
         }
 
-        cell.layer.zPosition = 10
-
         return cell
     }
 
@@ -57,14 +55,6 @@ class CollectionGraphDataSource: NSObject, UICollectionViewDataSource {
             let yDividerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: ReuseIDs.YDividerView.rawValue, for: indexPath)
 
             if let yDividerView = yDividerView as? YDividerLineView {
-                
-                if let fontName = fontName {
-                    yDividerView.label.font = UIFont(name: fontName, size: textSize)
-                } else {
-                    yDividerView.label.font = UIFont(name: yDividerView.label.font.fontName, size: textSize)
-                }
-                
-                yDividerView.label.textColor = textColor
                 yDividerView.line.strokeColor = yDividerLineColor.cgColor
             }
 
@@ -79,27 +69,44 @@ class CollectionGraphDataSource: NSObject, UICollectionViewDataSource {
             }
 
             return line
+            
+        case ReuseIDs.YLabelView.rawValue:
+            
+            let labelView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: ReuseIDs.YLabelView.rawValue, for: indexPath)
+            
+            if let labelView = labelView as? LabelView {
+                
+                if let fontName = fontName {
+                    labelView.label.font = UIFont(name: fontName, size: textSize)
+                } else {
+                    labelView.label.font = UIFont(name: labelView.label.font.fontName, size: textSize)
+                }
+                
+                labelView.label.textColor = textColor
+            }
+
+            return labelView
 
         case ReuseIDs.XLabelView.rawValue:
 
-            let xLabelView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: ReuseIDs.XLabelView.rawValue, for: indexPath)
+            let labelView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: ReuseIDs.XLabelView.rawValue, for: indexPath)
 
-            if let xLabelView = xLabelView as? XLabelView {
+            if let labelView = labelView as? LabelView {
                 
                 if let fontName = fontName {
-                    xLabelView.label.font = UIFont(name: fontName, size: textSize)
+                    labelView.label.font = UIFont(name: fontName, size: textSize)
                 } else {
-                    xLabelView.label.font = UIFont(name: xLabelView.label.font.fontName, size: textSize)
+                    labelView.label.font = UIFont(name: labelView.label.font.fontName, size: textSize)
                 }
                 
-                xLabelView.label.textColor = textColor
+                labelView.label.textColor = textColor
                 
                 if let xLabelCallback = xLabelCallback {
-                    xLabelView.label.text = xLabelCallback(xLabelView.label.text!, indexPath.item)
+                    labelView.label.text = xLabelCallback(labelView.label.text!, indexPath.item)
                 }
             }
 
-            return xLabelView
+            return labelView
 
         case ReuseIDs.BarView.rawValue:
 
