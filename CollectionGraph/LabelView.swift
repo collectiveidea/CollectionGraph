@@ -8,7 +8,7 @@
 
 import UIKit
 
-class XLabelView: UICollectionReusableView {
+class LabelView: UICollectionReusableView {
 
     var label = UILabel()
     var textColor: UIColor = UIColor.darkText

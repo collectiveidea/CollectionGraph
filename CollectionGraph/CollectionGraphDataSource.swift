@@ -82,45 +82,41 @@ class CollectionGraphDataSource: NSObject, UICollectionViewDataSource {
             
         case ReuseIDs.YLabelView.rawValue:
             
-            let xLabelView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: ReuseIDs.YLabelView.rawValue, for: indexPath)
+            let labelView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: ReuseIDs.YLabelView.rawValue, for: indexPath)
             
-            if let xLabelView = xLabelView as? XLabelView {
+            if let labelView = labelView as? LabelView {
                 
                 if let fontName = fontName {
-                    xLabelView.label.font = UIFont(name: fontName, size: textSize)
+                    labelView.label.font = UIFont(name: fontName, size: textSize)
                 } else {
-                    xLabelView.label.font = UIFont(name: xLabelView.label.font.fontName, size: textSize)
+                    labelView.label.font = UIFont(name: labelView.label.font.fontName, size: textSize)
                 }
                 
-                xLabelView.label.textColor = textColor
-                
-                if let xLabelCallback = xLabelCallback {
-                    xLabelView.label.text = xLabelCallback(xLabelView.label.text!, indexPath.item)
-                }
+                labelView.label.textColor = textColor
             }
-            
-            return xLabelView
+
+            return labelView
 
         case ReuseIDs.XLabelView.rawValue:
 
-            let xLabelView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: ReuseIDs.XLabelView.rawValue, for: indexPath)
+            let labelView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: ReuseIDs.XLabelView.rawValue, for: indexPath)
 
-            if let xLabelView = xLabelView as? XLabelView {
+            if let labelView = labelView as? LabelView {
                 
                 if let fontName = fontName {
-                    xLabelView.label.font = UIFont(name: fontName, size: textSize)
+                    labelView.label.font = UIFont(name: fontName, size: textSize)
                 } else {
-                    xLabelView.label.font = UIFont(name: xLabelView.label.font.fontName, size: textSize)
+                    labelView.label.font = UIFont(name: labelView.label.font.fontName, size: textSize)
                 }
                 
-                xLabelView.label.textColor = textColor
+                labelView.label.textColor = textColor
                 
                 if let xLabelCallback = xLabelCallback {
-                    xLabelView.label.text = xLabelCallback(xLabelView.label.text!, indexPath.item)
+                    labelView.label.text = xLabelCallback(labelView.label.text!, indexPath.item)
                 }
             }
 
-            return xLabelView
+            return labelView
 
         case ReuseIDs.BarView.rawValue:
 
