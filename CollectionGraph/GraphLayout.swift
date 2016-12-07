@@ -201,6 +201,7 @@ public class GraphLayout: UICollectionViewLayout {
         let frame = CGRect(x: xGraphPosition(indexPath: indexPath) - cellSize.width / 2, y: yGraphPosition(indexPath: indexPath) - cellSize.height / 2, width: cellSize.width, height: cellSize.height)
         
         attributes.frame = frame
+        attributes.zIndex = 2
         
         return attributes
     }
@@ -305,7 +306,7 @@ public class GraphLayout: UICollectionViewLayout {
             let width = collectionView.contentInset.left
             
             let frame = CGRect(x: collectionView.contentOffset.x,
-                               y: height * CGFloat(indexPath.row),
+                               y: (height * CGFloat(indexPath.row)) - (height / 2),
                                width: width,
                                height: height)
             
@@ -397,6 +398,12 @@ public class GraphLayout: UICollectionViewLayout {
         var attributesInRect = [UICollectionViewLayoutAttributes]()
 
         for attributes in layoutAttributes {
+//            if attributes.representedElementCategory == .cell {
+//                attributes.zIndex = -100
+//            } else {
+//                attributes.zIndex = 1000
+//            }
+            
             if attributes.frame.intersects(rect) {
                 attributesInRect += [attributes]
             }

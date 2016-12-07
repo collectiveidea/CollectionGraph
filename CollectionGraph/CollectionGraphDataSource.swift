@@ -45,8 +45,6 @@ class CollectionGraphDataSource: NSObject, UICollectionViewDataSource {
             cellCallback(cell, graphData[indexPath.section][indexPath.item], indexPath.section)
         }
 
-        cell.layer.zPosition = 10
-
         return cell
     }
 
