@@ -16,7 +16,7 @@ class FirstViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        graph.graphContentWidth = 400
+        graph.graphContentWidth = 1400
 
 //        graph.fontName = "chalkduster"
 
