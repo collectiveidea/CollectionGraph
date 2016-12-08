@@ -25,6 +25,7 @@ public enum ReuseIDs: String {
     case YDividerView = "YDivider"
     case YLabelView = "YLabel"
     case XLabelView = "XLabel"
+    case SideBarView = "SideBar"
 }
 
 @IBDesignable
@@ -65,6 +66,35 @@ public class CollectionGraphView: UIView, UICollectionViewDelegate {
         didSet {
             if let barCell = barCell {
                 self.graphCollectionView.register(barCell.classForCoder, forSupplementaryViewOfKind: ReuseIDs.BarView.rawValue, withReuseIdentifier: ReuseIDs.BarView.rawValue)
+            }
+        }
+    }
+    
+    /**
+     A view that lies behind the y axis labels and above the plotted graph.  Useful for covering the graph when it scrolls behind the y labels.
+     
+     **Note!**
+     You need to provide a subclass of UICollectionReusableView and override ````init(frame: CGRect)````.
+     Inside the init block is where you set your customizations
+     
+     Initializiing a UICollectionReusableView() and then settings its background color will not work.
+     
+     **Example**
+     
+     ````
+     // MySideBarClass.swift
+     override init(frame: CGRect) {
+         super.init(frame: frame)
+         backgroundColor = UIColor.red
+     }
+     ````
+    */
+    public var ySideBarView: UICollectionReusableView? {
+        didSet {
+            if let ySideBarView = ySideBarView {
+                layout.ySideBarView = ySideBarView
+                
+                graphCollectionView.collectionViewLayout.register(ySideBarView.classForCoder, forDecorationViewOfKind: ReuseIDs.SideBarView.rawValue)
             }
         }
     }

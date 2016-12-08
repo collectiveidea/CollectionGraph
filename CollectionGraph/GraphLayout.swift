@@ -19,6 +19,8 @@ public class GraphLayout: UICollectionViewLayout {
     
     internal var displayBars = false
     internal var displayLineConnectors = false
+    
+    internal var ySideBarView: UICollectionReusableView?
 
     internal var cellLayoutCallback: ((_ data: GraphDatum, _ section: Int) -> (CGSize))?
     internal var barLayoutCallback: ((_ data: GraphDatum, _ section: Int) -> (CGFloat))?
@@ -56,6 +58,10 @@ public class GraphLayout: UICollectionViewLayout {
         tempAttributes += layoutAttributesForYDividerLines()
         tempAttributes += layoutAttributesForYLabels()
         tempAttributes += layoutAttributesForXLabels()
+        
+        if ySideBarView != nil {
+            tempAttributes += layoutAttributesForSideBar()
+        }
         
         if displayLineConnectors {
             tempAttributes += layoutAttributesForLineConnector()
@@ -168,6 +174,22 @@ public class GraphLayout: UICollectionViewLayout {
         }
         return tempAttributes
     }
+    
+    func layoutAttributesForSideBar() -> [UICollectionViewLayoutAttributes] {
+        
+        var tempAttributes = [UICollectionViewLayoutAttributes]()
+        
+        if let _ = collectionView {
+            let indexPath = IndexPath(item: 0, section: 0)
+            let attribute = layoutAttributesForDecorationView(ofKind: ReuseIDs.SideBarView.rawValue, at: indexPath)
+            
+            if let attribute = attribute {
+                tempAttributes += [attribute]
+            }
+        }
+        
+        return tempAttributes
+    }
 
     func layoutAttributesForBar() -> [UICollectionViewLayoutAttributes] {
         
@@ -190,6 +212,8 @@ public class GraphLayout: UICollectionViewLayout {
         }
         return tempAttributes
     }
+    
+    // MARK: - Set Attributes
 
     public override func layoutAttributesForItem(at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
         let attributes = UICollectionViewLayoutAttributes(forCellWith: indexPath)
@@ -206,7 +230,24 @@ public class GraphLayout: UICollectionViewLayout {
         return attributes
     }
     
-    // MARK: Set Attributes
+    public override func layoutAttributesForDecorationView(ofKind elementKind: String, at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
+        
+        let attributes = UICollectionViewLayoutAttributes(forDecorationViewOfKind: ReuseIDs.SideBarView.rawValue, with: indexPath)
+        
+        if elementKind == ReuseIDs.SideBarView.rawValue {
+            if let collectionView = collectionView {
+                
+                let width = collectionView.contentInset.left
+                let height = collectionView.frame.height
+                let verticleInsets = collectionView.contentInset.bottom + collectionView.contentInset.top
+                
+                attributes.zIndex = 20
+                
+                attributes.frame = CGRect(x: collectionView.contentOffset.x, y: -verticleInsets , width: width, height: height)
+            }
+        }
+        return attributes
+    }
 
     public override func layoutAttributesForSupplementaryView(ofKind elementKind: String, at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
         
@@ -398,12 +439,7 @@ public class GraphLayout: UICollectionViewLayout {
         var attributesInRect = [UICollectionViewLayoutAttributes]()
 
         for attributes in layoutAttributes {
-//            if attributes.representedElementCategory == .cell {
-//                attributes.zIndex = -100
-//            } else {
-//                attributes.zIndex = 1000
-//            }
-            
+
             if attributes.frame.intersects(rect) {
                 attributesInRect += [attributes]
             }

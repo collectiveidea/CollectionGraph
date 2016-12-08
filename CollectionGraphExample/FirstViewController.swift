@@ -20,6 +20,8 @@ class FirstViewController: UIViewController {
 
 //        graph.fontName = "chalkduster"
 
+        graph.ySideBarView = SideBarReusableView()
+
         graph.setCellProperties { (cell, graphDatum, section) in
             cell.backgroundColor = UIColor.darkText
             cell.layer.cornerRadius = cell.frame.width / 2
