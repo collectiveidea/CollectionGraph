@@ -25,6 +25,7 @@ public enum ReuseIDs: String {
     case YDividerView = "YDivider"
     case YLabelView = "YLabel"
     case XLabelView = "XLabel"
+    case SideBarView = "SideBar"
 }
 
 @IBDesignable
@@ -190,6 +191,8 @@ public class CollectionGraphView: UIView, UICollectionViewDelegate {
         self.graphCollectionView.register(LabelView.classForCoder(), forSupplementaryViewOfKind: ReuseIDs.XLabelView.rawValue, withReuseIdentifier: ReuseIDs.XLabelView.rawValue)
         
         self.graphCollectionView.register(LabelView.classForCoder(), forSupplementaryViewOfKind: ReuseIDs.YLabelView.rawValue, withReuseIdentifier: ReuseIDs.YLabelView.rawValue)
+        
+        self.graphCollectionView.collectionViewLayout.register(SideBarReusableView.classForCoder(), forDecorationViewOfKind: ReuseIDs.SideBarView.rawValue)
     }
     
     public var contentOffset: CGPoint {

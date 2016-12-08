@@ -117,7 +117,13 @@ class CollectionGraphDataSource: NSObject, UICollectionViewDataSource {
             }
 
             return view
-
+            
+        case ReuseIDs.SideBarView.rawValue:
+            
+            let sideBar = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: ReuseIDs.SideBarView.rawValue, for: indexPath)
+            
+            return sideBar
+            
         default:
 
             return UICollectionReusableView()
