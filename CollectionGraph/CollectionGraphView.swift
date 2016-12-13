@@ -28,6 +28,23 @@ public enum ReuseIDs: String {
     case SideBarView = "SideBar"
 }
 
+public protocol CollectionGraphViewDelegate: class {
+    
+    func collectionGraph(updatedVisibleIndexPaths indexPaths: Set<IndexPath>, sections: Set<Int>)
+    
+    func collectionGraph(cell: UICollectionViewCell, forData data: GraphDatum, atSection section: Int)
+    
+    func collectionGraph(sizeForGraphCellWithData data: GraphDatum, inSection section: Int) -> CGSize
+    
+    func collectionGraph(barView: UICollectionReusableView, withData data: GraphDatum, inSection section: Int)
+    
+    func collectionGraph(widthForBarViewWithData data: GraphDatum, inSection section: Int) -> CGFloat
+    
+    func collectionGraph(lineView: GraphLineShapeLayer, withData data: GraphDatum, inSection section: Int)
+    
+    func collectionGraph(textForXLabelWithCurrentText currentText: String, inSection section: Int) -> String
+}
+
 @IBDesignable
 public class CollectionGraphView: UIView, UICollectionViewDelegate {
 
