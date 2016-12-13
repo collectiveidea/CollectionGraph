@@ -29,19 +29,73 @@ public enum ReuseIDs: String {
 }
 
 public protocol CollectionGraphViewDelegate: class {
-    
+    /**
+     Returns the visible IndexPaths and Sections as Sets<> when scrolling
+     
+     - parameter indexPaths: Set<IndexPath> of visible GraphDatum
+     - parameter sections: Set<Int> of visible sections of [GraphDatum]
+     */
     func collectionGraph(updatedVisibleIndexPaths indexPaths: Set<IndexPath>, sections: Set<Int>)
     
+    /**
+     Returns the graphCell and corresponding GraphDatum.
+     
+     Use this to set any properties on the graphCell like color, layer properties, or any custom visual properties from your subclass.
+     
+     - parameter cell: The corresponding graphCell
+     - parameter data: The corresponding GraphDatum
+     - parameter section: The section number of [GraphDatum]
+     */
     func collectionGraph(cell: UICollectionViewCell, forData data: GraphDatum, atSection section: Int)
     
+    /**
+     Set the size of the graphCell
+     
+     - parameter data: The corresponding GraphDatum
+     - parameter section: The section number of [GraphDatum]
+     */
     func collectionGraph(sizeForGraphCellWithData data: GraphDatum, inSection section: Int) -> CGSize
     
+    /**
+     Returns the barCell and corresponding GraphDatum.
+     
+     Use this to set any properties on the barCell like color, layer properties, or any custom visual properties from your subclass.
+     
+     - parameter barView: The corresponding barView
+     - parameter data: The corresponding GraphDatum
+     - parameter section: The section number of [GraphDatum]
+     */
     func collectionGraph(barView: UICollectionReusableView, withData data: GraphDatum, inSection section: Int)
     
+    /** 
+     Set the width of the barCell with corresponding GraphDatum in Section
+     
+     - parameter data: The corresponding GraphDatum
+     - parameter section: The section number of [GraphDatum]
+    */
     func collectionGraph(widthForBarViewWithData data: GraphDatum, inSection section: Int) -> CGFloat
     
+    /**
+     Returns the Connector Lines and corresponding GraphDatum.
+     
+     Use this to set any properties on the line like color, dot pattern, cap, or any custom visual properties from your subclass.
+     
+     - parameter line: GraphLineShapeLayer is a CAShapeLayer subclass with an extra straightLines Bool you can set.  The default is false.
+     
+     - parameter data: the corresponding GraphDatum
+     - parameter section: The section number in [[GraphDatum]]
+     */
     func collectionGraph(lineView: GraphLineShapeLayer, withData data: GraphDatum, inSection section: Int)
     
+    /**
+     Set the text of label along the x axis
+     
+     ## Tip:
+     Useful for converting Dates that were converted to Ints back to Dates
+     
+     - parameter currentString: The labels current string
+     - parameter section: The labels current section number
+     */
     func collectionGraph(textForXLabelWithCurrentText currentText: String, inSection section: Int) -> String
 }
 
@@ -76,7 +130,19 @@ public class CollectionGraphView: UIView, UICollectionViewDelegate {
         }
     }
     
-    /// A graphCell represents a data point on the graph.
+    /** A graphCell represents a data point on the graph.
+     
+     C = graphCell
+     
+     | C
+     |         C
+     |     C
+     |             C
+     |                 C
+     |____________________
+     1   2   3   4   5
+     
+     */
     public var graphCell: UICollectionViewCell? {
         didSet {
             if let graphCell = graphCell {
@@ -85,7 +151,7 @@ public class CollectionGraphView: UIView, UICollectionViewDelegate {
         }
     }
     
-    /// A barCell represents the bar that sits under a graphCell and extends to the bottom of the graph.  Regular bar graph stuff.
+    /// A barCell represents the bar that sits under a graphCell and extends to the bottom of the graph.
     public var barCell: UICollectionReusableView? {
         didSet {
             if let barCell = barCell {
@@ -282,7 +348,7 @@ public class CollectionGraphView: UIView, UICollectionViewDelegate {
     // MARK: - Callbacks
     
     /**
-     Callback that returns the visible IndexPaths when scrolling stops
+     Callback that returns the visible IndexPaths and Sections as Sets when scrolling stops
     */
     public func didUpdateVisibleIndices(callback: @escaping (_ indexPaths: Set<IndexPath>, _ sections: Set<Int>) -> ()) {
         collectionGraphDelegate.didUpdateVisibleIndicesCallback = callback
@@ -292,12 +358,20 @@ public class CollectionGraphView: UIView, UICollectionViewDelegate {
      Callback that returns the graphCell and corresponding GraphDatum.
      
      Use this to set any properties on the graphCell like color, layer properties, or any custom visual properties from your subclass.
+     
+     - parameter cell: The corresponding graphCell
+     - parameter data: The corresponding GraphDatum
+     - parameter section: The section in [[GraphDatum]]
     */
     public func setCellProperties(cellCallback: @escaping (_ cell: UICollectionViewCell, _ data: GraphDatum, _ section: Int) -> ()) {
         collectionGraphDataSource.cellCallback = cellCallback
     }
 
-    /// Callback to set the size of the graphCell
+    /** 
+     Callback to set the size of the graphCell
+     - parameter data: The corresponding GraphDatum
+     - parameter section: The section in [[GraphDatum]]
+    */
     public func setCellSize(layoutCallback: @escaping (_ data: GraphDatum, _ section: Int) -> (CGSize)) {
         layout.cellLayoutCallback = layoutCallback
     }
@@ -306,6 +380,10 @@ public class CollectionGraphView: UIView, UICollectionViewDelegate {
      Callback that returns the barCell and corresponding GraphDatum.
      
      Use this to set any properties on the barCell like color, layer properties, or any custom visual properties from your subclass.
+     
+     - parameter cell: The corresponding graphCell
+     - parameter data: The corresponding GraphDatum
+     - parameter section: The section in [[GraphDatum]]
     */
     public func setBarViewProperties(cellCallback: @escaping (_ cell: UICollectionReusableView, _ data: GraphDatum, _ section: Int) -> ()) {
         if barCell == nil {
@@ -327,6 +405,9 @@ public class CollectionGraphView: UIView, UICollectionViewDelegate {
      Use this to set any properties on the line like color, dot patter, cap, or any custom visual properties from your subclass.
      
      - parameter line: GraphLineShapeLayer is a CAShapeLayer subclass with an extra straightLines Bool you can set.  The default is false.
+     
+     - parameter data: the corresponding GraphDatum
+     - parameter section: The section in [[GraphDatum]]
     */
     public func setLineViewProperties(lineCallback: @escaping (_ line: GraphLineShapeLayer, _ data: GraphDatum, _ section: Int) -> ()) {
         layout.displayLineConnectors = true
@@ -339,9 +420,12 @@ public class CollectionGraphView: UIView, UICollectionViewDelegate {
     /**
      Callback to set the text of label along the x axis
      
-     - data: provides the current String and its section number
+     ## Tip:
+     Useful for converting Dates that were converted to Ints back to Dates
+
+     - parameter currentString: The labels current string
+     - parameter section: The labels current section number
      
-     - Tip: Useful for converting Dates that were converted to Ints back to Dates
     */
     public func setXLabelText(xLabelCallback: @escaping (_ currentString: String, _ section: Int) -> (String)) {
         collectionGraphDataSource.xLabelCallback = xLabelCallback
