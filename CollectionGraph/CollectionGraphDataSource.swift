@@ -9,6 +9,8 @@
 import UIKit
 
 class CollectionGraphDataSource: NSObject, UICollectionViewDataSource {
+    
+    internal weak var graphDelegate: CollectionGraphViewDelegate?
 
     var graphData: [[GraphDatum]]?
 

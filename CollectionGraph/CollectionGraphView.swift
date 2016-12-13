@@ -47,6 +47,13 @@ public protocol CollectionGraphViewDelegate: class {
 
 @IBDesignable
 public class CollectionGraphView: UIView, UICollectionViewDelegate {
+    
+    public weak var graphDelegate: CollectionGraphViewDelegate? {
+        didSet {
+            collectionGraphDataSource.graphDelegate = graphDelegate
+            layout.graphDelegate = graphDelegate
+        }
+    }
 
     /// Each GraphDatum array will define a new section in the graph.
     public var graphData: [[GraphDatum]]? {

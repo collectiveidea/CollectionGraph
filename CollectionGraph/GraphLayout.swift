@@ -10,6 +10,8 @@ import UIKit
 
 public class GraphLayout: UICollectionViewLayout {
     
+    internal weak var graphDelegate: CollectionGraphViewDelegate?
+    
     internal var graphData: [[GraphDatum]]? {
         didSet {
             calculateXDataRange()
