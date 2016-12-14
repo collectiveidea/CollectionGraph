@@ -103,15 +103,15 @@ Example properties:
 collectionGraph.collectionGraphCellDelegate = self
 ```
 ```swift
-collectionGraph.setCellProperties { (cell, graphDatum, section) in
-            cell.backgroundColor = UIColor.red
-            cell.layer.cornerRadius = cell.frame.width / 2
+func collectionGraph(cell: UICollectionViewCell, forData data: GraphDatum, atSection section: Int) {
+        cell.backgroundColor = UIColor.darkText
+        cell.layer.cornerRadius = cell.frame.width / 2
 
-            // custom graphCell
-            if let myCell = cell as? myCell {
-              myCell.image = UIImage(named: "profilePic.png")
-            }
+        // custom graphCell
+        if let myCell = cell as? myCell {
+          myCell.image = UIImage(named: "donut.png")
         }
+    }
 ```
 
 2) Size Callback
@@ -127,11 +127,11 @@ func collectionGraph(sizeForGraphCellWithData data: GraphDatum, inSection sectio
 ```
 
 ### Bar Graph Views
-Used for bar graphs.  These are the views that start at the bottom of the graph and extend to graphCell.  Can be used with line graphs as well.
+Used for bar graphs.  These are the views that start at the bottom of the graph and extend up to the graphCell.  Can be used with line graphs as well.
 
 #### Custom barViews
 
-If you want a custom barView instead of the default view, you can the the `barView` property
+If you want a custom barView instead of the default view, you can set the `barView` property
 
 ```swift
 var barView: UICollectionReusableView?
@@ -187,7 +187,7 @@ Example Image of Line graphCells
 ///////////////////
 
 #### Customizing a Connector Line with Delegate Callbacks
-To display connector lines, you need to use a the delegate callback and set the line's properties.
+To display connector lines, you need to use the delegate callback and set the line's properties.
 
 ```swift
 protocol CollectionGraphLineDelegate: class {
