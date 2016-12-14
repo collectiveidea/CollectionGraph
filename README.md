@@ -297,14 +297,51 @@ class MySideBarClass: UICollectionReusableView {
 
 }
 ```   
-
-
 ### Y Divider Lines
+Set the color of the horizontal lines that go across the graph along the Y axis.
+```swift
+var yDividerLineColor: UIColor
+```
 
+### Number of labels along the X and Y axes
+X:
+```swift
+ var xSteps: Int
+```
 
-x steps
-y steps
-colors
-font
-font size
-label callback
+Y:
+```swift
+var ySteps: Int
+```
+
+### Text for X and Y labels
+
+Color:
+```swift
+var textColor: UIColor
+```
+
+Size:
+```swift
+var textSize: CGFloat
+```
+
+Font Name:
+```swift
+var fontName: String?
+```
+
+## Graph Offset
+
+Get and Set the current offset of the CollectionGraph.
+```swift
+var contentOffset: CGPoint
+```
+
+Scroll to a specific data point.
+```swift
+func scrollToDataPoint(
+  graphDatum: GraphDatum,
+  withAnimation animation: Bool,
+  andScrollPosition scrollPosition: UICollectionViewScrollPosition)
+```
