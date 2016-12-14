@@ -22,6 +22,7 @@
 		5756122A1DB1098700F94EAF /* LabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 575612291DB1098700F94EAF /* LabelView.swift */; };
 		5756122C1DB109F100F94EAF /* XLabelViewAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5756122B1DB109F100F94EAF /* XLabelViewAttributes.swift */; };
 		5756122E1DB122C200F94EAF /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5756122D1DB122C200F94EAF /* Data.swift */; };
+		576457D41E008C4200FA3432 /* GraphDelegates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576457D31E008C4200FA3432 /* GraphDelegates.swift */; };
 		576DD7841DB55BA90084498B /* MyGraphCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576DD7831DB55BA90084498B /* MyGraphCell.swift */; };
 		57C8AD551DF9ADB50097D1A8 /* SideBarReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C8AD541DF9ADB50097D1A8 /* SideBarReusableView.swift */; };
 		57EA989B1D958C82000D6C55 /* CollectionGraph.h in Headers */ = {isa = PBXBuildFile; fileRef = 57EA989A1D958C82000D6C55 /* CollectionGraph.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -80,6 +81,7 @@
 		575612291DB1098700F94EAF /* LabelView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LabelView.swift; sourceTree = "<group>"; };
 		5756122B1DB109F100F94EAF /* XLabelViewAttributes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XLabelViewAttributes.swift; sourceTree = "<group>"; };
 		5756122D1DB122C200F94EAF /* Data.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
+		576457D31E008C4200FA3432 /* GraphDelegates.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GraphDelegates.swift; sourceTree = "<group>"; };
 		576DD7831DB55BA90084498B /* MyGraphCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyGraphCell.swift; sourceTree = "<group>"; };
 		57C8AD541DF9ADB50097D1A8 /* SideBarReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideBarReusableView.swift; sourceTree = "<group>"; };
 		57EA98971D958C82000D6C55 /* CollectionGraph.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CollectionGraph.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -181,6 +183,7 @@
 				57EA989A1D958C82000D6C55 /* CollectionGraph.h */,
 				57EA989C1D958C82000D6C55 /* Info.plist */,
 				5717848D1D95A2B20074879A /* CollectionGraphView.swift */,
+				576457D31E008C4200FA3432 /* GraphDelegates.swift */,
 				571B7ED11D9DBAC300FCE88E /* CollectionGraphDataSource.swift */,
 				574F020B1DE393B9001ACC27 /* CollectionGraphDelegate.swift */,
 				570379C41DB02B1800A88C6B /* Layouts */,
@@ -392,6 +395,7 @@
 				570379C81DB02C5700A88C6B /* LineConnectorView.swift in Sources */,
 				571B7ECC1D9DAD4B00FCE88E /* GraphLayout.swift in Sources */,
 				5756122C1DB109F100F94EAF /* XLabelViewAttributes.swift in Sources */,
+				576457D41E008C4200FA3432 /* GraphDelegates.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
