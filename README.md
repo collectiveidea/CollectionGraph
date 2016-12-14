@@ -143,28 +143,14 @@ EXAMPLE Image OF BAR Graph
 #### BarView Delegate Callbacks
 
 ```swift
-public protocol CollectionGraphBarDelegate: class {
-    /**
-     Returns the barCell and corresponding GraphDatum.
+protocol CollectionGraphBarDelegate: class {
 
-     Use this to set any properties on the barCell like color, layer properties, or any custom visual properties from your subclass.
-
-     - parameter barView: The corresponding barView
-     - parameter data: The corresponding GraphDatum
-     - parameter section: The section number of [GraphDatum]
-     */
     func collectionGraph(
       barView: UICollectionReusableView,
       withData data: GraphDatum,
       inSection section: Int
       )
 
-    /**
-     Set the width of the barCell with corresponding GraphDatum in Section
-
-     - parameter data: The corresponding GraphDatum
-     - parameter section: The section number of [GraphDatum]
-     */
     func collectionGraph(
       widthForBarViewWithData data: GraphDatum,
       inSection section: Int
@@ -183,18 +169,139 @@ Example properties:
 
 ##### Example usage:
 ```swift
+collectionGraph.collectionGraphBarDelegate = self
+```
+```swift
 func collectionGraph(barView: UICollectionReusableView, withData data: GraphDatum, inSection section: Int) {
         barView.backgroundColor = UIColor.lightGray
     }
 ```
 
-### Line Graph Lines
+### Line Graph Connector Lines
+
+Used for line graphs.  These are the lines that connect the `graphCells`.  Can be used with bar graphs as well.
+
+
+///////////////////
+Example Image of Line graphCells
+///////////////////
+
+#### Customizing a Connector Line with Delegate Callbacks
+To display connector lines, you need to use a the delegate callback and set the line's properties.
+
+```swift
+protocol CollectionGraphLineDelegate: class {
+
+    func collectionGraph(
+      connectorLine: GraphLineShapeLayer,
+      withData data: GraphDatum,
+      inSection section: Int)
+}
+```
+
+The `connectorLine` property provides a `GraphLineShapeLayer` which is a subclass of `CAShapeLayer`, and provides an additional property of `straightLines`.
+
+```swift
+class GraphLineShapeLayer: CAShapeLayer {
+    public var straightLines: Bool = false
+}
+```
+
+You can set all the visual properties of a CAShapeLayer to achieve the look you want.
+
+Example properties:
+* lineWidth
+* straightLines
+* lineDashPattern
+* strokeColor
+
+#### Example usage:
+```swift
+collectionGraph.collectionGraphLineDelegate = self
+```
+```swift
+func collectionGraph(connectorLine: GraphLineShapeLayer, withData data: GraphDatum, inSection section: Int) {
+        connectorLine.lineWidth = 2
+        connectorLine.lineDashPattern = [4, 2]
+        connectorLine.straightLines = true
+        connectorLine.lineCap = kCALineCapRound
+        connectorLine.strokeColor = UIColor.darkGray.cgColor
+    }
+```
+
+### X Labels
+To change the text displayed along the X axis, use `CollectionGraphLabelsDelegate`
+
+```swift
+public protocol CollectionGraphLabelsDelegate: class {
+
+    func collectionGraph(
+      textForXLabelWithCurrentText currentText: String,
+      inSection section: Int
+      ) -> String
+}
+```
+
+#### Example usage:
+
+```swift
+collectionGraph.collectionGraphLabelsDelegate = self
+```
+```swift
+func collectionGraph(textForXLabelWithCurrentText currentText: String, inSection section: Int) -> String {
+        return "•"
+    }
+```
+
+## Settable Properties
 
 ### Graph width and Insets
+Width:<br>
+By default the graphCells are plotted within the width of the CollectionGraph.<br>
+By setting `graphContentWidth` you can extend the content width to allow scrolling.
+```swift
+var graphContentWidth: CGFloat
+```
+
+Insets:<br>
+Adjust space along the edges of the CollectionGraph.<br>
+The left and bottom space is used to layout the labels.
+```swift
+ var topInset: CGFloat
+
+ var leftInset: CGFloat
+
+ var bottomInset: CGFloat
+
+ var rightInset: CGFloat
+```
+### Side Bar View
+A view that lies behind the y axis labels and above the plotted graph.  Useful for covering the graph when it scrolls behind the y labels.
+```swift
+var ySideBarView: UICollectionReusableView?
+```
+**Note!**
+ You need to provide a subclass of UICollectionReusableView and override `init(frame: CGRect)`.
+ Inside the init block is where you set your customizations
+
+ Initializiing a UICollectionReusableView() and then settings its background color will not work.
+
+#### Example:
+```swift
+class MySideBarClass: UICollectionReusableView {
+
+  override init(frame: CGRect) {
+     super.init(frame: frame)
+     backgroundColor = UIColor.red
+  }
+
+}
+```   
+
 
 ### Y Divider Lines
 
-### X & Y Labels
+
 x steps
 y steps
 colors
