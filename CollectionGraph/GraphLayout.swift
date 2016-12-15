@@ -43,6 +43,9 @@ public class GraphLayout: UICollectionViewLayout {
         }
     }
 
+    private let labelsZIndex = Int.max
+    private let sideBarZIndex = Int.max - 1
+
     internal var layoutAttributes = [UICollectionViewLayoutAttributes]()
 
     // MARK: - Layout Setup
@@ -225,7 +228,7 @@ public class GraphLayout: UICollectionViewLayout {
         let frame = CGRect(x: xGraphPosition(indexPath: indexPath) - cellSize.width / 2, y: yGraphPosition(indexPath: indexPath) - cellSize.height / 2, width: cellSize.width, height: cellSize.height)
 
         attributes.frame = frame
-        attributes.zIndex = 2
+        attributes.zIndex = sideBarZIndex - 1 - indexPath.item
 
         return attributes
     }
@@ -241,7 +244,7 @@ public class GraphLayout: UICollectionViewLayout {
                 let height = collectionView.frame.height
                 let verticleInsets = collectionView.contentInset.bottom + collectionView.contentInset.top
 
-                attributes.zIndex = 20
+                attributes.zIndex = sideBarZIndex
 
                 attributes.frame = CGRect(x: collectionView.contentOffset.x, y: -verticleInsets, width: width, height: height)
             }
@@ -291,6 +294,8 @@ public class GraphLayout: UICollectionViewLayout {
 
             attributes.frame = frame
             attributes.inset = collectionView.contentInset.left
+
+            attributes.zIndex = -1
         }
         return attributes
     }
@@ -331,6 +336,8 @@ public class GraphLayout: UICollectionViewLayout {
                     (xOffset > xOffset2 && yOffset < yOffset2)
                     ? false : true
 
+                attributes.zIndex = indexPath.item
+
                 return attributes
             }
         }
@@ -353,7 +360,7 @@ public class GraphLayout: UICollectionViewLayout {
 
             attributes.frame = frame
 
-            attributes.zIndex = Int.max
+            attributes.zIndex = labelsZIndex
 
             attributes.text = "\(Int((yIncrements * CGFloat(ySteps)) - (yIncrements * CGFloat(indexPath.row))))"
         }
@@ -390,6 +397,8 @@ public class GraphLayout: UICollectionViewLayout {
                                height: height)
 
             attributes.frame = frame
+
+            attributes.zIndex = labelsZIndex
         }
         return attributes
     }
@@ -414,6 +423,8 @@ public class GraphLayout: UICollectionViewLayout {
         let yPosition = heightOfCollectionView - (heightOfCollectionView - yGraphPosition(indexPath: indexPath))
 
         attributes.frame = CGRect(x: xGraphPosition(indexPath: indexPath) - width / 2, y: yPosition, width: width, height: barHeight)
+
+        attributes.zIndex = indexPath.item
 
         return attributes
     }
