@@ -40,6 +40,7 @@ class LineConnectorView: UICollectionReusableView {
     }
 
     override func apply(_ layoutAttributes: UICollectionViewLayoutAttributes) {
+        super.apply(layoutAttributes)
         if let attributes = layoutAttributes as? LineConnectorAttributes {
             self.lineStartsAtTop = attributes.lineStartsAtTop
         }
@@ -71,6 +72,7 @@ class LineConnectorView: UICollectionReusableView {
     }
 
     override func layoutSubviews() {
+        super.layoutSubviews()
         drawLine()
     }
 

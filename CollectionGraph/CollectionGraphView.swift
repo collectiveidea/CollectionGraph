@@ -162,8 +162,10 @@ public class CollectionGraphView: UIView, UICollectionViewDelegate {
     */
     @IBInspectable public var graphContentWidth: CGFloat = 0 {
         didSet {
-            layout.graphContentWidth = graphContentWidth
-            graphCollectionView.contentOffset.x = -leftInset
+            graphCollectionView.performBatchUpdates({
+                self.layout.graphContentWidth = self.graphContentWidth
+                self.graphCollectionView.contentOffset.x = -self.leftInset
+            }, completion: nil)
         }
     }
 
@@ -281,7 +283,9 @@ public class CollectionGraphView: UIView, UICollectionViewDelegate {
         }
 
         set {
-            graphCollectionView.contentOffset = newValue
+            graphCollectionView.performBatchUpdates({
+                self.graphCollectionView.contentOffset = newValue
+            }, completion: nil)
         }
     }
 
