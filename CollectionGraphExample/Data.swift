@@ -18,7 +18,7 @@ struct ExampleDataFromServer {
     let json = [
         [
             "city": "chicago",
-            "population": "100000"
+            "population": "0"
         ],
         [
             "city": "los angeles",

@@ -442,7 +442,7 @@ public class GraphLayout: UICollectionViewLayout {
                 width = graphContentWidth + cellSize.width
             }
 
-            let height = collectionView.bounds.height - (collectionView.contentInset.top + collectionView.contentInset.bottom)
+            let height = collectionView.bounds.height - (collectionView.contentInset.top + collectionView.contentInset.bottom) - cellSize.height
 
             let contentSize = CGSize(width: width, height: height)
 
@@ -511,7 +511,7 @@ public class GraphLayout: UICollectionViewLayout {
 
     func yGraphPosition(indexPath: IndexPath) -> CGFloat {
         if let collectionView = collectionView, let graphData = graphData {
-            let delta = collectionView.bounds.height - collectionView.contentInset.top - collectionView.contentInset.bottom
+            let delta = collectionView.bounds.height - collectionView.contentInset.top - collectionView.contentInset.bottom - cellSize.height / 2
 
             return delta - (delta * (graphData[indexPath.section][indexPath.item].point.y / yDataRange))
         }
