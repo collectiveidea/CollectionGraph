@@ -34,15 +34,11 @@ class LineConnectorView: UICollectionReusableView {
         layer.addSublayer(line)
     }
 
-    override func prepareForReuse() {
-        super.prepareForReuse()
-        lineStartsAtTop = true
-    }
-
     override func apply(_ layoutAttributes: UICollectionViewLayoutAttributes) {
         super.apply(layoutAttributes)
         if let attributes = layoutAttributes as? LineConnectorAttributes {
             self.lineStartsAtTop = attributes.lineStartsAtTop
+            setNeedsLayout()
         }
     }
 
