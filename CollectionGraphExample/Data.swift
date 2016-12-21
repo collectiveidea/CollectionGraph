@@ -27,6 +27,78 @@ struct ExampleDataFromServer {
         [
             "city": "grand rapids",
             "population": "20000"
+        ],
+        [
+            "city": "chicago",
+            "population": "100000"
+        ],
+        [
+            "city": "los angeles",
+            "population": "130000"
+        ],
+        [
+            "city": "grand rapids",
+            "population": "20000"
+        ],
+        [
+            "city": "chicago",
+            "population": "100000"
+        ],
+        [
+            "city": "los angeles",
+            "population": "130000"
+        ],
+        [
+            "city": "grand rapids",
+            "population": "20000"
+        ],
+        [
+            "city": "chicago",
+            "population": "100000"
+        ],
+        [
+            "city": "los angeles",
+            "population": "130000"
+        ],
+        [
+            "city": "grand rapids",
+            "population": "20000"
+        ],
+        [
+            "city": "chicago",
+            "population": "100000"
+        ],
+        [
+            "city": "los angeles",
+            "population": "130000"
+        ],
+        [
+            "city": "grand rapids",
+            "population": "20000"
+        ],
+        [
+            "city": "chicago",
+            "population": "100000"
+        ],
+        [
+            "city": "los angeles",
+            "population": "130000"
+        ],
+        [
+            "city": "grand rapids",
+            "population": "20000"
+        ],
+        [
+            "city": "chicago",
+            "population": "100000"
+        ],
+        [
+            "city": "los angeles",
+            "population": "130000"
+        ],
+        [
+            "city": "grand rapids",
+            "population": "20000"
         ]
     ]
 }
@@ -35,21 +107,29 @@ class Parser {
 
     class func parseExampleData(data: [[String: String]]) -> [[Data]] {
 
-        var dataAry: [[Data]] = [[]]
+        var allData: [[Data]] = [[Data]]()
 
-        for (index, item) in data.enumerated() {
+        for _ in 0 ... 4 {
 
-            let population = CGFloat((item["population"]! as NSString).floatValue)
-            let city = item["city"]!
+            var dataArray = [Data]()
 
-            let point = CGPoint(x: CGFloat(index), y: population)
+            for (index, item) in data.enumerated() {
 
-            let data = Data(point: point, information: [city: point])
+                let population = CGFloat(arc4random_uniform(60))
 
-            dataAry[0].append(data)
+                let city = item["city"]!
+
+                let point = CGPoint(x: CGFloat(index), y: population)
+
+                let data = Data(point: point, information: [city: point])
+
+                dataArray.append(data)
+            }
+
+            allData.append(dataArray)
         }
 
-        return dataAry
+        return allData
     }
 
 }

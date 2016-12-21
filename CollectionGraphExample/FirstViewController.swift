@@ -18,12 +18,12 @@ class FirstViewController: UIViewController, CollectionGraphViewDelegate, Collec
 
         graph.collectionGraphViewDelegate = self
         graph.collectionGraphCellDelegate = self
-        graph.collectionGraphBarDelegate = self
+        //graph.collectionGraphBarDelegate = self
         graph.collectionGraphLineDelegate = self
         graph.collectionGraphLabelsDelegate = self
         
         // Adjusts the width of the graph.  The Cells are spaced out depending on this size
-        graph.graphContentWidth = 400
+        graph.graphContentWidth = 600
 
         // Change the Font of the X and Y labels
         // graph.fontName = "chalkduster"
@@ -36,7 +36,7 @@ class FirstViewController: UIViewController, CollectionGraphViewDelegate, Collec
 
             // self.graph.scrollToDataPoint(graphDatum: self.graph.graphData![0].last!, withAnimation: true, andScrollPosition: .centeredHorizontally)
 
-            self.graph.contentOffset = CGPoint(x: 30, y: self.graph.contentOffset.y)
+            //self.graph.contentOffset = CGPoint(x: 30, y: self.graph.contentOffset.y)
         })
     }
     
@@ -47,7 +47,7 @@ class FirstViewController: UIViewController, CollectionGraphViewDelegate, Collec
     func collectionGraph(updatedVisibleIndexPaths indexPaths: Set<IndexPath>, sections: Set<Int>) {
         indexPaths.forEach {
             let data = self.graph.graphData?[$0.section][$0.item]
-            print("Data: \(data)")
+            //print("Data: \(data)")
         }
     }
     
@@ -75,9 +75,9 @@ class FirstViewController: UIViewController, CollectionGraphViewDelegate, Collec
     // CollectionGraphLineDelegate
     
     func collectionGraph(connectorLine: GraphLineShapeLayer, withData data: GraphDatum, inSection section: Int) {
-        connectorLine.lineWidth = 2
-        connectorLine.lineDashPattern = [4, 2]
-        // graphLine.straightLines = true
+        connectorLine.lineWidth = 1
+        //connectorLine.lineDashPattern = [4, 2]
+        connectorLine.straightLines = true
         // graphLine.lineCap = kCALineCapRound
         connectorLine.strokeColor = UIColor.darkGray.cgColor
     }
