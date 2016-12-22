@@ -109,9 +109,9 @@ public class CollectionGraphView: UIView, UICollectionViewDelegate {
 
     /**
      Used for a bar graph
-     
+
      A barView represents the bar that sits under a graphCell and extends to the bottom of the graph.
-     
+
      In order to display the graph with bars you need to initialize a barCell
     */
     public var barView: UICollectionReusableView? {
@@ -125,15 +125,15 @@ public class CollectionGraphView: UIView, UICollectionViewDelegate {
 
     /**
      A view that lies behind the y axis labels and above the plotted graph.  Useful for covering the graph when it scrolls behind the y labels.
-     
+
      **Note!**
      You need to provide a subclass of UICollectionReusableView and override ````init(frame: CGRect)````.
      Inside the init block is where you set your customizations
-     
+
      Initializiing a UICollectionReusableView() and then settings its background color will not work.
-     
+
      **Example**
-     
+
      ````
      // MySideBarClass.swift
      override init(frame: CGRect) {
@@ -156,16 +156,15 @@ public class CollectionGraphView: UIView, UICollectionViewDelegate {
 
     /**
     The width of the scrollable graph content.
-     
+
     - Default is is the width of the CollectionGraphView.
     - All data points will plot to fit within specified width.
     */
     @IBInspectable public var graphContentWidth: CGFloat = 0 {
         didSet {
-            graphCollectionView.performBatchUpdates({
-                self.layout.graphContentWidth = self.graphContentWidth
-                self.graphCollectionView.contentOffset.x = -self.leftInset
-            }, completion: nil)
+            self.layout.graphContentWidth = self.graphContentWidth
+            self.graphCollectionView.contentOffset.x = -self.leftInset
+            self.graphCollectionView.collectionViewLayout.invalidateLayout()
         }
     }
 
@@ -223,7 +222,7 @@ public class CollectionGraphView: UIView, UICollectionViewDelegate {
 
     /**
     Distance offset from the left side of the view.
-     
+
     This makes space for the y labels.
     */
     @IBInspectable public var leftInset: CGFloat = 20 {
@@ -235,7 +234,7 @@ public class CollectionGraphView: UIView, UICollectionViewDelegate {
 
     /**
      Distance offset from the bottom of the view.
-     
+
      This makes space for the x labels.
      */
     @IBInspectable public var bottomInset: CGFloat = 20 {
@@ -281,11 +280,9 @@ public class CollectionGraphView: UIView, UICollectionViewDelegate {
         get {
             return graphCollectionView.contentOffset
         }
-
         set {
-            graphCollectionView.performBatchUpdates({
-                self.graphCollectionView.contentOffset = newValue
-            }, completion: nil)
+            self.graphCollectionView.contentOffset = newValue
+            self.graphCollectionView.layoutIfNeeded()
         }
     }
 
@@ -295,7 +292,7 @@ public class CollectionGraphView: UIView, UICollectionViewDelegate {
         var sectionNumber: Int?
         var itemNumber: Int?
 
-        //go thru graphData find matching datum
+        // go thru graphData find matching datum
         if let graphData = graphData {
             for section in 0 ... graphData.count - 1 {
 
