@@ -445,7 +445,7 @@ public class GraphLayout: UICollectionViewLayout {
             var width = initialSize
 
             if let graphContentWidth = graphContentWidth {
-                width = graphContentWidth
+                width = graphContentWidth + cellSize.width
             }
 
             let height = collectionView.bounds.height - (collectionView.contentInset.top + collectionView.contentInset.bottom + cellSize.height)
