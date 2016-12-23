@@ -1,11 +1,11 @@
 language: objective-c
 osx_image: xcode8.1
 
-xcode_project: CollectionGraph.xcodeproj # path to your xcodeproj folder
+xcode_project: CollectionGraph.xcodeproj
 xcode_scheme: CollectionGraph
-xcode_sdk: iphonesimulator10.2
+xcode_sdk: iphonesimulator10.0
 
-script: xcodebuild test -project CollectionGraph.xcodeproj -scheme CollectionGraph -destination 'platform=iOS Simulator,name=iPhone 7,OS=10.2'
+script: xcodebuild test -project CollectionGraph.xcodeproj -scheme CollectionGraph -destination 'platform=iOS Simulator,name=iPhone 7,OS=10.0'
 # script: xctool -project CollectionGraph.xcodeproj -scheme CollectionGraph test
 
 notifications:
