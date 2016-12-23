@@ -31,14 +31,14 @@ class FirstViewController: UIViewController, CollectionGraphViewDelegate, Collec
         graph.ySideBarView = SideBarReusableView()
 
         // Simulate fetch delay from server
-//        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0, execute: {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0, execute: {
             self.graph.graphData = Parser.parseExampleData(data: ExampleDataFromServer().json)
-            //self.graph.graphContentWidth = 400
+            self.graph.graphContentWidth = 400
 
             // self.graph.scrollToDataPoint(graphDatum: self.graph.graphData![0].last!, withAnimation: true, andScrollPosition: .centeredHorizontally)
 
-            self.graph.contentOffset = CGPoint(x: 30, y: self.graph.contentOffset.y)
-//        })
+            // self.graph.contentOffset = CGPoint(x: 30, y: self.graph.contentOffset.y)
+        })
     }
 
     // MARK: - Graph Delegates
@@ -55,12 +55,12 @@ class FirstViewController: UIViewController, CollectionGraphViewDelegate, Collec
     // CollectionGraphCellDelegate
 
     func collectionGraph(cell: UICollectionViewCell, forData data: GraphDatum, atSection section: Int) {
-        cell.backgroundColor = UIColor.darkText.withAlphaComponent(0.2)
+        cell.backgroundColor = UIColor.darkText
         cell.layer.cornerRadius = cell.frame.width / 2
     }
 
     func collectionGraph(sizeForGraphCellWithData data: GraphDatum, inSection section: Int) -> CGSize {
-        return CGSize(width: 8, height: 150)
+        return CGSize(width: 8, height: 8)
     }
 
     // CollectionGraphBarDelegate
@@ -86,8 +86,8 @@ class FirstViewController: UIViewController, CollectionGraphViewDelegate, Collec
     // CollectionGraphLabelsDelegate
 
     func collectionGraph(textForXLabelWithCurrentText currentText: String, inSection section: Int) -> String {
-        // return "•"
-        return currentText
+        return "•"
+        //return currentText
     }
 
 }
