@@ -377,19 +377,20 @@ public class GraphLayout: UICollectionViewLayout {
         if let collectionView = collectionView {
 
             let height = collectionView.contentInset.bottom
-            let collectionWidth = graphContentWidth ?? collectionView.bounds.width - (collectionView.contentInset.left + collectionView.contentInset.right)
+
+            let collectionWidth = graphContentWidth ?? collectionView.bounds.width - (collectionView.contentInset.left + collectionView.contentInset.right + cellSize.width)
 
             var width: CGFloat = 0
             var xPosition: CGFloat = 0
 
             if xSteps == 1 {
-                width = collectionWidth - cellSize.width
+                width = collectionWidth
                 attributes.text = "\(xDataRange * CGFloat(indexPath.item) + minXVal)"
                 xPosition = collectionWidth / 2
             } else {
-                width = (collectionWidth - cellSize.width) / CGFloat(xSteps - 1)
+                width = collectionWidth / CGFloat(xSteps - 1)
                 attributes.text = "\(xDataRange / CGFloat(xSteps - 1) * CGFloat(indexPath.item) + minXVal)"
-                xPosition = width * CGFloat(indexPath.item) - width / 2 + cellSize.width / 2
+                xPosition = (width * CGFloat(indexPath.item) - width / 2) + cellSize.width / 2
             }
 
             let yPosition = collectionView.frame.height - collectionView.contentInset.top - collectionView.contentInset.bottom
