@@ -164,7 +164,6 @@ public class CollectionGraphView: UIView, UICollectionViewDelegate {
         didSet {
             self.layout.graphContentWidth = self.graphContentWidth
             self.graphCollectionView.contentOffset.x = -self.leftInset
-            self.graphCollectionView.collectionViewLayout.invalidateLayout()
         }
     }
 
@@ -283,6 +282,7 @@ public class CollectionGraphView: UIView, UICollectionViewDelegate {
         set {
             self.graphCollectionView.contentOffset = newValue
             self.graphCollectionView.layoutIfNeeded()
+            self.graphCollectionView.collectionViewLayout.invalidateLayout()
         }
     }
 

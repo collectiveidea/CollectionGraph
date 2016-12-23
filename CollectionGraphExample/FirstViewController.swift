@@ -37,12 +37,12 @@ class FirstViewController: UIViewController, CollectionGraphViewDelegate, Collec
 
             // self.graph.scrollToDataPoint(graphDatum: self.graph.graphData![0].last!, withAnimation: true, andScrollPosition: .centeredHorizontally)
 
-            self.graph.contentOffset = CGPoint(x: 30, y: self.graph.contentOffset.y)
+            // self.graph.contentOffset = CGPoint(x: 30, y: self.graph.contentOffset.y)
         })
     }
 
     // MARK: - Graph Delegates
-    
+
     // CollectionGraphViewDelegate
 
     func collectionGraph(updatedVisibleIndexPaths indexPaths: Set<IndexPath>, sections: Set<Int>) {
@@ -86,8 +86,8 @@ class FirstViewController: UIViewController, CollectionGraphViewDelegate, Collec
     // CollectionGraphLabelsDelegate
 
     func collectionGraph(textForXLabelWithCurrentText currentText: String, inSection section: Int) -> String {
-        // return "•"
-        return currentText
+        return "•"
+        //return currentText
     }
 
 }

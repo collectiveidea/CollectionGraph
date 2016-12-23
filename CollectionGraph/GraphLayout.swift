@@ -225,7 +225,10 @@ public class GraphLayout: UICollectionViewLayout {
             cellSize = collectionGraphCellDelegate.collectionGraph(sizeForGraphCellWithData: graphData[indexPath.section][indexPath.item], inSection: indexPath.section)
         }
 
-        let frame = CGRect(x: xGraphPosition(indexPath: indexPath) - cellSize.width / 2, y: yGraphPosition(indexPath: indexPath) - cellSize.height / 2, width: cellSize.width, height: cellSize.height)
+        let frame = CGRect(x: xGraphPosition(indexPath: indexPath) - cellSize.width / 2,
+                           y: yGraphPosition(indexPath: indexPath) - cellSize.height / 2,
+                           width: cellSize.width,
+                           height: cellSize.height)
 
         attributes.frame = frame
         attributes.zIndex = sideBarZIndex - 1 - indexPath.item
@@ -284,11 +287,11 @@ public class GraphLayout: UICollectionViewLayout {
 
         if let collectionView = collectionView {
 
-            let height = (collectionView.frame.height - collectionView.contentInset.top - collectionView.contentInset.bottom) / CGFloat(ySteps)
+            let height = (collectionView.bounds.height - (collectionView.contentInset.top + collectionView.contentInset.bottom + cellSize.height)) / CGFloat(ySteps)
             let width = collectionView.bounds.width
 
             let frame = CGRect(x: collectionView.contentOffset.x,
-                               y: height * CGFloat(indexPath.row),
+                               y: height * CGFloat(indexPath.row) + cellSize.height / 2,
                                width: width,
                                height: height)
 
@@ -350,11 +353,11 @@ public class GraphLayout: UICollectionViewLayout {
 
         if let collectionView = collectionView {
 
-            let height = (collectionView.frame.height - collectionView.contentInset.top - collectionView.contentInset.bottom) / CGFloat(ySteps)
+            let height = (collectionView.bounds.height - (collectionView.contentInset.top + collectionView.contentInset.bottom + cellSize.height)) / CGFloat(ySteps)
             let width = collectionView.contentInset.left
 
             let frame = CGRect(x: collectionView.contentOffset.x,
-                               y: (height * CGFloat(indexPath.row)) - (height / 2),
+                               y: (height * CGFloat(indexPath.row)) - (height / 2) + cellSize.height / 2,
                                width: width,
                                height: height)
 
@@ -374,7 +377,8 @@ public class GraphLayout: UICollectionViewLayout {
         if let collectionView = collectionView {
 
             let height = collectionView.contentInset.bottom
-            let collectionWidth = graphContentWidth ?? collectionView.bounds.width - (collectionView.contentInset.left + collectionView.contentInset.right)
+
+            let collectionWidth = graphContentWidth ?? collectionView.bounds.width - (collectionView.contentInset.left + collectionView.contentInset.right + cellSize.width)
 
             var width: CGFloat = 0
             var xPosition: CGFloat = 0
@@ -386,7 +390,7 @@ public class GraphLayout: UICollectionViewLayout {
             } else {
                 width = collectionWidth / CGFloat(xSteps - 1)
                 attributes.text = "\(xDataRange / CGFloat(xSteps - 1) * CGFloat(indexPath.item) + minXVal)"
-                xPosition = width * CGFloat(indexPath.item) - width / 2 + cellSize.width / 2
+                xPosition = (width * CGFloat(indexPath.item) - width / 2) + cellSize.width / 2
             }
 
             let yPosition = collectionView.frame.height - collectionView.contentInset.top - collectionView.contentInset.bottom
@@ -416,13 +420,16 @@ public class GraphLayout: UICollectionViewLayout {
         var heightOfCollectionView: CGFloat = 0
 
         if let collectionView = collectionView {
-            heightOfCollectionView = collectionView.bounds.height - collectionView.contentInset.top - collectionView.contentInset.bottom
+            heightOfCollectionView = collectionView.bounds.height - (collectionView.contentInset.top + collectionView.contentInset.bottom + cellSize.height)
         }
 
-        let barHeight = heightOfCollectionView - yGraphPosition(indexPath: indexPath)
+        let barHeight = heightOfCollectionView - yGraphPosition(indexPath: indexPath) + cellSize.height / 2
         let yPosition = heightOfCollectionView - (heightOfCollectionView - yGraphPosition(indexPath: indexPath))
 
-        attributes.frame = CGRect(x: xGraphPosition(indexPath: indexPath) - width / 2, y: yPosition, width: width, height: barHeight)
+        attributes.frame = CGRect(x: xGraphPosition(indexPath: indexPath) - width / 2,
+                                  y: yPosition,
+                                  width: width,
+                                  height: barHeight)
 
         attributes.zIndex = indexPath.item
 
@@ -434,7 +441,7 @@ public class GraphLayout: UICollectionViewLayout {
     public override var collectionViewContentSize: CGSize {
         if let collectionView = collectionView {
 
-            let initialSize = collectionView.bounds.width - (collectionView.contentInset.left + collectionView.contentInset.right) + cellSize.width
+            let initialSize = collectionView.bounds.width - (collectionView.contentInset.left + collectionView.contentInset.right)
 
             var width = initialSize
 
@@ -442,7 +449,7 @@ public class GraphLayout: UICollectionViewLayout {
                 width = graphContentWidth + cellSize.width
             }
 
-            let height = collectionView.bounds.height - (collectionView.contentInset.top + collectionView.contentInset.bottom) - cellSize.height
+            let height = collectionView.bounds.height - (collectionView.contentInset.top + collectionView.contentInset.bottom + cellSize.height)
 
             let contentSize = CGSize(width: width, height: height)
 
@@ -499,7 +506,7 @@ public class GraphLayout: UICollectionViewLayout {
     func xGraphPosition(indexPath: IndexPath) -> CGFloat {
         if let graphData = graphData, let collectionView = collectionView {
 
-            let width = graphContentWidth ?? collectionView.bounds.width - (collectionView.contentInset.left + collectionView.contentInset.right)
+            let width = graphContentWidth ?? collectionView.bounds.width - (collectionView.contentInset.left + collectionView.contentInset.right + cellSize.width)
 
             let xValPercent = (graphData[indexPath.section][indexPath.item].point.x - minXVal) / xDataRange
             let xPos = width * xValPercent + cellSize.width / 2
@@ -511,9 +518,9 @@ public class GraphLayout: UICollectionViewLayout {
 
     func yGraphPosition(indexPath: IndexPath) -> CGFloat {
         if let collectionView = collectionView, let graphData = graphData {
-            let delta = collectionView.bounds.height - collectionView.contentInset.top - collectionView.contentInset.bottom - cellSize.height / 2
+            let delta = collectionView.bounds.height - (collectionView.contentInset.top + collectionView.contentInset.bottom + cellSize.height)
 
-            return delta - (delta * (graphData[indexPath.section][indexPath.item].point.y / yDataRange))
+            return delta - (delta * (graphData[indexPath.section][indexPath.item].point.y / yDataRange)) + cellSize.height / 2
         }
         return 0
     }
