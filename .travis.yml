@@ -3,7 +3,7 @@ osx_image: xcode8.2.1
 
 xcode_project: CollectionGraph.xcodeproj # path to your xcodeproj folder
 xcode_scheme: CollectionGraph
-xcode_sdk: iphonesimulator10.0
+xcode_sdk: iphonesimulator9.3
 
 notifications:
   slack: collectiveidea:UAduo5riNzgVWHyExXgSnZWk
