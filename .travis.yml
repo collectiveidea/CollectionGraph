@@ -1,9 +1,11 @@
 language: objective-c
-osx_image: xcode8
-dependencies:
-  pre:
-    - xcrun instruments -w '4BCE9644-586B-468F-919F-13C2B83CE1A8' || true
-    - sleep 90
-script: xcodebuild -scheme CollectionGraph -sdk iphonesimulator -destination 'platform=iOS Simulator,id=4BCE9644-586B-468F-919F-13C2B83CE1A8,OS=10.0' build test
+osx_image: xcode8.1
+
+xcode_project: CollectionGraph.xcodeproj
+xcode_scheme: CollectionGraph
+xcode_sdk: iphonesimulator10.0
+
+script: xcodebuild test -project CollectionGraph.xcodeproj -scheme CollectionGraph -destination 'platform=iOS Simulator,name=iPhone 6s,OS=10.0'
+
 notifications:
   slack: collectiveidea:UAduo5riNzgVWHyExXgSnZWk
