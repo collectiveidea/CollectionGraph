@@ -5,7 +5,7 @@ xcode_project: CollectionGraph.xcodeproj # path to your xcodeproj folder
 xcode_scheme: CollectionGraph
 xcode_sdk: iphonesimulator10.2
 
-script: xcodebuild test -workspace CollectionGraph.xcodeproj -scheme CollectionGraph -destination 'platform=iOS Simulator,name=iPhone 7,OS=10.0'
+script: xcodebuild test -project CollectionGraph.xcodeproj -scheme CollectionGraph -destination 'platform=iOS Simulator,name=iPhone 7,OS=10.0'
 
 notifications:
   slack: collectiveidea:UAduo5riNzgVWHyExXgSnZWk
