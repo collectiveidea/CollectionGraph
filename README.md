@@ -331,7 +331,7 @@ Font Name:
 var fontName: String?
 ```
 
-## Graph Offset
+### Graph Offset
 
 Get and Set the current offset of the CollectionGraph.
 ```swift
@@ -344,4 +344,12 @@ func scrollToDataPoint(
   graphDatum: GraphDatum,
   withAnimation animation: Bool,
   andScrollPosition scrollPosition: UICollectionViewScrollPosition)
+```
+
+## Develoment
+
+Install <a href: https://github.com/realm/SwiftLint> SwiftLint </a> for static analysis:
+
+```bash
+$ brew install swiftlint
 ```
