@@ -34,7 +34,6 @@ class YDividerLineView: UICollectionReusableView {
         layer.addSublayer(line)
     }
 
-    // TODO: - adjust properties in IB and apply them here
     override func apply(_ layoutAttributes: UICollectionViewLayoutAttributes) {
         if let attributes = layoutAttributes as? YDividerLayoutAttributes {
             inset = attributes.inset

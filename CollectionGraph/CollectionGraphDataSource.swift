@@ -49,11 +49,10 @@ class CollectionGraphDataSource: NSObject, UICollectionViewDataSource {
 
         switch kind {
         case ReuseIDs.YDividerView.rawValue:
+
             let yDividerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: ReuseIDs.YDividerView.rawValue, for: indexPath)
 
-            if let yDividerView = yDividerView as? YDividerLineView {
-                yDividerView.line.strokeColor = yDividerLineColor.cgColor
-            }
+            yDividerViewSetup(yDividerView: yDividerView)
 
             return yDividerView
 
@@ -61,10 +60,7 @@ class CollectionGraphDataSource: NSObject, UICollectionViewDataSource {
 
             let line = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: ReuseIDs.LineConnectorView.rawValue, for: indexPath)
 
-            if let line = line as? LineConnectorView, let graphData = graphData {
-
-                collectionGraphLineDelegate?.collectionGraph(connectorLine: line.line, withData: graphData[indexPath.section][indexPath.item], inSection: indexPath.section)
-            }
+            lineConnectorViewSetup(line: line, indexPath: indexPath)
 
             return line
 
@@ -72,16 +68,7 @@ class CollectionGraphDataSource: NSObject, UICollectionViewDataSource {
 
             let labelView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: ReuseIDs.YLabelView.rawValue, for: indexPath)
 
-            if let labelView = labelView as? LabelView {
-
-                if let fontName = fontName {
-                    labelView.label.font = UIFont(name: fontName, size: textSize)
-                } else {
-                    labelView.label.font = UIFont(name: labelView.label.font.fontName, size: textSize)
-                }
-
-                labelView.label.textColor = textColor
-            }
+            yLabelViewSetup(labelView: labelView)
 
             return labelView
 
@@ -89,20 +76,7 @@ class CollectionGraphDataSource: NSObject, UICollectionViewDataSource {
 
             let labelView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: ReuseIDs.XLabelView.rawValue, for: indexPath)
 
-            if let labelView = labelView as? LabelView {
-
-                if let fontName = fontName {
-                    labelView.label.font = UIFont(name: fontName, size: textSize)
-                } else {
-                    labelView.label.font = UIFont(name: labelView.label.font.fontName, size: textSize)
-                }
-
-                labelView.label.textColor = textColor
-
-                if let collectionGraphLabelsDelegate = collectionGraphLabelsDelegate {
-                    labelView.label.text = collectionGraphLabelsDelegate.collectionGraph(textForXLabelWithCurrentText: labelView.label.text!, inSection: indexPath.item)
-                }
-            }
+            xLabelViewSetup(labelView: labelView, indexPath: indexPath)
 
             return labelView
 
@@ -110,9 +84,7 @@ class CollectionGraphDataSource: NSObject, UICollectionViewDataSource {
 
             let view = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: ReuseIDs.BarView.rawValue, for: indexPath)
 
-            if let graphData = graphData {
-                collectionGraphBarDelegate?.collectionGraph(barView: view, withData: graphData[indexPath.section][indexPath.item], inSection: indexPath.section)
-            }
+            barViewSetup(barView: view, indexPath: indexPath)
 
             return view
 
@@ -125,6 +97,56 @@ class CollectionGraphDataSource: NSObject, UICollectionViewDataSource {
         default:
 
             return UICollectionReusableView()
+        }
+    }
+
+    func yDividerViewSetup(yDividerView: UICollectionReusableView) {
+        if let yDividerView = yDividerView as? YDividerLineView {
+            yDividerView.line.strokeColor = yDividerLineColor.cgColor
+        }
+    }
+
+    func lineConnectorViewSetup(line: UICollectionReusableView, indexPath: IndexPath) {
+        if let line = line as? LineConnectorView, let graphData = graphData {
+
+            collectionGraphLineDelegate?.collectionGraph(connectorLine: line.line, withData: graphData[indexPath.section][indexPath.item], inSection: indexPath.section)
+        }
+    }
+
+    func yLabelViewSetup(labelView: UICollectionReusableView) {
+        if let labelView = labelView as? LabelView {
+
+            if let fontName = fontName {
+                labelView.label.font = UIFont(name: fontName, size: textSize)
+            } else {
+                labelView.label.font = UIFont(name: labelView.label.font.fontName, size: textSize)
+            }
+
+            labelView.label.textColor = textColor
+        }
+    }
+
+    func xLabelViewSetup(labelView: UICollectionReusableView, indexPath: IndexPath) {
+        if let labelView = labelView as? LabelView {
+
+            if let fontName = fontName {
+                labelView.label.font = UIFont(name: fontName, size: textSize)
+            } else {
+                labelView.label.font = UIFont(name: labelView.label.font.fontName, size: textSize)
+            }
+
+            labelView.label.textColor = textColor
+
+            if let collectionGraphLabelsDelegate = collectionGraphLabelsDelegate {
+                labelView.label.text = collectionGraphLabelsDelegate.collectionGraph(textForXLabelWithCurrentText: labelView.label.text!, inSection: indexPath.item)
+            }
+        }
+    }
+
+    func barViewSetup(barView: UICollectionReusableView, indexPath: IndexPath) {
+        if let graphData = graphData {
+
+            collectionGraphBarDelegate?.collectionGraph(barView: barView, withData: graphData[indexPath.section][indexPath.item], inSection: indexPath.section)
         }
     }
 

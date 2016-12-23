@@ -61,7 +61,10 @@ public class CollectionGraphView: UIView, UICollectionViewDelegate {
 
             layout.displayLineConnectors = true
 
-            self.graphCollectionView.register(LineConnectorView.classForCoder(), forSupplementaryViewOfKind: ReuseIDs.LineConnectorView.rawValue, withReuseIdentifier: ReuseIDs.LineConnectorView.rawValue)
+            self.graphCollectionView.register(
+                LineConnectorView.classForCoder(),
+                forSupplementaryViewOfKind: ReuseIDs.LineConnectorView.rawValue,
+                withReuseIdentifier: ReuseIDs.LineConnectorView.rawValue)
         }
     }
 
@@ -311,13 +314,11 @@ public class CollectionGraphView: UIView, UICollectionViewDelegate {
 
     // MARK: - View Lifecycle
 
-    // TODO: Remove layout as a parameter
-    required public init(frame: CGRect, layout: GraphLayout, graphCell: UICollectionViewCell) {
+    required public init(frame: CGRect, graphCell: UICollectionViewCell) {
         super.init(frame: frame)
 
         addCollectionView()
 
-        self.layout = layout
         self.graphCell = graphCell
     }
 
