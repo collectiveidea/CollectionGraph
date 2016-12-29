@@ -80,6 +80,12 @@ public class CollectionGraphView: UIView, UICollectionViewDelegate {
         }
     }
 
+    public weak var collectionGraphYDividerLineDelegate: CollectionGraphYDividerLineDelegate? {
+        didSet {
+            collectionGraphDataSource.collectionGraphYDividerLineDelegate = collectionGraphYDividerLineDelegate
+        }
+    }
+
     /// Each GraphDatum array will define a new section in the graph.
     public var graphData: [[GraphDatum]]? {
         didSet {

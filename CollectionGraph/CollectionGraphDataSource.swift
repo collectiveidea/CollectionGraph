@@ -15,6 +15,7 @@ class CollectionGraphDataSource: NSObject, UICollectionViewDataSource {
     internal weak var collectionGraphLineDelegate: CollectionGraphLineDelegate?
     internal weak var collectionGraphLineFillDelegate: CollectionGraphLineFillDelegate?
     internal weak var collectionGraphLabelsDelegate: CollectionGraphLabelsDelegate?
+    internal weak var collectionGraphYDividerLineDelegate: CollectionGraphYDividerLineDelegate?
 
     var graphData: [[GraphDatum]]?
 
@@ -103,7 +104,7 @@ class CollectionGraphDataSource: NSObject, UICollectionViewDataSource {
 
     func yDividerViewSetup(yDividerView: UICollectionReusableView) {
         if let yDividerView = yDividerView as? YDividerLineView {
-            yDividerView.line.strokeColor = yDividerLineColor.cgColor
+            collectionGraphYDividerLineDelegate?.collectionGraph(yDividerLine: yDividerView.line)
         }
     }
 

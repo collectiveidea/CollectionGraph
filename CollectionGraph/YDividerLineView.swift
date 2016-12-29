@@ -29,7 +29,6 @@ class YDividerLineView: UICollectionReusableView {
     func setup() {
         line.fillColor = UIColor.clear.cgColor
         line.strokeColor = lineColor.cgColor
-        line.lineDashPattern = [1.0, 4.0]
         line.lineWidth = lineWidth
         layer.addSublayer(line)
     }
