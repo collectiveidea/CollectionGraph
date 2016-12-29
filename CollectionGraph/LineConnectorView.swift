@@ -69,7 +69,7 @@ class LineConnectorView: UICollectionReusableView {
             path.move(to: startingPoint)
 
             if line.straightLines {
-                path.addLine(to: points.second)
+                path.addLine(to: endingPoint)
             } else {
                 let cp1 = CGPoint(x: (startingPoint.x + endingPoint.x) / 2, y: startingPoint.y)
                 let cp2 = CGPoint(x: (startingPoint.x + endingPoint.x) / 2, y: endingPoint.y)
