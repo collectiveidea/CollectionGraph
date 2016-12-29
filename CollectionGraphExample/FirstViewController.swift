@@ -9,7 +9,7 @@
 import UIKit
 import CollectionGraph
 
-class FirstViewController: UIViewController, CollectionGraphViewDelegate, CollectionGraphCellDelegate, CollectionGraphBarDelegate, CollectionGraphLineDelegate, CollectionGraphLabelsDelegate {
+class FirstViewController: UIViewController, CollectionGraphViewDelegate, CollectionGraphCellDelegate, CollectionGraphBarDelegate, CollectionGraphLineDelegate, CollectionGraphLineFillDelegate, CollectionGraphLabelsDelegate {
 
     @IBOutlet weak var graph: CollectionGraphView!
 
@@ -20,6 +20,7 @@ class FirstViewController: UIViewController, CollectionGraphViewDelegate, Collec
         graph.collectionGraphCellDelegate = self
         graph.collectionGraphBarDelegate = self
         graph.collectionGraphLineDelegate = self
+        graph.collectionGraphLineFillDelegate = self
         graph.collectionGraphLabelsDelegate = self
 
         // Adjusts the width of the graph.  The Cells are spaced out depending on this size
@@ -81,6 +82,12 @@ class FirstViewController: UIViewController, CollectionGraphViewDelegate, Collec
         // graphLine.straightLines = true
         // graphLine.lineCap = kCALineCapRound
         connectorLine.strokeColor = UIColor.darkGray.cgColor
+    }
+
+    // CollectionGraphLineFillDelegate
+
+    func collectionGraph(fillColorForGraphSectionWithData data: GraphDatum, inSection section: Int) -> UIColor {
+        return UIColor.lightGray.withAlphaComponent(0.1)
     }
 
     // CollectionGraphLabelsDelegate

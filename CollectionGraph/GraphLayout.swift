@@ -312,32 +312,33 @@ public class GraphLayout: UICollectionViewLayout {
             if indexPath.item < graphData[indexPath.section].count - 1 {
 
                 let xOffset = xGraphPosition(indexPath: indexPath)
-                let yOffset = yGraphPosition(indexPath: indexPath)
-
-                let p1 = CGPoint(x: xOffset,
-                                 y: yOffset)
+                let yOffset = yGraphPosition(indexPath: indexPath) - cellSize.height / 2
 
                 let nextIndex = IndexPath(item: indexPath.item + 1, section: indexPath.section)
 
                 let xOffset2 = xGraphPosition(indexPath: nextIndex)
-                let yOffset2 = yGraphPosition(indexPath: nextIndex)
+                let yOffset2 = yGraphPosition(indexPath: nextIndex) - cellSize.height / 2
+
+                let p1 = CGPoint(x: xOffset,
+                                 y: yOffset)
 
                 let p2 = CGPoint(x: xOffset2,
                                  y: yOffset2)
 
                 // create a Rect between the two points
-                let rect = CGRect(x: min(p1.x, p2.x),
-                                  y: min(p1.y, p2.y),
-                                  width: fabs(p1.x - p2.x),
-                                  height: fabs(p1.y - p2.y))
+                if let collectionView = collectionView {
 
-                attributes.frame = rect
+                    let height = collectionView.bounds.height - (collectionView.contentInset.top + collectionView.contentInset.bottom + cellSize.height)
 
-                // decide which way the line should go
-                attributes.lineStartsAtTop =
-                    (xOffset < xOffset2 && yOffset > yOffset2) ||
-                    (xOffset > xOffset2 && yOffset < yOffset2)
-                    ? false : true
+                    let rect = CGRect(x: min(p1.x, p2.x),
+                                      y: cellSize.height / 2,
+                                      width: fabs(p1.x - p2.x),
+                                      height: height)
+
+                    attributes.frame = rect
+                }
+
+                attributes.points = (first: p1, second: p2)
 
                 attributes.zIndex = indexPath.item
 

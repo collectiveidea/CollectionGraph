@@ -64,6 +64,16 @@ public protocol CollectionGraphLineDelegate: class {
     func collectionGraph(connectorLine: GraphLineShapeLayer, withData data: GraphDatum, inSection section: Int)
 }
 
+public protocol CollectionGraphLineFillDelegate: class {
+    /**
+     Set the color of the fill below the graph line
+     
+     - parameter data: the corresponding GraphDatum
+     - parameter section: The section number in [[GraphDatum]]
+    */
+    func collectionGraph(fillColorForGraphSectionWithData data: GraphDatum, inSection section: Int) -> UIColor
+}
+
 public protocol CollectionGraphLabelsDelegate: class {
     /**
      Set the text of label along the x axis

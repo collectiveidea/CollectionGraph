@@ -13,6 +13,7 @@ class CollectionGraphDataSource: NSObject, UICollectionViewDataSource {
     internal weak var collectionGraphCellDelegate: CollectionGraphCellDelegate?
     internal weak var collectionGraphBarDelegate: CollectionGraphBarDelegate?
     internal weak var collectionGraphLineDelegate: CollectionGraphLineDelegate?
+    internal weak var collectionGraphLineFillDelegate: CollectionGraphLineFillDelegate?
     internal weak var collectionGraphLabelsDelegate: CollectionGraphLabelsDelegate?
 
     var graphData: [[GraphDatum]]?
@@ -110,6 +111,8 @@ class CollectionGraphDataSource: NSObject, UICollectionViewDataSource {
         if let line = line as? LineConnectorView, let graphData = graphData {
 
             collectionGraphLineDelegate?.collectionGraph(connectorLine: line.line, withData: graphData[indexPath.section][indexPath.item], inSection: indexPath.section)
+
+            line.fillColor = collectionGraphLineFillDelegate?.collectionGraph(fillColorForGraphSectionWithData: graphData[indexPath.section][indexPath.item], inSection: indexPath.section)
         }
     }
 
