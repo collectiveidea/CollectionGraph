@@ -20,8 +20,8 @@ public protocol GraphDatum {
 
 public enum ReuseIDs: String {
     case GraphCell = "GraphCell"
-    case LineConnectorView = "LineView"
-    case BarView = "BarView"
+    case LineConnectorView = "Line"
+    case BarView = "Bar"
     case YDividerView = "YDivider"
     case YLabelView = "YLabel"
     case XLabelView = "XLabel"
@@ -65,6 +65,12 @@ public class CollectionGraphView: UIView, UICollectionViewDelegate {
                 LineConnectorView.classForCoder(),
                 forSupplementaryViewOfKind: ReuseIDs.LineConnectorView.rawValue,
                 withReuseIdentifier: ReuseIDs.LineConnectorView.rawValue)
+        }
+    }
+
+    public weak var collectionGraphLineFillDelegate: CollectionGraphLineFillDelegate? {
+        didSet {
+            collectionGraphDataSource.collectionGraphLineFillDelegate = collectionGraphLineFillDelegate
         }
     }
 

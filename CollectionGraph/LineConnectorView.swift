@@ -18,6 +18,8 @@ class LineConnectorView: UICollectionReusableView {
     var lineStartsAtTop = true
     var lineWidth: CGFloat = 1
 
+    var fillColor: UIColor?
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         setup()
@@ -66,9 +68,18 @@ class LineConnectorView: UICollectionReusableView {
         self.line.path = path.cgPath
     }
 
+    func fillLineWithColor() {
+        // change this
+        if let fillColor = fillColor {
+            self.backgroundColor = fillColor
+        }
+    }
+
     override func layoutSubviews() {
         super.layoutSubviews()
         drawLine()
+
+        fillLineWithColor()
     }
 
 }
