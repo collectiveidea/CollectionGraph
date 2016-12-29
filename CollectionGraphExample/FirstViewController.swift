@@ -87,7 +87,7 @@ class FirstViewController: UIViewController, CollectionGraphViewDelegate, Collec
     // CollectionGraphLineFillDelegate
 
     func collectionGraph(fillColorForGraphSectionWithData data: GraphDatum, inSection section: Int) -> UIColor {
-        return UIColor.red
+        return UIColor.lightGray.withAlphaComponent(0.1)
     }
 
     // CollectionGraphLabelsDelegate

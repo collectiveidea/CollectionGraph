@@ -17,16 +17,28 @@ struct Data: GraphDatum {
 struct ExampleDataFromServer {
     let json = [
         [
-            "city": "chicago",
+            "city": "Chicago",
             "population": "0"
         ],
         [
-            "city": "los angeles",
+            "city": "Los Angeles",
             "population": "130000"
         ],
         [
-            "city": "grand rapids",
+            "city": "Grand Rapids",
             "population": "20000"
+        ],
+        [
+            "city": "San Francisco",
+            "population": "90000"
+        ],
+        [
+            "city": "Holland",
+            "population": "10000"
+        ],
+        [
+            "city": "West Hollywood",
+            "population": "100000"
         ]
     ]
 }

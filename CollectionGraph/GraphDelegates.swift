@@ -65,9 +65,11 @@ public protocol CollectionGraphLineDelegate: class {
 }
 
 public protocol CollectionGraphLineFillDelegate: class {
-    // TODO: - Fill in documentation
     /**
+     Set the color of the fill below the graph line
      
+     - parameter data: the corresponding GraphDatum
+     - parameter section: The section number in [[GraphDatum]]
     */
     func collectionGraph(fillColorForGraphSectionWithData data: GraphDatum, inSection section: Int) -> UIColor
 }

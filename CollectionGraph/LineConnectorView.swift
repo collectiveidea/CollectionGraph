@@ -15,7 +15,11 @@ public class GraphLineShapeLayer: CAShapeLayer {
 class LineConnectorView: UICollectionReusableView {
 
     var line: GraphLineShapeLayer = GraphLineShapeLayer()
-    var lineStartsAtTop = true
+
+    var fillShape: CAShapeLayer?
+
+    var points:(first: CGPoint, second: CGPoint)?
+
     var lineWidth: CGFloat = 1
 
     var fillColor: UIColor?
@@ -36,42 +40,69 @@ class LineConnectorView: UICollectionReusableView {
         layer.addSublayer(line)
     }
 
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        fillShape?.removeFromSuperlayer()
+        fillShape = nil
+    }
+
     override func apply(_ layoutAttributes: UICollectionViewLayoutAttributes) {
         if let attributes = layoutAttributes as? LineConnectorAttributes {
-            self.lineStartsAtTop = attributes.lineStartsAtTop
+            self.points = attributes.points
             setNeedsLayout()
         }
     }
 
     func drawLine() {
-
-        var start = CGPoint(x: self.bounds.minX, y: self.bounds.maxY)
-        var end = CGPoint(x: self.bounds.maxX, y: self.bounds.minY)
-
-        if self.lineStartsAtTop {
-            start.y = self.bounds.minY
-            end.y = self.bounds.maxY
+        if let bezPath = connectingLine() {
+            self.line.path = bezPath.cgPath
         }
+    }
 
-        let path = UIBezierPath()
-        path.move(to: start)
-        path.lineWidth = 50
+    func connectingLine() -> UIBezierPath? {
+        if let points = points {
+            let path = UIBezierPath()
 
-        if line.straightLines {
-            path.addLine(to: end)
-        } else {
-            let cp1 = CGPoint(x: (start.x + end.x) / 2, y: start.y)
-            let cp2 = CGPoint(x: (start.x + end.x) / 2, y: end.y)
-            path.addCurve(to: end, controlPoint1: cp1, controlPoint2: cp2)
+            let startingPoint = CGPoint(x: 0, y: points.first.y)
+            let endingPoint = CGPoint(x: bounds.width, y: points.second.y)
+
+            path.move(to: startingPoint)
+
+            if line.straightLines {
+                path.addLine(to: points.second)
+            } else {
+                let cp1 = CGPoint(x: (startingPoint.x + endingPoint.x) / 2, y: startingPoint.y)
+                let cp2 = CGPoint(x: (startingPoint.x + endingPoint.x) / 2, y: endingPoint.y)
+                path.addCurve(to: endingPoint, controlPoint1: cp1, controlPoint2: cp2)
+            }
+
+            return path
         }
-
-        self.line.path = path.cgPath
+        return nil
     }
 
     func fillLineWithColor() {
         // change this
         if let fillColor = fillColor {
-            self.backgroundColor = fillColor
+
+            var path = UIBezierPath()
+
+            if let bezPath = connectingLine() {
+                path = bezPath
+
+                let bottomRight = CGPoint(x: bounds.width, y: bounds.height)
+                let bottomLeft = CGPoint(x: 0, y: bounds.height)
+
+                path.addLine(to: bottomRight)
+                path.addLine(to: bottomLeft)
+            }
+
+            fillShape = CAShapeLayer()
+            fillShape!.path = path.cgPath
+
+            fillShape!.fillColor = fillColor.cgColor
+
+            layer.addSublayer(fillShape!)
         }
     }
 
