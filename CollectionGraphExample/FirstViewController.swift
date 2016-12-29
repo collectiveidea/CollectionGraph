@@ -9,7 +9,7 @@
 import UIKit
 import CollectionGraph
 
-class FirstViewController: UIViewController, CollectionGraphViewDelegate, CollectionGraphCellDelegate, CollectionGraphBarDelegate, CollectionGraphLineDelegate, CollectionGraphLineFillDelegate, CollectionGraphLabelsDelegate {
+class FirstViewController: UIViewController, CollectionGraphViewDelegate, CollectionGraphCellDelegate, CollectionGraphBarDelegate, CollectionGraphLineDelegate, CollectionGraphLineFillDelegate, CollectionGraphLabelsDelegate, CollectionGraphYDividerLineDelegate {
 
     @IBOutlet weak var graph: CollectionGraphView!
 
@@ -22,6 +22,7 @@ class FirstViewController: UIViewController, CollectionGraphViewDelegate, Collec
         graph.collectionGraphLineDelegate = self
         graph.collectionGraphLineFillDelegate = self
         graph.collectionGraphLabelsDelegate = self
+        graph.collectionGraphYDividerLineDelegate = self
 
         // Adjusts the width of the graph.  The Cells are spaced out depending on this size
         // graph.graphContentWidth = 400
@@ -79,8 +80,8 @@ class FirstViewController: UIViewController, CollectionGraphViewDelegate, Collec
     func collectionGraph(connectorLine: GraphLineShapeLayer, withData data: GraphDatum, inSection section: Int) {
         connectorLine.lineWidth = 2
         connectorLine.lineDashPattern = [4, 2]
-        // graphLine.straightLines = true
-        // graphLine.lineCap = kCALineCapRound
+        // connectorLine.straightLines = true
+        // connectorLine.lineCap = kCALineCapRound
         connectorLine.strokeColor = UIColor.darkGray.cgColor
     }
 
@@ -95,6 +96,13 @@ class FirstViewController: UIViewController, CollectionGraphViewDelegate, Collec
     func collectionGraph(textForXLabelWithCurrentText currentText: String, inSection section: Int) -> String {
         return "•"
         //return currentText
+    }
+
+    // CollectionGraphYDividerLineDelegate
+
+    func collectionGraph(yDividerLine: CAShapeLayer) {
+        yDividerLine.lineDashPattern = [1, 8]
+        // yDividerLine.lineWidth = 2
     }
 
 }

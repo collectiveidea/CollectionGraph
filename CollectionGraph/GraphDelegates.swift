@@ -96,3 +96,14 @@ public protocol CollectionGraphViewDelegate: class {
      */
     func collectionGraph(updatedVisibleIndexPaths indexPaths: Set<IndexPath>, sections: Set<Int>)
 }
+
+public protocol CollectionGraphYDividerLineDelegate: class {
+    /**
+     Returns the Y Divider Lines.
+     
+     Use this to set any properties on the line like color, dot pattern, cap.
+     
+     - parameter yDividerLine: CAShapeLayer
+     */
+    func collectionGraph(yDividerLine: CAShapeLayer)
+}
