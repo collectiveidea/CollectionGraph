@@ -39,7 +39,12 @@ Each array of `[GraphDatum]` represents a new "section" in the graph.  Each sect
 For example:<br>
 
 ```swift
-let data = [[losAngelesGraphData()], [newYorkGraphData()], [grandRapidsGraphData()]]
+
+func losAngelesGraphData() -> [GraphhDatum] { ... }
+func newYorkGraphData() -> [GraphhDatum] { ... }
+func grandRapidsGraphData() -> [GraphhDatum] { ... }
+
+let data = [losAngelesGraphData(), newYorkGraphData(), grandRapidsGraphData()]
 ```
 Three different sets of points (each city) will be plotted on the same graph.
 
@@ -250,6 +255,28 @@ collectionGraph.collectionGraphLabelsDelegate = self
 ```swift
 func collectionGraph(textForXLabelWithCurrentText currentText: String, inSection section: Int) -> String {
         return "•"
+    }
+```
+
+### Horizontal Y Divider Lines
+These are the horizontal lines next to the Y labels that span the length of the graph.
+
+```swift
+public protocol CollectionGraphYDividerLineDelegate: class {
+
+    func collectionGraph(yDividerLine: CAShapeLayer)
+}
+```
+
+#### Example usage:
+
+```swift
+collectionGraph.collectionGraphYDividerLineDelegate = self
+```
+```swift
+func collectionGraph(yDividerLine: CAShapeLayer) {
+        yDividerLine.lineDashPattern = [1, 8]
+        yDividerLine.lineWidth = 2
     }
 ```
 
