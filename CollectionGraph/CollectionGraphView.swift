@@ -298,6 +298,8 @@ public class CollectionGraphView: UIView, UICollectionViewDelegate {
         }
         set {
             self.graphCollectionView.contentOffset = newValue
+            self.graphCollectionView.layoutIfNeeded()
+            self.graphCollectionView.collectionViewLayout.invalidateLayout()
         }
     }
 

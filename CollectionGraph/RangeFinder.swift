@@ -20,7 +20,7 @@ extension RangeFinder {
         }
 
         if let min = xVals.min(), let max = xVals.max() {
-            return (min, max - min)
+            return (min, max)
         }
 
         return (0, 0)
