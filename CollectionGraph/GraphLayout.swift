@@ -27,8 +27,6 @@ public class GraphLayout: UICollectionViewLayout, RangeFinder {
 
     internal var cellSize: CGSize = CGSize(width: 3.0, height: 3.0)
 
-    private var minXVal: CGFloat = 0
-
     private var yIncrements: CGFloat {
         get {
             if let graphData = graphData {
@@ -476,7 +474,10 @@ public class GraphLayout: UICollectionViewLayout, RangeFinder {
 
             let xRange = xDataRange(graphData: graphData)
 
-            let xValPercent = (graphData[indexPath.section][indexPath.item].point.x - minXVal) / xRange.max
+            let xDeltaRange = xRange.max - xRange.min
+
+            let xValPercent = (graphData[indexPath.section][indexPath.item].point.x - xRange.min) / xDeltaRange
+
             let xPos = width * xValPercent + cellSize.width / 2
 
             return xPos
