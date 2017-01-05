@@ -361,7 +361,6 @@ public class GraphLayout: UICollectionViewLayout, RangeFinder {
 
             attributes.zIndex = labelsZIndex
 
-            attributes.text = "\(Int((yIncrements * CGFloat(ySteps)) - (yIncrements * CGFloat(indexPath.row))))"
         }
         return attributes
     }
@@ -381,11 +380,11 @@ public class GraphLayout: UICollectionViewLayout, RangeFinder {
 
             if xSteps == 1 {
                 width = collectionWidth
-                attributes.text = "\(xDataRange * CGFloat(indexPath.item) + minXVal)"
+
                 xPosition = collectionWidth / 2
             } else {
                 width = collectionWidth / CGFloat(xSteps - 1)
-                attributes.text = "\(xDataRange / CGFloat(xSteps - 1) * CGFloat(indexPath.item) + minXVal)"
+
                 xPosition = (width * CGFloat(indexPath.item) - width / 2) + cellSize.width / 2
             }
 

@@ -27,6 +27,9 @@ class CollectionGraphDataSource: NSObject, UICollectionViewDataSource, RangeFind
 
     internal var fontName: String?
 
+    internal var ySteps: Int = 6
+    internal var xSteps: Int = 3
+
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return graphData?.count ?? 1
     }

@@ -214,6 +214,7 @@ public class CollectionGraphView: UIView, UICollectionViewDelegate {
     @IBInspectable public var ySteps: Int = 6 {
         didSet {
             layout.ySteps = ySteps
+            collectionGraphDataSource.ySteps = ySteps
             graphCollectionView.reloadData()
         }
     }
@@ -222,6 +223,7 @@ public class CollectionGraphView: UIView, UICollectionViewDelegate {
     @IBInspectable public var xSteps: Int = 3 {
         didSet {
             layout.xSteps = xSteps
+            collectionGraphDataSource.xSteps = xSteps
             graphCollectionView.reloadData()
         }
     }
@@ -296,8 +298,6 @@ public class CollectionGraphView: UIView, UICollectionViewDelegate {
         }
         set {
             self.graphCollectionView.contentOffset = newValue
-            self.graphCollectionView.layoutIfNeeded()
-            self.graphCollectionView.collectionViewLayout.invalidateLayout()
         }
     }
 
