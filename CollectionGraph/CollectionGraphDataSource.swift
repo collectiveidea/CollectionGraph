@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CollectionGraphDataSource: NSObject, UICollectionViewDataSource {
+class CollectionGraphDataSource: NSObject, UICollectionViewDataSource, RangeFinder {
 
     internal weak var collectionGraphCellDelegate: CollectionGraphCellDelegate?
     internal weak var collectionGraphBarDelegate: CollectionGraphBarDelegate?
@@ -26,6 +26,9 @@ class CollectionGraphDataSource: NSObject, UICollectionViewDataSource {
     internal var textSize: CGFloat = 8
 
     internal var fontName: String?
+
+    internal var ySteps: Int = 6
+    internal var xSteps: Int = 3
 
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return graphData?.count ?? 1
@@ -70,7 +73,7 @@ class CollectionGraphDataSource: NSObject, UICollectionViewDataSource {
 
             let labelView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: ReuseIDs.YLabelView.rawValue, for: indexPath)
 
-            yLabelViewSetup(labelView: labelView)
+            yLabelViewSetup(labelView: labelView, indexPath: indexPath)
 
             return labelView
 
@@ -117,8 +120,8 @@ class CollectionGraphDataSource: NSObject, UICollectionViewDataSource {
         }
     }
 
-    func yLabelViewSetup(labelView: UICollectionReusableView) {
-        if let labelView = labelView as? LabelView {
+    func yLabelViewSetup(labelView: UICollectionReusableView, indexPath: IndexPath) {
+        if let labelView = labelView as? LabelView, let graphData = graphData {
 
             if let fontName = fontName {
                 labelView.label.font = UIFont(name: fontName, size: textSize)
@@ -127,11 +130,18 @@ class CollectionGraphDataSource: NSObject, UICollectionViewDataSource {
             }
 
             labelView.label.textColor = textColor
+
+            let yRange = yDataRange(graphData: graphData, numberOfSteps: ySteps)
+
+            let amountPerStep = yRange.max / CGFloat(ySteps)
+
+            let yText = "\(Int((yRange.max - (amountPerStep * CGFloat(indexPath.item)))))"
+            labelView.label.text = yText
         }
     }
 
     func xLabelViewSetup(labelView: UICollectionReusableView, indexPath: IndexPath) {
-        if let labelView = labelView as? LabelView {
+        if let labelView = labelView as? LabelView, let graphData = graphData {
 
             if let fontName = fontName {
                 labelView.label.font = UIFont(name: fontName, size: textSize)
@@ -141,8 +151,14 @@ class CollectionGraphDataSource: NSObject, UICollectionViewDataSource {
 
             labelView.label.textColor = textColor
 
+            let range = xDataRange(graphData: graphData)
+
+            let labelText = "\((range.max / CGFloat(xSteps - 1) * CGFloat(indexPath.item) + range.min))"
+
             if let collectionGraphLabelsDelegate = collectionGraphLabelsDelegate {
-                labelView.label.text = collectionGraphLabelsDelegate.collectionGraph(textForXLabelWithCurrentText: labelView.label.text!, inSection: indexPath.item)
+                labelView.label.text = collectionGraphLabelsDelegate.collectionGraph(textForXLabelWithCurrentText: labelText, inSection: indexPath.item)
+            } else {
+                labelView.label.text = labelText
             }
         }
     }

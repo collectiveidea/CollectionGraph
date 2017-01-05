@@ -27,13 +27,13 @@ class LabelView: UICollectionReusableView {
         label.font = UIFont.systemFont(ofSize: 8)
         label.textAlignment = .center
         label.textColor = textColor
+        label.text = ""
         addSubview(label)
     }
 
     override func apply(_ layoutAttributes: UICollectionViewLayoutAttributes) {
 
         if let attributes = layoutAttributes as? XLabelViewAttributes {
-            label.text = attributes.text
             label.sizeToFit()
             label.frame = attributes.bounds
         }
