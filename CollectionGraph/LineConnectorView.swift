@@ -16,7 +16,7 @@ class LineConnectorView: UICollectionReusableView {
 
     var line: GraphLineShapeLayer = GraphLineShapeLayer()
 
-    var fillShape: CAShapeLayer?
+    var fillShape = CAShapeLayer()
 
     var points:(first: CGPoint, second: CGPoint)?
 
@@ -38,12 +38,8 @@ class LineConnectorView: UICollectionReusableView {
         line.fillColor = UIColor.clear.cgColor
 
         layer.addSublayer(line)
-    }
 
-    override func prepareForReuse() {
-        super.prepareForReuse()
-        fillShape?.removeFromSuperlayer()
-        fillShape = nil
+        layer.addSublayer(fillShape)
     }
 
     override func apply(_ layoutAttributes: UICollectionViewLayoutAttributes) {
@@ -82,7 +78,6 @@ class LineConnectorView: UICollectionReusableView {
     }
 
     func fillLineWithColor() {
-        // change this
         if let fillColor = fillColor {
 
             var path = UIBezierPath()
@@ -97,12 +92,9 @@ class LineConnectorView: UICollectionReusableView {
                 path.addLine(to: bottomLeft)
             }
 
-            fillShape = CAShapeLayer()
-            fillShape!.path = path.cgPath
+            fillShape.path = path.cgPath
 
-            fillShape!.fillColor = fillColor.cgColor
-
-            layer.addSublayer(fillShape!)
+            fillShape.fillColor = fillColor.cgColor
         }
     }
 
