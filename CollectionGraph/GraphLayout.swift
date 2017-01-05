@@ -8,17 +8,12 @@
 
 import UIKit
 
-public class GraphLayout: UICollectionViewLayout {
+public class GraphLayout: UICollectionViewLayout, RangeFinder {
 
     internal weak var collectionGraphCellDelegate: CollectionGraphCellDelegate?
     internal weak var collectionGraphBarDelegate: CollectionGraphBarDelegate?
 
-    internal var graphData: [[GraphDatum]]? {
-        didSet {
-            calculateXDataRange()
-            calculateYDataRange()
-        }
-    }
+    internal var graphData: [[GraphDatum]]?
 
     internal var displayBars = false
     internal var displayLineConnectors = false
@@ -32,14 +27,14 @@ public class GraphLayout: UICollectionViewLayout {
 
     internal var cellSize: CGSize = CGSize(width: 3.0, height: 3.0)
 
-    private var xDataRange: CGFloat = 0
-    private var yDataRange: CGFloat = 0
-
     private var minXVal: CGFloat = 0
 
     private var yIncrements: CGFloat {
         get {
-            return  yDataRange / CGFloat(ySteps)
+            if let graphData = graphData {
+                return yDataRange(graphData: graphData, numberOfSteps: ySteps).max / CGFloat(ySteps)
+            }
+            return 0
         }
     }
 
@@ -475,41 +470,14 @@ public class GraphLayout: UICollectionViewLayout {
 
     // MARK: - Helpers
 
-    func calculateXDataRange() {
-        let xVals = graphData?.flatMap {
-            return $0.map { return $0.point.x }
-        }
-        if let min = xVals?.min(), let max = xVals?.max() {
-            xDataRange = max - min
-            minXVal = min
-        }
-    }
-
-    func calculateYDataRange() {
-
-        let yVals = graphData?.flatMap {
-            return $0.map { return $0.point.y }
-        }
-
-        let maxY = yVals?.max() ?? 0
-
-        var remainder = maxY.truncatingRemainder(dividingBy: CGFloat(ySteps))
-        if remainder.isNaN {
-            remainder = 0
-        }
-        if remainder == 0 {
-            yDataRange = maxY
-        } else {
-            yDataRange = maxY - remainder + CGFloat(ySteps)
-        }
-    }
-
     func xGraphPosition(indexPath: IndexPath) -> CGFloat {
         if let graphData = graphData, let collectionView = collectionView {
 
             let width = graphContentWidth ?? collectionView.bounds.width - (collectionView.contentInset.left + collectionView.contentInset.right + cellSize.width)
 
-            let xValPercent = (graphData[indexPath.section][indexPath.item].point.x - minXVal) / xDataRange
+            let xRange = xDataRange(graphData: graphData)
+
+            let xValPercent = (graphData[indexPath.section][indexPath.item].point.x - minXVal) / xRange.max
             let xPos = width * xValPercent + cellSize.width / 2
 
             return xPos
@@ -521,7 +489,9 @@ public class GraphLayout: UICollectionViewLayout {
         if let collectionView = collectionView, let graphData = graphData {
             let delta = collectionView.bounds.height - (collectionView.contentInset.top + collectionView.contentInset.bottom + cellSize.height)
 
-            return delta - (delta * (graphData[indexPath.section][indexPath.item].point.y / yDataRange)) + cellSize.height / 2
+            let yRange = yDataRange(graphData: graphData, numberOfSteps: ySteps)
+
+            return delta - (delta * (graphData[indexPath.section][indexPath.item].point.y / yRange.max)) + cellSize.height / 2
         }
         return 0
     }
