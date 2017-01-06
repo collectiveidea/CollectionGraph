@@ -35,6 +35,9 @@ class FirstViewController: UIViewController, CollectionGraphViewDelegate, Collec
         // Simulate fetch delay from server
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.0, execute: {
             self.graph.graphData = Parser.parseExampleData(data: ExampleDataFromServer().json)
+
+            //self.graph.xSteps = self.graph.graphData![0].count
+
             self.graph.graphContentWidth = 400
 
             // self.graph.scrollToDataPoint(graphDatum: self.graph.graphData![0].last!, withAnimation: true, andScrollPosition: .centeredHorizontally)
@@ -94,8 +97,8 @@ class FirstViewController: UIViewController, CollectionGraphViewDelegate, Collec
     // CollectionGraphLabelsDelegate
 
     func collectionGraph(textForXLabelWithCurrentText currentText: String, inSection section: Int) -> String {
-        return "•"
-        //return currentText
+        //return "•"
+        return currentText
     }
 
     // CollectionGraphYDividerLineDelegate

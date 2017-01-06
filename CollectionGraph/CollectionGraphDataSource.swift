@@ -152,8 +152,11 @@ class CollectionGraphDataSource: NSObject, UICollectionViewDataSource, RangeFind
             labelView.label.textColor = textColor
 
             let range = xDataRange(graphData: graphData)
+            let xDelta = range.max - range.min
 
-            let labelText = "\((range.max / CGFloat(xSteps - 1) * CGFloat(indexPath.item) + range.min))"
+            let stepAmount = xDelta / CGFloat(xSteps - 1)
+
+            let labelText = "\(stepAmount * CGFloat(indexPath.item) + range.min)"
 
             if let collectionGraphLabelsDelegate = collectionGraphLabelsDelegate {
                 labelView.label.text = collectionGraphLabelsDelegate.collectionGraph(textForXLabelWithCurrentText: labelText, inSection: indexPath.item)
