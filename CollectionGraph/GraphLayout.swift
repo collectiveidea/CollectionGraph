@@ -373,18 +373,9 @@ public class GraphLayout: UICollectionViewLayout, RangeFinder {
 
             let collectionWidth = graphContentWidth ?? collectionView.bounds.width - (collectionView.contentInset.left + collectionView.contentInset.right + cellSize.width)
 
-            var width: CGFloat = 0
-            var xPosition: CGFloat = 0
+            let width = xSteps == 1 ? collectionWidth : collectionWidth / CGFloat(xSteps - 1)
 
-            if xSteps == 1 {
-                width = collectionWidth
-
-                xPosition = collectionWidth / 2
-            } else {
-                width = collectionWidth / CGFloat(xSteps - 1)
-
-                xPosition = (width * CGFloat(indexPath.item) - width / 2) + cellSize.width / 2
-            }
+            let xPosition = (width * CGFloat(indexPath.item) - width / 2) + cellSize.width / 2
 
             let yPosition = collectionView.frame.height - collectionView.contentInset.top - collectionView.contentInset.bottom
 
@@ -476,7 +467,11 @@ public class GraphLayout: UICollectionViewLayout, RangeFinder {
 
             let xDeltaRange = xRange.max - xRange.min
 
-            let xValPercent = (graphData[indexPath.section][indexPath.item].point.x - xRange.min) / xDeltaRange
+            var xValPercent = (graphData[indexPath.section][indexPath.item].point.x - xRange.min) / xDeltaRange
+
+            if xValPercent.isNaN {
+                xValPercent = 0
+            }
 
             let xPos = width * xValPercent + cellSize.width / 2
 
@@ -491,7 +486,9 @@ public class GraphLayout: UICollectionViewLayout, RangeFinder {
 
             let yRange = yDataRange(graphData: graphData, numberOfSteps: ySteps)
 
-            return delta - (delta * (graphData[indexPath.section][indexPath.item].point.y / yRange.max)) + cellSize.height / 2
+            let position = delta - (delta * (graphData[indexPath.section][indexPath.item].point.y / yRange.max)) + cellSize.height / 2
+
+            return position.isNaN ? 0 : position
         }
         return 0
     }

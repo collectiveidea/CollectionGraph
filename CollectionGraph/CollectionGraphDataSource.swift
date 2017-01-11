@@ -154,7 +154,9 @@ class CollectionGraphDataSource: NSObject, UICollectionViewDataSource, RangeFind
             let range = xDataRange(graphData: graphData)
             let xDelta = range.max - range.min
 
-            let stepAmount = xDelta / CGFloat(xSteps - 1)
+            var stepAmount = xDelta / CGFloat(xSteps - 1)
+
+            if stepAmount.isNaN { stepAmount = 1 }
 
             let labelText = "\(stepAmount * CGFloat(indexPath.item) + range.min)"
 
