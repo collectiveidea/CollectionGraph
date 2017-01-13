@@ -24,21 +24,21 @@ class FirstViewController: UIViewController, CollectionGraphViewDelegate, Collec
         graph.collectionGraphLabelsDelegate = self
         graph.collectionGraphYDividerLineDelegate = self
 
-        // Adjusts the width of the graph.  The Cells are spaced out depending on this size
-        // graph.graphContentWidth = 400
-
         // Change the Font of the X and Y labels
         // graph.fontName = "chalkduster"
 
         graph.ySideBarView = SideBarReusableView()
 
-        // Simulate fetch delay from server
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0, execute: {
-            self.graph.graphData = Parser.parseExampleData(data: ExampleDataFromServer().json)
+        let service = GraphDataService()
 
-            //self.graph.xSteps = self.graph.graphData![0].count
+        service.fetchMilesPerDayDatum(completion: { [weak self] data in
+            
+            self?.graph.graphData = data
 
-            self.graph.graphContentWidth = 400
+            //self?.graph.xSteps = data[0].count
+            
+            // Adjusts the width of the graph.  The Cells are spaced out depending on this size
+            self?.graph.graphContentWidth = 600
 
             // self.graph.scrollToDataPoint(graphDatum: self.graph.graphData![0].last!, withAnimation: true, andScrollPosition: .centeredHorizontally)
 
@@ -97,6 +97,21 @@ class FirstViewController: UIViewController, CollectionGraphViewDelegate, Collec
     // CollectionGraphLabelsDelegate
 
     func collectionGraph(textForXLabelWithCurrentText currentText: String, inSection section: Int) -> String {
+
+        let timeInterval = Double(currentText)
+        
+        if let timeInterval = timeInterval {
+            let date = Date(timeIntervalSince1970: timeInterval)
+
+            let customFormat = DateFormatter.dateFormat(fromTemplate: "MMM d hh:mm", options: 0, locale: Locale(identifier: "us"))!
+
+            let formatter = DateFormatter()
+            formatter.timeZone = TimeZone(abbreviation: "UTC")
+            formatter.dateFormat = customFormat
+
+            return formatter.string(from: date)
+        }
+
         //return "•"
         return currentText
     }

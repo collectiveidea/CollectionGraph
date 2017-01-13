@@ -9,59 +9,98 @@
 import UIKit
 import CollectionGraph
 
-struct Data: GraphDatum {
+struct MilesPerDayDatum: GraphDatum {
+    // x = dates ran
+    // y = miles that date
     var point: CGPoint
-    var information: [String: CGPoint]
+    var name: String
 }
 
-struct ExampleDataFromServer {
-    let json = [
-        [
-            "city": "Chicago",
-            "population": "0"
-        ],
-        [
-            "city": "Los Angeles",
-            "population": "130000"
-        ],
-        [
-            "city": "Grand Rapids",
-            "population": "20000"
-        ],
-        [
-            "city": "San Francisco",
-            "population": "90000"
-        ],
-        [
-            "city": "Holland",
-            "population": "10000"
-        ],
-        [
-            "city": "West Hollywood",
-            "population": "100000"
-        ]
-    ]
-}
+class GraphDataService {
 
-class Parser {
+    var completion: (([[MilesPerDayDatum]]) -> Void)?
 
-    class func parseExampleData(data: [[String: String]]) -> [[Data]] {
+    func fetchMilesPerDayDatum(completion: @escaping ([[MilesPerDayDatum]]) -> Void) {
 
-        var dataAry: [[Data]] = [[]]
+        self.completion = completion
 
-        for (index, item) in data.enumerated() {
+        // Simulate server wait time
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: {
 
-            let population = CGFloat((item["population"]! as NSString).floatValue)
-            let city = item["city"]!
+            self.serializeJsonFile()
 
-            let point = CGPoint(x: CGFloat(index), y: population)
+        })
+    }
 
-            let data = Data(point: point, information: [city: point])
+    func serializeJsonFile() {
 
-            dataAry[0].append(data)
+        let path = Bundle.main.path(forResource: "MilesPerDayData", ofType: "json")
+
+        if let path = path {
+
+            do {
+                let data = try Data(referencing: NSData(contentsOfFile: path))
+
+                let json = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as? [[String: Any]]
+
+                if let json = json {
+                    createMilesPerDayDatum(json: json)
+                }
+
+            } catch {
+                print("Missing the .json file")
+            }
         }
+    }
 
-        return dataAry
+    func createMilesPerDayDatum(json: [[String: Any]]) {
+
+        let data = parsejson(json: json)
+
+        completion?(data)
+    }
+
+    func parsejson(json: [[String: Any]]) -> [[MilesPerDayDatum]] {
+
+        var data = [[MilesPerDayDatum]]()
+
+        for number in 0..<json.count {
+
+            var sectionData = [MilesPerDayDatum]()
+
+            guard let person = json[number]["name"] as? String,
+                let dates = json[number]["date"] as? [String],
+                let runs = json[number]["miles"] as? [Int] else {
+                    assertionFailure("Data parsing Miles Per Day failed")
+                    break
+            }
+
+            print(person)
+            print(dates)
+            print(runs)
+
+            for number in 0..<dates.count {
+
+                let xDateString = dates[number]
+                let dateFormatter = DateFormatter()
+                dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+                dateFormatter.timeZone = TimeZone(abbreviation: "UTC")
+                let date = dateFormatter.date(from: xDateString)
+                let dateTimeInterval = date?.timeIntervalSince1970
+
+                let yRuns: CGFloat = CGFloat(runs[number])
+
+                if let dateTimeInterval = dateTimeInterval {
+                    let point = CGPoint(x: CGFloat(dateTimeInterval), y: yRuns)
+
+                    sectionData += [MilesPerDayDatum(point: point, name: person)]
+                }
+            }
+
+            data += [sectionData]
+
+        }
+        return data
     }
 
 }
