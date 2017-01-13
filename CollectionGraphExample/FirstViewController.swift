@@ -51,8 +51,8 @@ class FirstViewController: UIViewController, CollectionGraphViewDelegate, Collec
 
     func collectionGraph(updatedVisibleIndexPaths indexPaths: Set<IndexPath>, sections: Set<Int>) {
         indexPaths.forEach {
-            // let data = self.graph.graphData?[$0.section][$0.item]
-            // print("Data: \(data)")
+             let data = self.graph.graphData?[$0.section][$0.item]
+             print("Data: \(data)")
         }
     }
 
