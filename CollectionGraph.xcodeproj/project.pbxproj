@@ -25,6 +25,7 @@
 		576457D41E008C4200FA3432 /* GraphDelegates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576457D31E008C4200FA3432 /* GraphDelegates.swift */; };
 		576DD7841DB55BA90084498B /* MyGraphCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576DD7831DB55BA90084498B /* MyGraphCell.swift */; };
 		577853411E1EDF4A00058C19 /* RangeFinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 577853401E1EDF4A00058C19 /* RangeFinder.swift */; };
+		579788B81E29182D000503AF /* MilesPerDayData.json in Resources */ = {isa = PBXBuildFile; fileRef = 579788B71E29182D000503AF /* MilesPerDayData.json */; };
 		57C8AD551DF9ADB50097D1A8 /* SideBarReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C8AD541DF9ADB50097D1A8 /* SideBarReusableView.swift */; };
 		57EA989B1D958C82000D6C55 /* CollectionGraph.h in Headers */ = {isa = PBXBuildFile; fileRef = 57EA989A1D958C82000D6C55 /* CollectionGraph.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		57EA98A21D958C82000D6C55 /* CollectionGraph.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57EA98971D958C82000D6C55 /* CollectionGraph.framework */; };
@@ -85,6 +86,7 @@
 		576457D31E008C4200FA3432 /* GraphDelegates.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GraphDelegates.swift; sourceTree = "<group>"; };
 		576DD7831DB55BA90084498B /* MyGraphCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyGraphCell.swift; sourceTree = "<group>"; };
 		577853401E1EDF4A00058C19 /* RangeFinder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RangeFinder.swift; sourceTree = "<group>"; };
+		579788B71E29182D000503AF /* MilesPerDayData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = MilesPerDayData.json; sourceTree = "<group>"; };
 		57C8AD541DF9ADB50097D1A8 /* SideBarReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideBarReusableView.swift; sourceTree = "<group>"; };
 		57EA98971D958C82000D6C55 /* CollectionGraph.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CollectionGraph.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		57EA989A1D958C82000D6C55 /* CollectionGraph.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CollectionGraph.h; sourceTree = "<group>"; };
@@ -211,6 +213,7 @@
 				A7B2B0FB1D958F1500F3A410 /* AppDelegate.swift */,
 				A7B2B0FD1D958F1500F3A410 /* FirstViewController.swift */,
 				5756122D1DB122C200F94EAF /* Data.swift */,
+				579788B71E29182D000503AF /* MilesPerDayData.json */,
 				576DD7831DB55BA90084498B /* MyGraphCell.swift */,
 				A7B2B0FF1D958F1500F3A410 /* SecondViewController.swift */,
 				A7B2B1011D958F1500F3A410 /* Main.storyboard */,
@@ -358,6 +361,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A7B2B1081D958F1500F3A410 /* LaunchScreen.storyboard in Resources */,
+				579788B81E29182D000503AF /* MilesPerDayData.json in Resources */,
 				A7B2B1051D958F1500F3A410 /* Assets.xcassets in Resources */,
 				A7B2B1031D958F1500F3A410 /* Main.storyboard in Resources */,
 			);
