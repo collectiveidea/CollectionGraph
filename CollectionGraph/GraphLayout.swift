@@ -48,26 +48,29 @@ public class GraphLayout: UICollectionViewLayout, RangeFinder {
     }
 
     override public func prepare() {
-        var tempAttributes = [UICollectionViewLayoutAttributes]()
 
-        tempAttributes += layoutAttributesForCell()
-        tempAttributes += layoutAttributesForYDividerLines()
-        tempAttributes += layoutAttributesForYLabels()
-        tempAttributes += layoutAttributesForXLabels()
+        if layoutAttributes.isEmpty {
+            var tempAttributes = [UICollectionViewLayoutAttributes]()
 
-        if ySideBarView != nil {
-            tempAttributes += layoutAttributesForSideBar()
+            tempAttributes += layoutAttributesForCell()
+            tempAttributes += layoutAttributesForYDividerLines()
+            tempAttributes += layoutAttributesForYLabels()
+            tempAttributes += layoutAttributesForXLabels()
+
+            if ySideBarView != nil {
+                tempAttributes += layoutAttributesForSideBar()
+            }
+
+            if displayLineConnectors {
+                tempAttributes += layoutAttributesForLineConnector()
+            }
+
+            if displayBars {
+                tempAttributes += layoutAttributesForBar()
+            }
+
+            layoutAttributes = tempAttributes
         }
-
-        if displayLineConnectors {
-            tempAttributes += layoutAttributesForLineConnector()
-        }
-
-        if displayBars {
-            tempAttributes += layoutAttributesForBar()
-        }
-
-        layoutAttributes = tempAttributes
     }
 
     func layoutAttributesForCell() -> [UICollectionViewLayoutAttributes] {
