@@ -13,25 +13,27 @@ protocol ColorHelpers {
 }
 
 extension ColorHelpers {
+    
+    // http://www.colorhunt.co/c/43813
 
     func colorForSection(section: Int) -> UIColor {
 
         switch section {
         case 0:
-            // blue-ish
-            return UIColor(red: 61.0 / 255.0, green: 151.0 / 255.0, blue: 201.0 / 255.0, alpha: 1)
+            // blue
+            return UIColor(red: 69.0 / 255.0, green: 193.0 / 255.0, blue: 201.0 / 255.0, alpha: 1)
         case 1:
-            // pink-ish
-            return UIColor(red: 201.0 / 255.0, green: 61.0 / 255.0, blue: 105.0 / 255.0, alpha: 1)
+            // pink
+            return UIColor(red: 252.0 / 255.0, green: 81.0 / 255.0, blue: 133.0 / 255.0, alpha: 1)
         case 2:
-            // purple-ish
-            return UIColor(red: 151.0 / 255.0, green: 61.0 / 255.0, blue: 201.0 / 255.0, alpha: 1)
+            // yellow
+            return UIColor(red: 252.0 / 255.0, green: 227.0 / 255.0, blue: 138.0 / 255.0, alpha: 1)
         case 3:
-            // green-ish
-            return UIColor(red: 61.0 / 255.0, green: 201.0 / 255.0, blue: 134.0 / 255.0, alpha: 1)
+            // purple
+            return UIColor(red: 187.0 / 255.0, green: 88.0 / 255.0, blue: 176.0 / 255.0, alpha: 1)
         case 4:
-            // yellow-ish green
-            return UIColor(red: 157.0 / 255.0, green: 201.0 / 255.0, blue: 61.0 / 255.0, alpha: 1)
+            // grey
+            return UIColor(red: 125.0 / 255.0, green: 124.0 / 255.0, blue: 122.0 / 255.0, alpha: 1)
         default:
             return UIColor.darkGray
         }

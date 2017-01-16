@@ -18,6 +18,7 @@
 		571B7ECA1D9D9CF500FCE88E /* GraphCollectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 571B7EC91D9D9CF500FCE88E /* GraphCollectionView.xib */; };
 		571B7ECC1D9DAD4B00FCE88E /* GraphLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 571B7ECB1D9DAD4B00FCE88E /* GraphLayout.swift */; };
 		571B7ED21D9DBAC300FCE88E /* CollectionGraphDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 571B7ED11D9DBAC300FCE88E /* CollectionGraphDataSource.swift */; };
+		571F01AC1E2D03ED0053C400 /* PeopleCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 571F01AB1E2D03ED0053C400 /* PeopleCollectionViewCell.swift */; };
 		574F020C1DE393B9001ACC27 /* CollectionGraphDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574F020B1DE393B9001ACC27 /* CollectionGraphDelegate.swift */; };
 		5756122A1DB1098700F94EAF /* LabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 575612291DB1098700F94EAF /* LabelView.swift */; };
 		5756122C1DB109F100F94EAF /* XLabelViewAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5756122B1DB109F100F94EAF /* XLabelViewAttributes.swift */; };
@@ -80,6 +81,7 @@
 		571B7EC91D9D9CF500FCE88E /* GraphCollectionView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GraphCollectionView.xib; sourceTree = "<group>"; };
 		571B7ECB1D9DAD4B00FCE88E /* GraphLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GraphLayout.swift; sourceTree = "<group>"; };
 		571B7ED11D9DBAC300FCE88E /* CollectionGraphDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionGraphDataSource.swift; sourceTree = "<group>"; };
+		571F01AB1E2D03ED0053C400 /* PeopleCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeopleCollectionViewCell.swift; sourceTree = "<group>"; };
 		574F020B1DE393B9001ACC27 /* CollectionGraphDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionGraphDelegate.swift; sourceTree = "<group>"; };
 		575612291DB1098700F94EAF /* LabelView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LabelView.swift; sourceTree = "<group>"; };
 		5756122B1DB109F100F94EAF /* XLabelViewAttributes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XLabelViewAttributes.swift; sourceTree = "<group>"; };
@@ -218,6 +220,7 @@
 				579788F61E297C56000503AF /* ColorHelper.swift */,
 				579788B71E29182D000503AF /* MilesPerDayData.json */,
 				576DD7831DB55BA90084498B /* MyGraphCell.swift */,
+				571F01AB1E2D03ED0053C400 /* PeopleCollectionViewCell.swift */,
 				A7B2B0FF1D958F1500F3A410 /* SecondViewController.swift */,
 				A7B2B1011D958F1500F3A410 /* Main.storyboard */,
 				A7B2B1041D958F1500F3A410 /* Assets.xcassets */,
@@ -427,6 +430,7 @@
 				A7B2B0FC1D958F1500F3A410 /* AppDelegate.swift in Sources */,
 				A7B2B0FE1D958F1500F3A410 /* FirstViewController.swift in Sources */,
 				576DD7841DB55BA90084498B /* MyGraphCell.swift in Sources */,
+				571F01AC1E2D03ED0053C400 /* PeopleCollectionViewCell.swift in Sources */,
 				579788F71E297C56000503AF /* ColorHelper.swift in Sources */,
 				5756122E1DB122C200F94EAF /* Data.swift in Sources */,
 			);

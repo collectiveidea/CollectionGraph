@@ -14,6 +14,7 @@ struct MilesPerDayDatum: GraphDatum {
     // y = miles that date
     var point: CGPoint
     var name: String
+    var imageName: String
 }
 
 class GraphDataService {
@@ -64,13 +65,13 @@ class GraphDataService {
 
         var data = [[MilesPerDayDatum]]()
 
-        for number in 0..<json.count {
+        for sectionNumber in 0..<json.count {
 
             var sectionData = [MilesPerDayDatum]()
 
-            guard let person = json[number]["name"] as? String,
-                let dates = json[number]["date"] as? [String],
-                let runs = json[number]["miles"] as? [Int] else {
+            guard let person = json[sectionNumber]["name"] as? String,
+                let dates = json[sectionNumber]["date"] as? [String],
+                let runs = json[sectionNumber]["miles"] as? [Int] else {
                     assertionFailure("Data parsing Miles Per Day failed")
                     break
             }
@@ -90,10 +91,12 @@ class GraphDataService {
 
                 let yRuns: CGFloat = CGFloat(runs[number])
 
+                let imageName = "user\(sectionNumber + 1)"
+
                 if let dateTimeInterval = dateTimeInterval {
                     let point = CGPoint(x: CGFloat(dateTimeInterval), y: yRuns)
 
-                    sectionData += [MilesPerDayDatum(point: point, name: person)]
+                    sectionData += [MilesPerDayDatum(point: point, name: person, imageName: imageName)]
                 }
             }
 

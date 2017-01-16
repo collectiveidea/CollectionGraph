@@ -28,9 +28,16 @@ class FirstViewController: UIViewController, CollectionGraphViewDelegate, Collec
 
         graph.ySideBarView = SideBarReusableView()
 
+        // Provide a custom cell with a user image property
+        graph.graphCell = PeopleCollectionViewCell()
+
         let service = GraphDataService()
 
         graph.ySteps = 5
+
+        graph.textColor = UIColor(red: 171.0 / 255.0, green: 170.0 / 255.0, blue: 198.0 / 255.0, alpha: 1)
+
+//        graph.yDividerLineColor = UIColor(red: 112.0 / 255.0, green: 110.0 / 255.0, blue: 171.0 / 255.0, alpha: 1)
 
         service.fetchMilesPerDayDatum(completion: { [weak self] data in
 
@@ -40,7 +47,7 @@ class FirstViewController: UIViewController, CollectionGraphViewDelegate, Collec
             self?.graph.xSteps = data[0].count
 
             // Adjusts the width of the graph.  The Cells are spaced out depending on this size
-            self?.graph.graphContentWidth = 600
+            self?.graph.graphContentWidth = 800
 
             // self.graph.scrollToDataPoint(graphDatum: self.graph.graphData![0].last!, withAnimation: true, andScrollPosition: .centeredHorizontally)
 
@@ -62,12 +69,25 @@ class FirstViewController: UIViewController, CollectionGraphViewDelegate, Collec
     // CollectionGraphCellDelegate
 
     func collectionGraph(cell: UICollectionViewCell, forData data: GraphDatum, atSection section: Int) {
-        cell.backgroundColor = colorForSection(section: section)
+
+        if let peopleCell = cell as? PeopleCollectionViewCell {
+
+            if let data = data as? MilesPerDayDatum {
+
+                let imageName = data.imageName
+                peopleCell.image = UIImage(named: imageName) ?? UIImage()
+            }
+
+        }
+
+        cell.backgroundColor = UIColor.white
+        cell.layer.borderWidth = 1
+        cell.layer.borderColor = colorForSection(section: section).cgColor
         cell.layer.cornerRadius = cell.frame.width / 2
     }
 
     func collectionGraph(sizeForGraphCellWithData data: GraphDatum, inSection section: Int) -> CGSize {
-        return CGSize(width: 8, height: 8)
+        return CGSize(width: 20, height: 20)
     }
 
     // CollectionGraphLineDelegate
@@ -112,6 +132,7 @@ class FirstViewController: UIViewController, CollectionGraphViewDelegate, Collec
 
     func collectionGraph(yDividerLine: CAShapeLayer) {
         yDividerLine.lineDashPattern = [1, 8]
+        yDividerLine.strokeColor = UIColor(red: 112.0 / 255.0, green: 110.0 / 255.0, blue: 171.0 / 255.0, alpha: 1).cgColor
         // yDividerLine.lineWidth = 2
     }
 

@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="49e-Tb-3d3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="49e-Tb-3d3">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
-        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -24,36 +23,35 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lKD-sb-K3J" customClass="CollectionGraphView" customModule="CollectionGraph">
-                                <rect key="frame" x="16" y="84" width="343" height="500"/>
-                                <color key="backgroundColor" red="0.9599609375" green="0.9599609375" blue="0.9599609375" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <rect key="frame" x="0.0" y="59" width="375" height="500"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="color" keyPath="textColor">
-                                        <color key="value" red="0.14752725916215198" green="0.56657927194470192" blue="0.75779632568359379" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="value" red="0.66918266508321733" green="0.66581090599883896" blue="0.77707895655714276" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="color" keyPath="yDividerLineColor">
-                                        <color key="value" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="ySteps">
-                                        <integer key="value" value="7"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="xSteps">
-                                        <integer key="value" value="9"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="topInset">
-                                        <real key="value" value="34"/>
+                                        <color key="value" red="0.23529411759999999" green="0.23137254900000001" blue="0.36078431370000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="number" keyPath="leftInset">
                                         <real key="value" value="50"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Miles Ran Per Day" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JNm-ov-drY">
+                                <rect key="frame" x="16" y="35" width="107" height="16"/>
+                                <fontDescription key="fontDescription" type="system" weight="ultraLight" pointSize="13"/>
+                                <color key="textColor" red="0.66918266510000002" green="0.66581090600000004" blue="0.77707895660000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.23529411759999999" green="0.23137254900000001" blue="0.36078431370000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="lKD-sb-K3J" firstAttribute="height" secondItem="tsR-hK-woN" secondAttribute="height" multiplier="0.75" id="2M5-AM-Yrm"/>
-                            <constraint firstItem="lKD-sb-K3J" firstAttribute="trailing" secondItem="tsR-hK-woN" secondAttribute="trailingMargin" id="BW2-CT-JQc"/>
-                            <constraint firstItem="lKD-sb-K3J" firstAttribute="centerY" secondItem="tsR-hK-woN" secondAttribute="centerY" id="Cvv-Te-YHE"/>
-                            <constraint firstItem="lKD-sb-K3J" firstAttribute="leading" secondItem="tsR-hK-woN" secondAttribute="leadingMargin" id="dRH-wn-yyJ"/>
+                            <constraint firstItem="lKD-sb-K3J" firstAttribute="top" secondItem="Ia1-K6-d13" secondAttribute="bottom" constant="39" id="Crp-8e-oSm"/>
+                            <constraint firstAttribute="trailing" secondItem="lKD-sb-K3J" secondAttribute="trailing" id="bSX-te-O60"/>
+                            <constraint firstItem="lKD-sb-K3J" firstAttribute="top" secondItem="JNm-ov-drY" secondAttribute="bottom" constant="8" id="fiY-SK-fj0"/>
+                            <constraint firstItem="lKD-sb-K3J" firstAttribute="leading" secondItem="tsR-hK-woN" secondAttribute="leading" id="jWb-nf-OnL"/>
+                            <constraint firstItem="4ug-Mw-9AY" firstAttribute="top" secondItem="lKD-sb-K3J" secondAttribute="bottom" constant="59" id="wwe-9q-CTz"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="JNm-ov-drY" secondAttribute="leading" id="z59-6G-qsc"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="First" image="first" id="acW-dT-cKf"/>
