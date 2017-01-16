@@ -99,14 +99,14 @@ struct MilesPerDayParser: Parsable {
 //}
 
 struct SmogParser: Parsable {
-    
+
     func parse(json: [[String : Any]]) -> [[GraphDatum]] {
-        
+
         var data = [[SmogData]]()
         var smogData = [SmogData]()
-        
+
         for number in 0..<json.count {
-            
+
             guard
                 let ppm = json[number]["co2"] as? Int,
                 let dateString = json[number]["timestamp"] as? String
@@ -114,23 +114,22 @@ struct SmogParser: Parsable {
                     assertionFailure("Data Parsing Smog Data Failed")
                     break
             }
-            
+
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
             dateFormatter.timeZone = TimeZone(abbreviation: "UTC")
             let date = dateFormatter.date(from: dateString)
             let dateTimeInterval = date?.timeIntervalSince1970
-            
+
             if let dateTimeInterval = dateTimeInterval {
                 let datum = SmogData(point: CGPoint(x: CGFloat(dateTimeInterval), y: CGFloat(ppm)))
-                
+
                 smogData += [datum]
             }
-            
+
         }
         data += [smogData]
         return data
     }
-    
-}
 
+}
