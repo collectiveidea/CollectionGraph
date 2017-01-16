@@ -30,11 +30,14 @@ class FirstViewController: UIViewController, CollectionGraphViewDelegate, Collec
 
         let service = GraphDataService()
 
+        graph.ySteps = 5
+
         service.fetchMilesPerDayDatum(completion: { [weak self] data in
 
             self?.graph.graphData = data
 
-            //self?.graph.xSteps = data[0].count
+            // each set of data has the same amount of data points so we'll just use the count from the first set
+            self?.graph.xSteps = data[0].count
 
             // Adjusts the width of the graph.  The Cells are spaced out depending on this size
             self?.graph.graphContentWidth = 600
@@ -70,8 +73,8 @@ class FirstViewController: UIViewController, CollectionGraphViewDelegate, Collec
     // CollectionGraphLineDelegate
 
     func collectionGraph(connectorLine: GraphLineShapeLayer, withData data: GraphDatum, inSection section: Int) {
-        connectorLine.lineWidth = 2
-        connectorLine.lineDashPattern = [4, 2]
+        // connectorLine.lineWidth = 2
+        // connectorLine.lineDashPattern = [4, 2]
         // connectorLine.straightLines = true
         // connectorLine.lineCap = kCALineCapRound
         connectorLine.strokeColor = colorForSection(section: section).cgColor
@@ -92,7 +95,7 @@ class FirstViewController: UIViewController, CollectionGraphViewDelegate, Collec
         if let timeInterval = timeInterval {
             let date = Date(timeIntervalSince1970: timeInterval)
 
-            let customFormat = DateFormatter.dateFormat(fromTemplate: "MMM d hh:mm", options: 0, locale: Locale(identifier: "us"))!
+            let customFormat = DateFormatter.dateFormat(fromTemplate: "MMM d", options: 0, locale: Locale(identifier: "us"))!
 
             let formatter = DateFormatter()
             formatter.timeZone = TimeZone(abbreviation: "UTC")
