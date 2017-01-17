@@ -59,7 +59,7 @@ public class GraphLayout: UICollectionViewLayout, RangeFinder {
     func createStaticAttributes() {
         // We do the heavy lifting of creating the layout of the cells on a background queue so it doesnt block the UI
         DispatchQueue.global(qos: .background).async {
-            print("This is run on the background queue")
+            print("Create Attributes on BG Queue")
 
             self.staticAttributes.removeAll()
 
@@ -76,7 +76,7 @@ public class GraphLayout: UICollectionViewLayout, RangeFinder {
             }
 
             DispatchQueue.main.async {
-                print("This is run on the main queue, after the previous code in outer block")
+                print("Invalidate On Main Queue")
 
                 self.invalidateLayout()
             }
