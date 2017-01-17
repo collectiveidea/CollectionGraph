@@ -40,6 +40,7 @@ public class GraphLayout: UICollectionViewLayout, RangeFinder {
     private let sideBarZIndex = Int.max - 1
 
     internal var layoutAttributes = [UICollectionViewLayoutAttributes]()
+    internal var staticAttributes = [UICollectionViewLayoutAttributes]()
 
     // MARK: - Layout Setup
 
@@ -49,28 +50,33 @@ public class GraphLayout: UICollectionViewLayout, RangeFinder {
 
     override public func prepare() {
 
-        if layoutAttributes.isEmpty {
-            var tempAttributes = [UICollectionViewLayoutAttributes]()
+        if staticAttributes.isEmpty {
 
-            tempAttributes += layoutAttributesForCell()
-            tempAttributes += layoutAttributesForYDividerLines()
-            tempAttributes += layoutAttributesForYLabels()
-            tempAttributes += layoutAttributesForXLabels()
+            staticAttributes += layoutAttributesForCell()
 
-            if ySideBarView != nil {
-                tempAttributes += layoutAttributesForSideBar()
-            }
+            staticAttributes += layoutAttributesForXLabels()
 
             if displayLineConnectors {
-                tempAttributes += layoutAttributesForLineConnector()
+                staticAttributes += layoutAttributesForLineConnector()
             }
 
             if displayBars {
-                tempAttributes += layoutAttributesForBar()
+                staticAttributes += layoutAttributesForBar()
             }
-
-            layoutAttributes = tempAttributes
         }
+
+        var tempAttributes = [UICollectionViewLayoutAttributes]()
+
+        tempAttributes += layoutAttributesForYDividerLines()
+
+        tempAttributes += layoutAttributesForYLabels()
+
+        if ySideBarView != nil {
+            tempAttributes += layoutAttributesForSideBar()
+        }
+
+        layoutAttributes = tempAttributes + staticAttributes
+
     }
 
     func layoutAttributesForCell() -> [UICollectionViewLayoutAttributes] {

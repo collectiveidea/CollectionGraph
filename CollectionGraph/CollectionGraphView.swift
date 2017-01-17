@@ -92,7 +92,7 @@ public class CollectionGraphView: UIView, UICollectionViewDelegate {
             if let graphData = graphData {
                 layout.graphData = graphData
                 collectionGraphDataSource.graphData = graphData
-                layout.layoutAttributes.removeAll()
+                layout.staticAttributes.removeAll()
                 graphCollectionView.reloadData()
             }
         }
