@@ -39,6 +39,8 @@ public class GraphLayout: UICollectionViewLayout, RangeFinder {
     private let labelsZIndex = Int.max
     private let sideBarZIndex = Int.max - 1
 
+    private let spinner = UIActivityIndicatorView(activityIndicatorStyle: .white)
+
     internal var layoutAttributes = [UICollectionViewLayoutAttributes]()
     internal var staticAttributes = [UICollectionViewLayoutAttributes]()
 
@@ -57,6 +59,9 @@ public class GraphLayout: UICollectionViewLayout, RangeFinder {
     }
 
     func createStaticAttributes() {
+
+        addSpinner()
+
         // We do the heavy lifting of creating the layout of the cells on a background queue so it doesnt block the UI
         DispatchQueue.global(qos: .background).async {
             print("Create Attributes on BG Queue")
@@ -79,13 +84,27 @@ public class GraphLayout: UICollectionViewLayout, RangeFinder {
                 print("Invalidate On Main Queue")
 
                 self.invalidateLayout()
+                self.spinner.removeFromSuperview()
             }
+        }
+    }
+
+    func addSpinner() {
+
+        if let collectionView = collectionView?.superview {
+            collectionView.addSubview(spinner)
+
+            spinner.translatesAutoresizingMaskIntoConstraints = false
+            spinner.centerXAnchor.constraint(equalTo: collectionView.centerXAnchor).isActive = true
+            spinner.centerYAnchor.constraint(equalTo: collectionView.centerYAnchor).isActive = true
+
+            spinner.startAnimating()
         }
     }
 
     override public func prepare() {
         // this is called over and over again so create minimal attributes here.
-        
+
         var tempAttributes = [UICollectionViewLayoutAttributes]()
 
         tempAttributes += self.layoutAttributesForYDividerLines()
