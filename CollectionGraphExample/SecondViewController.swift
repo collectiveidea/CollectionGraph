@@ -69,7 +69,7 @@ class SecondViewController: UIViewController, CollectionGraphCellDelegate, Colle
     }
 
     func collectionGraph(sizeForGraphCellWithData data: GraphDatum, inSection section: Int) -> CGSize {
-        return CGSize(width: 5, height: 5)
+        return CGSize(width: 3, height: 3)
     }
 
     // CollectionGraphLineDelegate
