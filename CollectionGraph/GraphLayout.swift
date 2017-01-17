@@ -45,6 +45,13 @@ public class GraphLayout: UICollectionViewLayout, RangeFinder {
     // MARK: - Layout Setup
 
     public override func shouldInvalidateLayout(forBoundsChange newBounds: CGRect) -> Bool {
+
+        if let oldBounds = collectionView?.bounds {
+            if newBounds.width != oldBounds.width {
+                staticAttributes.removeAll()
+            }
+        }
+
         return true
     }
 
