@@ -48,83 +48,55 @@ public class GraphLayout: UICollectionViewLayout, RangeFinder {
 
         if let oldBounds = collectionView?.bounds {
             if newBounds.width != oldBounds.width {
-                staticAttributes.removeAll()
+                // only re-create the static attributes when we have to.
+                createStaticAttributes()
             }
         }
 
         return true
     }
-    
-    func createAttributes() {
+
+    func createStaticAttributes() {
+        // We do the heavy lifting of creating the layout of the cells on a background queue so it doesnt block the UI
         DispatchQueue.global(qos: .background).async {
             print("This is run on the background queue")
-            
-            if self.staticAttributes.isEmpty {
-                
-                self.staticAttributes += self.layoutAttributesForCell()
-                
-                self.staticAttributes += self.layoutAttributesForXLabels()
-                
-                if self.displayLineConnectors {
-                    self.staticAttributes += self.layoutAttributesForLineConnector()
-                }
-                
-                if self.displayBars {
-                    self.staticAttributes += self.layoutAttributesForBar()
-                }
-            }
-            
-            var tempAttributes = [UICollectionViewLayoutAttributes]()
-            
-            tempAttributes += self.layoutAttributesForYDividerLines()
-            
-            tempAttributes += self.layoutAttributesForYLabels()
-            
-            if self.ySideBarView != nil {
-                tempAttributes += self.layoutAttributesForSideBar()
-            }
-            
-            self.layoutAttributes = tempAttributes + self.staticAttributes
 
-            
+            self.staticAttributes.removeAll()
+
+            self.staticAttributes += self.layoutAttributesForCell()
+
+            self.staticAttributes += self.layoutAttributesForXLabels()
+
+            if self.displayLineConnectors {
+                self.staticAttributes += self.layoutAttributesForLineConnector()
+            }
+
+            if self.displayBars {
+                self.staticAttributes += self.layoutAttributesForBar()
+            }
+
             DispatchQueue.main.async {
                 print("This is run on the main queue, after the previous code in outer block")
-                
+
                 self.invalidateLayout()
             }
         }
     }
 
     override public func prepare() {
+        // this is called over and over again so create minimal attributes here.
         
-        //createAttributes()
+        var tempAttributes = [UICollectionViewLayoutAttributes]()
 
-//        if staticAttributes.isEmpty {
-//
-//            staticAttributes += layoutAttributesForCell()
-//
-//            staticAttributes += layoutAttributesForXLabels()
-//
-//            if displayLineConnectors {
-//                staticAttributes += layoutAttributesForLineConnector()
-//            }
-//
-//            if displayBars {
-//                staticAttributes += layoutAttributesForBar()
-//            }
-//        }
-//
-//        var tempAttributes = [UICollectionViewLayoutAttributes]()
-//
-//        tempAttributes += layoutAttributesForYDividerLines()
-//
-//        tempAttributes += layoutAttributesForYLabels()
-//
-//        if ySideBarView != nil {
-//            tempAttributes += layoutAttributesForSideBar()
-//        }
-//
-//        layoutAttributes = tempAttributes + staticAttributes
+        tempAttributes += self.layoutAttributesForYDividerLines()
+
+        tempAttributes += self.layoutAttributesForYLabels()
+
+        if ySideBarView != nil {
+            tempAttributes += self.layoutAttributesForSideBar()
+        }
+
+        layoutAttributes = tempAttributes + staticAttributes
 
     }
 
