@@ -54,35 +54,77 @@ public class GraphLayout: UICollectionViewLayout, RangeFinder {
 
         return true
     }
+    
+    func createAttributes() {
+        DispatchQueue.global(qos: .background).async {
+            print("This is run on the background queue")
+            
+            if self.staticAttributes.isEmpty {
+                
+                self.staticAttributes += self.layoutAttributesForCell()
+                
+                self.staticAttributes += self.layoutAttributesForXLabels()
+                
+                if self.displayLineConnectors {
+                    self.staticAttributes += self.layoutAttributesForLineConnector()
+                }
+                
+                if self.displayBars {
+                    self.staticAttributes += self.layoutAttributesForBar()
+                }
+            }
+            
+            var tempAttributes = [UICollectionViewLayoutAttributes]()
+            
+            tempAttributes += self.layoutAttributesForYDividerLines()
+            
+            tempAttributes += self.layoutAttributesForYLabels()
+            
+            if self.ySideBarView != nil {
+                tempAttributes += self.layoutAttributesForSideBar()
+            }
+            
+            self.layoutAttributes = tempAttributes + self.staticAttributes
+
+            
+            DispatchQueue.main.async {
+                print("This is run on the main queue, after the previous code in outer block")
+                
+                self.invalidateLayout()
+            }
+        }
+    }
 
     override public func prepare() {
+        
+        //createAttributes()
 
-        if staticAttributes.isEmpty {
-
-            staticAttributes += layoutAttributesForCell()
-
-            staticAttributes += layoutAttributesForXLabels()
-
-            if displayLineConnectors {
-                staticAttributes += layoutAttributesForLineConnector()
-            }
-
-            if displayBars {
-                staticAttributes += layoutAttributesForBar()
-            }
-        }
-
-        var tempAttributes = [UICollectionViewLayoutAttributes]()
-
-        tempAttributes += layoutAttributesForYDividerLines()
-
-        tempAttributes += layoutAttributesForYLabels()
-
-        if ySideBarView != nil {
-            tempAttributes += layoutAttributesForSideBar()
-        }
-
-        layoutAttributes = tempAttributes + staticAttributes
+//        if staticAttributes.isEmpty {
+//
+//            staticAttributes += layoutAttributesForCell()
+//
+//            staticAttributes += layoutAttributesForXLabels()
+//
+//            if displayLineConnectors {
+//                staticAttributes += layoutAttributesForLineConnector()
+//            }
+//
+//            if displayBars {
+//                staticAttributes += layoutAttributesForBar()
+//            }
+//        }
+//
+//        var tempAttributes = [UICollectionViewLayoutAttributes]()
+//
+//        tempAttributes += layoutAttributesForYDividerLines()
+//
+//        tempAttributes += layoutAttributesForYLabels()
+//
+//        if ySideBarView != nil {
+//            tempAttributes += layoutAttributesForSideBar()
+//        }
+//
+//        layoutAttributes = tempAttributes + staticAttributes
 
     }
 
