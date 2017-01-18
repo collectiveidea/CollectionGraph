@@ -16,43 +16,56 @@ class FirstViewController: UIViewController, CollectionGraphViewDelegate, Collec
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        graph.collectionGraphViewDelegate = self
-        graph.collectionGraphCellDelegate = self
-        graph.collectionGraphLineDelegate = self
-        graph.collectionGraphLineFillDelegate = self
-        graph.collectionGraphLabelsDelegate = self
-        graph.collectionGraphYDividerLineDelegate = self
+        setGraphDelegates()
+
+        generalGraphSetup()
+
+        fetchGraphData()
+    }
+
+    func generalGraphSetup() {
 
         // Change the Font of the X and Y labels
         // graph.fontName = "chalkduster"
 
         graph.ySideBarView = SideBarReusableView()
 
-        // Provide a custom cell with a user image property
-        graph.graphCell = PeopleCollectionViewCell()
-
-        let service = GraphDataService()
-
         graph.ySteps = 5
 
         graph.textColor = UIColor(red: 171.0 / 255.0, green: 170.0 / 255.0, blue: 198.0 / 255.0, alpha: 1)
 
-//        graph.yDividerLineColor = UIColor(red: 112.0 / 255.0, green: 110.0 / 255.0, blue: 171.0 / 255.0, alpha: 1)
+        // Provide a custom cell with a user image property
+        graph.graphCell = PeopleCollectionViewCell()
+    }
 
-        service.fetchMilesPerDayDatum(completion: { [weak self] data in
+    func setGraphDelegates() {
 
-            self?.graph.graphData = data
+        graph.collectionGraphCellDelegate = self
+        graph.collectionGraphLineDelegate = self
+        graph.collectionGraphLineFillDelegate = self
+        graph.collectionGraphLabelsDelegate = self
+        graph.collectionGraphYDividerLineDelegate = self
+
+    }
+
+    func fetchGraphData() {
+
+        let parser = MilesPerDayParser()
+
+        let service = DataService(parser: parser)
+
+        service.fetchData(fromFile: "MilesPerDayData") { (data) in
+            self.graph.graphData = data
 
             // each set of data has the same amount of data points so we'll just use the count from the first set
-            self?.graph.xSteps = data[0].count
+            self.graph.xSteps = data[0].count
 
             // Adjusts the width of the graph.  The Cells are spaced out depending on this size
-            self?.graph.graphContentWidth = 800
-
-            // self.graph.scrollToDataPoint(graphDatum: self.graph.graphData![0].last!, withAnimation: true, andScrollPosition: .centeredHorizontally)
+            self.graph.graphContentWidth = 800
 
             // self.graph.contentOffset = CGPoint(x: 30, y: self.graph.contentOffset.y)
-        })
+        }
+
     }
 
     // MARK: - Graph Delegates
@@ -115,7 +128,7 @@ class FirstViewController: UIViewController, CollectionGraphViewDelegate, Collec
         if let timeInterval = timeInterval {
             let date = Date(timeIntervalSince1970: timeInterval)
 
-            let customFormat = DateFormatter.dateFormat(fromTemplate: "MMM d", options: 0, locale: Locale(identifier: "us"))!
+            let customFormat = DateFormatter.dateFormat(fromTemplate: "MMM d hh:mm", options: 0, locale: Locale(identifier: "us"))!
 
             let formatter = DateFormatter()
             formatter.timeZone = TimeZone(abbreviation: "UTC")

@@ -23,7 +23,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lKD-sb-K3J" customClass="CollectionGraphView" customModule="CollectionGraph">
-                                <rect key="frame" x="0.0" y="59" width="375" height="500"/>
+                                <rect key="frame" x="0.0" y="60" width="375" height="498"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="color" keyPath="textColor">
@@ -38,7 +38,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Miles Ran Per Day" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JNm-ov-drY">
-                                <rect key="frame" x="16" y="35" width="107" height="16"/>
+                                <rect key="frame" x="16" y="36" width="107" height="16"/>
                                 <fontDescription key="fontDescription" type="system" weight="ultraLight" pointSize="13"/>
                                 <color key="textColor" red="0.66918266510000002" green="0.66581090600000004" blue="0.77707895660000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -46,11 +46,11 @@
                         </subviews>
                         <color key="backgroundColor" red="0.23529411759999999" green="0.23137254900000001" blue="0.36078431370000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="lKD-sb-K3J" firstAttribute="top" secondItem="Ia1-K6-d13" secondAttribute="bottom" constant="39" id="Crp-8e-oSm"/>
+                            <constraint firstItem="lKD-sb-K3J" firstAttribute="top" secondItem="Ia1-K6-d13" secondAttribute="bottom" constant="40" id="Crp-8e-oSm"/>
                             <constraint firstAttribute="trailing" secondItem="lKD-sb-K3J" secondAttribute="trailing" id="bSX-te-O60"/>
                             <constraint firstItem="lKD-sb-K3J" firstAttribute="top" secondItem="JNm-ov-drY" secondAttribute="bottom" constant="8" id="fiY-SK-fj0"/>
                             <constraint firstItem="lKD-sb-K3J" firstAttribute="leading" secondItem="tsR-hK-woN" secondAttribute="leading" id="jWb-nf-OnL"/>
-                            <constraint firstItem="4ug-Mw-9AY" firstAttribute="top" secondItem="lKD-sb-K3J" secondAttribute="bottom" constant="59" id="wwe-9q-CTz"/>
+                            <constraint firstItem="4ug-Mw-9AY" firstAttribute="top" secondItem="lKD-sb-K3J" secondAttribute="bottom" constant="60" id="wwe-9q-CTz"/>
                             <constraint firstAttribute="leadingMargin" secondItem="JNm-ov-drY" secondAttribute="leading" id="z59-6G-qsc"/>
                         </constraints>
                     </view>
@@ -75,33 +75,35 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" text="Second View" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="zEq-FU-wV5">
-                                <rect key="frame" x="83" y="313" width="209.5" height="41.5"/>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="36"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lots of Data Graph" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2fY-fh-raV">
+                                <rect key="frame" x="16" y="36" width="113" height="16"/>
+                                <fontDescription key="fontDescription" type="system" weight="ultraLight" pointSize="13"/>
+                                <color key="textColor" red="0.66918266510000002" green="0.66581090600000004" blue="0.77707895660000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loaded by SecondViewController" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NDk-cv-Gan">
-                                <rect key="frame" x="80" y="362.5" width="215" height="17"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6q2-VW-qTa" customClass="CollectionGraphView" customModule="CollectionGraph">
+                                <rect key="frame" x="0.0" y="60" width="375" height="498"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            </view>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.23529411759999999" green="0.23137254900000001" blue="0.36078431370000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="NDk-cv-Gan" firstAttribute="top" secondItem="zEq-FU-wV5" secondAttribute="bottom" constant="8" symbolic="YES" id="Day-4N-Vmt"/>
-                            <constraint firstItem="NDk-cv-Gan" firstAttribute="centerX" secondItem="zEq-FU-wV5" secondAttribute="centerX" id="JgO-Fn-dHn"/>
-                            <constraint firstAttribute="centerX" secondItem="zEq-FU-wV5" secondAttribute="centerX" id="qqM-NS-xev"/>
-                            <constraint firstAttribute="centerY" secondItem="zEq-FU-wV5" secondAttribute="centerY" id="qzY-Ky-pLD"/>
+                            <constraint firstItem="Djb-ko-YwX" firstAttribute="top" secondItem="6q2-VW-qTa" secondAttribute="bottom" constant="60" id="2Jj-TG-7ns"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="2fY-fh-raV" secondAttribute="leading" id="7Ed-jq-5mp"/>
+                            <constraint firstItem="6q2-VW-qTa" firstAttribute="top" secondItem="2fY-fh-raV" secondAttribute="bottom" constant="8" id="Fb5-3C-o28"/>
+                            <constraint firstItem="6q2-VW-qTa" firstAttribute="leading" secondItem="QS5-Rx-YEW" secondAttribute="leading" id="f6q-PS-giw"/>
+                            <constraint firstItem="6q2-VW-qTa" firstAttribute="top" secondItem="L7p-HK-0SC" secondAttribute="bottom" constant="40" id="rgq-dY-tK4"/>
+                            <constraint firstAttribute="trailing" secondItem="6q2-VW-qTa" secondAttribute="trailing" id="tFx-Ng-opN"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Second" image="second" id="cPa-gy-q4n"/>
+                    <connections>
+                        <outlet property="graph" destination="6q2-VW-qTa" id="Sdp-UI-bcu"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Nw-L8-lE0" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="750" y="360"/>
+            <point key="canvasLocation" x="749.60000000000002" y="359.37031484257875"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="yl2-sM-qoP">

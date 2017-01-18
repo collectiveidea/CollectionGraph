@@ -93,6 +93,7 @@ public class CollectionGraphView: UIView, UICollectionViewDelegate {
                 layout.graphData = graphData
                 collectionGraphDataSource.graphData = graphData
                 graphCollectionView.reloadData()
+                layout.createStaticAttributes()
             }
         }
     }

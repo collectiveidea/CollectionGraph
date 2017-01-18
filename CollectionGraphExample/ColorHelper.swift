@@ -13,7 +13,7 @@ protocol ColorHelpers {
 }
 
 extension ColorHelpers {
-    
+
     // http://www.colorhunt.co/c/43813
 
     func colorForSection(section: Int) -> UIColor {

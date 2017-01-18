@@ -39,35 +39,96 @@ public class GraphLayout: UICollectionViewLayout, RangeFinder {
     private let labelsZIndex = Int.max
     private let sideBarZIndex = Int.max - 1
 
+    private let spinnerContainer = UIView(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
+
     internal var layoutAttributes = [UICollectionViewLayoutAttributes]()
+    internal var staticAttributes = [UICollectionViewLayoutAttributes]()
 
     // MARK: - Layout Setup
 
     public override func shouldInvalidateLayout(forBoundsChange newBounds: CGRect) -> Bool {
+
+        if let oldBounds = collectionView?.bounds {
+            if newBounds.width != oldBounds.width {
+                // only re-create the static attributes when we have to.
+                createStaticAttributes()
+            }
+        }
+
         return true
     }
 
+    func createStaticAttributes() {
+
+        addSpinner()
+
+        // We do the heavy lifting of creating the layout of the cells on a background queue so it doesnt block the UI
+        DispatchQueue.global(qos: .background).async {
+            print("Create Attributes on BG Queue")
+
+            self.staticAttributes.removeAll()
+
+            self.staticAttributes += self.layoutAttributesForCell()
+
+            self.staticAttributes += self.layoutAttributesForXLabels()
+
+            if self.displayLineConnectors {
+                self.staticAttributes += self.layoutAttributesForLineConnector()
+            }
+
+            if self.displayBars {
+                self.staticAttributes += self.layoutAttributesForBar()
+            }
+
+            DispatchQueue.main.async {
+                print("Invalidate On Main Queue")
+
+                self.invalidateLayout()
+                self.spinnerContainer.removeFromSuperview()
+            }
+        }
+    }
+
+    func addSpinner() {
+
+        if let collectionView = collectionView?.superview {
+
+            spinnerContainer.backgroundColor = UIColor.white.withAlphaComponent(0.8)
+            spinnerContainer.layer.cornerRadius = 3
+            collectionView.addSubview(spinnerContainer)
+
+            let spinner = UIActivityIndicatorView(activityIndicatorStyle: .gray)
+            spinnerContainer.addSubview(spinner)
+
+            spinner.translatesAutoresizingMaskIntoConstraints = false
+            spinner.centerXAnchor.constraint(equalTo: spinnerContainer.centerXAnchor).isActive = true
+            spinner.centerYAnchor.constraint(equalTo: spinnerContainer.centerYAnchor).isActive = true
+
+            spinnerContainer.translatesAutoresizingMaskIntoConstraints = false
+            spinnerContainer.centerXAnchor.constraint(equalTo: collectionView.centerXAnchor).isActive = true
+            spinnerContainer.centerYAnchor.constraint(equalTo: collectionView.centerYAnchor).isActive = true
+            spinnerContainer.widthAnchor.constraint(equalToConstant: 35).isActive = true
+            spinnerContainer.heightAnchor.constraint(equalToConstant: 35).isActive = true
+
+            spinner.startAnimating()
+        }
+    }
+
     override public func prepare() {
+        // this is called over and over again so create minimal attributes here.
+
         var tempAttributes = [UICollectionViewLayoutAttributes]()
 
-        tempAttributes += layoutAttributesForCell()
-        tempAttributes += layoutAttributesForYDividerLines()
-        tempAttributes += layoutAttributesForYLabels()
-        tempAttributes += layoutAttributesForXLabels()
+        tempAttributes += self.layoutAttributesForYDividerLines()
+
+        tempAttributes += self.layoutAttributesForYLabels()
 
         if ySideBarView != nil {
-            tempAttributes += layoutAttributesForSideBar()
+            tempAttributes += self.layoutAttributesForSideBar()
         }
 
-        if displayLineConnectors {
-            tempAttributes += layoutAttributesForLineConnector()
-        }
+        layoutAttributes = tempAttributes + staticAttributes
 
-        if displayBars {
-            tempAttributes += layoutAttributesForBar()
-        }
-
-        layoutAttributes = tempAttributes
     }
 
     func layoutAttributesForCell() -> [UICollectionViewLayoutAttributes] {
