@@ -10,6 +10,18 @@ import UIKit
 
 public class GraphLineShapeLayer: CAShapeLayer {
     public var straightLines: Bool = false
+
+    public override var strokeColor: CGColor? {
+        didSet {
+            removeAllAnimations()
+            CATransaction.begin()
+            CATransaction.setDisableActions(true)
+
+            super.strokeColor = strokeColor
+
+            CATransaction.commit()
+        }
+    }
 }
 
 class LineConnectorView: UICollectionReusableView {
@@ -80,6 +92,9 @@ class LineConnectorView: UICollectionReusableView {
     func fillLineWithColor() {
         if let fillColor = fillColor {
 
+            CATransaction.begin()
+            CATransaction.setDisableActions(true)
+
             var path = UIBezierPath()
 
             if let bezPath = connectingLine() {
@@ -95,6 +110,8 @@ class LineConnectorView: UICollectionReusableView {
             fillShape.path = path.cgPath
 
             fillShape.fillColor = fillColor.cgColor
+
+            CATransaction.commit()
         }
     }
 
