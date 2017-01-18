@@ -394,7 +394,7 @@ public class GraphLayout: UICollectionViewLayout, RangeFinder {
 
                 attributes.points = (first: p1, second: p2)
 
-                attributes.zIndex = indexPath.item
+                attributes.zIndex = indexPath.section
 
                 return attributes
             }
