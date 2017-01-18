@@ -107,6 +107,8 @@ class CollectionGraphDataSource: NSObject, UICollectionViewDataSource, RangeFind
 
     func yDividerViewSetup(yDividerView: UICollectionReusableView) {
         if let yDividerView = yDividerView as? YDividerLineView {
+            yDividerView.line.strokeColor = yDividerLineColor.cgColor
+            
             collectionGraphYDividerLineDelegate?.collectionGraph(yDividerLine: yDividerView.line)
         }
     }
