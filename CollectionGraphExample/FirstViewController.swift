@@ -36,6 +36,9 @@ class FirstViewController: UIViewController, CollectionGraphViewDelegate, Collec
 
         // Provide a custom cell with a user image property
         graph.graphCell = PeopleCollectionViewCell()
+
+        graph.yDividerLineColor = UIColor(red: 112.0 / 255.0, green: 110.0 / 255.0, blue: 171.0 / 255.0, alpha: 1)
+
     }
 
     func setGraphDelegates() {
@@ -145,7 +148,10 @@ class FirstViewController: UIViewController, CollectionGraphViewDelegate, Collec
 
     func collectionGraph(yDividerLine: CAShapeLayer) {
         yDividerLine.lineDashPattern = [1, 8]
-        yDividerLine.strokeColor = UIColor(red: 112.0 / 255.0, green: 110.0 / 255.0, blue: 171.0 / 255.0, alpha: 1).cgColor
+
+        // this will override the graphs yDividerLineColor property
+        // yDividerLine.strokeColor = UIColor.white.cgColor
+
         // yDividerLine.lineWidth = 2
     }
 

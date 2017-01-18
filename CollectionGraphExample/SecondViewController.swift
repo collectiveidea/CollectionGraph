@@ -35,6 +35,8 @@ class SecondViewController: UIViewController, CollectionGraphCellDelegate, Colle
         graph.graphContentWidth = 9000
 
         graph.textColor = UIColor(red: 171.0 / 255.0, green: 170.0 / 255.0, blue: 198.0 / 255.0, alpha: 1)
+        
+        graph.yDividerLineColor = UIColor(red: 112.0 / 255.0, green: 110.0 / 255.0, blue: 171.0 / 255.0, alpha: 1)
     }
 
     func setGraphDelegates() {
@@ -43,7 +45,6 @@ class SecondViewController: UIViewController, CollectionGraphCellDelegate, Colle
         graph.collectionGraphLineDelegate = self
         graph.collectionGraphLabelsDelegate = self
         graph.collectionGraphYDividerLineDelegate = self
-
     }
 
     func fetchGraphData() {
@@ -55,7 +56,6 @@ class SecondViewController: UIViewController, CollectionGraphCellDelegate, Colle
         service.fetchData(fromFile: "ppm_sample_data") { (data) in
             self.graph.graphData = data
         }
-
     }
 
     // MARK: - Graph Delegates
@@ -103,7 +103,6 @@ class SecondViewController: UIViewController, CollectionGraphCellDelegate, Colle
 
     func collectionGraph(yDividerLine: CAShapeLayer) {
         yDividerLine.lineDashPattern = [1, 8]
-        yDividerLine.strokeColor = UIColor(red: 112.0 / 255.0, green: 110.0 / 255.0, blue: 171.0 / 255.0, alpha: 1).cgColor
     }
 
 }
