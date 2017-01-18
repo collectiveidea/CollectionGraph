@@ -71,7 +71,7 @@ Using the provided Delegate Callbacks, you can set your `graphCell` properties f
 
 This is great for setting images or labels that change depending on the data.
 
-[Gif of Miles Ran](https://github.com/collectiveidea/CollectionGraph/ReadmeImages/MilesRanGraph.gif)
+![Gif of Miles Ran](/ReadmeImages/MilesRanGraph.gif)
 
 #### Cell Delegate Callbacks
 
@@ -185,7 +185,7 @@ func collectionGraph(barView: UICollectionReusableView, withData data: GraphDatu
 Used for line graphs.  These are the lines that connect the `graphCells`.  Can be used with bar graphs as well.
 
 
-[Gif of line Graph](https://github.com/collectiveidea/CollectionGraph/ReadmeImages/LotsOfDataGraph.gif)
+![Gif of line Graph](/ReadmeImages/LotsOfDataGraph.gif)
 
 #### Customizing a Connector Line with Delegate Callbacks
 To display connector lines, you need to use the delegate callback and set the line's properties.
