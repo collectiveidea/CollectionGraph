@@ -75,6 +75,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lots of Data Graph" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2fY-fh-raV">
+                                <rect key="frame" x="16" y="36" width="113" height="16"/>
+                                <fontDescription key="fontDescription" type="system" weight="ultraLight" pointSize="13"/>
+                                <color key="textColor" red="0.66918266510000002" green="0.66581090600000004" blue="0.77707895660000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6q2-VW-qTa" customClass="CollectionGraphView" customModule="CollectionGraph">
                                 <rect key="frame" x="0.0" y="60" width="375" height="498"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -83,6 +89,8 @@
                         <color key="backgroundColor" red="0.23529411759999999" green="0.23137254900000001" blue="0.36078431370000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="Djb-ko-YwX" firstAttribute="top" secondItem="6q2-VW-qTa" secondAttribute="bottom" constant="60" id="2Jj-TG-7ns"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="2fY-fh-raV" secondAttribute="leading" id="7Ed-jq-5mp"/>
+                            <constraint firstItem="6q2-VW-qTa" firstAttribute="top" secondItem="2fY-fh-raV" secondAttribute="bottom" constant="8" id="Fb5-3C-o28"/>
                             <constraint firstItem="6q2-VW-qTa" firstAttribute="leading" secondItem="QS5-Rx-YEW" secondAttribute="leading" id="f6q-PS-giw"/>
                             <constraint firstItem="6q2-VW-qTa" firstAttribute="top" secondItem="L7p-HK-0SC" secondAttribute="bottom" constant="40" id="rgq-dY-tK4"/>
                             <constraint firstAttribute="trailing" secondItem="6q2-VW-qTa" secondAttribute="trailing" id="tFx-Ng-opN"/>

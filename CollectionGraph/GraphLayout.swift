@@ -39,7 +39,7 @@ public class GraphLayout: UICollectionViewLayout, RangeFinder {
     private let labelsZIndex = Int.max
     private let sideBarZIndex = Int.max - 1
 
-    private let spinner = UIActivityIndicatorView(activityIndicatorStyle: .white)
+    private let spinnerContainer = UIView(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
 
     internal var layoutAttributes = [UICollectionViewLayoutAttributes]()
     internal var staticAttributes = [UICollectionViewLayoutAttributes]()
@@ -84,7 +84,7 @@ public class GraphLayout: UICollectionViewLayout, RangeFinder {
                 print("Invalidate On Main Queue")
 
                 self.invalidateLayout()
-                self.spinner.removeFromSuperview()
+                self.spinnerContainer.removeFromSuperview()
             }
         }
     }
@@ -92,11 +92,23 @@ public class GraphLayout: UICollectionViewLayout, RangeFinder {
     func addSpinner() {
 
         if let collectionView = collectionView?.superview {
-            collectionView.addSubview(spinner)
+
+            spinnerContainer.backgroundColor = UIColor.white.withAlphaComponent(0.8)
+            spinnerContainer.layer.cornerRadius = 3
+            collectionView.addSubview(spinnerContainer)
+
+            let spinner = UIActivityIndicatorView(activityIndicatorStyle: .gray)
+            spinnerContainer.addSubview(spinner)
 
             spinner.translatesAutoresizingMaskIntoConstraints = false
-            spinner.centerXAnchor.constraint(equalTo: collectionView.centerXAnchor).isActive = true
-            spinner.centerYAnchor.constraint(equalTo: collectionView.centerYAnchor).isActive = true
+            spinner.centerXAnchor.constraint(equalTo: spinnerContainer.centerXAnchor).isActive = true
+            spinner.centerYAnchor.constraint(equalTo: spinnerContainer.centerYAnchor).isActive = true
+
+            spinnerContainer.translatesAutoresizingMaskIntoConstraints = false
+            spinnerContainer.centerXAnchor.constraint(equalTo: collectionView.centerXAnchor).isActive = true
+            spinnerContainer.centerYAnchor.constraint(equalTo: collectionView.centerYAnchor).isActive = true
+            spinnerContainer.widthAnchor.constraint(equalToConstant: 35).isActive = true
+            spinnerContainer.heightAnchor.constraint(equalToConstant: 35).isActive = true
 
             spinner.startAnimating()
         }
