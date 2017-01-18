@@ -63,8 +63,6 @@ class FirstViewController: UIViewController, CollectionGraphViewDelegate, Collec
             // Adjusts the width of the graph.  The Cells are spaced out depending on this size
             self.graph.graphContentWidth = 800
 
-            // self.graph.scrollToDataPoint(graphDatum: self.graph.graphData![0].last!, withAnimation: true, andScrollPosition: .centeredHorizontally)
-
             // self.graph.contentOffset = CGPoint(x: 30, y: self.graph.contentOffset.y)
         }
 
