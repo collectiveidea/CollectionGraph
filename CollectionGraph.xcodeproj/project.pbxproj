@@ -11,6 +11,7 @@
 		570379C31DB0006B00A88C6B /* YDividerLineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570379C21DB0006B00A88C6B /* YDividerLineView.swift */; };
 		570379C81DB02C5700A88C6B /* LineConnectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570379C71DB02C5700A88C6B /* LineConnectorView.swift */; };
 		570379CA1DB02CB500A88C6B /* LineConnectorAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570379C91DB02CB500A88C6B /* LineConnectorAttributes.swift */; };
+		5715599D1E315DFE00D8E0AA /* ThirdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5715599C1E315DFE00D8E0AA /* ThirdViewController.swift */; };
 		5717848E1D95A2B20074879A /* CollectionGraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5717848D1D95A2B20074879A /* CollectionGraphView.swift */; };
 		5717848F1D95A3540074879A /* CollectionGraph.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57EA98971D958C82000D6C55 /* CollectionGraph.framework */; };
 		571784901D95A3540074879A /* CollectionGraph.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 57EA98971D958C82000D6C55 /* CollectionGraph.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -79,6 +80,7 @@
 		570379C21DB0006B00A88C6B /* YDividerLineView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YDividerLineView.swift; sourceTree = "<group>"; };
 		570379C71DB02C5700A88C6B /* LineConnectorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LineConnectorView.swift; sourceTree = "<group>"; };
 		570379C91DB02CB500A88C6B /* LineConnectorAttributes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LineConnectorAttributes.swift; sourceTree = "<group>"; };
+		5715599C1E315DFE00D8E0AA /* ThirdViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThirdViewController.swift; sourceTree = "<group>"; };
 		5717848D1D95A2B20074879A /* CollectionGraphView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionGraphView.swift; sourceTree = "<group>"; };
 		571B7EC71D9D9AA000FCE88E /* XibLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XibLoader.swift; sourceTree = "<group>"; };
 		571B7EC91D9D9CF500FCE88E /* GraphCollectionView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GraphCollectionView.xib; sourceTree = "<group>"; };
@@ -231,6 +233,7 @@
 				576DD7831DB55BA90084498B /* MyGraphCell.swift */,
 				571F01AB1E2D03ED0053C400 /* PeopleCollectionViewCell.swift */,
 				A7B2B0FF1D958F1500F3A410 /* SecondViewController.swift */,
+				5715599C1E315DFE00D8E0AA /* ThirdViewController.swift */,
 				A7B2B1011D958F1500F3A410 /* Main.storyboard */,
 				A7B2B1041D958F1500F3A410 /* Assets.xcassets */,
 				A7B2B1061D958F1500F3A410 /* LaunchScreen.storyboard */,
@@ -443,6 +446,7 @@
 				A7B2B0FE1D958F1500F3A410 /* FirstViewController.swift in Sources */,
 				576DD7841DB55BA90084498B /* MyGraphCell.swift in Sources */,
 				571F01AC1E2D03ED0053C400 /* PeopleCollectionViewCell.swift in Sources */,
+				5715599D1E315DFE00D8E0AA /* ThirdViewController.swift in Sources */,
 				579788F71E297C56000503AF /* ColorHelper.swift in Sources */,
 				571F01B21E2D5FE20053C400 /* Parsers.swift in Sources */,
 			);
