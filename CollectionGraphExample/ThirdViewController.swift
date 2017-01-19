@@ -9,7 +9,7 @@
 import UIKit
 import CollectionGraph
 
-class ThirdViewController: UIViewController, CollectionGraphCellDelegate, CollectionGraphLabelsDelegate, CollectionGraphYDividerLineDelegate, ColorHelpers {
+class ThirdViewController: UIViewController, CollectionGraphCellDelegate, CollectionGraphLabelsDelegate, CollectionGraphBarDelegate, ColorHelpers {
 
     @IBOutlet weak var graph: CollectionGraphView!
 
@@ -40,7 +40,7 @@ class ThirdViewController: UIViewController, CollectionGraphCellDelegate, Collec
     func setGraphDelegates() {
         graph.collectionGraphCellDelegate = self
         graph.collectionGraphLabelsDelegate = self
-        graph.collectionGraphYDividerLineDelegate = self
+        graph.collectionGraphBarDelegate = self
     }
 
     func fetchGraphData() {
@@ -57,7 +57,6 @@ class ThirdViewController: UIViewController, CollectionGraphCellDelegate, Collec
 
             // Adjusts the width of the graph.  The Cells are spaced out depending on this size
             self.graph.graphContentWidth = 400
-
         }
 
     }
@@ -100,12 +99,14 @@ class ThirdViewController: UIViewController, CollectionGraphCellDelegate, Collec
         return currentText
     }
 
-    // CollectionGraphYDividerLineDelegate
+    // CollectionGraphBarDelegate
 
-    func collectionGraph(yDividerLine: CAShapeLayer) {
-        yDividerLine.lineDashPattern = [1, 10]
+    func collectionGraph(widthForBarViewWithData data: GraphDatum, inSection section: Int) -> CGFloat {
+        return 10
+    }
 
-        yDividerLine.lineWidth = 4
+    func collectionGraph(barView: UICollectionReusableView, withData data: GraphDatum, inSection section: Int) {
+        barView.backgroundColor = colorForSection(section: section)
     }
 
 }
