@@ -22,3 +22,11 @@ struct MilesPerDayDatum: GraphDatum {
     var name: String
     var imageName: String
 }
+
+struct TotalMilesRanDatum: GraphDatum {
+    // x = Order Number
+    // y = Total miles that date
+    var point: CGPoint
+    var name: String
+    var imageName: String
+}
