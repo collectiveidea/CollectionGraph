@@ -35,7 +35,7 @@ class SecondViewController: UIViewController, CollectionGraphCellDelegate, Colle
         graph.graphContentWidth = 9000
 
         graph.textColor = UIColor(red: 171.0 / 255.0, green: 170.0 / 255.0, blue: 198.0 / 255.0, alpha: 1)
-        
+
         graph.yDividerLineColor = UIColor(red: 112.0 / 255.0, green: 110.0 / 255.0, blue: 171.0 / 255.0, alpha: 1)
     }
 
