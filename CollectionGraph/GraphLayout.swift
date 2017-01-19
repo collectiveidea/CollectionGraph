@@ -27,6 +27,8 @@ public class GraphLayout: UICollectionViewLayout, RangeFinder {
 
     internal var cellSize: CGSize = CGSize(width: 3.0, height: 3.0)
 
+    private var backgroundQueueCount = 0
+
     private var yIncrements: CGFloat {
         get {
             if let graphData = graphData {
@@ -60,31 +62,42 @@ public class GraphLayout: UICollectionViewLayout, RangeFinder {
 
     func createStaticAttributes() {
 
-        addSpinner()
+        if backgroundQueueCount == 0 {
+            addSpinner()
+        }
+
+        backgroundQueueCount += 1
+
+        self.staticAttributes.removeAll()
 
         // We do the heavy lifting of creating the layout of the cells on a background queue so it doesnt block the UI
         DispatchQueue.global(qos: .background).async {
             print("Create Attributes on BG Queue")
+            var tempAttributes = [UICollectionViewLayoutAttributes]()
 
-            self.staticAttributes.removeAll()
+            tempAttributes += self.layoutAttributesForCell()
 
-            self.staticAttributes += self.layoutAttributesForCell()
-
-            self.staticAttributes += self.layoutAttributesForXLabels()
+            tempAttributes += self.layoutAttributesForXLabels()
 
             if self.displayLineConnectors {
-                self.staticAttributes += self.layoutAttributesForLineConnector()
+                tempAttributes += self.layoutAttributesForLineConnector()
             }
 
             if self.displayBars {
-                self.staticAttributes += self.layoutAttributesForBar()
+                tempAttributes += self.layoutAttributesForBar()
             }
 
             DispatchQueue.main.async {
-                print("Invalidate On Main Queue")
+                self.backgroundQueueCount -= 1
 
-                self.invalidateLayout()
-                self.spinnerContainer.removeFromSuperview()
+                if self.backgroundQueueCount == 0 {
+                    print("Invalidate On Main Queue")
+
+                    self.staticAttributes = tempAttributes
+
+                    self.invalidateLayout()
+                    self.spinnerContainer.removeFromSuperview()
+                }
             }
         }
     }
