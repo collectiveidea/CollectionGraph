@@ -41,6 +41,10 @@ class BarReusableView: UICollectionReusableView {
     override func apply(_ layoutAttributes: UICollectionViewLayoutAttributes) {
         super.apply(layoutAttributes)
 
+        // It might be important make adjustment to any CALayers added in case the frame changes.
+        // If the gradient's frame isnt adjusted, it will still have its old size upon screen rotation.
+        // Actions are disabled to prevent animation from taking place.
+
         CATransaction.begin()
         CATransaction.setDisableActions(true)
 
