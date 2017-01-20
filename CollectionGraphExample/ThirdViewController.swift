@@ -9,7 +9,7 @@
 import UIKit
 import CollectionGraph
 
-class ThirdViewController: UIViewController, CollectionGraphCellDelegate, CollectionGraphLabelsDelegate, CollectionGraphBarDelegate, ColorHelpers {
+class ThirdViewController: UIViewController, CollectionGraphCellDelegate, CollectionGraphLabelsDelegate, CollectionGraphBarDelegate, CollectionGraphYDividerLineDelegate, ColorHelpers {
 
     @IBOutlet weak var graph: CollectionGraphView!
 
@@ -44,6 +44,7 @@ class ThirdViewController: UIViewController, CollectionGraphCellDelegate, Collec
         graph.collectionGraphCellDelegate = self
         graph.collectionGraphLabelsDelegate = self
         graph.collectionGraphBarDelegate = self
+        graph.collectionGraphYDividerLineDelegate = self
     }
 
     func fetchGraphData() {
@@ -82,7 +83,10 @@ class ThirdViewController: UIViewController, CollectionGraphCellDelegate, Collec
 
         cell.backgroundColor = UIColor.white
         cell.layer.borderWidth = 2
-        cell.layer.borderColor = colorForSection(section: indexPath.section).cgColor
+
+        let colorNumber = indexPath.item % 4
+
+        cell.layer.borderColor = colorForSection(section: colorNumber).cgColor
         cell.layer.cornerRadius = 5
     }
 
@@ -112,12 +116,21 @@ class ThirdViewController: UIViewController, CollectionGraphCellDelegate, Collec
     func collectionGraph(barView: UICollectionReusableView, withData data: GraphDatum, atIndexPath indexPath: IndexPath) {
         if let barView = barView as? BarReusableView {
 
-            let colorNumber = item % 4
+            let colorNumber = indexPath.item % 4
 
             let color1 = colorForSection(section: colorNumber).cgColor
             let color2 = UIColor(red: 112.0 / 255.0, green: 110.0 / 255.0, blue: 171.0 / 255.0, alpha: 1).cgColor
             barView.colors = [color1, color2]
         }
+    }
+
+    // CollectionGraphYDividerLineDelegate
+
+    func collectionGraph(yDividerLine: CAShapeLayer, atItem item: Int) {
+
+        let length = NSNumber(integerLiteral: item)
+
+        yDividerLine.lineDashPattern = [length, 8]
     }
 
 }
