@@ -76,14 +76,14 @@ class ThirdViewController: UIViewController, CollectionGraphCellDelegate, Collec
             if let data = data as? TotalMilesRanDatum {
 
                 let imageName = data.imageName
-                peopleCell.image = UIImage(named: imageName) ?? UIImage()
+                peopleCell.image = UIImage(named: imageName) ?? UIImage(named: "DefaultUser")!
             }
         }
 
         cell.backgroundColor = UIColor.white
         cell.layer.borderWidth = 2
         cell.layer.borderColor = colorForSection(section: section).cgColor
-        cell.layer.cornerRadius = 3
+        cell.layer.cornerRadius = 5
     }
 
     func collectionGraph(sizeForGraphCellWithData data: GraphDatum, inSection section: Int) -> CGSize {
@@ -116,7 +116,7 @@ class ThirdViewController: UIViewController, CollectionGraphCellDelegate, Collec
             barView.colors = [color1, color2]
         }
 
-        barView.backgroundColor = colorForSection(section: section)
+        // barView.backgroundColor = colorForSection(section: section)
     }
 
 }

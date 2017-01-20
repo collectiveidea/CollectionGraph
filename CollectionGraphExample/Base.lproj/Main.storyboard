@@ -117,6 +117,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total Miles Ran" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f3Y-A0-Lq0">
+                                <rect key="frame" x="16" y="36" width="90" height="16"/>
+                                <fontDescription key="fontDescription" type="system" weight="ultraLight" pointSize="13"/>
+                                <color key="textColor" red="0.66918266510000002" green="0.66581090600000004" blue="0.77707895660000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eXg-uU-3A7" customClass="CollectionGraphView" customModule="CollectionGraph">
                                 <rect key="frame" x="0.0" y="60" width="375" height="498"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -135,8 +141,10 @@
                         </subviews>
                         <color key="backgroundColor" red="0.23529411759999999" green="0.23137254900000001" blue="0.36078431370000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstAttribute="leadingMargin" secondItem="f3Y-A0-Lq0" secondAttribute="leading" id="3Nl-Gs-c04"/>
                             <constraint firstAttribute="trailing" secondItem="eXg-uU-3A7" secondAttribute="trailing" id="AqU-DY-NQG"/>
                             <constraint firstItem="6qZ-zH-lwE" firstAttribute="top" secondItem="eXg-uU-3A7" secondAttribute="bottom" constant="60" id="Dg7-dg-umj"/>
+                            <constraint firstItem="eXg-uU-3A7" firstAttribute="top" secondItem="f3Y-A0-Lq0" secondAttribute="bottom" constant="8" id="abL-RH-Wxm"/>
                             <constraint firstItem="eXg-uU-3A7" firstAttribute="top" secondItem="KLh-Dx-r0p" secondAttribute="bottom" constant="40" id="byA-64-vWv"/>
                             <constraint firstItem="eXg-uU-3A7" firstAttribute="leading" secondItem="ydj-qa-gbO" secondAttribute="leading" id="wsg-91-oyp"/>
                         </constraints>
