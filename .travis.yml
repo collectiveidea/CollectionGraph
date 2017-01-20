@@ -9,3 +9,7 @@ script: xcodebuild test -project CollectionGraph.xcodeproj -scheme CollectionGra
 
 notifications:
   slack: collectiveidea:UAduo5riNzgVWHyExXgSnZWk
+  webhooks:
+    urls:
+      - https://buildlight.collectiveidea.com/
+    on_start: always
