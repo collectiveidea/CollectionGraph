@@ -111,12 +111,13 @@ class ThirdViewController: UIViewController, CollectionGraphCellDelegate, Collec
 
     func collectionGraph(barView: UICollectionReusableView, withData data: GraphDatum, atItem item: Int, inSection section: Int) {
         if let barView = barView as? BarReusableView {
-            let color1 = colorForSection(section: 1).cgColor
-            let color2 = colorForSection(section: 2).cgColor
+
+            let colorNumber = item % 4
+
+            let color1 = colorForSection(section: colorNumber).cgColor
+            let color2 = UIColor(red: 112.0 / 255.0, green: 110.0 / 255.0, blue: 171.0 / 255.0, alpha: 1).cgColor
             barView.colors = [color1, color2]
         }
-
-        // barView.backgroundColor = colorForSection(section: section)
     }
 
 }
