@@ -472,7 +472,7 @@ public class GraphLayout: UICollectionViewLayout, RangeFinder {
         var width: CGFloat = cellSize.width
 
         if let graphData = graphData, let collectionGraphBarDelegate = collectionGraphBarDelegate {
-            width = collectionGraphBarDelegate.collectionGraph(widthForBarViewWithData: graphData[indexPath.section][indexPath.item], inSection: indexPath.section)
+            width = collectionGraphBarDelegate.collectionGraph(widthForBarViewWithData: graphData[indexPath.section][indexPath.item], atItem: indexPath.item, inSection: indexPath.section)
         }
 
         var heightOfCollectionView: CGFloat = 0

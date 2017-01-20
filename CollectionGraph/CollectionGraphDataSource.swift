@@ -173,7 +173,7 @@ class CollectionGraphDataSource: NSObject, UICollectionViewDataSource, RangeFind
     func barViewSetup(barView: UICollectionReusableView, indexPath: IndexPath) {
         if let graphData = graphData {
 
-            collectionGraphBarDelegate?.collectionGraph(barView: barView, withData: graphData[indexPath.section][indexPath.item], inSection: indexPath.section)
+            collectionGraphBarDelegate?.collectionGraph(barView: barView, withData: graphData[indexPath.section][indexPath.item], atItem: indexPath.item, inSection: indexPath.section)
         }
     }
 
