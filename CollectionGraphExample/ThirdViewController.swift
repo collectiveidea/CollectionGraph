@@ -52,14 +52,15 @@ class ThirdViewController: UIViewController, CollectionGraphCellDelegate, Collec
 
         let service = DataService(parser: parser)
 
-        service.fetchData(fromFile: "MilesPerDayData") { (data) in
+        service.fetchData(fromFile: "TotalMilesRan") { (data) in
             self.graph.graphData = data
 
             // each set of data has the same amount of data points so we'll just use the count from the first set
             self.graph.xSteps = data[0].count
 
             // Adjusts the width of the graph.  The Cells are spaced out depending on this size
-            self.graph.graphContentWidth = 400
+            let spacing = 80
+            self.graph.graphContentWidth = CGFloat(self.graph.xSteps) * CGFloat(spacing)
         }
 
     }

@@ -25,6 +25,7 @@
 		571F01B41E2D60810053C400 /* DataModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 571F01B31E2D60810053C400 /* DataModels.swift */; };
 		571F01B81E2D6AFD0053C400 /* ppm_sample_data.json in Resources */ = {isa = PBXBuildFile; fileRef = 571F01B71E2D6AFD0053C400 /* ppm_sample_data.json */; };
 		5728A01C1E324C73006CCEBA /* BarReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5728A01B1E324C73006CCEBA /* BarReusableView.swift */; };
+		5728A01E1E3250B2006CCEBA /* TotalMilesRan.json in Resources */ = {isa = PBXBuildFile; fileRef = 5728A01D1E3250B2006CCEBA /* TotalMilesRan.json */; };
 		574F020C1DE393B9001ACC27 /* CollectionGraphDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574F020B1DE393B9001ACC27 /* CollectionGraphDelegate.swift */; };
 		5756122A1DB1098700F94EAF /* LabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 575612291DB1098700F94EAF /* LabelView.swift */; };
 		5756122C1DB109F100F94EAF /* XLabelViewAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5756122B1DB109F100F94EAF /* XLabelViewAttributes.swift */; };
@@ -93,6 +94,7 @@
 		571F01B31E2D60810053C400 /* DataModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataModels.swift; sourceTree = "<group>"; };
 		571F01B71E2D6AFD0053C400 /* ppm_sample_data.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ppm_sample_data.json; sourceTree = "<group>"; };
 		5728A01B1E324C73006CCEBA /* BarReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BarReusableView.swift; sourceTree = "<group>"; };
+		5728A01D1E3250B2006CCEBA /* TotalMilesRan.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = TotalMilesRan.json; sourceTree = "<group>"; };
 		574F020B1DE393B9001ACC27 /* CollectionGraphDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionGraphDelegate.swift; sourceTree = "<group>"; };
 		575612291DB1098700F94EAF /* LabelView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LabelView.swift; sourceTree = "<group>"; };
 		5756122B1DB109F100F94EAF /* XLabelViewAttributes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XLabelViewAttributes.swift; sourceTree = "<group>"; };
@@ -232,6 +234,7 @@
 				579788F61E297C56000503AF /* ColorHelper.swift */,
 				579788B71E29182D000503AF /* MilesPerDayData.json */,
 				571F01B71E2D6AFD0053C400 /* ppm_sample_data.json */,
+				5728A01D1E3250B2006CCEBA /* TotalMilesRan.json */,
 				576DD7831DB55BA90084498B /* MyGraphCell.swift */,
 				571F01AB1E2D03ED0053C400 /* PeopleCollectionViewCell.swift */,
 				5728A01B1E324C73006CCEBA /* BarReusableView.swift */,
@@ -382,6 +385,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A7B2B1081D958F1500F3A410 /* LaunchScreen.storyboard in Resources */,
+				5728A01E1E3250B2006CCEBA /* TotalMilesRan.json in Resources */,
 				579788B81E29182D000503AF /* MilesPerDayData.json in Resources */,
 				571F01B81E2D6AFD0053C400 /* ppm_sample_data.json in Resources */,
 				A7B2B1051D958F1500F3A410 /* Assets.xcassets in Resources */,
