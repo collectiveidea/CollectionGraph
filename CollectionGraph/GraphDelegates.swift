@@ -39,7 +39,7 @@ public protocol CollectionGraphBarDelegate: class {
      - parameter data: The corresponding GraphDatum
      - parameter section: The section number of [GraphDatum]
      */
-    func collectionGraph(barView: UICollectionReusableView, withData data: GraphDatum, inSection section: Int)
+    func collectionGraph(barView: UICollectionReusableView, withData data: GraphDatum, atItem item: Int, inSection section: Int)
 
     /**
      Set the width of the barCell with corresponding GraphDatum in Section
@@ -47,7 +47,7 @@ public protocol CollectionGraphBarDelegate: class {
      - parameter data: The corresponding GraphDatum
      - parameter section: The section number of [GraphDatum]
      */
-    func collectionGraph(widthForBarViewWithData data: GraphDatum, inSection section: Int) -> CGFloat
+    func collectionGraph(widthForBarViewWithData data: GraphDatum, atItem item: Int, inSection section: Int) -> CGFloat
 }
 
 public protocol CollectionGraphLineDelegate: class {

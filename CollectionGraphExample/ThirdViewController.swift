@@ -105,11 +105,11 @@ class ThirdViewController: UIViewController, CollectionGraphCellDelegate, Collec
 
     // CollectionGraphBarDelegate
 
-    func collectionGraph(widthForBarViewWithData data: GraphDatum, inSection section: Int) -> CGFloat {
+    func collectionGraph(widthForBarViewWithData data: GraphDatum, atItem item: Int, inSection section: Int) -> CGFloat {
         return 7
     }
 
-    func collectionGraph(barView: UICollectionReusableView, withData data: GraphDatum, inSection section: Int) {
+    func collectionGraph(barView: UICollectionReusableView, withData data: GraphDatum, atItem item: Int, inSection section: Int) {
         if let barView = barView as? BarReusableView {
             let color1 = colorForSection(section: 1).cgColor
             let color2 = colorForSection(section: 2).cgColor
