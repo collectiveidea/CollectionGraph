@@ -34,6 +34,9 @@ class ThirdViewController: UIViewController, CollectionGraphCellDelegate, Collec
         // Provide a custom cell with a user image property
         graph.graphCell = PeopleCollectionViewCell()
 
+        // Provide a custom bar cell that has a gradient layer
+        graph.barView = BarReusableView()
+
         graph.yDividerLineColor = UIColor(red: 112.0 / 255.0, green: 110.0 / 255.0, blue: 171.0 / 255.0, alpha: 1)
     }
 
@@ -77,7 +80,7 @@ class ThirdViewController: UIViewController, CollectionGraphCellDelegate, Collec
         }
 
         cell.backgroundColor = UIColor.white
-        cell.layer.borderWidth = 1
+        cell.layer.borderWidth = 2
         cell.layer.borderColor = colorForSection(section: section).cgColor
         cell.layer.cornerRadius = 3
     }
@@ -102,10 +105,16 @@ class ThirdViewController: UIViewController, CollectionGraphCellDelegate, Collec
     // CollectionGraphBarDelegate
 
     func collectionGraph(widthForBarViewWithData data: GraphDatum, inSection section: Int) -> CGFloat {
-        return 10
+        return 7
     }
 
     func collectionGraph(barView: UICollectionReusableView, withData data: GraphDatum, inSection section: Int) {
+        if let barView = barView as? BarReusableView {
+            let color1 = colorForSection(section: 1).cgColor
+            let color2 = colorForSection(section: 2).cgColor
+            barView.colors = [color1, color2]
+        }
+
         barView.backgroundColor = colorForSection(section: section)
     }
 
