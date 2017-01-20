@@ -101,7 +101,7 @@ class SecondViewController: UIViewController, CollectionGraphCellDelegate, Colle
 
     // CollectionGraphYDividerLineDelegate
 
-    func collectionGraph(yDividerLine: CAShapeLayer) {
+    func collectionGraph(yDividerLine: CAShapeLayer, atItem: Int) {
         yDividerLine.lineDashPattern = [1, 8]
     }
 
