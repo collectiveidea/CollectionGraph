@@ -62,20 +62,20 @@ class SecondViewController: UIViewController, CollectionGraphCellDelegate, Colle
 
     // CollectionGraphCellDelegate
 
-    func collectionGraph(cell: UICollectionViewCell, forData data: GraphDatum, atSection section: Int) {
+    func collectionGraph(cell: UICollectionViewCell, forData data: GraphDatum, atIndexPath indexPath: IndexPath) {
 
         cell.backgroundColor = UIColor.white
         cell.layer.cornerRadius = cell.frame.width / 2
     }
 
-    func collectionGraph(sizeForGraphCellWithData data: GraphDatum, inSection section: Int) -> CGSize {
+    func collectionGraph(sizeForGraphCellWithData data: GraphDatum, atIndexPath indexPath: IndexPath) -> CGSize {
         return CGSize(width: 3, height: 3)
     }
 
     // CollectionGraphLineDelegate
 
-    func collectionGraph(connectorLine: GraphLineShapeLayer, withData data: GraphDatum, inSection section: Int) {
-        connectorLine.strokeColor = colorForSection(section: section).cgColor
+    func collectionGraph(connectorLine: GraphLineShapeLayer, withData data: GraphDatum, atIndexPath indexPath: IndexPath) {
+        connectorLine.strokeColor = colorForSection(section: indexPath.section).cgColor
     }
 
     // CollectionGraphLabelsDelegate

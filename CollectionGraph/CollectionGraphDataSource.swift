@@ -44,7 +44,7 @@ class CollectionGraphDataSource: NSObject, UICollectionViewDataSource, RangeFind
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ReuseIDs.GraphCell.rawValue, for: indexPath)
 
         if let graphData = graphData {
-            collectionGraphCellDelegate?.collectionGraph(cell: cell, forData: graphData[indexPath.section][indexPath.item], atSection: indexPath.section)
+            collectionGraphCellDelegate?.collectionGraph(cell: cell, forData: graphData[indexPath.section][indexPath.item], atIndexPath: indexPath)
         }
 
         return cell
@@ -116,9 +116,9 @@ class CollectionGraphDataSource: NSObject, UICollectionViewDataSource, RangeFind
     func lineConnectorViewSetup(line: UICollectionReusableView, indexPath: IndexPath) {
         if let line = line as? LineConnectorView, let graphData = graphData {
 
-            collectionGraphLineDelegate?.collectionGraph(connectorLine: line.line, withData: graphData[indexPath.section][indexPath.item], inSection: indexPath.section)
+            collectionGraphLineDelegate?.collectionGraph(connectorLine: line.line, withData: graphData[indexPath.section][indexPath.item], atIndexPath: indexPath)
 
-            line.fillColor = collectionGraphLineFillDelegate?.collectionGraph(fillColorForGraphSectionWithData: graphData[indexPath.section][indexPath.item], inSection: indexPath.section)
+            line.fillColor = collectionGraphLineFillDelegate?.collectionGraph(fillColorForGraphSectionWithData: graphData[indexPath.section][indexPath.item], atIndexPath: indexPath)
         }
     }
 
@@ -173,7 +173,7 @@ class CollectionGraphDataSource: NSObject, UICollectionViewDataSource, RangeFind
     func barViewSetup(barView: UICollectionReusableView, indexPath: IndexPath) {
         if let graphData = graphData {
 
-            collectionGraphBarDelegate?.collectionGraph(barView: barView, withData: graphData[indexPath.section][indexPath.item], atItem: indexPath.item, inSection: indexPath.section)
+            collectionGraphBarDelegate?.collectionGraph(barView: barView, withData: graphData[indexPath.section][indexPath.item], atIndexPath: indexPath)
         }
     }
 
