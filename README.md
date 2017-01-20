@@ -139,9 +139,7 @@ If you want a custom barView instead of the default view, you can set the `barVi
 ```swift
 var barView: UICollectionReusableView?
 ```
-//////////////////
-EXAMPLE Image OF BAR Graph
-//////////////////
+![Gif of bar Graph](/ReadmeImages/TotalMilesRanGraph.gif)
 
 #### BarView Delegate Callbacks
 
