@@ -84,7 +84,7 @@ public protocol CollectionGraphLabelsDelegate: class {
      - parameter currentString: The labels current string
      - parameter section: The labels current section number
      */
-    func collectionGraph(textForXLabelWithCurrentText currentText: String, inSection section: Int) -> String
+    func collectionGraph(textForXLabelWithCurrentText currentText: String, item: Int) -> String
 }
 
 public protocol CollectionGraphViewDelegate: class {

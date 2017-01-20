@@ -80,7 +80,7 @@ class SecondViewController: UIViewController, CollectionGraphCellDelegate, Colle
 
     // CollectionGraphLabelsDelegate
 
-    func collectionGraph(textForXLabelWithCurrentText currentText: String, inSection section: Int) -> String {
+    func collectionGraph(textForXLabelWithCurrentText currentText: String, item: Int) -> String {
 
         let timeInterval = Double(currentText)
 

@@ -38,7 +38,6 @@ class FirstViewController: UIViewController, CollectionGraphViewDelegate, Collec
         graph.graphCell = PeopleCollectionViewCell()
 
         graph.yDividerLineColor = UIColor(red: 112.0 / 255.0, green: 110.0 / 255.0, blue: 171.0 / 255.0, alpha: 1)
-
     }
 
     func setGraphDelegates() {
@@ -48,7 +47,6 @@ class FirstViewController: UIViewController, CollectionGraphViewDelegate, Collec
         graph.collectionGraphLineFillDelegate = self
         graph.collectionGraphLabelsDelegate = self
         graph.collectionGraphYDividerLineDelegate = self
-
     }
 
     func fetchGraphData() {
@@ -68,7 +66,6 @@ class FirstViewController: UIViewController, CollectionGraphViewDelegate, Collec
 
             // self.graph.contentOffset = CGPoint(x: 30, y: self.graph.contentOffset.y)
         }
-
     }
 
     // MARK: - Graph Delegates
@@ -124,7 +121,7 @@ class FirstViewController: UIViewController, CollectionGraphViewDelegate, Collec
 
     // CollectionGraphLabelsDelegate
 
-    func collectionGraph(textForXLabelWithCurrentText currentText: String, inSection section: Int) -> String {
+    func collectionGraph(textForXLabelWithCurrentText currentText: String, item: Int) -> String {
 
         let timeInterval = Double(currentText)
 
