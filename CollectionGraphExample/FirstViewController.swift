@@ -81,7 +81,7 @@ class FirstViewController: UIViewController, CollectionGraphViewDelegate, Collec
 
     // CollectionGraphCellDelegate
 
-    func collectionGraph(cell: UICollectionViewCell, forData data: GraphDatum, atSection section: Int) {
+    func collectionGraph(cell: UICollectionViewCell, forData data: GraphDatum, atIndexPath indexPath: IndexPath) {
 
         if let peopleCell = cell as? PeopleCollectionViewCell {
 
@@ -95,28 +95,28 @@ class FirstViewController: UIViewController, CollectionGraphViewDelegate, Collec
 
         cell.backgroundColor = UIColor.white
         cell.layer.borderWidth = 1
-        cell.layer.borderColor = colorForSection(section: section).cgColor
+        cell.layer.borderColor = colorForSection(section: indexPath.section).cgColor
         cell.layer.cornerRadius = cell.frame.width / 2
     }
 
-    func collectionGraph(sizeForGraphCellWithData data: GraphDatum, inSection section: Int) -> CGSize {
+    func collectionGraph(sizeForGraphCellWithData data: GraphDatum, atIndexPath indexPath: IndexPath) -> CGSize {
         return CGSize(width: 20, height: 20)
     }
 
     // CollectionGraphLineDelegate
 
-    func collectionGraph(connectorLine: GraphLineShapeLayer, withData data: GraphDatum, inSection section: Int) {
+    func collectionGraph(connectorLine: GraphLineShapeLayer, withData data: GraphDatum, atIndexPath indexPath: IndexPath) {
         // connectorLine.lineWidth = 2
         // connectorLine.lineDashPattern = [4, 2]
         // connectorLine.straightLines = true
         // connectorLine.lineCap = kCALineCapRound
-        connectorLine.strokeColor = colorForSection(section: section).cgColor
+        connectorLine.strokeColor = colorForSection(section: indexPath.section).cgColor
     }
 
     // CollectionGraphLineFillDelegate
 
-    func collectionGraph(fillColorForGraphSectionWithData data: GraphDatum, inSection section: Int) -> UIColor {
-        return colorForSection(section: section).withAlphaComponent(0.1)
+    func collectionGraph(fillColorForGraphSectionWithData data: GraphDatum, atIndexPath indexPath: IndexPath) -> UIColor {
+        return colorForSection(section: indexPath.section).withAlphaComponent(0.1)
     }
 
     // CollectionGraphLabelsDelegate

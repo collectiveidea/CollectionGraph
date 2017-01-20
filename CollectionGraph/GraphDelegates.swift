@@ -18,7 +18,7 @@ public protocol CollectionGraphCellDelegate: class {
      - parameter data: The corresponding GraphDatum
      - parameter section: The section number of [GraphDatum]
      */
-    func collectionGraph(cell: UICollectionViewCell, forData data: GraphDatum, atSection section: Int)
+    func collectionGraph(cell: UICollectionViewCell, forData data: GraphDatum, atIndexPath indexPath: IndexPath)
 
     /**
      Set the size of the graphCell
@@ -26,7 +26,7 @@ public protocol CollectionGraphCellDelegate: class {
      - parameter data: The corresponding GraphDatum
      - parameter section: The section number of [GraphDatum]
      */
-    func collectionGraph(sizeForGraphCellWithData data: GraphDatum, inSection section: Int) -> CGSize
+    func collectionGraph(sizeForGraphCellWithData data: GraphDatum, atIndexPath indexPath: IndexPath) -> CGSize
 }
 
 public protocol CollectionGraphBarDelegate: class {
@@ -39,7 +39,7 @@ public protocol CollectionGraphBarDelegate: class {
      - parameter data: The corresponding GraphDatum
      - parameter section: The section number of [GraphDatum]
      */
-    func collectionGraph(barView: UICollectionReusableView, withData data: GraphDatum, atItem item: Int, inSection section: Int)
+    func collectionGraph(barView: UICollectionReusableView, withData data: GraphDatum, atIndexPath indexPath: IndexPath)
 
     /**
      Set the width of the barCell with corresponding GraphDatum in Section
@@ -47,7 +47,7 @@ public protocol CollectionGraphBarDelegate: class {
      - parameter data: The corresponding GraphDatum
      - parameter section: The section number of [GraphDatum]
      */
-    func collectionGraph(widthForBarViewWithData data: GraphDatum, atItem item: Int, inSection section: Int) -> CGFloat
+    func collectionGraph(widthForBarViewWithData data: GraphDatum, atIndexPath indexPath: IndexPath) -> CGFloat
 }
 
 public protocol CollectionGraphLineDelegate: class {
@@ -61,7 +61,7 @@ public protocol CollectionGraphLineDelegate: class {
      - parameter data: the corresponding GraphDatum
      - parameter section: The section number in [[GraphDatum]]
      */
-    func collectionGraph(connectorLine: GraphLineShapeLayer, withData data: GraphDatum, inSection section: Int)
+    func collectionGraph(connectorLine: GraphLineShapeLayer, withData data: GraphDatum, atIndexPath indexPath: IndexPath)
 }
 
 public protocol CollectionGraphLineFillDelegate: class {
@@ -71,7 +71,7 @@ public protocol CollectionGraphLineFillDelegate: class {
      - parameter data: the corresponding GraphDatum
      - parameter section: The section number in [[GraphDatum]]
     */
-    func collectionGraph(fillColorForGraphSectionWithData data: GraphDatum, inSection section: Int) -> UIColor
+    func collectionGraph(fillColorForGraphSectionWithData data: GraphDatum, atIndexPath indexPath: IndexPath) -> UIColor
 }
 
 public protocol CollectionGraphLabelsDelegate: class {

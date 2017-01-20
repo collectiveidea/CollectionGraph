@@ -69,7 +69,7 @@ class ThirdViewController: UIViewController, CollectionGraphCellDelegate, Collec
 
     // CollectionGraphCellDelegate
 
-    func collectionGraph(cell: UICollectionViewCell, forData data: GraphDatum, atSection section: Int) {
+    func collectionGraph(cell: UICollectionViewCell, forData data: GraphDatum, atIndexPath indexPath: IndexPath) {
 
         if let peopleCell = cell as? PeopleCollectionViewCell {
 
@@ -82,11 +82,11 @@ class ThirdViewController: UIViewController, CollectionGraphCellDelegate, Collec
 
         cell.backgroundColor = UIColor.white
         cell.layer.borderWidth = 2
-        cell.layer.borderColor = colorForSection(section: section).cgColor
+        cell.layer.borderColor = colorForSection(section: indexPath.section).cgColor
         cell.layer.cornerRadius = 5
     }
 
-    func collectionGraph(sizeForGraphCellWithData data: GraphDatum, inSection section: Int) -> CGSize {
+    func collectionGraph(sizeForGraphCellWithData data: GraphDatum, atIndexPath indexPath: IndexPath) -> CGSize {
         return CGSize(width: 30, height: 30)
     }
 
@@ -105,11 +105,11 @@ class ThirdViewController: UIViewController, CollectionGraphCellDelegate, Collec
 
     // CollectionGraphBarDelegate
 
-    func collectionGraph(widthForBarViewWithData data: GraphDatum, atItem item: Int, inSection section: Int) -> CGFloat {
+    func collectionGraph(widthForBarViewWithData data: GraphDatum, atIndexPath indexPath: IndexPath) -> CGFloat {
         return 7
     }
 
-    func collectionGraph(barView: UICollectionReusableView, withData data: GraphDatum, atItem item: Int, inSection section: Int) {
+    func collectionGraph(barView: UICollectionReusableView, withData data: GraphDatum, atIndexPath indexPath: IndexPath) {
         if let barView = barView as? BarReusableView {
             let color1 = colorForSection(section: 1).cgColor
             let color2 = colorForSection(section: 2).cgColor

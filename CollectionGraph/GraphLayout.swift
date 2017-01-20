@@ -289,7 +289,7 @@ public class GraphLayout: UICollectionViewLayout, RangeFinder {
         let attributes = UICollectionViewLayoutAttributes(forCellWith: indexPath)
 
         if let graphData = graphData, let collectionGraphCellDelegate = collectionGraphCellDelegate {
-            cellSize = collectionGraphCellDelegate.collectionGraph(sizeForGraphCellWithData: graphData[indexPath.section][indexPath.item], inSection: indexPath.section)
+            cellSize = collectionGraphCellDelegate.collectionGraph(sizeForGraphCellWithData: graphData[indexPath.section][indexPath.item], atIndexPath: indexPath)
         }
 
         let frame = CGRect(x: xGraphPosition(indexPath: indexPath) - cellSize.width / 2,
@@ -472,7 +472,7 @@ public class GraphLayout: UICollectionViewLayout, RangeFinder {
         var width: CGFloat = cellSize.width
 
         if let graphData = graphData, let collectionGraphBarDelegate = collectionGraphBarDelegate {
-            width = collectionGraphBarDelegate.collectionGraph(widthForBarViewWithData: graphData[indexPath.section][indexPath.item], atItem: indexPath.item, inSection: indexPath.section)
+            width = collectionGraphBarDelegate.collectionGraph(widthForBarViewWithData: graphData[indexPath.section][indexPath.item], atIndexPath: indexPath)
         }
 
         var heightOfCollectionView: CGFloat = 0
