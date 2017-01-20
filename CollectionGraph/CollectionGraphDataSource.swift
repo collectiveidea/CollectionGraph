@@ -163,7 +163,7 @@ class CollectionGraphDataSource: NSObject, UICollectionViewDataSource, RangeFind
             let labelText = "\(stepAmount * CGFloat(indexPath.item) + range.min)"
 
             if let collectionGraphLabelsDelegate = collectionGraphLabelsDelegate {
-                labelView.label.text = collectionGraphLabelsDelegate.collectionGraph(textForXLabelWithCurrentText: labelText, inSection: indexPath.item)
+                labelView.label.text = collectionGraphLabelsDelegate.collectionGraph(textForXLabelWithCurrentText: labelText, item: indexPath.item)
             } else {
                 labelView.label.text = labelText
             }

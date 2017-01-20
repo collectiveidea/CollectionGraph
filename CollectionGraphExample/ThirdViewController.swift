@@ -92,10 +92,10 @@ class ThirdViewController: UIViewController, CollectionGraphCellDelegate, Collec
 
     // CollectionGraphLabelsDelegate
 
-    func collectionGraph(textForXLabelWithCurrentText currentText: String, inSection section: Int) -> String {
+    func collectionGraph(textForXLabelWithCurrentText currentText: String, item: Int) -> String {
 
         if let totalMilesData = graph.graphData?[0] as? [TotalMilesRanDatum] {
-            let personName = totalMilesData[section].name
+            let personName = totalMilesData[item].name
 
             return personName
         }
