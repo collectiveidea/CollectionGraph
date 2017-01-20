@@ -143,7 +143,7 @@ class FirstViewController: UIViewController, CollectionGraphViewDelegate, Collec
 
     // CollectionGraphYDividerLineDelegate
 
-    func collectionGraph(yDividerLine: CAShapeLayer) {
+    func collectionGraph(yDividerLine: CAShapeLayer, atItem: Int) {
         yDividerLine.lineDashPattern = [1, 8]
 
         // this will override the graphs yDividerLineColor property

@@ -57,7 +57,7 @@ class CollectionGraphDataSource: NSObject, UICollectionViewDataSource, RangeFind
 
             let yDividerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: ReuseIDs.YDividerView.rawValue, for: indexPath)
 
-            yDividerViewSetup(yDividerView: yDividerView)
+            yDividerViewSetup(yDividerView: yDividerView, indexPath: indexPath)
 
             return yDividerView
 
@@ -105,11 +105,11 @@ class CollectionGraphDataSource: NSObject, UICollectionViewDataSource, RangeFind
         }
     }
 
-    func yDividerViewSetup(yDividerView: UICollectionReusableView) {
+    func yDividerViewSetup(yDividerView: UICollectionReusableView, indexPath: IndexPath) {
         if let yDividerView = yDividerView as? YDividerLineView {
             yDividerView.line.strokeColor = yDividerLineColor.cgColor
 
-            collectionGraphYDividerLineDelegate?.collectionGraph(yDividerLine: yDividerView.line)
+            collectionGraphYDividerLineDelegate?.collectionGraph(yDividerLine: yDividerView.line, atItem: indexPath.item)
         }
     }
 

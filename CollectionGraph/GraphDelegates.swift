@@ -105,5 +105,5 @@ public protocol CollectionGraphYDividerLineDelegate: class {
      
      - parameter yDividerLine: CAShapeLayer
      */
-    func collectionGraph(yDividerLine: CAShapeLayer)
+    func collectionGraph(yDividerLine: CAShapeLayer, atItem item: Int)
 }
