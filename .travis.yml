@@ -7,5 +7,5 @@ xcode_sdk: iphonesimulator10.0
 
 script: xcodebuild test -project CollectionGraph.xcodeproj -scheme CollectionGraph -destination 'platform=iOS Simulator,name=iPhone 6s,OS=10.0'
 
-notifications:
-  slack: collectiveidea:UAduo5riNzgVWHyExXgSnZWk
+# notifications:
+  # slack: collectiveidea:UAduo5riNzgVWHyExXgSnZWk
