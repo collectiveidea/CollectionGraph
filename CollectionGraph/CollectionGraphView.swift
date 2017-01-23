@@ -356,7 +356,7 @@ public class CollectionGraphView: UIView, UICollectionViewDelegate {
     public override func layoutSubviews() {
         super.layoutSubviews()
 
-        layout.invalidateLayout()
+        layout.createStaticAttributes()
     }
 
     func addCollectionView() {
