@@ -149,7 +149,7 @@
                             <constraint firstItem="eXg-uU-3A7" firstAttribute="leading" secondItem="ydj-qa-gbO" secondAttribute="leading" id="wsg-91-oyp"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Third" id="ljT-Rk-l5f"/>
+                    <tabBarItem key="tabBarItem" title="Third" image="first" id="ljT-Rk-l5f"/>
                     <connections>
                         <outlet property="graph" destination="eXg-uU-3A7" id="LSp-RM-GmB"/>
                     </connections>
