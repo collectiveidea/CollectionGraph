@@ -41,37 +41,13 @@ public class GraphLayout: UICollectionViewLayout, RangeFinder {
     private let labelsZIndex = Int.max
     private let sideBarZIndex = Int.max - 1
 
-    private lazy var spinnerContainer: UIView = {
-        let container = UIView(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
+    private lazy var spinner: Spinner = {
+        let spinner = Spinner(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
         if let collectionViewParent = self.collectionView?.superview {
-
-            container.backgroundColor = UIColor.white.withAlphaComponent(0.8)
-            container.layer.cornerRadius = 3
-
-            container.alpha = 0
-
-            collectionViewParent.addSubview(container)
-
-            let spinner = UIActivityIndicatorView(activityIndicatorStyle: .gray)
-
-            container.addSubview(spinner)
-
-            spinner.translatesAutoresizingMaskIntoConstraints = false
-            spinner.centerXAnchor.constraint(equalTo: container.centerXAnchor).isActive = true
-            spinner.centerYAnchor.constraint(equalTo: container.centerYAnchor).isActive = true
-
-            container.translatesAutoresizingMaskIntoConstraints = false
-            container.centerXAnchor.constraint(equalTo: collectionViewParent.centerXAnchor).isActive = true
-            container.centerYAnchor.constraint(equalTo: collectionViewParent.centerYAnchor).isActive = true
-            container.widthAnchor.constraint(equalToConstant: 35).isActive = true
-            container.heightAnchor.constraint(equalToConstant: 35).isActive = true
-
-            spinner.startAnimating()
-
+            collectionViewParent.addSubview(spinner)
         }
-
-        return container
-    }()//= UIView(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
+        return spinner
+    }()
 
     internal var layoutAttributes = [UICollectionViewLayoutAttributes]()
     internal var staticAttributes = [UICollectionViewLayoutAttributes]()
@@ -93,10 +69,7 @@ public class GraphLayout: UICollectionViewLayout, RangeFinder {
     func createStaticAttributes() {
 
         if backgroundQueueCount == 0 {
-            //addSpinner()
-            UIView.animate(withDuration: 0.25, delay: 0, options: .beginFromCurrentState, animations: {
-                self.spinnerContainer.alpha = 1
-            }, completion: nil)
+            spinner.fadeIn()
         }
 
         backgroundQueueCount += 1
@@ -130,9 +103,7 @@ public class GraphLayout: UICollectionViewLayout, RangeFinder {
 
                     self.invalidateLayout()
 
-                    UIView.animate(withDuration: 0.25, delay: 0, options: .beginFromCurrentState, animations: {
-                        self.spinnerContainer.alpha = 0
-                    }, completion: nil)
+                    self.spinner.fadeOut()
                 }
             }
         }
