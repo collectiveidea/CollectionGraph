@@ -56,13 +56,6 @@ public class GraphLayout: UICollectionViewLayout, RangeFinder {
 
     public override func shouldInvalidateLayout(forBoundsChange newBounds: CGRect) -> Bool {
 
-        if let oldBounds = collectionView?.bounds {
-            if newBounds.width != oldBounds.width {
-                // only re-create the static attributes when we have to.
-                createStaticAttributes()
-            }
-        }
-
         return true
     }
 
@@ -96,6 +89,8 @@ public class GraphLayout: UICollectionViewLayout, RangeFinder {
             DispatchQueue.main.async {
                 self.backgroundQueueCount -= 1
 
+                print("Ended Background Queue of Layout Attribute creation")
+
                 if self.backgroundQueueCount == 0 {
                     print("Invalidate On Main Queue")
 
@@ -112,6 +107,10 @@ public class GraphLayout: UICollectionViewLayout, RangeFinder {
     override public func prepare() {
         // this is called over and over again so create minimal attributes here.
 
+        createTemporaryAttributes()
+    }
+
+    private func createTemporaryAttributes() {
         var tempAttributes = [UICollectionViewLayoutAttributes]()
 
         tempAttributes += self.layoutAttributesForYDividerLines()
@@ -125,7 +124,7 @@ public class GraphLayout: UICollectionViewLayout, RangeFinder {
         layoutAttributes = tempAttributes + staticAttributes
     }
 
-    func layoutAttributesForCell() -> [UICollectionViewLayoutAttributes] {
+    private func layoutAttributesForCell() -> [UICollectionViewLayoutAttributes] {
 
         var tempAttributes = [UICollectionViewLayoutAttributes]()
 
@@ -146,7 +145,7 @@ public class GraphLayout: UICollectionViewLayout, RangeFinder {
         return tempAttributes
     }
 
-    func layoutAttributesForYDividerLines() -> [UICollectionViewLayoutAttributes] {
+    private func layoutAttributesForYDividerLines() -> [UICollectionViewLayoutAttributes] {
 
         var tempAttributes = [UICollectionViewLayoutAttributes]()
 
@@ -168,7 +167,7 @@ public class GraphLayout: UICollectionViewLayout, RangeFinder {
         return tempAttributes
     }
 
-    func layoutAttributesForYLabels() -> [UICollectionViewLayoutAttributes] {
+    private func layoutAttributesForYLabels() -> [UICollectionViewLayoutAttributes] {
 
         var tempAttributes = [UICollectionViewLayoutAttributes]()
 
@@ -185,7 +184,7 @@ public class GraphLayout: UICollectionViewLayout, RangeFinder {
         return tempAttributes
     }
 
-    func layoutAttributesForXLabels() -> [UICollectionViewLayoutAttributes] {
+    private func layoutAttributesForXLabels() -> [UICollectionViewLayoutAttributes] {
 
         var tempAttributes = [UICollectionViewLayoutAttributes]()
 
@@ -202,7 +201,7 @@ public class GraphLayout: UICollectionViewLayout, RangeFinder {
         return tempAttributes
     }
 
-    func layoutAttributesForLineConnector() -> [UICollectionViewLayoutAttributes] {
+    private func layoutAttributesForLineConnector() -> [UICollectionViewLayoutAttributes] {
 
         var tempAttributes = [UICollectionViewLayoutAttributes]()
 
@@ -226,7 +225,7 @@ public class GraphLayout: UICollectionViewLayout, RangeFinder {
         return tempAttributes
     }
 
-    func layoutAttributesForSideBar() -> [UICollectionViewLayoutAttributes] {
+    private func layoutAttributesForSideBar() -> [UICollectionViewLayoutAttributes] {
 
         var tempAttributes = [UICollectionViewLayoutAttributes]()
 
@@ -242,7 +241,7 @@ public class GraphLayout: UICollectionViewLayout, RangeFinder {
         return tempAttributes
     }
 
-    func layoutAttributesForBar() -> [UICollectionViewLayoutAttributes] {
+    private func layoutAttributesForBar() -> [UICollectionViewLayoutAttributes] {
 
         var tempAttributes = [UICollectionViewLayoutAttributes]()
 
@@ -329,7 +328,9 @@ public class GraphLayout: UICollectionViewLayout, RangeFinder {
         return nil
     }
 
-    func setAttributesForYDivider(fromIndex indexPath: IndexPath) -> YDividerLayoutAttributes {
+    // attribute creation
+
+    private func setAttributesForYDivider(fromIndex indexPath: IndexPath) -> YDividerLayoutAttributes {
 
         let attributes = YDividerLayoutAttributes(forSupplementaryViewOfKind: ReuseIDs.YDividerView.rawValue, with: indexPath)
 
@@ -351,7 +352,7 @@ public class GraphLayout: UICollectionViewLayout, RangeFinder {
         return attributes
     }
 
-    func setAttributesForLineConnector(fromIndex indexPath: IndexPath) -> LineConnectorAttributes? {
+    private func setAttributesForLineConnector(fromIndex indexPath: IndexPath) -> LineConnectorAttributes? {
 
         let attributes = LineConnectorAttributes(forSupplementaryViewOfKind: ReuseIDs.LineConnectorView.rawValue, with: indexPath)
 
@@ -396,7 +397,7 @@ public class GraphLayout: UICollectionViewLayout, RangeFinder {
         return nil
     }
 
-    func setAttributesForYLabel(fromIndex indexPath: IndexPath) -> XLabelViewAttributes {
+    private func setAttributesForYLabel(fromIndex indexPath: IndexPath) -> XLabelViewAttributes {
 
         let attributes = XLabelViewAttributes(forSupplementaryViewOfKind: ReuseIDs.YLabelView.rawValue, with: indexPath)
 
@@ -418,7 +419,7 @@ public class GraphLayout: UICollectionViewLayout, RangeFinder {
         return attributes
     }
 
-    func setAttributesForXLabel(fromIndex indexPath: IndexPath) -> XLabelViewAttributes {
+    private func setAttributesForXLabel(fromIndex indexPath: IndexPath) -> XLabelViewAttributes {
 
         let attributes = XLabelViewAttributes(forSupplementaryViewOfKind: ReuseIDs.XLabelView.rawValue, with: indexPath)
 
@@ -446,7 +447,7 @@ public class GraphLayout: UICollectionViewLayout, RangeFinder {
         return attributes
     }
 
-     func setAttributesForBar(fromIndex indexPath: IndexPath) -> UICollectionViewLayoutAttributes {
+     private func setAttributesForBar(fromIndex indexPath: IndexPath) -> UICollectionViewLayoutAttributes {
 
         let attributes = UICollectionViewLayoutAttributes(forSupplementaryViewOfKind: ReuseIDs.BarView.rawValue, with: indexPath)
 
@@ -513,7 +514,7 @@ public class GraphLayout: UICollectionViewLayout, RangeFinder {
 
     // MARK: - Helpers
 
-    func xGraphPosition(indexPath: IndexPath) -> CGFloat {
+    private func xGraphPosition(indexPath: IndexPath) -> CGFloat {
         if let graphData = graphData, let collectionView = collectionView {
 
             let width = graphContentWidth ?? collectionView.bounds.width - (collectionView.contentInset.left + collectionView.contentInset.right + cellSize.width)
@@ -535,7 +536,7 @@ public class GraphLayout: UICollectionViewLayout, RangeFinder {
        return 0
     }
 
-    func yGraphPosition(indexPath: IndexPath) -> CGFloat {
+    private func yGraphPosition(indexPath: IndexPath) -> CGFloat {
         if let collectionView = collectionView, let graphData = graphData {
             let delta = collectionView.bounds.height - (collectionView.contentInset.top + collectionView.contentInset.bottom + cellSize.height)
 
