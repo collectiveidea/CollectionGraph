@@ -11,6 +11,7 @@
 		570379C31DB0006B00A88C6B /* YDividerLineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570379C21DB0006B00A88C6B /* YDividerLineView.swift */; };
 		570379C81DB02C5700A88C6B /* LineConnectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570379C71DB02C5700A88C6B /* LineConnectorView.swift */; };
 		570379CA1DB02CB500A88C6B /* LineConnectorAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570379C91DB02CB500A88C6B /* LineConnectorAttributes.swift */; };
+		5714C1AC1E3797F500844C25 /* Spinner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5714C1AB1E3797F500844C25 /* Spinner.swift */; };
 		5715599D1E315DFE00D8E0AA /* ThirdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5715599C1E315DFE00D8E0AA /* ThirdViewController.swift */; };
 		5717848E1D95A2B20074879A /* CollectionGraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5717848D1D95A2B20074879A /* CollectionGraphView.swift */; };
 		5717848F1D95A3540074879A /* CollectionGraph.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57EA98971D958C82000D6C55 /* CollectionGraph.framework */; };
@@ -82,6 +83,7 @@
 		570379C21DB0006B00A88C6B /* YDividerLineView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YDividerLineView.swift; sourceTree = "<group>"; };
 		570379C71DB02C5700A88C6B /* LineConnectorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LineConnectorView.swift; sourceTree = "<group>"; };
 		570379C91DB02CB500A88C6B /* LineConnectorAttributes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LineConnectorAttributes.swift; sourceTree = "<group>"; };
+		5714C1AB1E3797F500844C25 /* Spinner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Spinner.swift; sourceTree = "<group>"; };
 		5715599C1E315DFE00D8E0AA /* ThirdViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThirdViewController.swift; sourceTree = "<group>"; };
 		5717848D1D95A2B20074879A /* CollectionGraphView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionGraphView.swift; sourceTree = "<group>"; };
 		571B7EC71D9D9AA000FCE88E /* XibLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XibLoader.swift; sourceTree = "<group>"; };
@@ -239,6 +241,7 @@
 				574F020B1DE393B9001ACC27 /* CollectionGraphDelegate.swift */,
 				570379C41DB02B1800A88C6B /* Layouts */,
 				571B7EC71D9D9AA000FCE88E /* XibLoader.swift */,
+				5714C1AB1E3797F500844C25 /* Spinner.swift */,
 				577853401E1EDF4A00058C19 /* RangeFinder.swift */,
 				571B7EC91D9D9CF500FCE88E /* GraphCollectionView.xib */,
 			);
@@ -444,6 +447,7 @@
 				570379C11DAFFD2A00A88C6B /* YDividerLayoutAttributes.swift in Sources */,
 				571B7ED21D9DBAC300FCE88E /* CollectionGraphDataSource.swift in Sources */,
 				5756122A1DB1098700F94EAF /* LabelView.swift in Sources */,
+				5714C1AC1E3797F500844C25 /* Spinner.swift in Sources */,
 				574F020C1DE393B9001ACC27 /* CollectionGraphDelegate.swift in Sources */,
 				570379CA1DB02CB500A88C6B /* LineConnectorAttributes.swift in Sources */,
 				570379C31DB0006B00A88C6B /* YDividerLineView.swift in Sources */,
