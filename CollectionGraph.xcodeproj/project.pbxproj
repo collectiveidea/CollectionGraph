@@ -177,6 +177,37 @@
 			name = "Supplementary Views";
 			sourceTree = "<group>";
 		};
+		5714C1A81E378D0900844C25 /* JSON files */ = {
+			isa = PBXGroup;
+			children = (
+				579788B71E29182D000503AF /* MilesPerDayData.json */,
+				571F01B71E2D6AFD0053C400 /* ppm_sample_data.json */,
+				5728A01D1E3250B2006CCEBA /* TotalMilesRan.json */,
+			);
+			name = "JSON files";
+			sourceTree = "<group>";
+		};
+		5714C1A91E378D2200844C25 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				A7B2B0FD1D958F1500F3A410 /* FirstViewController.swift */,
+				A7B2B0FF1D958F1500F3A410 /* SecondViewController.swift */,
+				5715599C1E315DFE00D8E0AA /* ThirdViewController.swift */,
+			);
+			name = "View Controllers";
+			sourceTree = "<group>";
+		};
+		5714C1AA1E378D4200844C25 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				576DD7831DB55BA90084498B /* MyGraphCell.swift */,
+				571F01AB1E2D03ED0053C400 /* PeopleCollectionViewCell.swift */,
+				5728A01B1E324C73006CCEBA /* BarReusableView.swift */,
+				57C8AD541DF9ADB50097D1A8 /* SideBarReusableView.swift */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
 		57EA988D1D958C82000D6C55 = {
 			isa = PBXGroup;
 			children = (
@@ -227,24 +258,17 @@
 			isa = PBXGroup;
 			children = (
 				A7B2B0FB1D958F1500F3A410 /* AppDelegate.swift */,
-				A7B2B0FD1D958F1500F3A410 /* FirstViewController.swift */,
+				5714C1A91E378D2200844C25 /* View Controllers */,
+				5714C1AA1E378D4200844C25 /* Views */,
+				571F01B31E2D60810053C400 /* DataModels.swift */,
 				571F01AF1E2D2AB70053C400 /* DataService.swift */,
 				571F01B11E2D5FE20053C400 /* Parsers.swift */,
-				571F01B31E2D60810053C400 /* DataModels.swift */,
+				5714C1A81E378D0900844C25 /* JSON files */,
 				579788F61E297C56000503AF /* ColorHelper.swift */,
-				579788B71E29182D000503AF /* MilesPerDayData.json */,
-				571F01B71E2D6AFD0053C400 /* ppm_sample_data.json */,
-				5728A01D1E3250B2006CCEBA /* TotalMilesRan.json */,
-				576DD7831DB55BA90084498B /* MyGraphCell.swift */,
-				571F01AB1E2D03ED0053C400 /* PeopleCollectionViewCell.swift */,
-				5728A01B1E324C73006CCEBA /* BarReusableView.swift */,
-				A7B2B0FF1D958F1500F3A410 /* SecondViewController.swift */,
-				5715599C1E315DFE00D8E0AA /* ThirdViewController.swift */,
 				A7B2B1011D958F1500F3A410 /* Main.storyboard */,
-				A7B2B1041D958F1500F3A410 /* Assets.xcassets */,
 				A7B2B1061D958F1500F3A410 /* LaunchScreen.storyboard */,
+				A7B2B1041D958F1500F3A410 /* Assets.xcassets */,
 				A7B2B1091D958F1500F3A410 /* Info.plist */,
-				57C8AD541DF9ADB50097D1A8 /* SideBarReusableView.swift */,
 			);
 			path = CollectionGraphExample;
 			sourceTree = "<group>";
