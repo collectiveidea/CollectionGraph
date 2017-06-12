@@ -82,7 +82,8 @@ extension ViewController: CollectionGraphDataSource {
 
 extension ViewController: CollectionGraphDelegateLayout {
     
-    func graphCollectionView(_ graphCollectionView: UICollectionView, sizeForItemAt: IndexPath) -> CGSize {
+    func graphCollectionView(_ graphCollectionView: UICollectionView, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        if indexPath.item == 2 { return CGSize(width: 50, height: 20) }
         return CGSize(width: 30, height: 30)
     }
     

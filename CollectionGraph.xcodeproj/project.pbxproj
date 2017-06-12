@@ -10,6 +10,8 @@
 		57317A921EE1F88900FF2CF2 /* Math.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57317A911EE1F88900FF2CF2 /* Math.swift */; };
 		57317A931EE1F88900FF2CF2 /* Math.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57317A911EE1F88900FF2CF2 /* Math.swift */; };
 		57317A941EE1F88900FF2CF2 /* Math.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57317A911EE1F88900FF2CF2 /* Math.swift */; };
+		574DF25C1EEEC61D00333469 /* GraphLayoutDecorator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574DF25B1EEEC61D00333469 /* GraphLayoutDecorator.swift */; };
+		574DF25E1EEED2E800333469 /* CellLayoutAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574DF25D1EEED2E800333469 /* CellLayoutAttributes.swift */; };
 		57DCC2791ED492F3000AD389 /* CollectionGraph.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57DCC26F1ED492F3000AD389 /* CollectionGraph.framework */; };
 		57DCC27E1ED492F3000AD389 /* CollectionGraphTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57DCC27D1ED492F3000AD389 /* CollectionGraphTests.swift */; };
 		57DCC2801ED492F3000AD389 /* CollectionGraph.h in Headers */ = {isa = PBXBuildFile; fileRef = 57DCC2721ED492F3000AD389 /* CollectionGraph.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -80,6 +82,8 @@
 
 /* Begin PBXFileReference section */
 		57317A911EE1F88900FF2CF2 /* Math.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Math.swift; sourceTree = "<group>"; };
+		574DF25B1EEEC61D00333469 /* GraphLayoutDecorator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphLayoutDecorator.swift; sourceTree = "<group>"; };
+		574DF25D1EEED2E800333469 /* CellLayoutAttributes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellLayoutAttributes.swift; sourceTree = "<group>"; };
 		57DCC26F1ED492F3000AD389 /* CollectionGraph.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CollectionGraph.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		57DCC2721ED492F3000AD389 /* CollectionGraph.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CollectionGraph.h; sourceTree = "<group>"; };
 		57DCC2731ED492F3000AD389 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -176,6 +180,8 @@
 				57DCC2721ED492F3000AD389 /* CollectionGraph.h */,
 				57DCC2D51ED4CB0C000AD389 /* GraphCollectionView.swift */,
 				57DCC2D71ED4CC00000AD389 /* GraphLayout.swift */,
+				574DF25B1EEEC61D00333469 /* GraphLayoutDecorator.swift */,
+				574DF25D1EEED2E800333469 /* CellLayoutAttributes.swift */,
 				57DCC2731ED492F3000AD389 /* Info.plist */,
 				57317A911EE1F88900FF2CF2 /* Math.swift */,
 			);
@@ -441,6 +447,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				574DF25C1EEEC61D00333469 /* GraphLayoutDecorator.swift in Sources */,
+				574DF25E1EEED2E800333469 /* CellLayoutAttributes.swift in Sources */,
 				57DCC2D81ED4CC00000AD389 /* GraphLayout.swift in Sources */,
 				57DCC2D61ED4CB0C000AD389 /* GraphCollectionView.swift in Sources */,
 				57317A921EE1F88900FF2CF2 /* Math.swift in Sources */,

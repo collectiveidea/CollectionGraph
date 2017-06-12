@@ -16,7 +16,7 @@ public protocol CollectionGraphDataSource: UICollectionViewDataSource {
 
 public protocol CollectionGraphDelegateLayout: UICollectionViewDelegate {
     
-    func graphCollectionView(_ graphCollectionView: UICollectionView, sizeForItemAt: IndexPath) -> CGSize
+    func graphCollectionView(_ graphCollectionView: UICollectionView, sizeForItemAt indexPath: IndexPath) -> CGSize
     
     func minAndMaxYValuesIn(_ graphCollectionView: UICollectionView) -> (min: CGFloat, max: CGFloat)
         
