@@ -26,9 +26,7 @@ public class GraphLayout: UICollectionViewLayout, RangeFinder {
     internal var graphContentWidth: CGFloat? // width of graph in points
 
     internal var cellSize: CGSize = CGSize(width: 3.0, height: 3.0)
-
-    private var backgroundQueueCount = 0
-
+    
     private var yIncrements: CGFloat {
         get {
             if let graphData = graphData {
@@ -41,18 +39,15 @@ public class GraphLayout: UICollectionViewLayout, RangeFinder {
     private let labelsZIndex = Int.max
     private let sideBarZIndex = Int.max - 1
 
-    private lazy var spinner: Spinner = {
-        let spinner = Spinner(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
-        if let collectionViewParent = self.collectionView?.superview {
-            collectionViewParent.addSubview(spinner)
-        }
-        return spinner
-    }()
-
-    internal var layoutAttributes = [UICollectionViewLayoutAttributes]()
-    internal var staticAttributes = [UICollectionViewLayoutAttributes]()
-
+    internal var staticAttributes: [UICollectionViewLayoutAttributes]?
+    
     // MARK: - Layout Setup
+    
+    public override func prepare() {
+        super.prepare()
+        
+        createStaticAttributes()
+    }
 
     public override func shouldInvalidateLayout(forBoundsChange newBounds: CGRect) -> Bool {
 
@@ -60,59 +55,27 @@ public class GraphLayout: UICollectionViewLayout, RangeFinder {
     }
 
     func createStaticAttributes() {
-
-        if backgroundQueueCount == 0 {
-            spinner.fadeIn()
-        }
-
-        backgroundQueueCount += 1
-
-        self.staticAttributes.removeAll()
-
-        // We do the heavy lifting of creating the layout of the cells on a background queue so it doesnt block the UI
-        DispatchQueue.global(qos: .background).async {
-            print("Create Attributes on BG Queue")
-            var tempAttributes = [UICollectionViewLayoutAttributes]()
-
-            tempAttributes += self.layoutAttributesForCell()
-
-            tempAttributes += self.layoutAttributesForXLabels()
-
-            if self.displayLineConnectors {
-                tempAttributes += self.layoutAttributesForLineConnector()
-            }
-
-            if self.displayBars {
-                tempAttributes += self.layoutAttributesForBar()
-            }
-
-            DispatchQueue.main.async {
-                self.backgroundQueueCount -= 1
-
-                print("Ended Background Queue of Layout Attribute creation")
-
-                if self.backgroundQueueCount == 0 {
-                    print("Invalidate On Main Queue")
-
-                    self.staticAttributes = tempAttributes
-
-                    self.invalidateLayout()
-
-                    self.spinner.fadeOut()
-                }
-            }
-        }
-    }
-
-    override public func prepare() {
-        // this is called over and over again so create minimal attributes here.
-
-        createTemporaryAttributes()
-    }
-
-    private func createTemporaryAttributes() {
+        
         var tempAttributes = [UICollectionViewLayoutAttributes]()
+        
+        tempAttributes += self.layoutAttributesForCell()
+        
+        tempAttributes += self.layoutAttributesForXLabels()
+        
+        if self.displayLineConnectors {
+            tempAttributes += self.layoutAttributesForLineConnector()
+        }
+        
+        if self.displayBars {
+            tempAttributes += self.layoutAttributesForBar()
+        }
+        
+        self.staticAttributes = tempAttributes
+    }
 
+    internal func temporaryAttributes() -> [UICollectionViewLayoutAttributes] {
+        var tempAttributes = [UICollectionViewLayoutAttributes]()
+        
         tempAttributes += self.layoutAttributesForYDividerLines()
 
         tempAttributes += self.layoutAttributesForYLabels()
@@ -120,8 +83,41 @@ public class GraphLayout: UICollectionViewLayout, RangeFinder {
         if ySideBarView != nil {
             tempAttributes += self.layoutAttributesForSideBar()
         }
-
-        layoutAttributes = tempAttributes + staticAttributes
+        
+        return tempAttributes
+    }
+    
+    public override func invalidationContext(forBoundsChange newBounds: CGRect) -> UICollectionViewLayoutInvalidationContext {
+        let context = super.invalidationContext(forBoundsChange: newBounds)
+        
+        guard let collectionView = self.collectionView else {
+            return context
+        }
+        
+        if collectionView.bounds.size != newBounds.size {
+            
+            return context
+        }
+        
+        invalidateIntermediateIndices(with: context)
+        
+        return context
+    }
+    
+    private func invalidateIntermediateIndices(with context: UICollectionViewLayoutInvalidationContext) {
+        
+        guard let collectionView = self.collectionView else {
+            return
+        }
+        
+        let dividerLineIndices = collectionView.indexPathsForVisibleSupplementaryElements(ofKind: ReuseIDs.YDividerView.rawValue)
+        context.invalidateSupplementaryElements(ofKind: ReuseIDs.YDividerView.rawValue, at: dividerLineIndices)
+        
+        let yLabelIndices = collectionView.indexPathsForVisibleSupplementaryElements(ofKind: ReuseIDs.YLabelView.rawValue)
+        context.invalidateSupplementaryElements(ofKind: ReuseIDs.YLabelView.rawValue, at: yLabelIndices)
+        
+        let ySideBarIndices = [IndexPath(item: 0, section: 0)]
+        context.invalidateDecorationElements(ofKind: ReuseIDs.SideBarView.rawValue, at: ySideBarIndices)
     }
 
     private func layoutAttributesForCell() -> [UICollectionViewLayoutAttributes] {
@@ -219,8 +215,6 @@ public class GraphLayout: UICollectionViewLayout, RangeFinder {
                     }
                 }
             }
-
-            layoutAttributes += tempAttributes
         }
         return tempAttributes
     }
@@ -500,16 +494,18 @@ public class GraphLayout: UICollectionViewLayout, RangeFinder {
     }
 
     override public func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
-
-        var attributesInRect = [UICollectionViewLayoutAttributes]()
-
-        for attributes in layoutAttributes {
-
-            if attributes.frame.intersects(rect) {
-                attributesInRect += [attributes]
+        
+        var attributes = [UICollectionViewLayoutAttributes]()
+        
+        attributes += temporaryAttributes()
+        
+        for staticAttributes in staticAttributes! {
+            if staticAttributes.frame.intersects(rect) {
+                attributes += [staticAttributes]
             }
         }
-        return attributesInRect
+        
+        return attributes
     }
 
     // MARK: - Helpers

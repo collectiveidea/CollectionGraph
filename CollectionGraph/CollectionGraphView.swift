@@ -85,7 +85,7 @@ public class CollectionGraphView: UIView, UICollectionViewDelegate {
             collectionGraphDataSource.collectionGraphYDividerLineDelegate = collectionGraphYDividerLineDelegate
         }
     }
-
+    
     /// Each GraphDatum array will define a new section in the graph.
     public var graphData: [[GraphDatum]]? {
         didSet {
@@ -93,7 +93,6 @@ public class CollectionGraphView: UIView, UICollectionViewDelegate {
                 layout.graphData = graphData
                 collectionGraphDataSource.graphData = graphData
                 graphCollectionView.reloadData()
-                layout.createStaticAttributes()
             }
         }
     }
@@ -351,12 +350,6 @@ public class CollectionGraphView: UIView, UICollectionViewDelegate {
         defer {
             graphCell = UICollectionViewCell()
         }
-    }
-
-    public override func layoutSubviews() {
-        super.layoutSubviews()
-
-        layout.createStaticAttributes()
     }
 
     func addCollectionView() {
