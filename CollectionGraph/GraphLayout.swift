@@ -70,7 +70,7 @@ public class GraphLayout: UICollectionViewLayout, RangeFinder {
         self.staticAttributes.removeAll()
 
         // We do the heavy lifting of creating the layout of the cells on a background queue so it doesnt block the UI
-        DispatchQueue.global(qos: .background).async {
+//        DispatchQueue.global(qos: .background).async {
             print("Create Attributes on BG Queue")
             var tempAttributes = [UICollectionViewLayoutAttributes]()
 
@@ -86,7 +86,7 @@ public class GraphLayout: UICollectionViewLayout, RangeFinder {
                 tempAttributes += self.layoutAttributesForBar()
             }
 
-            DispatchQueue.main.async {
+//            DispatchQueue.main.async {
                 self.backgroundQueueCount -= 1
 
                 print("Ended Background Queue of Layout Attribute creation")
@@ -100,8 +100,8 @@ public class GraphLayout: UICollectionViewLayout, RangeFinder {
 
                     self.spinner.fadeOut()
                 }
-            }
-        }
+//            }
+//        }
     }
 
     override public func prepare() {
