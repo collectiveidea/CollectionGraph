@@ -31,12 +31,25 @@ class CollectionGraphDataSource: NSObject, UICollectionViewDataSource, RangeFind
     internal var xSteps: Int = 3
 
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return graphData?.count ?? 1
+        guard let graphData = graphData else {
+            return 1
+        }
+        
+        let sectionCount = graphData.count == 0 ? 1 : graphData.count
+        return sectionCount
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-
-        return graphData?[section].count ?? 0
+        
+        guard let graphData = graphData else {
+            return 0
+        }
+        
+        if graphData.isEmpty {
+            return 0
+        }
+        
+        return graphData[section].count
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
