@@ -29,6 +29,7 @@ public protocol CollectionGraphDelegateLayout: UICollectionViewDelegate {
     func distanceBetweenXStepsIn(_ graphCollectionView: UICollectionView) -> CGFloat
 
 }
+
 open class GraphCollectionView: UICollectionView {
     
     private let graphLayout = GraphLayout()
@@ -39,4 +40,14 @@ open class GraphCollectionView: UICollectionView {
         collectionViewLayout = graphLayout
     }
     
+    open override func register(_ viewClass: AnyClass?, forSupplementaryViewOfKind elementKind: String, withReuseIdentifier identifier: String) {
+        
+        super.register(viewClass, forSupplementaryViewOfKind: elementKind, withReuseIdentifier: identifier)
+        
+        if elementKind == .graphLayoutElementKindLine {
+            graphLayout.graphLineLayoutAttributesModel = GraphLineLayoutAttributesModel(collectionView: self)
+        }
+    }
+    
 }
+

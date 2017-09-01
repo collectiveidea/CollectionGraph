@@ -38,6 +38,7 @@ internal class GraphLayout: UICollectionViewLayout {
             }
         }
     }
+    
     internal var graphLineLayoutAttributesModel: GraphLineLayoutAttributesModel? {
         didSet {
             if let graphLineLayoutAttributesModel = graphLineLayoutAttributesModel {
@@ -62,7 +63,6 @@ internal class GraphLayout: UICollectionViewLayout {
             
             attributes += att
         }
-        
         return attributes
     }
 
@@ -72,9 +72,12 @@ internal class GraphLayout: UICollectionViewLayout {
     }
     
     override func layoutAttributesForSupplementaryView(ofKind elementKind: String, at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
+        
         switch elementKind {
+        
         case .graphLayoutElementKindLine:
             return graphLineLayoutAttributesModel?.attributesForItem(at: indexPath)
+        
         default:
             return nil
         }

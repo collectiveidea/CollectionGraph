@@ -34,7 +34,13 @@ internal class GraphLineLayoutAttributes: UICollectionViewLayoutAttributes {
 
 open class GraphLineReusableView: UICollectionReusableView {
     
-    public let line = CAShapeLayer()
+    public var color = UIColor.black {
+        didSet {
+            line.strokeColor = color.cgColor
+        }
+    }
+    
+    let line = CAShapeLayer()
     
     var firstPoint = CGPoint.zero
     var secondPoint = CGPoint.zero
@@ -42,7 +48,7 @@ open class GraphLineReusableView: UICollectionReusableView {
     public override init(frame: CGRect) {
         super.init(frame: frame)
         
-        line.strokeColor = UIColor.black.cgColor
+        line.strokeColor = color.cgColor
         
         layer.addSublayer(line)
     }
