@@ -8,16 +8,13 @@
 
 import Foundation
 
-internal class CellLayoutAttributes {
-    
-    let graphLayout: GraphLayout
+internal class CellLayoutAttributesModel: LayoutAttributesModel {
     
     let decorator: GraphLayoutDecorator
     
-    init(graphLayout: GraphLayout) {
-        self.graphLayout = graphLayout
-        
-        self.decorator = GraphLayoutDecorator(graphLayout: graphLayout)
+    init(collectionView: UICollectionView) {
+
+        self.decorator = GraphLayoutDecorator(collectionView: collectionView)
     }
     
     /**

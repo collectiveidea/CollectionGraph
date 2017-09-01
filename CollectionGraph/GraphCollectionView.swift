@@ -29,13 +29,14 @@ public protocol CollectionGraphDelegateLayout: UICollectionViewDelegate {
     func distanceBetweenXStepsIn(_ graphCollectionView: UICollectionView) -> CGFloat
 
 }
-
 open class GraphCollectionView: UICollectionView {
     
+    private let graphLayout = GraphLayout()
+
     override open func awakeFromNib() {
+        graphLayout.cellLayoutAttributesModel = CellLayoutAttributesModel(collectionView: self)
         
-        collectionViewLayout = GraphLayout()
-        
+        collectionViewLayout = graphLayout
     }
     
 }

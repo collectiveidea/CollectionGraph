@@ -10,15 +10,15 @@ import Foundation
 
 internal class GraphLayoutDecorator {
     
-    var graphLayout: GraphLayout?
+    var collectionView: UICollectionView?
     
-    init(graphLayout: GraphLayout?) {
-        self.graphLayout = graphLayout
+    init(collectionView: UICollectionView?) {
+        self.collectionView = collectionView
     }
     
     internal var numberOfSections: Int {
         get {
-            if let collectionView = graphLayout?.collectionView ,let dataSource = collectionView.dataSource as? CollectionGraphDataSource {
+            if let collectionView = collectionView ,let dataSource = collectionView.dataSource as? CollectionGraphDataSource {
                 return dataSource.numberOfSections?(in: collectionView) ?? 0
             }
             return 0
@@ -27,7 +27,7 @@ internal class GraphLayoutDecorator {
     
     internal func numberOfItemsIn(section: Int) -> Int {
         
-        if let collectionView = graphLayout?.collectionView ,let dataSource = collectionView.dataSource as? CollectionGraphDataSource {
+        if let collectionView = collectionView ,let dataSource = collectionView.dataSource as? CollectionGraphDataSource {
             
             return dataSource.collectionView(collectionView, numberOfItemsInSection: section)
         }
@@ -36,7 +36,7 @@ internal class GraphLayoutDecorator {
     
     internal func minAndMaxXValues() -> (min: CGFloat, max: CGFloat) {
         
-        if let collectionView = graphLayout?.collectionView ,let delegate = collectionView.delegate as? CollectionGraphDelegateLayout {
+        if let collectionView = collectionView ,let delegate = collectionView.delegate as? CollectionGraphDelegateLayout {
             
             return delegate.minAndMaxXValuesIn(collectionView)
         }
@@ -44,7 +44,7 @@ internal class GraphLayoutDecorator {
     }
     
     internal func sizeOfCell(at indexPath: IndexPath) -> CGSize {
-        if let collectionView = graphLayout?.collectionView ,let delegate = collectionView.delegate as? CollectionGraphDelegateLayout {
+        if let collectionView = collectionView ,let delegate = collectionView.delegate as? CollectionGraphDelegateLayout {
             
             return delegate.graphCollectionView(collectionView, sizeForItemAt: indexPath)
         }
@@ -52,7 +52,7 @@ internal class GraphLayoutDecorator {
     }
     
     internal func userPoint(at indexPath: IndexPath) -> CGPoint {
-        if let collectionView = graphLayout?.collectionView ,let dataSource = collectionView.dataSource as? CollectionGraphDataSource {
+        if let collectionView = collectionView ,let dataSource = collectionView.dataSource as? CollectionGraphDataSource {
             
             return dataSource.collectionView(collectionView, pointFor: indexPath)
         }
@@ -63,7 +63,7 @@ internal class GraphLayoutDecorator {
         
         let userPoint = self.userPoint(at: indexPath)
         
-        let size = graphLayout?.collectionView?.collectionViewLayout.collectionViewContentSize ?? CGSize.zero
+        let size = collectionView?.collectionViewLayout.collectionViewContentSize ?? CGSize.zero
         
         let minXVal = minAndMaxXValues().min
         let maxXVal = minAndMaxXValues().max

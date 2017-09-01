@@ -25,9 +25,28 @@
 
 import UIKit
 
+public extension String {
+    static let graphLayoutElementKindLine = "graphLayoutElementKindLine"
+}
+
 internal class GraphLayout: UICollectionViewLayout {
     
-    private lazy var cellLayoutAttributes: CellLayoutAttributes = CellLayoutAttributes(graphLayout: self)
+    internal var cellLayoutAttributesModel: CellLayoutAttributesModel? {
+        didSet {
+            if let cellLayoutAttributesModel = cellLayoutAttributesModel {
+                attributeModels += [cellLayoutAttributesModel]
+            }
+        }
+    }
+    internal var graphLineLayoutAttributesModel: GraphLineLayoutAttributesModel? {
+        didSet {
+            if let graphLineLayoutAttributesModel = graphLineLayoutAttributesModel {
+                attributeModels += [graphLineLayoutAttributesModel]
+            }
+        }
+    }
+    
+    var attributeModels = [LayoutAttributesModel]()
     
     override func shouldInvalidateLayout(forBoundsChange newBounds: CGRect) -> Bool {
         return true
@@ -37,12 +56,11 @@ internal class GraphLayout: UICollectionViewLayout {
         
         var attributes = [UICollectionViewLayoutAttributes]()
         
-        let indexPathsOfItemsInRect = cellLayoutAttributes.indexPathsOfItems(in: rect)
-
-        indexPathsOfItemsInRect.forEach {
-            if let attribute = layoutAttributesForItem(at: $0) {
-                attributes += [attribute]
-            }
+        attributeModels.forEach {
+            
+            let att = $0.attributes(in: rect)
+            
+            attributes += att
         }
         
         return attributes
@@ -50,7 +68,16 @@ internal class GraphLayout: UICollectionViewLayout {
 
     override func layoutAttributesForItem(at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
         
-        return cellLayoutAttributes.attributesForItem(at: indexPath)
+        return cellLayoutAttributesModel?.attributesForItem(at: indexPath)
+    }
+    
+    override func layoutAttributesForSupplementaryView(ofKind elementKind: String, at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
+        switch elementKind {
+        case .graphLayoutElementKindLine:
+            return graphLineLayoutAttributesModel?.attributesForItem(at: indexPath)
+        default:
+            return nil
+        }
     }
     
     override var collectionViewContentSize: CGSize {
