@@ -47,8 +47,8 @@ extension ViewController: CollectionGraphDataSource {
         return milesPerDayRepo.numberOfItemsIn(section: section)
     }
     
-    func collectionView(_ collectionView: UICollectionView, pointFor indexPath: IndexPath) -> CGPoint {
-        return milesPerDayRepo.pointFor(indexPath: indexPath)//CGPoint(x: indexPath.item, y: indexPath.item)
+    func collectionView(_ collectionView: UICollectionView, valueFor indexPath: IndexPath) -> (xValue: CGFloat, yValue: CGFloat) {
+        return milesPerDayRepo.valueFor(indexPath: indexPath)
     }
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {

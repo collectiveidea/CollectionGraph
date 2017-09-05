@@ -60,17 +60,17 @@ internal class GraphLayoutDecorator {
         return CGSize.zero
     }
     
-    internal func userPoint(at indexPath: IndexPath) -> CGPoint {
+    internal func userValue(at indexPath: IndexPath) -> (xValue: CGFloat, yValue: CGFloat) {
         if let collectionView = collectionView ,let dataSource = collectionView.dataSource as? CollectionGraphDataSource {
             
-            return dataSource.collectionView(collectionView, pointFor: indexPath)
+            return dataSource.collectionView(collectionView, valueFor: indexPath)
         }
-        return CGPoint.zero
+        return (0, 0)
     }
     
     internal func pointInGraph(at indexPath: IndexPath) -> CGPoint {
         
-        let userPoint = self.userPoint(at: indexPath)
+        let userValue = self.userValue(at: indexPath)
         
         let size = collectionView?.collectionViewLayout.collectionViewContentSize ?? CGSize.zero
         
@@ -80,10 +80,10 @@ internal class GraphLayoutDecorator {
         let minYVal = minAndMaxYValues().min
         let maxYVal = minAndMaxYValues().max
         
-        let percentOnXAxis = Math.percent(ofValue: userPoint.x, fromMin: minXVal, toMax: maxXVal)
+        let percentOnXAxis = Math.percent(ofValue: userValue.xValue, fromMin: minXVal, toMax: maxXVal)
         let positionX = Math.lerp(percent: percentOnXAxis, ofDistance: size.width)
         
-        let percentOnYAxis = Math.percent(ofValue: userPoint.y, fromMin: minYVal, toMax: maxYVal)
+        let percentOnYAxis = Math.percent(ofValue: userValue.yValue, fromMin: minYVal, toMax: maxYVal)
         let positionY = Math.lerp(percent: percentOnYAxis, ofDistance: size.height)
         
         return CGPoint(x: positionX, y: positionY)

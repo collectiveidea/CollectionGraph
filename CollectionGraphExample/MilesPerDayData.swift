@@ -144,15 +144,15 @@ class MilesPerDayRepo  {
         return milesPerDayData.date.count
     }
     
-    func pointFor(indexPath: IndexPath) -> CGPoint {
+    func valueFor(indexPath: IndexPath) -> (xValue: CGFloat, yValue: CGFloat) {
         let milesPerDayData = data[indexPath.section]
         
         let miles = CGFloat(milesPerDayData.miles[indexPath.item])
         let date = milesPerDayData.date[indexPath.item]
         
         let dateToCGFloat = CGFloat(date.timeIntervalSince1970)
-        print(CGPoint(x: dateToCGFloat, y: miles))
-        return CGPoint(x: dateToCGFloat, y: miles)
+        
+        return (dateToCGFloat, miles)
     }
     
     func maxDateValue() -> CGFloat {

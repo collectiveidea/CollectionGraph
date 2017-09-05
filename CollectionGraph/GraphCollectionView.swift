@@ -10,7 +10,7 @@ import UIKit
 
 public protocol CollectionGraphDataSource: UICollectionViewDataSource {
     
-    func collectionView(_ collectionView: UICollectionView, pointFor indexPath: IndexPath) -> CGPoint
+    func collectionView(_ collectionView: UICollectionView, valueFor indexPath: IndexPath) -> (xValue: CGFloat, yValue: CGFloat)
     
 }
 
