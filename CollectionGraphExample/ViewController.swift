@@ -9,49 +9,18 @@
 import UIKit
 import CollectionGraph
 
-protocol GraphCellRepresentable {
-    func cellInstance(for collectionView: UICollectionView, at indexPath: IndexPath) -> UICollectionViewCell
-}
-
-
-class PeopleCellViewModel: GraphCellRepresentable {
-    
-    var data: String!
-    
-    init(data: String) {
-        self.data = data
-    }
-    
-    func cellInstance(for collectionView: UICollectionView, at indexPath: IndexPath) -> UICollectionViewCell {
-        let peopleCell = collectionView.dequeueReusableCell(withReuseIdentifier: "PeopleCell", for: indexPath)
-        
-        return peopleCell
-    }
-    
-}
-
-
 class ViewController: UIViewController {
-    
     
     @IBOutlet weak var graphCollectionView: GraphCollectionView!
     
-    let data: [GraphCellRepresentable] = [
-        PeopleCellViewModel(data: "Ben Lambert"),
-        PeopleCellViewModel(data: "Chris Rittersdorf"),
-        PeopleCellViewModel(data: "Josh Kovach"),
-        PeopleCellViewModel(data: "Tim Buguai"),
-        PeopleCellViewModel(data: "Victoria Gonda")
-    ]
+    let milesPerDayRepo = MilesPerDayRepo()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-        
+
         registerCells()
         
         graphCollectionView.contentInset = UIEdgeInsets(top: 15, left: 15, bottom: 15, right: 15)
-        
     }
     
     func registerCells() {
@@ -66,19 +35,20 @@ class ViewController: UIViewController {
 extension ViewController: CollectionGraphDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        return data[indexPath.row].cellInstance(for: collectionView, at: indexPath)
+        let peopleCell = collectionView.dequeueReusableCell(withReuseIdentifier: "PeopleCell", for: indexPath)
+        return peopleCell
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 1
+        return milesPerDayRepo.data.count
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return data.count
+        return milesPerDayRepo.numberOfItemsIn(section: section)
     }
     
     func collectionView(_ collectionView: UICollectionView, pointFor indexPath: IndexPath) -> CGPoint {
-        return CGPoint(x: indexPath.item, y: indexPath.item)
+        return milesPerDayRepo.pointFor(indexPath: indexPath)//CGPoint(x: indexPath.item, y: indexPath.item)
     }
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
@@ -100,7 +70,7 @@ extension ViewController: CollectionGraphDelegateLayout {
     }
     
     func minAndMaxYValuesIn(_ graphCollectionView: UICollectionView) -> (min: CGFloat, max: CGFloat) {
-        return (min: 0, max: CGFloat(data.count))
+        return (min: 0, max: CGFloat(milesPerDayRepo.maxMileageRan()))
     }
     
     func numberOfYStepsIn(_ graphCollectionView: UICollectionView) -> Int {
@@ -108,15 +78,15 @@ extension ViewController: CollectionGraphDelegateLayout {
     }
     
     func minAndMaxXValuesIn(_ graphCollectionView: UICollectionView) -> (min: CGFloat, max: CGFloat) {
-        return (min: 0, max: CGFloat(data.count))
+        return (min: milesPerDayRepo.minDateValue(), max: milesPerDayRepo.maxDateValue())
     }
 
     func numberOfXStepsIn(_ graphCollectionView: UICollectionView) -> Int {
-        return 3
+        return 8
     }
     
     func distanceBetweenXStepsIn(_ graphCollectionView: UICollectionView) -> CGFloat {
-        return 50
+        return 100
     }
 
 }

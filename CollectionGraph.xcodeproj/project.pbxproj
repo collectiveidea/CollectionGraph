@@ -10,6 +10,7 @@
 		57317A921EE1F88900FF2CF2 /* Math.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57317A911EE1F88900FF2CF2 /* Math.swift */; };
 		57317A931EE1F88900FF2CF2 /* Math.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57317A911EE1F88900FF2CF2 /* Math.swift */; };
 		57317A941EE1F88900FF2CF2 /* Math.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57317A911EE1F88900FF2CF2 /* Math.swift */; };
+		573CA48A1F59C0E700D3F056 /* MilesPerDayData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573CA4891F59C0E700D3F056 /* MilesPerDayData.swift */; };
 		574DF25C1EEEC61D00333469 /* GraphLayoutDecorator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574DF25B1EEEC61D00333469 /* GraphLayoutDecorator.swift */; };
 		578FB0BA1F583FEF005099D7 /* GraphLineReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578FB0B51F583FEE005099D7 /* GraphLineReusableView.swift */; };
 		578FB0BC1F583FEF005099D7 /* CellLayoutAttributesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578FB0B71F583FEF005099D7 /* CellLayoutAttributesModel.swift */; };
@@ -85,6 +86,7 @@
 
 /* Begin PBXFileReference section */
 		57317A911EE1F88900FF2CF2 /* Math.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Math.swift; sourceTree = "<group>"; };
+		573CA4891F59C0E700D3F056 /* MilesPerDayData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MilesPerDayData.swift; sourceTree = "<group>"; };
 		574DF25B1EEEC61D00333469 /* GraphLayoutDecorator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphLayoutDecorator.swift; sourceTree = "<group>"; };
 		578FB0B51F583FEE005099D7 /* GraphLineReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GraphLineReusableView.swift; sourceTree = "<group>"; };
 		578FB0B71F583FEF005099D7 /* CellLayoutAttributesModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellLayoutAttributesModel.swift; sourceTree = "<group>"; };
@@ -220,6 +222,7 @@
 				57DCC28F1ED49316000AD389 /* AppDelegate.swift */,
 				57DCC2911ED49316000AD389 /* ViewController.swift */,
 				57DCC2BD1ED4AF9B000AD389 /* PeopleCollectionViewCell.swift */,
+				573CA4891F59C0E700D3F056 /* MilesPerDayData.swift */,
 				57DCC2BE1ED4AF9B000AD389 /* PeopleCollectionViewCell.xib */,
 				57DCC2931ED49316000AD389 /* Main.storyboard */,
 				57DCC2961ED49316000AD389 /* Assets.xcassets */,
@@ -491,6 +494,7 @@
 				57DCC2921ED49316000AD389 /* ViewController.swift in Sources */,
 				57DCC2901ED49316000AD389 /* AppDelegate.swift in Sources */,
 				57DCC2BF1ED4AF9B000AD389 /* PeopleCollectionViewCell.swift in Sources */,
+				573CA48A1F59C0E700D3F056 /* MilesPerDayData.swift in Sources */,
 				57317A941EE1F88900FF2CF2 /* Math.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

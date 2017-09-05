@@ -31,7 +31,12 @@ internal class CellLayoutAttributesModel: LayoutAttributesModel {
                 
                 let point = decorator.pointInGraph(at: indexPathOfItem)
                 
-                if rect.contains(point) {
+                // Needed so the last point that equals the width of the rect, will be returned.
+                // If used on the original rect, the point will not return
+                // Example: if rect.width = 100 and the point.x = 100, rect.contains(point) will return false.  However, we want to include that point
+                let adjustedRect = CGRect(origin: rect.origin, size: CGSize(width: rect.width + 1, height: rect.height + 1))
+                
+                if adjustedRect.contains(point) {
                     intersectingPaths += [indexPathOfItem]
                 }
             }

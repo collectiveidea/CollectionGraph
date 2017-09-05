@@ -43,6 +43,15 @@ internal class GraphLayoutDecorator {
         return (0, 0)
     }
     
+    internal func minAndMaxYValues() -> (min: CGFloat, max: CGFloat) {
+        
+        if let collectionView = collectionView ,let delegate = collectionView.delegate as? CollectionGraphDelegateLayout {
+            
+            return delegate.minAndMaxYValuesIn(collectionView)
+        }
+        return (0, 0)
+    }
+    
     internal func sizeOfCell(at indexPath: IndexPath) -> CGSize {
         if let collectionView = collectionView ,let delegate = collectionView.delegate as? CollectionGraphDelegateLayout {
             
@@ -68,8 +77,8 @@ internal class GraphLayoutDecorator {
         let minXVal = minAndMaxXValues().min
         let maxXVal = minAndMaxXValues().max
         
-        let minYVal = minAndMaxXValues().min
-        let maxYVal = minAndMaxXValues().max
+        let minYVal = minAndMaxYValues().min
+        let maxYVal = minAndMaxYValues().max
         
         let percentOnXAxis = Math.percent(ofValue: userPoint.x, fromMin: minXVal, toMax: maxXVal)
         let positionX = Math.lerp(percent: percentOnXAxis, ofDistance: size.width)
