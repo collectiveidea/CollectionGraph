@@ -15,6 +15,14 @@ class ViewController: UIViewController {
     
     let ppmRepo = PPMRepo()
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        graphCollectionView.contentInset = UIEdgeInsets(top: 30, left: 30, bottom: 30, right: 30)
+        
+        graphCollectionView.register(GraphLineReusableView.self, forSupplementaryViewOfKind: .graphLayoutElementKindLine, withReuseIdentifier: .graphLayoutElementKindLine)
+    }
+    
 }
 
 extension ViewController: CollectionGraphDataSource {
@@ -23,11 +31,18 @@ extension ViewController: CollectionGraphDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        return collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)
+        cell.layer.cornerRadius = cell.frame.width / 2
+        return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, valueFor indexPath: IndexPath) -> (xValue: CGFloat, yValue: CGFloat) {
         return ppmRepo.valueFor(indexPath: indexPath)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        let line = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: .graphLayoutElementKindLine, for: indexPath)
+        return line
     }
     
 }
