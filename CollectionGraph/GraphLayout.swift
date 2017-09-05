@@ -27,6 +27,7 @@ import UIKit
 
 public extension String {
     static let graphLayoutElementKindLine = "graphLayoutElementKindLine"
+    static let graphLayoutElementKindXLabel = "graphLayoutElementKindXLabel"
 }
 
 internal class GraphLayout: UICollectionViewLayout {
@@ -43,6 +44,14 @@ internal class GraphLayout: UICollectionViewLayout {
         didSet {
             if let graphLineLayoutAttributesModel = graphLineLayoutAttributesModel {
                 attributeModels += [graphLineLayoutAttributesModel]
+            }
+        }
+    }
+    
+    internal var xLabelLayoutAttributesModel: XLabelLayoutAttributesModel? {
+        didSet {
+            if let xLabelLayoutAttributesModel = xLabelLayoutAttributesModel {
+                attributeModels += [xLabelLayoutAttributesModel]
             }
         }
     }
@@ -77,7 +86,8 @@ internal class GraphLayout: UICollectionViewLayout {
         
         case .graphLayoutElementKindLine:
             return graphLineLayoutAttributesModel?.attributesForItem(at: indexPath)
-        
+        case .graphLayoutElementKindXLabel:
+            return xLabelLayoutAttributesModel?.attributesForItem(at: indexPath)
         default:
             return nil
         }

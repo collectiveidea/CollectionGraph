@@ -30,7 +30,15 @@ public protocol CollectionGraphDelegateLayout: UICollectionViewDelegate {
 
 }
 
+@objc public protocol CollectionGraphXLabelDelegate: class {
+    
+    func collectionView(_ graphCollectionView: UICollectionView, TextFromValue value: CGFloat) -> String
+    
+}
+
 open class GraphCollectionView: UICollectionView {
+    
+    @IBOutlet public weak var xLabelDelegate: CollectionGraphXLabelDelegate?
     
     private let graphLayout = GraphLayout()
 
@@ -46,6 +54,8 @@ open class GraphCollectionView: UICollectionView {
         
         if elementKind == .graphLayoutElementKindLine {
             graphLayout.graphLineLayoutAttributesModel = GraphLineLayoutAttributesModel(collectionView: self)
+        } else if elementKind == .graphLayoutElementKindXLabel {
+            graphLayout.xLabelLayoutAttributesModel = XLabelLayoutAttributesModel(collectionView: self)
         }
     }
     

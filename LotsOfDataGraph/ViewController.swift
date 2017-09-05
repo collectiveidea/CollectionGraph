@@ -21,6 +21,7 @@ class ViewController: UIViewController {
         graphCollectionView.contentInset = UIEdgeInsets(top: 30, left: 30, bottom: 30, right: 30)
         
         graphCollectionView.register(GraphLineReusableView.self, forSupplementaryViewOfKind: .graphLayoutElementKindLine, withReuseIdentifier: .graphLayoutElementKindLine)
+        graphCollectionView.register(XLabelReusableView.self, forSupplementaryViewOfKind: .graphLayoutElementKindXLabel, withReuseIdentifier: .graphLayoutElementKindXLabel)
     }
     
 }
@@ -41,8 +42,19 @@ extension ViewController: CollectionGraphDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        let line = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: .graphLayoutElementKindLine, for: indexPath)
-        return line
+        
+        switch kind {
+        case .graphLayoutElementKindLine:
+            let line = collectionView.dequeueReusableSupplementaryView(ofKind: kind,
+                                                                       withReuseIdentifier: .graphLayoutElementKindLine,
+                                                                       for: indexPath)
+            return line
+        default:
+            let XLabel = collectionView.dequeueReusableSupplementaryView(ofKind: kind,
+                                                                         withReuseIdentifier: .graphLayoutElementKindXLabel,
+                                                                         for: indexPath)
+            return XLabel
+        }
     }
     
 }
@@ -74,8 +86,24 @@ extension ViewController: CollectionGraphDelegateLayout {
     }
     
     func distanceBetweenXStepsIn(_ graphCollectionView: UICollectionView) -> CGFloat {
-        return 100
+        return 150
     }
+    
+}
+
+extension ViewController: CollectionGraphXLabelDelegate {
+    
+    func collectionView(_ graphCollectionView: UICollectionView, TextFromValue value: CGFloat) -> String {
+        let date = Date(timeIntervalSince1970: Double(value))
+        let customFormat = DateFormatter.dateFormat(fromTemplate: "MMM d hh:mm", options: 0, locale: Locale(identifier: "us"))!
+        
+        let formatter = DateFormatter()
+        formatter.timeZone = TimeZone(abbreviation: "UTC")
+        formatter.dateFormat = customFormat
+        
+        return formatter.string(from: date)
+    }
+    
     
 }
 

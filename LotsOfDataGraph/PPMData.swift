@@ -38,7 +38,11 @@ class PPMRepo {
      and the dates on the X axis
      */
     
-    var data = [PPMModel]()
+    var data = [PPMModel]() {
+        didSet {
+            print("Data: \(data)")
+        }
+    }
     
     init() {
         getPPM()

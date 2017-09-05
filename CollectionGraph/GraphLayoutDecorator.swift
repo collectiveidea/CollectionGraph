@@ -63,6 +63,24 @@ internal class GraphLayoutDecorator {
         return (0, 0)
     }
     
+    internal func numberOfXSteps() -> Int {
+        if let collectionView = collectionView ,let delegate = collectionView.delegate as? CollectionGraphDelegateLayout {
+            
+            return delegate.numberOfXStepsIn(collectionView)
+        }
+        
+        return 0
+    }
+    
+    internal func distanceOfXSteps() -> CGFloat {
+        if let collectionView = collectionView ,let delegate = collectionView.delegate as? CollectionGraphDelegateLayout {
+            
+            return delegate.distanceBetweenXStepsIn(collectionView)
+        }
+        
+        return 0
+    }
+    
     internal func sizeOfCell(at indexPath: IndexPath) -> CGSize {
         if let collectionView = collectionView ,let delegate = collectionView.delegate as? CollectionGraphDelegateLayout {
             
@@ -101,6 +119,21 @@ internal class GraphLayoutDecorator {
         let positionY = Math.lerp(percent: percentOnYAxis, ofDistance: size.height)
         
         return CGPoint(x: positionX, y: positionY)
+    }
+    
+    func contentWidth() -> CGFloat {
+        if let layout = collectionView?.collectionViewLayout {
+            return layout.collectionViewContentSize.width
+        }
+        return 0.0
+    }
+    
+    func textForXLabelFrom(_ value: CGFloat) -> String? {
+        if let collectionView = collectionView as? GraphCollectionView,let delegate = collectionView.xLabelDelegate {
+        
+            return delegate.collectionView(collectionView, TextFromValue: value)
+        }
+        return nil
     }
     
 }

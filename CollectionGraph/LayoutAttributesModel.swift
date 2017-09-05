@@ -12,8 +12,8 @@ protocol LayoutAttributesModel {
     
     var cache: [IndexPath: UICollectionViewLayoutAttributes] { get set }
     
-    func attributesForItem(at indexPath: IndexPath) -> UICollectionViewLayoutAttributes?
     func indexPathsOfItems(in rect: CGRect) -> [IndexPath]
+    func attributesForItem(at indexPath: IndexPath) -> UICollectionViewLayoutAttributes?
     
 }
 

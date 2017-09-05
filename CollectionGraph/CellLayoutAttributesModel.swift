@@ -8,7 +8,7 @@
 
 import Foundation
 
-internal class CellLayoutAttributesModel: LayoutAttributesModel {
+internal class CellLayoutAttributesModel {
     
     let decorator: GraphLayoutDecorator
     
@@ -18,6 +18,10 @@ internal class CellLayoutAttributesModel: LayoutAttributesModel {
 
         self.decorator = GraphLayoutDecorator(collectionView: collectionView)
     }
+    
+}
+
+extension CellLayoutAttributesModel: LayoutAttributesModel {
     
     /**
      Loops thru all items and creates an index path if it lies within the rect
