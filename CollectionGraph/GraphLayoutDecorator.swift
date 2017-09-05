@@ -12,6 +12,9 @@ internal class GraphLayoutDecorator {
     
     var collectionView: UICollectionView?
     
+    var xMinMaxValuesCache: (min: CGFloat, max: CGFloat)?
+    var yMinMaxValuesCache: (min: CGFloat, max: CGFloat)?
+    
     init(collectionView: UICollectionView?) {
         self.collectionView = collectionView
     }
@@ -36,18 +39,26 @@ internal class GraphLayoutDecorator {
     
     internal func minAndMaxXValues() -> (min: CGFloat, max: CGFloat) {
         
+        if let xMinMaxValuesCache = xMinMaxValuesCache {
+            return xMinMaxValuesCache
+        }
+        
         if let collectionView = collectionView ,let delegate = collectionView.delegate as? CollectionGraphDelegateLayout {
-            
-            return delegate.minAndMaxXValuesIn(collectionView)
+            xMinMaxValuesCache = delegate.minAndMaxXValuesIn(collectionView)
+            return xMinMaxValuesCache!
         }
         return (0, 0)
     }
     
     internal func minAndMaxYValues() -> (min: CGFloat, max: CGFloat) {
         
+        if let yMinMaxValuesCache = yMinMaxValuesCache {
+            return yMinMaxValuesCache
+        }
+        
         if let collectionView = collectionView ,let delegate = collectionView.delegate as? CollectionGraphDelegateLayout {
-            
-            return delegate.minAndMaxYValuesIn(collectionView)
+            yMinMaxValuesCache = delegate.minAndMaxYValuesIn(collectionView)
+            return yMinMaxValuesCache!
         }
         return (0, 0)
     }

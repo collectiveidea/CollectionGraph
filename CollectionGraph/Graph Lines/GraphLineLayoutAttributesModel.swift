@@ -12,6 +12,8 @@ internal class GraphLineLayoutAttributesModel: LayoutAttributesModel {
     
     let decorator: GraphLayoutDecorator
     
+    var cache = [IndexPath : UICollectionViewLayoutAttributes]()
+    
     init(collectionView: UICollectionView) {
         
         self.decorator = GraphLayoutDecorator(collectionView: collectionView)
@@ -46,6 +48,10 @@ internal class GraphLineLayoutAttributesModel: LayoutAttributesModel {
     
     internal func attributesForItem(at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
         
+        if let cachedAttribute = cache[indexPath] {
+            return cachedAttribute
+        }
+        
         if decorator.numberOfItemsIn(section: indexPath.section) > indexPath.item {
             
             let attribute = GraphLineLayoutAttributes(forSupplementaryViewOfKind: .graphLayoutElementKindLine, with: indexPath)
@@ -77,6 +83,7 @@ internal class GraphLineLayoutAttributesModel: LayoutAttributesModel {
                 attribute.secondPoint = CGPoint(x: maxX - minX, y: minY - minY)
             }
             
+            cache[indexPath] = attribute
             
             return attribute
         }

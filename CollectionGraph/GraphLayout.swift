@@ -50,7 +50,7 @@ internal class GraphLayout: UICollectionViewLayout {
     var attributeModels = [LayoutAttributesModel]()
     
     override func shouldInvalidateLayout(forBoundsChange newBounds: CGRect) -> Bool {
-        return true
+        return false
     }
     
     override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {

@@ -12,6 +12,8 @@ internal class CellLayoutAttributesModel: LayoutAttributesModel {
     
     let decorator: GraphLayoutDecorator
     
+    var cache = [IndexPath: UICollectionViewLayoutAttributes]()
+    
     init(collectionView: UICollectionView) {
 
         self.decorator = GraphLayoutDecorator(collectionView: collectionView)
@@ -46,6 +48,10 @@ internal class CellLayoutAttributesModel: LayoutAttributesModel {
     
     internal func attributesForItem(at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
         
+        if let cachedAttribute = cache[indexPath] {
+            return cachedAttribute
+        }
+        
         let attribute = UICollectionViewLayoutAttributes(forCellWith: indexPath)
         
         let pointInTheGraph = decorator.pointInGraph(at: indexPath)
@@ -58,6 +64,8 @@ internal class CellLayoutAttributesModel: LayoutAttributesModel {
             width: sizeOfTheCell.width,
             height: sizeOfTheCell.height
         )
+        
+        cache[indexPath] = attribute
         
         return attribute
     }
