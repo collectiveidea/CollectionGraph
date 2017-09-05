@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MilesPerDayData {
+struct MilesPerDayData {
     let data = """
     [{
     "name": "Janice Anderson",

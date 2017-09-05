@@ -19,9 +19,9 @@ internal class GraphLayoutDecorator {
     internal var numberOfSections: Int {
         get {
             if let collectionView = collectionView ,let dataSource = collectionView.dataSource as? CollectionGraphDataSource {
-                return dataSource.numberOfSections?(in: collectionView) ?? 0
+                return dataSource.numberOfSections?(in: collectionView) ?? 1
             }
-            return 0
+            return 1
         }
     }
     
@@ -74,11 +74,14 @@ internal class GraphLayoutDecorator {
         
         let size = collectionView?.collectionViewLayout.collectionViewContentSize ?? CGSize.zero
         
-        let minXVal = minAndMaxXValues().min
-        let maxXVal = minAndMaxXValues().max
+        let xValues = minAndMaxXValues()
+        let yValues = minAndMaxYValues()
         
-        let minYVal = minAndMaxYValues().min
-        let maxYVal = minAndMaxYValues().max
+        let minXVal = xValues.min
+        let maxXVal = xValues.max
+        
+        let minYVal = yValues.min
+        let maxYVal = yValues.max
         
         let percentOnXAxis = Math.percent(ofValue: userValue.xValue, fromMin: minXVal, toMax: maxXVal)
         let positionX = Math.lerp(percent: percentOnXAxis, ofDistance: size.width)
