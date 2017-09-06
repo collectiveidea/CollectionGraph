@@ -285,8 +285,8 @@
 			children = (
 				57DCC28F1ED49316000AD389 /* AppDelegate.swift */,
 				57DCC2911ED49316000AD389 /* ViewController.swift */,
-				57DCC2BD1ED4AF9B000AD389 /* PeopleCollectionViewCell.swift */,
 				573CA4891F59C0E700D3F056 /* MilesPerDayData.swift */,
+				57DCC2BD1ED4AF9B000AD389 /* PeopleCollectionViewCell.swift */,
 				57DCC2BE1ED4AF9B000AD389 /* PeopleCollectionViewCell.xib */,
 				57DCC2931ED49316000AD389 /* Main.storyboard */,
 				57DCC2961ED49316000AD389 /* Assets.xcassets */,

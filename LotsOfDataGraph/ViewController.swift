@@ -18,8 +18,6 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        graphCollectionView.contentInset = UIEdgeInsets(top: 30, left: 30, bottom: 30, right: 30)
-        
         graphCollectionView.register(GraphLineReusableView.self, forSupplementaryViewOfKind: .graphLayoutElementKindLine, withReuseIdentifier: .graphLayoutElementKindLine)
         graphCollectionView.register(XLabelReusableView.self, forSupplementaryViewOfKind: .graphLayoutElementKindXLabel, withReuseIdentifier: .graphLayoutElementKindXLabel)
     }

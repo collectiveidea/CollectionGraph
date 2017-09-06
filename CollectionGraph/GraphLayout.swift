@@ -30,7 +30,30 @@ public extension String {
     static let graphLayoutElementKindXLabel = "graphLayoutElementKindXLabel"
 }
 
-internal class GraphLayout: UICollectionViewLayout {
+public class GraphLayout: UICollectionViewLayout {
+    
+    @IBInspectable public var topInset: CGFloat = 0 {
+        didSet {
+            sectionInsets.top = topInset
+        }
+    }
+    @IBInspectable public var rightInset: CGFloat = 0 {
+        didSet {
+            sectionInsets.right = rightInset
+        }
+    }
+    @IBInspectable public var bottomInset: CGFloat = 0 {
+        didSet {
+            sectionInsets.bottom = bottomInset
+        }
+    }
+    @IBInspectable public var leftInset: CGFloat = 0 {
+        didSet {
+            sectionInsets.left = leftInset
+        }
+    }
+    
+    public var sectionInsets: UIEdgeInsets = UIEdgeInsets.zero
     
     internal var cellLayoutAttributesModel: CellLayoutAttributesModel? {
         didSet {
@@ -58,11 +81,11 @@ internal class GraphLayout: UICollectionViewLayout {
     
     var attributeModels = [LayoutAttributesModel]()
     
-    override func shouldInvalidateLayout(forBoundsChange newBounds: CGRect) -> Bool {
+    override public func shouldInvalidateLayout(forBoundsChange newBounds: CGRect) -> Bool {
         return false
     }
     
-    override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
+    override public func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
         
         var attributes = [UICollectionViewLayoutAttributes]()
         
@@ -75,12 +98,12 @@ internal class GraphLayout: UICollectionViewLayout {
         return attributes
     }
 
-    override func layoutAttributesForItem(at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
+    override public func layoutAttributesForItem(at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
         
         return cellLayoutAttributesModel?.attributesForItem(at: indexPath)
     }
     
-    override func layoutAttributesForSupplementaryView(ofKind elementKind: String, at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
+    override public func layoutAttributesForSupplementaryView(ofKind elementKind: String, at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
         
         switch elementKind {
         
@@ -93,7 +116,7 @@ internal class GraphLayout: UICollectionViewLayout {
         }
     }
     
-    override var collectionViewContentSize: CGSize {
+    override public var collectionViewContentSize: CGSize {
         
         if let collectionView = collectionView, let delegate = collectionView.delegate as? CollectionGraphDelegateLayout {
             
@@ -101,7 +124,8 @@ internal class GraphLayout: UICollectionViewLayout {
             
             let numberOfXSteps: CGFloat = CGFloat(delegate.numberOfXStepsIn(collectionView))
             
-            let widthPadding = collectionView.contentInset.left + collectionView.contentInset.right
+            // expand the width of the graph by the section insets to keep the distanceBetweenXSteps as specified
+            let widthPadding = collectionView.contentInset.left + collectionView.contentInset.right - sectionInsets.left - sectionInsets.right
             
             let heightOfCollectionView = collectionView.frame.height
             
@@ -109,6 +133,8 @@ internal class GraphLayout: UICollectionViewLayout {
             
             let width = distanceBetweenXSteps * numberOfXSteps - widthPadding
             let height = heightOfCollectionView - heightPadding
+            
+            print("\nInsets in Content: \(sectionInsets)\n")
             
             return CGSize(width: width, height: height)
         }

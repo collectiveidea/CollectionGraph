@@ -24,6 +24,5 @@ class PeopleCollectionViewCell: UICollectionViewCell {
         imageView.layer.borderWidth = 2
         imageView.layer.borderColor = UIColor.white.cgColor
     }
-    
 
 }

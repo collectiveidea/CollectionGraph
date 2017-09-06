@@ -39,18 +39,27 @@ public protocol CollectionGraphDelegateLayout: UICollectionViewDelegate {
 open class GraphCollectionView: UICollectionView {
     
     @IBOutlet public weak var xLabelDelegate: CollectionGraphXLabelDelegate?
-    
-    private let graphLayout = GraphLayout()
 
     override open func awakeFromNib() {
-        graphLayout.cellLayoutAttributesModel = CellLayoutAttributesModel(collectionView: self)
+        setupLayout()
+    }
+    
+    func setupLayout() {
+        if !(collectionViewLayout is GraphLayout) {
+            collectionViewLayout = GraphLayout()
+        }
         
-        collectionViewLayout = graphLayout
+        let layout = collectionViewLayout as! GraphLayout
+        layout.cellLayoutAttributesModel = CellLayoutAttributesModel(collectionView: self)
     }
     
     open override func register(_ viewClass: AnyClass?, forSupplementaryViewOfKind elementKind: String, withReuseIdentifier identifier: String) {
         
         super.register(viewClass, forSupplementaryViewOfKind: elementKind, withReuseIdentifier: identifier)
+        
+        guard let graphLayout = collectionViewLayout as? GraphLayout else {
+            return
+        }
         
         if elementKind == .graphLayoutElementKindLine {
             graphLayout.graphLineLayoutAttributesModel = GraphLineLayoutAttributesModel(collectionView: self)

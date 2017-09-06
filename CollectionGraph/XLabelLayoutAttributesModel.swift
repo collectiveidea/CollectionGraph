@@ -55,20 +55,24 @@ extension XLabelLayoutAttributesModel: LayoutAttributesModel {
         
         let attribute = XLabelLayoutAttributes(forSupplementaryViewOfKind: .graphLayoutElementKindXLabel, with: indexPath)
         
+        let contentSize = decorator.contentSize()
+        
         let distanceOfXSteps = decorator.distanceOfXSteps()
         
-        attribute.frame = CGRect(origin: CGPoint(x: CGFloat(indexPath.item) * distanceOfXSteps, y: 30), size: CGSize(width: 10, height: 10))
+        let insets = decorator.sectionInsets()
+        
+        attribute.frame = CGRect(origin: CGPoint(x: CGFloat(indexPath.item) * distanceOfXSteps + insets.left, y: contentSize.height - insets.bottom), size: CGSize(width: distanceOfXSteps, height: 10))
         
         let delta = decorator.minAndMaxXValues()
         let normalizedDelta = delta.max - delta.min
 
-        let percentOnXAxis = Math.percent(ofValue: attribute.frame.origin.x + attribute.frame.size.width / 2, fromMin: 0, toMax: decorator.contentWidth())
+        let percentOnXAxis = Math.percent(ofValue: attribute.frame.origin.x + attribute.frame.size.width / 2, fromMin: 0, toMax: contentSize.width)
         
         let value = Math.lerp(percent: percentOnXAxis, ofDistance: normalizedDelta) + delta.min
         
         let valueString = decorator.textForXLabelFrom(value) ?? "\(value)"
         
-        attribute.text = valueString//Math.lerp(percent: percentOnXAxis, ofDistance: normalizedDelta)
+        attribute.text = valueString
         
         cache[indexPath] = attribute
         

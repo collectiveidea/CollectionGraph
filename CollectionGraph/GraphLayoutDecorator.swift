@@ -101,7 +101,7 @@ internal class GraphLayoutDecorator {
         
         let userValue = self.userValue(at: indexPath)
         
-        let size = collectionView?.collectionViewLayout.collectionViewContentSize ?? CGSize.zero
+        let size = contentSize()
         
         let xValues = minAndMaxXValues()
         let yValues = minAndMaxYValues()
@@ -112,24 +112,41 @@ internal class GraphLayoutDecorator {
         let minYVal = yValues.min
         let maxYVal = yValues.max
         
-        let percentOnXAxis = Math.percent(ofValue: userValue.xValue, fromMin: minXVal, toMax: maxXVal)
-        let positionX = Math.lerp(percent: percentOnXAxis, ofDistance: size.width)
+        let sectionInsets = self.sectionInsets()
         
-        let percentOnYAxis = Math.percent(ofValue: userValue.yValue, fromMin: minYVal, toMax: maxYVal)
-        let positionY = Math.lerp(percent: percentOnYAxis, ofDistance: size.height)
+        let percentOnXAxis = Math.percent(ofValue: userValue.xValue,
+                                          fromMin: minXVal,
+                                          toMax: maxXVal)
+        
+        let positionX = Math.lerp(percent: percentOnXAxis,
+                                  ofDistance: size.width - sectionInsets.left - sectionInsets.right) + sectionInsets.left
+        
+        let percentOnYAxis = Math.percent(ofValue: userValue.yValue,
+                                          fromMin: minYVal,
+                                          toMax: maxYVal)
+        
+        let positionY = Math.lerp(percent: 1.0 - percentOnYAxis,
+                                  ofDistance: size.height - sectionInsets.top - sectionInsets.bottom) + sectionInsets.top
         
         return CGPoint(x: positionX, y: positionY)
     }
     
-    func contentWidth() -> CGFloat {
-        if let layout = collectionView?.collectionViewLayout {
-            return layout.collectionViewContentSize.width
+    func contentSize() -> CGSize {
+        if let layout = collectionView?.collectionViewLayout as? GraphLayout {
+            return layout.collectionViewContentSize
         }
-        return 0.0
+        return CGSize.zero
+    }
+    
+    func sectionInsets() -> UIEdgeInsets {
+        if let layout = collectionView?.collectionViewLayout as? GraphLayout {
+            return layout.sectionInsets
+        }
+        return UIEdgeInsets.zero
     }
     
     func textForXLabelFrom(_ value: CGFloat) -> String? {
-        if let collectionView = collectionView as? GraphCollectionView,let delegate = collectionView.xLabelDelegate {
+        if let collectionView = collectionView as? GraphCollectionView, let delegate = collectionView.xLabelDelegate {
         
             return delegate.collectionView(collectionView, TextFromValue: value)
         }
