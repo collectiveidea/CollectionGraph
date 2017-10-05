@@ -63,8 +63,8 @@ open class GraphCollectionView: UICollectionView {
         
         if elementKind == .graphLayoutElementKindLine {
             graphLayout.graphLineLayoutAttributesModel = GraphLineLayoutAttributesModel(collectionView: self)
-        } else if elementKind == .graphLayoutElementKindXLabel {
-            graphLayout.xLabelLayoutAttributesModel = XLabelLayoutAttributesModel(collectionView: self)
+        } else if elementKind == .graphLayoutElementKindXAxisView {
+            graphLayout.xAxisLayoutAttributesModel = XAxisLayoutAttributesModel(collectionView: self)
         }
     }
     

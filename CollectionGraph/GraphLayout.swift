@@ -27,7 +27,7 @@ import UIKit
 
 public extension String {
     static let graphLayoutElementKindLine = "graphLayoutElementKindLine"
-    static let graphLayoutElementKindXLabel = "graphLayoutElementKindXLabel"
+    static let graphLayoutElementKindXAxisView = "graphLayoutElementKindXAxisView"
 }
 
 public class GraphLayout: UICollectionViewLayout {
@@ -71,10 +71,10 @@ public class GraphLayout: UICollectionViewLayout {
         }
     }
     
-    internal var xLabelLayoutAttributesModel: XLabelLayoutAttributesModel? {
+    internal var xAxisLayoutAttributesModel: XAxisLayoutAttributesModel? {
         didSet {
-            if let xLabelLayoutAttributesModel = xLabelLayoutAttributesModel {
-                attributeModels += [xLabelLayoutAttributesModel]
+            if let xAxisLayoutAttributesModel = xAxisLayoutAttributesModel {
+                attributeModels += [xAxisLayoutAttributesModel]
             }
         }
     }
@@ -109,8 +109,8 @@ public class GraphLayout: UICollectionViewLayout {
         
         case .graphLayoutElementKindLine:
             return graphLineLayoutAttributesModel?.attributesForItem(at: indexPath)
-        case .graphLayoutElementKindXLabel:
-            return xLabelLayoutAttributesModel?.attributesForItem(at: indexPath)
+        case .graphLayoutElementKindXAxisView:
+            return xAxisLayoutAttributesModel?.attributesForItem(at: indexPath)
         default:
             return nil
         }

@@ -1,5 +1,5 @@
 //
-//  XLabelLayoutAttributesModel.swift
+//  XAxisLayoutAttributesModel.swift
 //  CollectionGraph
 //
 //  Created by Ben Lambert on 9/5/17.
@@ -8,7 +8,8 @@
 
 import UIKit
 
-class XLabelLayoutAttributesModel {
+class XAxisLayoutAttributesModel {
+    
     let decorator: GraphLayoutDecorator
     
     var cache = [IndexPath: UICollectionViewLayoutAttributes]()
@@ -18,10 +19,9 @@ class XLabelLayoutAttributesModel {
         self.decorator = GraphLayoutDecorator(collectionView: collectionView)
     }
     
-    
 }
 
-extension XLabelLayoutAttributesModel: LayoutAttributesModel {
+extension XAxisLayoutAttributesModel: LayoutAttributesModel {
     
     func indexPathsOfItems(in rect: CGRect) -> [IndexPath] {
         var intersectingPaths = [IndexPath]()
@@ -36,7 +36,7 @@ extension XLabelLayoutAttributesModel: LayoutAttributesModel {
             
             // Needed so the last point that equals the width of the rect, will be returned.
             // If used on the original rect, the point will not return
-            // Example: if rect.width = 100 and the point.x = 100, rect.contains(point) will return false.  However, we want to include that point
+            // Example: if rect.width = 100 and the point.x = 100, rect.contains(point) will return false.  However, we want to include that point so we add 1 to the size.
             let adjustedRect = CGRect(origin: rect.origin, size: CGSize(width: rect.width + 1, height: rect.height + 1))
             
             if adjustedRect.contains(point) {
@@ -53,7 +53,7 @@ extension XLabelLayoutAttributesModel: LayoutAttributesModel {
             return cachedAttribute
         }
         
-        let attribute = XLabelLayoutAttributes(forSupplementaryViewOfKind: .graphLayoutElementKindXLabel, with: indexPath)
+        let attribute = XAxisLayoutAttributes(forSupplementaryViewOfKind: .graphLayoutElementKindXAxisView, with: indexPath)
         
         let contentSize = decorator.contentSize()
         
@@ -61,7 +61,7 @@ extension XLabelLayoutAttributesModel: LayoutAttributesModel {
         
         let insets = decorator.sectionInsets()
         
-        attribute.frame = CGRect(origin: CGPoint(x: CGFloat(indexPath.item) * distanceOfXSteps + insets.left, y: contentSize.height - insets.bottom), size: CGSize(width: distanceOfXSteps, height: 10))
+        attribute.frame = CGRect(origin: CGPoint(x: CGFloat(indexPath.item) * distanceOfXSteps + insets.left - distanceOfXSteps / 2, y: contentSize.height - insets.bottom), size: CGSize(width: distanceOfXSteps, height: 10))
         
         let delta = decorator.minAndMaxXValues()
         let normalizedDelta = delta.max - delta.min
@@ -70,9 +70,7 @@ extension XLabelLayoutAttributesModel: LayoutAttributesModel {
         
         let value = Math.lerp(percent: percentOnXAxis, ofDistance: normalizedDelta) + delta.min
         
-        let valueString = decorator.textForXLabelFrom(value) ?? "\(value)"
-        
-        attribute.text = valueString
+        attribute.value = value
         
         cache[indexPath] = attribute
         

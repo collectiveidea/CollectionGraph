@@ -19,7 +19,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         graphCollectionView.register(GraphLineReusableView.self, forSupplementaryViewOfKind: .graphLayoutElementKindLine, withReuseIdentifier: .graphLayoutElementKindLine)
-        graphCollectionView.register(XLabelReusableView.self, forSupplementaryViewOfKind: .graphLayoutElementKindXLabel, withReuseIdentifier: .graphLayoutElementKindXLabel)
+        graphCollectionView.register(XLabelReusableView.self, forSupplementaryViewOfKind: .graphLayoutElementKindXAxisView, withReuseIdentifier: .graphLayoutElementKindXAxisView)
     }
     
 }
@@ -48,10 +48,11 @@ extension ViewController: CollectionGraphDataSource {
                                                                        for: indexPath)
             return line
         default:
-            let XLabel = collectionView.dequeueReusableSupplementaryView(ofKind: kind,
-                                                                         withReuseIdentifier: .graphLayoutElementKindXLabel,
-                                                                         for: indexPath)
-            return XLabel
+            let xLabel = collectionView.dequeueReusableSupplementaryView(ofKind: kind,
+                                                                         withReuseIdentifier: .graphLayoutElementKindXAxisView,
+                                                                         for: indexPath) as! XLabelReusableView
+            print("X Label value: \(xLabel.value)")
+            return xLabel
         }
     }
     
