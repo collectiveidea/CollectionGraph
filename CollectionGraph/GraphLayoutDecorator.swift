@@ -28,6 +28,17 @@ internal class GraphLayoutDecorator {
         }
     }
     
+    internal var paddingForXAttributes: CGFloat {
+        get {
+            if let layout = collectionView?.collectionViewLayout as? GraphLayout {
+                if layout.xAxisLayoutAttributesModel != nil {
+                    return 20
+                }
+            }
+            return 0
+        }
+    }
+    
     internal func numberOfItemsIn(section: Int) -> Int {
         
         if let collectionView = collectionView ,let dataSource = collectionView.dataSource as? CollectionGraphDataSource {
@@ -112,21 +123,22 @@ internal class GraphLayoutDecorator {
         let minYVal = yValues.min
         let maxYVal = yValues.max
         
-        let sectionInsets = self.sectionInsets()
+        // TODO: Should be a delegate call incase there are numerous sections with different cell sizes at the first index.  For now we will just grab the first.
+        let cellSize = sizeOfCell(at: IndexPath(item: 0, section: 0))
         
         let percentOnXAxis = Math.percent(ofValue: userValue.xValue,
                                           fromMin: minXVal,
                                           toMax: maxXVal)
         
         let positionX = Math.lerp(percent: percentOnXAxis,
-                                  ofDistance: size.width - sectionInsets.left - sectionInsets.right) + sectionInsets.left
+                                  ofDistance: size.width - cellSize.width) + cellSize.width / 2
         
         let percentOnYAxis = Math.percent(ofValue: userValue.yValue,
                                           fromMin: minYVal,
                                           toMax: maxYVal)
         
         let positionY = Math.lerp(percent: 1.0 - percentOnYAxis,
-                                  ofDistance: size.height - sectionInsets.top - sectionInsets.bottom) + sectionInsets.top
+                                  ofDistance: size.height - cellSize.height - paddingForXAttributes) + cellSize.height / 2
         
         return CGPoint(x: positionX, y: positionY)
     }
@@ -136,13 +148,6 @@ internal class GraphLayoutDecorator {
             return layout.collectionViewContentSize
         }
         return CGSize.zero
-    }
-    
-    func sectionInsets() -> UIEdgeInsets {
-        if let layout = collectionView?.collectionViewLayout as? GraphLayout {
-            return layout.sectionInsets
-        }
-        return UIEdgeInsets.zero
     }
     
     func textForXLabelFrom(_ value: CGFloat) -> String? {

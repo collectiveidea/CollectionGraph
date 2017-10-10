@@ -59,9 +59,15 @@ extension XAxisLayoutAttributesModel: LayoutAttributesModel {
         
         let distanceOfXSteps = decorator.distanceOfXSteps()
         
-        let insets = decorator.sectionInsets()
+        // TODO: Should be a delegate call incase there are numerous sections with different cell sizes at the first index.  For now we will just grab the first.
+        let cellSize = decorator.sizeOfCell(at: IndexPath(item: 0, section: 0))
         
-        attribute.frame = CGRect(origin: CGPoint(x: CGFloat(indexPath.item) * distanceOfXSteps + insets.left - distanceOfXSteps / 2, y: contentSize.height - insets.bottom), size: CGSize(width: distanceOfXSteps, height: 10))
+        attribute.frame = CGRect(
+            origin: CGPoint(x: CGFloat(indexPath.item) * distanceOfXSteps + cellSize.width / 2 - distanceOfXSteps / 2,
+                            y: contentSize.height - decorator.paddingForXAttributes),
+            size: CGSize(width: distanceOfXSteps,
+                         height: decorator.paddingForXAttributes)
+        )
         
         let delta = decorator.minAndMaxXValues()
         let normalizedDelta = delta.max - delta.min

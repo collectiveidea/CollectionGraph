@@ -32,29 +32,6 @@ public extension String {
 
 public class GraphLayout: UICollectionViewLayout {
     
-    @IBInspectable public var topInset: CGFloat = 0 {
-        didSet {
-            sectionInsets.top = topInset
-        }
-    }
-    @IBInspectable public var rightInset: CGFloat = 0 {
-        didSet {
-            sectionInsets.right = rightInset
-        }
-    }
-    @IBInspectable public var bottomInset: CGFloat = 0 {
-        didSet {
-            sectionInsets.bottom = bottomInset
-        }
-    }
-    @IBInspectable public var leftInset: CGFloat = 0 {
-        didSet {
-            sectionInsets.left = leftInset
-        }
-    }
-    
-    public var sectionInsets: UIEdgeInsets = UIEdgeInsets.zero
-    
     internal var cellLayoutAttributesModel: CellLayoutAttributesModel? {
         didSet {
             if let cellLayoutAttributesModel = cellLayoutAttributesModel {
@@ -118,14 +95,19 @@ public class GraphLayout: UICollectionViewLayout {
     
     override public var collectionViewContentSize: CGSize {
         
-        if let collectionView = collectionView, let delegate = collectionView.delegate as? CollectionGraphDelegateLayout {
+        if let collectionView = collectionView {
             
-            let distanceBetweenXSteps = delegate.distanceBetweenXStepsIn(collectionView)
+            let decorator = GraphLayoutDecorator(collectionView: collectionView)
             
-            let numberOfXSteps: CGFloat = CGFloat(delegate.numberOfXStepsIn(collectionView))
+            let distanceBetweenXSteps = decorator.distanceOfXSteps()
+            
+            let numberOfXSteps: CGFloat = CGFloat(decorator.numberOfXSteps())
+            
+            // TODO: Should be a delegate call incase there are numerous sections with different cell sizes at the first index.  For now we will just grab the first.
+            let cellSize = decorator.sizeOfCell(at: IndexPath(item: 0, section: 0))
             
             // expand the width of the graph by the section insets to keep the distanceBetweenXSteps as specified
-            let widthPadding = collectionView.contentInset.left + collectionView.contentInset.right - sectionInsets.left - sectionInsets.right
+            let widthPadding = collectionView.contentInset.left + collectionView.contentInset.right + cellSize.width //full width used for half inset on right and left.  Should use a delegate call in case the size of the last item is larger.
             
             let heightOfCollectionView = collectionView.frame.height
             
@@ -133,8 +115,6 @@ public class GraphLayout: UICollectionViewLayout {
             
             let width = distanceBetweenXSteps * numberOfXSteps - widthPadding
             let height = heightOfCollectionView - heightPadding
-            
-            print("\nInsets in Content: \(sectionInsets)\n")
             
             return CGSize(width: width, height: height)
         }

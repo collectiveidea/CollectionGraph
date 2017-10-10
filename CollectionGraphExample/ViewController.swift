@@ -18,9 +18,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        registerCells()
-        
-        graphCollectionView.contentInset = UIEdgeInsets(top: 15, left: 15, bottom: 15, right: 15)
+        registerCells()        
     }
     
     func registerCells() {
