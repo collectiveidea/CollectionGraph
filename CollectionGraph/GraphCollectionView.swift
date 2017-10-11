@@ -10,36 +10,36 @@ import UIKit
 
 public protocol CollectionGraphDataSource: UICollectionViewDataSource {
     
-    func collectionView(_ collectionView: UICollectionView, valueFor indexPath: IndexPath) -> (xValue: CGFloat, yValue: CGFloat)
+    func collectionView(_ collectionView: GraphCollectionView, valueFor indexPath: IndexPath) -> (xValue: CGFloat, yValue: CGFloat)
     
 }
 
 public protocol CollectionGraphDelegateLayout: UICollectionViewDelegate {
     
-    func graphCollectionView(_ graphCollectionView: UICollectionView, sizeForItemAt indexPath: IndexPath) -> CGSize
+    func graphCollectionView(_ graphCollectionView: GraphCollectionView, sizeForItemAt indexPath: IndexPath) -> CGSize
     
-    func minAndMaxYValuesIn(_ graphCollectionView: UICollectionView) -> (min: CGFloat, max: CGFloat)
+    func minAndMaxYValuesIn(_ graphCollectionView: GraphCollectionView) -> (min: CGFloat, max: CGFloat)
         
-    func numberOfYStepsIn(_ graphCollectionView: UICollectionView) -> Int
+    func numberOfYStepsIn(_ graphCollectionView: GraphCollectionView) -> Int
     
-    func minAndMaxXValuesIn(_ graphCollectionView: UICollectionView) -> (min: CGFloat, max: CGFloat)
+    func minAndMaxXValuesIn(_ graphCollectionView: GraphCollectionView) -> (min: CGFloat, max: CGFloat)
     
-    func numberOfXStepsIn(_ graphCollectionView: UICollectionView) -> Int
+    func numberOfXStepsIn(_ graphCollectionView: GraphCollectionView) -> Int
     
-    func distanceBetweenXStepsIn(_ graphCollectionView: UICollectionView) -> CGFloat
+    func distanceBetweenXStepsIn(_ graphCollectionView: GraphCollectionView) -> CGFloat
 
 }
 
-@objc public protocol CollectionGraphXLabelDelegate: class {
+@objc public protocol CollectionGraphXDelegate: class {
     
-    func collectionView(_ graphCollectionView: UICollectionView, TextFromValue value: CGFloat) -> String
+    func bottomPaddingFor(_ graphCollectionView: GraphCollectionView) -> CGFloat
     
 }
 
 open class GraphCollectionView: UICollectionView {
     
-    @IBOutlet public weak var xLabelDelegate: CollectionGraphXLabelDelegate?
-
+    @IBOutlet public weak var xDelegate: CollectionGraphXDelegate?
+    
     override open func awakeFromNib() {
         setupLayout()
     }

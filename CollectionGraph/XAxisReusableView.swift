@@ -31,7 +31,7 @@ internal class XAxisLayoutAttributes: UICollectionViewLayoutAttributes {
     
 }
 
-public class XAxisReusableView: UICollectionReusableView {
+open class XAxisReusableView: UICollectionReusableView {
 
     public var value: CGFloat = 0.0
     
@@ -53,9 +53,9 @@ public class XAxisReusableView: UICollectionReusableView {
 
 }
 
-public class XLabelReusableView: XAxisReusableView {
+open class XLabelReusableView: XAxisReusableView {
     
-    let label = UILabel()
+    public let label: UILabel = UILabel()
     
     public override init(frame: CGRect) {
         super.init(frame: frame)
@@ -75,9 +75,9 @@ public class XLabelReusableView: XAxisReusableView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    
-    
-    public override func prepareForReuse() {
+    open override func apply(_ layoutAttributes: UICollectionViewLayoutAttributes) {
+        super.apply(layoutAttributes)
+        
         label.text = "\(value)"
         label.sizeToFit()
     }

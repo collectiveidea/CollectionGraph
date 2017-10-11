@@ -14,7 +14,7 @@ internal class GraphLineLayoutAttributesModel: LayoutAttributesModel {
     
     var cache = [IndexPath : UICollectionViewLayoutAttributes]()
     
-    init(collectionView: UICollectionView) {
+    init(collectionView: GraphCollectionView) {
         
         self.decorator = GraphLayoutDecorator(collectionView: collectionView)
     }

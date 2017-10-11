@@ -10,12 +10,12 @@ import Foundation
 
 internal class GraphLayoutDecorator {
     
-    var collectionView: UICollectionView?
+    var collectionView: GraphCollectionView?
     
     var xMinMaxValuesCache: (min: CGFloat, max: CGFloat)?
     var yMinMaxValuesCache: (min: CGFloat, max: CGFloat)?
     
-    init(collectionView: UICollectionView?) {
+    init(collectionView: GraphCollectionView?) {
         self.collectionView = collectionView
     }
     
@@ -30,10 +30,8 @@ internal class GraphLayoutDecorator {
     
     internal var paddingForXAttributes: CGFloat {
         get {
-            if let layout = collectionView?.collectionViewLayout as? GraphLayout {
-                if layout.xAxisLayoutAttributesModel != nil {
-                    return 20
-                }
+            if let collectionView = collectionView {
+                return collectionView.xDelegate?.bottomPaddingFor(collectionView) ?? 0
             }
             return 0
         }
@@ -148,14 +146,6 @@ internal class GraphLayoutDecorator {
             return layout.collectionViewContentSize
         }
         return CGSize.zero
-    }
-    
-    func textForXLabelFrom(_ value: CGFloat) -> String? {
-        if let collectionView = collectionView as? GraphCollectionView, let delegate = collectionView.xLabelDelegate {
-        
-            return delegate.collectionView(collectionView, TextFromValue: value)
-        }
-        return nil
     }
     
 }

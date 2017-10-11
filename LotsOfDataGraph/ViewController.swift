@@ -17,7 +17,7 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         graphCollectionView.register(GraphLineReusableView.self, forSupplementaryViewOfKind: .graphLayoutElementKindLine, withReuseIdentifier: .graphLayoutElementKindLine)
         graphCollectionView.register(XLabelReusableView.self, forSupplementaryViewOfKind: .graphLayoutElementKindXAxisView, withReuseIdentifier: .graphLayoutElementKindXAxisView)
     }
@@ -35,7 +35,7 @@ extension ViewController: CollectionGraphDataSource {
         return cell
     }
     
-    func collectionView(_ collectionView: UICollectionView, valueFor indexPath: IndexPath) -> (xValue: CGFloat, yValue: CGFloat) {
+    func collectionView(_ collectionView: GraphCollectionView, valueFor indexPath: IndexPath) -> (xValue: CGFloat, yValue: CGFloat) {
         return ppmRepo.valueFor(indexPath: indexPath)
     }
     
@@ -51,48 +51,15 @@ extension ViewController: CollectionGraphDataSource {
             let xLabel = collectionView.dequeueReusableSupplementaryView(ofKind: kind,
                                                                          withReuseIdentifier: .graphLayoutElementKindXAxisView,
                                                                          for: indexPath) as! XLabelReusableView
-            print("X Label value: \(xLabel.value)")
+            
+            let labelText = convertFloatValueToDate(xLabelValue: xLabel.value)
+            xLabel.label.text = labelText
+
             return xLabel
         }
     }
     
-}
-
-extension ViewController: CollectionGraphDelegateLayout {
-    
-    func graphCollectionView(_ graphCollectionView: UICollectionView, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 10, height: 10)
-    }
-    
-    func minAndMaxYValuesIn(_ graphCollectionView: UICollectionView) -> (min: CGFloat, max: CGFloat) {
-        let values = ppmRepo.getMinAndMaxCo2Values()
-        
-        return values
-    }
-    
-    func numberOfYStepsIn(_ graphCollectionView: UICollectionView) -> Int {
-        return 50
-    }
-    
-    func minAndMaxXValuesIn(_ graphCollectionView: UICollectionView) -> (min: CGFloat, max: CGFloat) {
-        let values = ppmRepo.getMinAndMaxDateFloatValues()
-        
-        return values
-    }
-    
-    func numberOfXStepsIn(_ graphCollectionView: UICollectionView) -> Int {
-        return 50
-    }
-    
-    func distanceBetweenXStepsIn(_ graphCollectionView: UICollectionView) -> CGFloat {
-        return 150
-    }
-    
-}
-
-extension ViewController: CollectionGraphXLabelDelegate {
-    
-    func collectionView(_ graphCollectionView: UICollectionView, TextFromValue value: CGFloat) -> String {
+    func convertFloatValueToDate(xLabelValue value: CGFloat) -> String {
         let date = Date(timeIntervalSince1970: Double(value))
         let customFormat = DateFormatter.dateFormat(fromTemplate: "MMM d hh:mm", options: 0, locale: Locale(identifier: "us"))!
         
@@ -103,6 +70,45 @@ extension ViewController: CollectionGraphXLabelDelegate {
         return formatter.string(from: date)
     }
     
+}
+
+extension ViewController: CollectionGraphDelegateLayout {
+    
+    func graphCollectionView(_ graphCollectionView: GraphCollectionView, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: 10, height: 10)
+    }
+    
+    func minAndMaxYValuesIn(_ graphCollectionView: GraphCollectionView) -> (min: CGFloat, max: CGFloat) {
+        let values = ppmRepo.getMinAndMaxCo2Values()
+        
+        return values
+    }
+    
+    func numberOfYStepsIn(_ graphCollectionView: GraphCollectionView) -> Int {
+        return 50
+    }
+    
+    func minAndMaxXValuesIn(_ graphCollectionView: GraphCollectionView) -> (min: CGFloat, max: CGFloat) {
+        let values = ppmRepo.getMinAndMaxDateFloatValues()
+        
+        return values
+    }
+    
+    func numberOfXStepsIn(_ graphCollectionView: GraphCollectionView) -> Int {
+        return 50
+    }
+    
+    func distanceBetweenXStepsIn(_ graphCollectionView: GraphCollectionView) -> CGFloat {
+        return 150
+    }
+    
+}
+
+extension ViewController: CollectionGraphXDelegate {
+    
+    func bottomPaddingFor(_ graphCollectionView: GraphCollectionView) -> CGFloat {
+        return 36
+    }
     
 }
 

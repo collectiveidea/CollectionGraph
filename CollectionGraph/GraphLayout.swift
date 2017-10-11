@@ -95,7 +95,7 @@ public class GraphLayout: UICollectionViewLayout {
     
     override public var collectionViewContentSize: CGSize {
         
-        if let collectionView = collectionView {
+        if let collectionView = collectionView as? GraphCollectionView {
             
             let decorator = GraphLayoutDecorator(collectionView: collectionView)
             
