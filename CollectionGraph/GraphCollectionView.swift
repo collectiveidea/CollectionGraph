@@ -36,9 +36,16 @@ public protocol CollectionGraphDelegateLayout: UICollectionViewDelegate {
     
 }
 
+@objc public protocol CollectionGraphYDelegate: class {
+    
+    func leftSidePaddingFor(_ graphCollectionView: GraphCollectionView) -> CGFloat
+    
+}
+
 open class GraphCollectionView: UICollectionView {
     
     @IBOutlet public weak var xDelegate: CollectionGraphXDelegate?
+    @IBOutlet public weak var yDelegate: CollectionGraphYDelegate?
     
     override open func awakeFromNib() {
         setupLayout()
@@ -65,6 +72,8 @@ open class GraphCollectionView: UICollectionView {
             graphLayout.graphLineLayoutAttributesModel = GraphLineLayoutAttributesModel(collectionView: self)
         } else if elementKind == .graphLayoutElementKindXAxisView {
             graphLayout.xAxisLayoutAttributesModel = XAxisLayoutAttributesModel(collectionView: self)
+        } else if elementKind == .graphLayoutElementKindYAxisView {
+            graphLayout.yAxisLayoutAttributesModel = YAxisLayoutAttributesModel(collectionView: self)
         }
     }
     

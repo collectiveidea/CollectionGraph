@@ -20,6 +20,7 @@ class ViewController: UIViewController {
 
         graphCollectionView.register(GraphLineReusableView.self, forSupplementaryViewOfKind: .graphLayoutElementKindLine, withReuseIdentifier: .graphLayoutElementKindLine)
         graphCollectionView.register(XLabelReusableView.self, forSupplementaryViewOfKind: .graphLayoutElementKindXAxisView, withReuseIdentifier: .graphLayoutElementKindXAxisView)
+        graphCollectionView.register(XLabelReusableView.self, forSupplementaryViewOfKind: .graphLayoutElementKindYAxisView, withReuseIdentifier: .graphLayoutElementKindYAxisView)
     }
     
 }
@@ -47,15 +48,21 @@ extension ViewController: CollectionGraphDataSource {
                                                                        withReuseIdentifier: .graphLayoutElementKindLine,
                                                                        for: indexPath)
             return line
-        default:
+        case .graphLayoutElementKindXAxisView:
             let xLabel = collectionView.dequeueReusableSupplementaryView(ofKind: kind,
                                                                          withReuseIdentifier: .graphLayoutElementKindXAxisView,
                                                                          for: indexPath) as! XLabelReusableView
             
             let labelText = convertFloatValueToDate(xLabelValue: xLabel.value)
             xLabel.label.text = labelText
-
+            
             return xLabel
+        default:
+            let yLabel = collectionView.dequeueReusableSupplementaryView(ofKind: kind,
+                                                                         withReuseIdentifier: .graphLayoutElementKindYAxisView,
+                                                                         for: indexPath) as! XLabelReusableView
+            
+            return yLabel
         }
     }
     
@@ -85,7 +92,7 @@ extension ViewController: CollectionGraphDelegateLayout {
     }
     
     func numberOfYStepsIn(_ graphCollectionView: GraphCollectionView) -> Int {
-        return 50
+        return 5
     }
     
     func minAndMaxXValuesIn(_ graphCollectionView: GraphCollectionView) -> (min: CGFloat, max: CGFloat) {
@@ -108,6 +115,14 @@ extension ViewController: CollectionGraphXDelegate {
     
     func bottomPaddingFor(_ graphCollectionView: GraphCollectionView) -> CGFloat {
         return 36
+    }
+    
+}
+
+extension ViewController: CollectionGraphYDelegate {
+    
+    func leftSidePaddingFor(_ graphCollectionView: GraphCollectionView) -> CGFloat {
+        return 50
     }
     
 }

@@ -37,6 +37,15 @@ internal class GraphLayoutDecorator {
         }
     }
     
+    internal var paddingForYAttributes: CGFloat {
+        get {
+            if let collectionView = collectionView {
+                return collectionView.yDelegate?.leftSidePaddingFor(collectionView) ?? 0
+            }
+            return 0
+        }
+    }
+    
     internal func numberOfItemsIn(section: Int) -> Int {
         
         if let collectionView = collectionView ,let dataSource = collectionView.dataSource as? CollectionGraphDataSource {
@@ -79,6 +88,17 @@ internal class GraphLayoutDecorator {
         }
         
         return 0
+    }
+    
+    internal func numberOfYSteps() -> Int {
+        if let collectionView = collectionView ,let delegate = collectionView.delegate as? CollectionGraphDelegateLayout {
+            
+            let numberOfSteps = delegate.numberOfYStepsIn(collectionView) == 0 ? 1 : delegate.numberOfYStepsIn(collectionView)
+            
+            return numberOfSteps
+        }
+        
+        return 1
     }
     
     internal func distanceOfXSteps() -> CGFloat {
