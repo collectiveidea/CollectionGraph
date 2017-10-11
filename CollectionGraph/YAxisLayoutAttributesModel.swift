@@ -54,6 +54,18 @@ extension YAxisLayoutAttributesModel: LayoutAttributesModel {
         let attribute = XAxisLayoutAttributes(forSupplementaryViewOfKind: .graphLayoutElementKindYAxisView, with: indexPath)
         attribute.frame = frame
         
+        // Figure Out value
+        let delta = decorator.minAndMaxYValues()
+        let normalizedDelta = delta.max - delta.min
+        
+        let percentOnYAxis = Math.percent(ofValue: attribute.frame.origin.y + attribute.frame.size.height / 2 - cellSize.height / 2, fromMin: 0, toMax: fullHeightForAttributes)
+        
+        let value = normalizedDelta - Math.lerp(percent: percentOnYAxis, ofDistance: normalizedDelta) + delta.min
+        
+        attribute.value = value
+        
+        cache[indexPath] = attribute
+        
         return attribute
     }
     
