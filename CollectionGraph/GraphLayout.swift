@@ -124,7 +124,7 @@ public class GraphLayout: UICollectionViewLayout {
             
             let heightPadding = collectionView.contentInset.top + collectionView.contentInset.bottom
             
-            let width = distanceBetweenXSteps * numberOfXSteps - widthPadding
+            let width = distanceBetweenXSteps * numberOfXSteps - widthPadding + decorator.paddingForYAttributes
             let height = heightOfCollectionView - heightPadding
             
             return CGSize(width: width, height: height)

@@ -63,7 +63,7 @@ extension XAxisLayoutAttributesModel: LayoutAttributesModel {
         let cellSize = decorator.sizeOfCell(at: IndexPath(item: 0, section: 0))
         
         attribute.frame = CGRect(
-            origin: CGPoint(x: CGFloat(indexPath.item) * distanceOfXSteps + cellSize.width / 2 - distanceOfXSteps / 2,
+            origin: CGPoint(x: CGFloat(indexPath.item) * distanceOfXSteps + cellSize.width / 2 - distanceOfXSteps / 2 + decorator.paddingForYAttributes,
                             y: contentSize.height - decorator.paddingForXAttributes),
             size: CGSize(width: distanceOfXSteps,
                          height: decorator.paddingForXAttributes)
@@ -72,7 +72,7 @@ extension XAxisLayoutAttributesModel: LayoutAttributesModel {
         let delta = decorator.minAndMaxXValues()
         let normalizedDelta = delta.max - delta.min
 
-        let percentOnXAxis = Math.percent(ofValue: attribute.frame.origin.x + attribute.frame.size.width / 2, fromMin: 0, toMax: contentSize.width)
+        let percentOnXAxis = Math.percent(ofValue: attribute.frame.origin.x + attribute.frame.size.width / 2, fromMin: decorator.paddingForYAttributes, toMax: contentSize.width)
         
         let value = Math.lerp(percent: percentOnXAxis, ofDistance: normalizedDelta) + delta.min
         

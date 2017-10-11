@@ -149,7 +149,7 @@ internal class GraphLayoutDecorator {
                                           toMax: maxXVal)
         
         let positionX = Math.lerp(percent: percentOnXAxis,
-                                  ofDistance: size.width - cellSize.width) + cellSize.width / 2
+                                  ofDistance: size.width - cellSize.width - paddingForYAttributes) + cellSize.width / 2 + paddingForYAttributes
         
         let percentOnYAxis = Math.percent(ofValue: userValue.yValue,
                                           fromMin: minYVal,
