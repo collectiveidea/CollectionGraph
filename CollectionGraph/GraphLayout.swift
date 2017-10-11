@@ -29,6 +29,7 @@ public extension String {
     static let graphLayoutElementKindLine = "graphLayoutElementKindLine"
     static let graphLayoutElementKindXAxisView = "graphLayoutElementKindXAxisView"
     static let graphLayoutElementKindYAxisView = "graphLayoutElementKindYAxisView"
+    static let graphLayoutElementKindHorrizontalDividersView = "graphLayoutElementKindHorrizontalDividersView"
 }
 
 public class GraphLayout: UICollectionViewLayout {
@@ -61,6 +62,14 @@ public class GraphLayout: UICollectionViewLayout {
         didSet {
             if let yAxisLayoutAttributesModel = yAxisLayoutAttributesModel {
                 attributeModels += [yAxisLayoutAttributesModel]
+            }
+        }
+    }
+    
+    internal var horizontalLayoutAttributesModel: HorizontalLayoutAttributesModel? {
+        didSet {
+            if let horizontalLayoutAttributesModel = horizontalLayoutAttributesModel {
+                attributeModels += [horizontalLayoutAttributesModel]
             }
         }
     }
@@ -99,6 +108,8 @@ public class GraphLayout: UICollectionViewLayout {
             return xAxisLayoutAttributesModel?.attributesForItem(at: indexPath)
         case .graphLayoutElementKindYAxisView:
             return yAxisLayoutAttributesModel?.attributesForItem(at: indexPath)
+        case .graphLayoutElementKindHorrizontalDividersView:
+            return horizontalLayoutAttributesModel?.attributesForItem(at: indexPath)
         default:
             return nil
         }

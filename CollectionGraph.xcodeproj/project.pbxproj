@@ -10,6 +10,8 @@
 		5703739D1F5F2325007251C4 /* XAxisReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5703739C1F5F2325007251C4 /* XAxisReusableView.swift */; };
 		5703739F1F5F23DF007251C4 /* XAxisLayoutAttributesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5703739E1F5F23DF007251C4 /* XAxisLayoutAttributesModel.swift */; };
 		5726EC441F8E74A200E5F765 /* YAxisLayoutAttributesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5726EC431F8E74A200E5F765 /* YAxisLayoutAttributesModel.swift */; };
+		5726EC461F8EAD2A00E5F765 /* HorizontalLayoutAttributesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5726EC451F8EAD2A00E5F765 /* HorizontalLayoutAttributesModel.swift */; };
+		5726EC4A1F8EB3D800E5F765 /* HorizontalDividerLineReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5726EC491F8EB3C300E5F765 /* HorizontalDividerLineReusableView.swift */; };
 		57317A921EE1F88900FF2CF2 /* Math.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57317A911EE1F88900FF2CF2 /* Math.swift */; };
 		57317A931EE1F88900FF2CF2 /* Math.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57317A911EE1F88900FF2CF2 /* Math.swift */; };
 		57317A941EE1F88900FF2CF2 /* Math.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57317A911EE1F88900FF2CF2 /* Math.swift */; };
@@ -117,6 +119,8 @@
 		5703739C1F5F2325007251C4 /* XAxisReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XAxisReusableView.swift; sourceTree = "<group>"; };
 		5703739E1F5F23DF007251C4 /* XAxisLayoutAttributesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XAxisLayoutAttributesModel.swift; sourceTree = "<group>"; };
 		5726EC431F8E74A200E5F765 /* YAxisLayoutAttributesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YAxisLayoutAttributesModel.swift; sourceTree = "<group>"; };
+		5726EC451F8EAD2A00E5F765 /* HorizontalLayoutAttributesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalLayoutAttributesModel.swift; sourceTree = "<group>"; };
+		5726EC491F8EB3C300E5F765 /* HorizontalDividerLineReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HorizontalDividerLineReusableView.swift; path = CollectionGraph/HorizontalDividerLineReusableView.swift; sourceTree = SOURCE_ROOT; };
 		57317A911EE1F88900FF2CF2 /* Math.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Math.swift; sourceTree = "<group>"; };
 		573CA4891F59C0E700D3F056 /* MilesPerDayData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MilesPerDayData.swift; sourceTree = "<group>"; };
 		574DF25B1EEEC61D00333469 /* GraphLayoutDecorator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphLayoutDecorator.swift; sourceTree = "<group>"; };
@@ -267,6 +271,8 @@
 				5703739C1F5F2325007251C4 /* XAxisReusableView.swift */,
 				5703739E1F5F23DF007251C4 /* XAxisLayoutAttributesModel.swift */,
 				5726EC431F8E74A200E5F765 /* YAxisLayoutAttributesModel.swift */,
+				5726EC451F8EAD2A00E5F765 /* HorizontalLayoutAttributesModel.swift */,
+				5726EC491F8EB3C300E5F765 /* HorizontalDividerLineReusableView.swift */,
 				578FB0B41F583FEE005099D7 /* Graph Lines */,
 				57DCC2731ED492F3000AD389 /* Info.plist */,
 				57317A911EE1F88900FF2CF2 /* Math.swift */,
@@ -580,9 +586,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				5703739F1F5F23DF007251C4 /* XAxisLayoutAttributesModel.swift in Sources */,
+				5726EC4A1F8EB3D800E5F765 /* HorizontalDividerLineReusableView.swift in Sources */,
 				578FB0BC1F583FEF005099D7 /* CellLayoutAttributesModel.swift in Sources */,
 				574DF25C1EEEC61D00333469 /* GraphLayoutDecorator.swift in Sources */,
 				57DCC2D81ED4CC00000AD389 /* GraphLayout.swift in Sources */,
+				5726EC461F8EAD2A00E5F765 /* HorizontalLayoutAttributesModel.swift in Sources */,
 				578FB0BD1F583FEF005099D7 /* GraphLineLayoutAttributesModel.swift in Sources */,
 				5726EC441F8E74A200E5F765 /* YAxisLayoutAttributesModel.swift in Sources */,
 				57DCC2D61ED4CB0C000AD389 /* GraphCollectionView.swift in Sources */,

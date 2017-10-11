@@ -21,6 +21,7 @@ class ViewController: UIViewController {
         graphCollectionView.register(GraphLineReusableView.self, forSupplementaryViewOfKind: .graphLayoutElementKindLine, withReuseIdentifier: .graphLayoutElementKindLine)
         graphCollectionView.register(XLabelReusableView.self, forSupplementaryViewOfKind: .graphLayoutElementKindXAxisView, withReuseIdentifier: .graphLayoutElementKindXAxisView)
         graphCollectionView.register(XLabelReusableView.self, forSupplementaryViewOfKind: .graphLayoutElementKindYAxisView, withReuseIdentifier: .graphLayoutElementKindYAxisView)
+        graphCollectionView.register(HorizontalDividerLineReusableView.self, forSupplementaryViewOfKind: .graphLayoutElementKindHorrizontalDividersView, withReuseIdentifier: .graphLayoutElementKindHorrizontalDividersView)
     }
     
 }
@@ -57,12 +58,17 @@ extension ViewController: CollectionGraphDataSource {
             xLabel.label.text = labelText
             
             return xLabel
-        default:
+        case .graphLayoutElementKindYAxisView:
             let yLabel = collectionView.dequeueReusableSupplementaryView(ofKind: kind,
                                                                          withReuseIdentifier: .graphLayoutElementKindYAxisView,
                                                                          for: indexPath) as! XLabelReusableView
-            
             return yLabel
+            
+        default:
+            let horizontalView = collectionView.dequeueReusableSupplementaryView(ofKind: kind,
+                                                                         withReuseIdentifier: .graphLayoutElementKindHorrizontalDividersView,
+                                                                         for: indexPath) as! HorizontalDividerLineReusableView
+            return horizontalView
         }
     }
     
