@@ -61,6 +61,7 @@ open class GraphLineReusableView: UICollectionReusableView {
         if let attributes = layoutAttributes as? GraphLineLayoutAttributes {
             self.firstPoint = attributes.firstPoint
             self.secondPoint = attributes.secondPoint
+            setNeedsLayout()
         }
     }
     
