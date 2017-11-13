@@ -77,7 +77,31 @@ public class GraphLayout: UICollectionViewLayout {
     var attributeModels = [LayoutAttributesModel]()
     
     override public func shouldInvalidateLayout(forBoundsChange newBounds: CGRect) -> Bool {
-        return false
+        
+        return true
+    }
+    
+    public override func invalidationContext(forBoundsChange newBounds: CGRect) -> UICollectionViewLayoutInvalidationContext {
+        
+        let context = super.invalidationContext(forBoundsChange: newBounds)
+        
+        if collectionView?.bounds.size == newBounds.size {
+            // invalidate the y axis
+            
+            guard let visibleItems = collectionView?.indexPathsForVisibleSupplementaryElements(ofKind: .graphLayoutElementKindYAxisView) else { return context }
+            
+            context.invalidateSupplementaryElements(ofKind: .graphLayoutElementKindYAxisView, at: visibleItems)
+            
+        } else {
+            
+            for (number, _) in attributeModels.enumerated() {
+                attributeModels[number].cache.removeAll()
+            }
+            
+            invalidateLayout()
+        }
+
+        return context
     }
     
     override public func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {

@@ -49,7 +49,7 @@ extension YAxisLayoutAttributesModel: LayoutAttributesModel {
         
         let heightForAttributes = fullHeightForAttributes / CGFloat(numberOfSteps)
         
-        let frame = CGRect(x: 0, y: heightForAttributes * CGFloat(indexPath.item) + cellSize.height / 2 - heightForAttributes / 2, width: decorator.paddingForYAttributes, height: heightForAttributes)
+        let frame = CGRect(x: decorator.collectionView!.contentOffset.x, y: heightForAttributes * CGFloat(indexPath.item) + cellSize.height / 2 - heightForAttributes / 2, width: decorator.paddingForYAttributes, height: heightForAttributes)
         
         let attribute = XAxisLayoutAttributes(forSupplementaryViewOfKind: .graphLayoutElementKindYAxisView, with: indexPath)
         attribute.frame = frame
@@ -63,9 +63,7 @@ extension YAxisLayoutAttributesModel: LayoutAttributesModel {
         let value = normalizedDelta - Math.lerp(percent: percentOnYAxis, ofDistance: normalizedDelta) + delta.min
         
         attribute.value = value
-        
-        cache[indexPath] = attribute
-        
+                
         return attribute
     }
     
