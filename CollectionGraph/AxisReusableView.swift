@@ -8,20 +8,20 @@
 
 import UIKit
 
-internal class XAxisLayoutAttributes: UICollectionViewLayoutAttributes {
+internal class AxisLayoutAttributes: UICollectionViewLayoutAttributes {
     
     var value: CGFloat = 0
     
     override func copy(with zone: NSZone? = nil) -> Any {
         let copy = super.copy(with: zone)
-        if let copy = copy as? XAxisLayoutAttributes {
+        if let copy = copy as? AxisLayoutAttributes {
             copy.value = value
         }
         return copy
     }
     
     override func isEqual(_ object: Any?) -> Bool {
-        if let attributes = object as? XAxisLayoutAttributes {
+        if let attributes = object as? AxisLayoutAttributes {
             if attributes.value == value {
                 return super.isEqual(object)
             }
@@ -31,7 +31,7 @@ internal class XAxisLayoutAttributes: UICollectionViewLayoutAttributes {
     
 }
 
-open class XAxisReusableView: UICollectionReusableView {
+open class AxisReusableView: UICollectionReusableView {
 
     public var value: CGFloat = 0.0
     
@@ -46,14 +46,14 @@ open class XAxisReusableView: UICollectionReusableView {
     }
     
     open override func apply(_ layoutAttributes: UICollectionViewLayoutAttributes) {
-        if let attributes = layoutAttributes as? XAxisLayoutAttributes {
+        if let attributes = layoutAttributes as? AxisLayoutAttributes {
             value = attributes.value
         }
     }
 
 }
 
-open class XLabelReusableView: XAxisReusableView {
+open class LabelReusableView: AxisReusableView {
     
     public let label: UILabel = UILabel()
     

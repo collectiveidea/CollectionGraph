@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5703739D1F5F2325007251C4 /* XAxisReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5703739C1F5F2325007251C4 /* XAxisReusableView.swift */; };
+		5703739D1F5F2325007251C4 /* AxisReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5703739C1F5F2325007251C4 /* AxisReusableView.swift */; };
 		5703739F1F5F23DF007251C4 /* XAxisLayoutAttributesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5703739E1F5F23DF007251C4 /* XAxisLayoutAttributesModel.swift */; };
 		5726EC441F8E74A200E5F765 /* YAxisLayoutAttributesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5726EC431F8E74A200E5F765 /* YAxisLayoutAttributesModel.swift */; };
 		5726EC461F8EAD2A00E5F765 /* HorizontalLayoutAttributesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5726EC451F8EAD2A00E5F765 /* HorizontalLayoutAttributesModel.swift */; };
@@ -116,7 +116,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		5703739C1F5F2325007251C4 /* XAxisReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XAxisReusableView.swift; sourceTree = "<group>"; };
+		5703739C1F5F2325007251C4 /* AxisReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AxisReusableView.swift; sourceTree = "<group>"; };
 		5703739E1F5F23DF007251C4 /* XAxisLayoutAttributesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XAxisLayoutAttributesModel.swift; sourceTree = "<group>"; };
 		5726EC431F8E74A200E5F765 /* YAxisLayoutAttributesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YAxisLayoutAttributesModel.swift; sourceTree = "<group>"; };
 		5726EC451F8EAD2A00E5F765 /* HorizontalLayoutAttributesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalLayoutAttributesModel.swift; sourceTree = "<group>"; };
@@ -268,7 +268,7 @@
 				574DF25B1EEEC61D00333469 /* GraphLayoutDecorator.swift */,
 				578FB0B91F583FEF005099D7 /* LayoutAttributesModel.swift */,
 				578FB0B71F583FEF005099D7 /* CellLayoutAttributesModel.swift */,
-				5703739C1F5F2325007251C4 /* XAxisReusableView.swift */,
+				5703739C1F5F2325007251C4 /* AxisReusableView.swift */,
 				5703739E1F5F23DF007251C4 /* XAxisLayoutAttributesModel.swift */,
 				5726EC431F8E74A200E5F765 /* YAxisLayoutAttributesModel.swift */,
 				5726EC451F8EAD2A00E5F765 /* HorizontalLayoutAttributesModel.swift */,
@@ -595,7 +595,7 @@
 				5726EC441F8E74A200E5F765 /* YAxisLayoutAttributesModel.swift in Sources */,
 				57DCC2D61ED4CB0C000AD389 /* GraphCollectionView.swift in Sources */,
 				578FB0BA1F583FEF005099D7 /* GraphLineReusableView.swift in Sources */,
-				5703739D1F5F2325007251C4 /* XAxisReusableView.swift in Sources */,
+				5703739D1F5F2325007251C4 /* AxisReusableView.swift in Sources */,
 				578FB0BE1F583FEF005099D7 /* LayoutAttributesModel.swift in Sources */,
 				57317A921EE1F88900FF2CF2 /* Math.swift in Sources */,
 			);

@@ -19,8 +19,8 @@ class ViewController: UIViewController {
         super.viewDidLoad()
 
         graphCollectionView.register(GraphLineReusableView.self, forSupplementaryViewOfKind: .graphLayoutElementKindLine, withReuseIdentifier: .graphLayoutElementKindLine)
-        graphCollectionView.register(XLabelReusableView.self, forSupplementaryViewOfKind: .graphLayoutElementKindXAxisView, withReuseIdentifier: .graphLayoutElementKindXAxisView)
-        graphCollectionView.register(XLabelReusableView.self, forSupplementaryViewOfKind: .graphLayoutElementKindYAxisView, withReuseIdentifier: .graphLayoutElementKindYAxisView)
+        graphCollectionView.register(LabelReusableView.self, forSupplementaryViewOfKind: .graphLayoutElementKindXAxisView, withReuseIdentifier: .graphLayoutElementKindXAxisView)
+        graphCollectionView.register(LabelReusableView.self, forSupplementaryViewOfKind: .graphLayoutElementKindYAxisView, withReuseIdentifier: .graphLayoutElementKindYAxisView)
         graphCollectionView.register(HorizontalDividerLineReusableView.self, forSupplementaryViewOfKind: .graphLayoutElementKindHorrizontalDividersView, withReuseIdentifier: .graphLayoutElementKindHorrizontalDividersView)
     }
     
@@ -52,7 +52,7 @@ extension ViewController: CollectionGraphDataSource {
         case .graphLayoutElementKindXAxisView:
             let xLabel = collectionView.dequeueReusableSupplementaryView(ofKind: kind,
                                                                          withReuseIdentifier: .graphLayoutElementKindXAxisView,
-                                                                         for: indexPath) as! XLabelReusableView
+                                                                         for: indexPath) as! LabelReusableView
             
             let labelText = convertFloatValueToDate(xLabelValue: xLabel.value)
             xLabel.label.text = labelText
@@ -61,7 +61,7 @@ extension ViewController: CollectionGraphDataSource {
         case .graphLayoutElementKindYAxisView:
             let yLabel = collectionView.dequeueReusableSupplementaryView(ofKind: kind,
                                                                          withReuseIdentifier: .graphLayoutElementKindYAxisView,
-                                                                         for: indexPath) as! XLabelReusableView
+                                                                         for: indexPath) as! LabelReusableView
             return yLabel
             
         default:
