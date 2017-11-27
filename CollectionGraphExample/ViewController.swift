@@ -45,7 +45,7 @@ extension ViewController: CollectionGraphDataSource {
         return milesPerDayRepo.numberOfItemsIn(section: section)
     }
     
-    func collectionView(_ collectionView: UICollectionView, valueFor indexPath: IndexPath) -> (xValue: CGFloat, yValue: CGFloat) {
+    func collectionView(_ collectionView: GraphCollectionView, valueFor indexPath: IndexPath) -> (xValue: CGFloat, yValue: CGFloat) {
         return milesPerDayRepo.valueFor(indexPath: indexPath)
     }
     
@@ -62,28 +62,28 @@ extension ViewController: CollectionGraphDataSource {
 
 extension ViewController: CollectionGraphDelegateLayout {
     
-    func graphCollectionView(_ graphCollectionView: UICollectionView, sizeForItemAt indexPath: IndexPath) -> CGSize {
+    func graphCollectionView(_ graphCollectionView: GraphCollectionView, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if indexPath.item == 2 { return CGSize(width: 50, height: 20) }
         return CGSize(width: 30, height: 30)
     }
     
-    func minAndMaxYValuesIn(_ graphCollectionView: UICollectionView) -> (min: CGFloat, max: CGFloat) {
+    func minAndMaxYValuesIn(_ graphCollectionView: GraphCollectionView) -> (min: CGFloat, max: CGFloat) {
         return (min: 0, max: CGFloat(milesPerDayRepo.maxMileageRan()))
     }
     
-    func numberOfYStepsIn(_ graphCollectionView: UICollectionView) -> Int {
+    func numberOfYStepsIn(_ graphCollectionView: GraphCollectionView) -> Int {
         return 6
     }
     
-    func minAndMaxXValuesIn(_ graphCollectionView: UICollectionView) -> (min: CGFloat, max: CGFloat) {
+    func minAndMaxXValuesIn(_ graphCollectionView: GraphCollectionView) -> (min: CGFloat, max: CGFloat) {
         return (min: milesPerDayRepo.minDateValue(), max: milesPerDayRepo.maxDateValue())
     }
 
-    func numberOfXStepsIn(_ graphCollectionView: UICollectionView) -> Int {
+    func numberOfXStepsIn(_ graphCollectionView: GraphCollectionView) -> Int {
         return 8
     }
     
-    func distanceBetweenXStepsIn(_ graphCollectionView: UICollectionView) -> CGFloat {
+    func distanceBetweenXStepsIn(_ graphCollectionView: GraphCollectionView) -> CGFloat {
         return 100
     }
 
