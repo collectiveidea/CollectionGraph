@@ -63,6 +63,8 @@ extension YAxisLayoutAttributesModel: LayoutAttributesModel {
         let value = normalizedDelta - Math.lerp(percent: percentOnYAxis, ofDistance: normalizedDelta) + delta.min
         
         attribute.value = value
+        
+        attribute.zIndex = 200
                 
         return attribute
     }

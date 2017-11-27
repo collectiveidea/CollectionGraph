@@ -80,6 +80,8 @@ extension XAxisLayoutAttributesModel: LayoutAttributesModel {
         
         cache[indexPath] = attribute
         
+        attribute.zIndex = 100
+        
         return attribute
     }
     

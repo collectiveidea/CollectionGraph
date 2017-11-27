@@ -85,6 +85,8 @@ internal class GraphLineLayoutAttributesModel: LayoutAttributesModel {
             
             cache[indexPath] = attribute
             
+            attribute.zIndex = -50
+            
             return attribute
         }
         
