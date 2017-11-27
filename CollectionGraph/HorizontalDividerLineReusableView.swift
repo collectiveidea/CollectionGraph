@@ -15,6 +15,16 @@ open class HorizontalDividerLineReusableView: UICollectionReusableView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
+        layer.addSublayer(line)
+    }
+    
+    required public init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    open override func apply(_ layoutAttributes: UICollectionViewLayoutAttributes) {
+        super.apply(layoutAttributes)
+        
         let path = UIBezierPath()
         path.move(to: CGPoint(x: 0, y: frame.height / 2))
         path.addLine(to: CGPoint(x: frame.width, y: frame.height / 2))
@@ -24,12 +34,6 @@ open class HorizontalDividerLineReusableView: UICollectionReusableView {
         line.lineWidth = 1
         line.lineDashPattern = [1, 3]
         line.strokeColor = UIColor.lightGray.cgColor
-        
-        layer.addSublayer(line)
-    }
-    
-    required public init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
     
 }

@@ -78,7 +78,10 @@ open class XLabelReusableView: XAxisReusableView {
     open override func apply(_ layoutAttributes: UICollectionViewLayoutAttributes) {
         super.apply(layoutAttributes)
         
-        label.text = "\(value)"
+        if label.text == nil {
+            label.text = "\(value)"
+        }
+        
         label.sizeToFit()
     }
     
