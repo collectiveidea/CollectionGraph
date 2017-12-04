@@ -152,14 +152,11 @@ public class GraphLayout: UICollectionViewLayout {
             // TODO: Should be a delegate call incase there are numerous sections with different cell sizes at the first index.  For now we will just grab the first.
             let cellSize = decorator.sizeOfCell(at: IndexPath(item: 0, section: 0))
             
-            // expand the width of the graph by the section insets to keep the distanceBetweenXSteps as specified
-            let widthPadding = collectionView.contentInset.left + collectionView.contentInset.right + cellSize.width //full width used for half inset on right and left.  Should use a delegate call in case the size of the last item is larger.
-            
             let heightOfCollectionView = collectionView.frame.height
             
             let heightPadding = collectionView.contentInset.top + collectionView.contentInset.bottom
             
-            let width = distanceBetweenXSteps * numberOfXSteps - widthPadding + decorator.paddingForYAttributes
+            let width = distanceBetweenXSteps * numberOfXSteps - distanceBetweenXSteps  + cellSize.width + decorator.paddingForYAttributes
             let height = heightOfCollectionView - heightPadding
             
             return CGSize(width: width, height: height)
