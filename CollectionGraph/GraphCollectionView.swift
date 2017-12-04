@@ -42,10 +42,17 @@ public protocol CollectionGraphDelegateLayout: UICollectionViewDelegate {
     
 }
 
+@objc public protocol CollectionGraphBarGraphDelegate: class {
+    
+    func widthOfBarFor(_ graphCollectionView: GraphCollectionView) -> CGFloat
+    
+}
+
 open class GraphCollectionView: UICollectionView {
     
     @IBOutlet public weak var xDelegate: CollectionGraphXDelegate?
     @IBOutlet public weak var yDelegate: CollectionGraphYDelegate?
+    @IBOutlet public weak var barGraphDelegate: CollectionGraphBarGraphDelegate?
     
     override open func awakeFromNib() {
         setupLayout()
@@ -76,6 +83,8 @@ open class GraphCollectionView: UICollectionView {
             graphLayout.yAxisLayoutAttributesModel = YAxisLayoutAttributesModel(collectionView: self)
         } else if elementKind == .graphLayoutElementKindHorrizontalDividersView {
             graphLayout.horizontalLayoutAttributesModel = HorizontalLayoutAttributesModel(collectionView: self)
+        } else if elementKind == .graphLayoutElementKindBarGraph {
+            graphLayout.barGraphLayoutAttributesModel = BarGraphLayoutAttributesModel(collectionView: self)
         }
     }
     

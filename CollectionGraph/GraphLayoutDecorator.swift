@@ -135,6 +135,13 @@ internal class GraphLayoutDecorator {
         return (0, 0)
     }
     
+    internal func widthOfBar(at indexPath: IndexPath) -> CGFloat {
+        if let collectionView = collectionView {
+            return collectionView.barGraphDelegate?.widthOfBarFor(collectionView) ?? 2
+        }
+        return 2
+    }
+    
     internal func pointInGraph(at indexPath: IndexPath) -> CGPoint {
         
         let userValue = self.userValue(at: indexPath)
