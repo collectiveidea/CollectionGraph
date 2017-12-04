@@ -30,6 +30,7 @@ public extension String {
     static let graphLayoutElementKindXAxisView = "graphLayoutElementKindXAxisView"
     static let graphLayoutElementKindYAxisView = "graphLayoutElementKindYAxisView"
     static let graphLayoutElementKindHorrizontalDividersView = "graphLayoutElementKindHorrizontalDividersView"
+    static let graphLayoutElementKindBarGraph = "graphLayoutElementKindBarGraph"
 }
 
 public class GraphLayout: UICollectionViewLayout {
@@ -70,6 +71,14 @@ public class GraphLayout: UICollectionViewLayout {
         didSet {
             if let horizontalLayoutAttributesModel = horizontalLayoutAttributesModel {
                 attributeModels += [horizontalLayoutAttributesModel]
+            }
+        }
+    }
+    
+    internal var barGraphLayoutAttributesModel: BarGraphLayoutAttributesModel? {
+        didSet {
+            if let barGraphLayoutAttributesModel = barGraphLayoutAttributesModel {
+                attributeModels += [barGraphLayoutAttributesModel]
             }
         }
     }
@@ -128,12 +137,19 @@ public class GraphLayout: UICollectionViewLayout {
         
         case .graphLayoutElementKindLine:
             return graphLineLayoutAttributesModel?.attributesForItem(at: indexPath)
+        
         case .graphLayoutElementKindXAxisView:
             return xAxisLayoutAttributesModel?.attributesForItem(at: indexPath)
+        
         case .graphLayoutElementKindYAxisView:
             return yAxisLayoutAttributesModel?.attributesForItem(at: indexPath)
+        
         case .graphLayoutElementKindHorrizontalDividersView:
             return horizontalLayoutAttributesModel?.attributesForItem(at: indexPath)
+        
+        case .graphLayoutElementKindBarGraph:
+            return barGraphLayoutAttributesModel?.attributesForItem(at: indexPath)
+        
         default:
             return nil
         }
