@@ -62,11 +62,13 @@ extension XAxisLayoutAttributesModel: LayoutAttributesModel {
         // TODO: Should be a delegate call incase there are numerous sections with different cell sizes at the first index.  For now we will just grab the first.
         let cellSize = decorator.sizeOfCell(at: IndexPath(item: 0, section: 0))
         
+        let bottomInset = decorator.collectionViewContentInsets.bottom
+        
         attribute.frame = CGRect(
             origin: CGPoint(x: CGFloat(indexPath.item) * distanceOfXSteps + cellSize.width / 2 - distanceOfXSteps / 2 + decorator.paddingForYAttributes,
                             y: contentSize.height - decorator.paddingForXAttributes),
             size: CGSize(width: distanceOfXSteps,
-                         height: decorator.paddingForXAttributes)
+                         height: decorator.paddingForXAttributes + bottomInset)
         )
         
         let delta = decorator.minAndMaxXValues()
@@ -80,7 +82,7 @@ extension XAxisLayoutAttributesModel: LayoutAttributesModel {
         
         cache[indexPath] = attribute
         
-        attribute.zIndex = 100
+        attribute.zIndex = 200
         
         return attribute
     }

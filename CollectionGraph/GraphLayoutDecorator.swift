@@ -28,10 +28,19 @@ internal class GraphLayoutDecorator {
         }
     }
     
+    internal var collectionViewContentInsets: UIEdgeInsets {
+        get {
+            if let collectionView = collectionView {
+                return collectionView.contentInset
+            }
+            return UIEdgeInsets.zero
+        }
+    }
+    
     internal var paddingForXAttributes: CGFloat {
         get {
             if let collectionView = collectionView {
-                return collectionView.xDelegate?.bottomPaddingFor(collectionView) ?? 0
+                return collectionView.xDelegate?.bottomPaddingFor(collectionView) ?? 50
             }
             return 0
         }
@@ -40,7 +49,7 @@ internal class GraphLayoutDecorator {
     internal var paddingForYAttributes: CGFloat {
         get {
             if let collectionView = collectionView {
-                return collectionView.yDelegate?.leftSidePaddingFor(collectionView) ?? 0
+                return collectionView.yDelegate?.leftSidePaddingFor(collectionView) ?? 50
             }
             return 0
         }

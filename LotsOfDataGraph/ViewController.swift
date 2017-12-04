@@ -22,6 +22,8 @@ class ViewController: UIViewController {
         graphCollectionView.register(LabelReusableView.self, forSupplementaryViewOfKind: .graphLayoutElementKindXAxisView, withReuseIdentifier: .graphLayoutElementKindXAxisView)
         graphCollectionView.register(LabelReusableView.self, forSupplementaryViewOfKind: .graphLayoutElementKindYAxisView, withReuseIdentifier: .graphLayoutElementKindYAxisView)
         graphCollectionView.register(HorizontalDividerLineReusableView.self, forSupplementaryViewOfKind: .graphLayoutElementKindHorrizontalDividersView, withReuseIdentifier: .graphLayoutElementKindHorrizontalDividersView)
+        
+        graphCollectionView.contentInset = UIEdgeInsets(top: 10, left: 0, bottom: 0, right: 50)
     }
     
 }
@@ -62,6 +64,8 @@ extension ViewController: CollectionGraphDataSource {
             let yLabel = collectionView.dequeueReusableSupplementaryView(ofKind: kind,
                                                                          withReuseIdentifier: .graphLayoutElementKindYAxisView,
                                                                          for: indexPath) as! LabelReusableView
+            let color = collectionView.backgroundColor?.withAlphaComponent(0.8)
+            yLabel.backgroundColor = color
             return yLabel
             
         default:
@@ -116,20 +120,3 @@ extension ViewController: CollectionGraphDelegateLayout {
     }
     
 }
-
-extension ViewController: CollectionGraphXDelegate {
-    
-    func bottomPaddingFor(_ graphCollectionView: GraphCollectionView) -> CGFloat {
-        return 36
-    }
-    
-}
-
-extension ViewController: CollectionGraphYDelegate {
-    
-    func leftSidePaddingFor(_ graphCollectionView: GraphCollectionView) -> CGFloat {
-        return 50
-    }
-    
-}
-
