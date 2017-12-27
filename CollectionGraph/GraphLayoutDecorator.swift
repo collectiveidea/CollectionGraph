@@ -39,18 +39,32 @@ internal class GraphLayoutDecorator {
     
     internal var paddingForXAttributes: CGFloat {
         get {
-            if let collectionView = collectionView {
-                return collectionView.xDelegate?.bottomPaddingFor(collectionView) ?? 50
+            guard let collectionView = collectionView else {
+                return 0
             }
+            
+            if let xDelegate = collectionView.xDelegate {
+                return xDelegate.bottomPaddingFor(collectionView)
+            } else if collectionView.isUsingXAxisView {
+                return 50 //default value if there is a xAxisView and user did not specify the bottom X padding
+            }
+            
             return 0
         }
     }
     
     internal var paddingForYAttributes: CGFloat {
         get {
-            if let collectionView = collectionView {
-                return collectionView.yDelegate?.leftSidePaddingFor(collectionView) ?? 50
+            guard let collectionView = collectionView else {
+                return 0
             }
+            
+            if let yDelegate = collectionView.yDelegate {
+                return yDelegate.leftSidePaddingFor(collectionView)
+            } else if collectionView.isUsingYAxisView {
+                return 50 //default value if there is a yAxisView and user did not specify the left Y padding
+            }
+            
             return 0
         }
     }

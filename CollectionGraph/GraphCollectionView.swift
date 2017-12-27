@@ -54,6 +54,9 @@ open class GraphCollectionView: UICollectionView {
     @IBOutlet public weak var yDelegate: CollectionGraphYDelegate?
     @IBOutlet public weak var barGraphDelegate: CollectionGraphBarGraphDelegate?
     
+    internal var isUsingXAxisView = false
+    internal var isUsingYAxisView = false
+    
     override open func awakeFromNib() {
         setupLayout()
     }
@@ -78,8 +81,10 @@ open class GraphCollectionView: UICollectionView {
         if elementKind == .graphLayoutElementKindLine {
             graphLayout.graphLineLayoutAttributesModel = GraphLineLayoutAttributesModel(collectionView: self)
         } else if elementKind == .graphLayoutElementKindXAxisView {
+            isUsingXAxisView = true
             graphLayout.xAxisLayoutAttributesModel = XAxisLayoutAttributesModel(collectionView: self)
         } else if elementKind == .graphLayoutElementKindYAxisView {
+            isUsingYAxisView = true
             graphLayout.yAxisLayoutAttributesModel = YAxisLayoutAttributesModel(collectionView: self)
         } else if elementKind == .graphLayoutElementKindHorrizontalDividersView {
             graphLayout.horizontalLayoutAttributesModel = HorizontalLayoutAttributesModel(collectionView: self)
