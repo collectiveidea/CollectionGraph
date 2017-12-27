@@ -40,6 +40,8 @@ open class GraphLineReusableView: UICollectionReusableView {
         }
     }
     
+    public var straightLines = true
+    
     let line = CAShapeLayer()
     
     var firstPoint = CGPoint.zero
@@ -49,6 +51,7 @@ open class GraphLineReusableView: UICollectionReusableView {
         super.init(frame: frame)
         
         line.strokeColor = color.cgColor
+        line.fillColor = UIColor.clear.cgColor
         
         layer.addSublayer(line)
     }
@@ -69,28 +72,16 @@ open class GraphLineReusableView: UICollectionReusableView {
         
         let path = UIBezierPath()
         
-//        var startingPoint = firstPoint//CGPoint(x: bounds.origin.x, y: bounds.origin.y)
-//        var endingPoint = secondPoint//CGPoint(x: bounds.width, y: bounds.height)
-        
-//        if startsAtTop == false {
-//            startingPoint = CGPoint(x: bounds.origin.x, y: bounds.height)
-//            endingPoint = CGPoint(x: bounds.width, y: bounds.origin.y)
-//        }
-        
-        
-        
-//        print("points \(startingPoint), \(endingPoint)")
-        
         path.move(to: firstPoint)
         
-//        if line.straightLines {
+        if straightLines {
             path.addLine(to: secondPoint)
-//        }
-//        else {
-//            let cp1 = CGPoint(x: (startingPoint.x + endingPoint.x) / 2, y: startingPoint.y)
-//            let cp2 = CGPoint(x: (startingPoint.x + endingPoint.x) / 2, y: endingPoint.y)
-//            path.addCurve(to: endingPoint, controlPoint1: cp1, controlPoint2: cp2)
-//        }
+        }
+        else {
+            let cp1 = CGPoint(x: (firstPoint.x + secondPoint.x) / 2, y: firstPoint.y)
+            let cp2 = CGPoint(x: (firstPoint.x + secondPoint.x) / 2, y: secondPoint.y)
+            path.addCurve(to: secondPoint, controlPoint1: cp1, controlPoint2: cp2)
+        }
         
         return path
     }
