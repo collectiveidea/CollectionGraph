@@ -53,6 +53,7 @@ extension ViewController: CollectionGraphDataSource {
         
         let graphLine = collectionView.dequeueReusableSupplementaryView(ofKind: .graphLayoutElementKindLine, withReuseIdentifier: "GraphLine", for: indexPath) as! GraphLineReusableView
         
+        graphLine.straightLines = false
         graphLine.color = .red
         
         return graphLine
