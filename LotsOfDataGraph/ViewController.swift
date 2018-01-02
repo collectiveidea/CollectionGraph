@@ -24,6 +24,14 @@ class ViewController: UIViewController {
         graphCollectionView.register(HorizontalDividerLineReusableView.self, forSupplementaryViewOfKind: .graphLayoutElementKindHorrizontalDividersView, withReuseIdentifier: .graphLayoutElementKindHorrizontalDividersView)
         
         graphCollectionView.contentInset = UIEdgeInsets(top: 10, left: 0, bottom: 0, right: 50)
+        
+        fetchData()
+    }
+    
+    func fetchData() {
+        ppmRepo.getPPM { (finished) in
+            self.graphCollectionView.reloadData()
+        }
     }
     
 }
