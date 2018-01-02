@@ -24,6 +24,11 @@ internal class GraphLineLayoutAttributesModel: LayoutAttributesModel {
         var intersectingPaths = [IndexPath]()
         
         for sectionNumber in 0 ..< decorator.numberOfSections {
+            
+            if decorator.numberOfItemsIn(section: sectionNumber) == 0 {
+                return intersectingPaths
+            }
+            
             for itemNumber in 0 ..< decorator.numberOfItemsIn(section: sectionNumber) - 1 {
                 
                 let indexPathOfItem = IndexPath(item: itemNumber, section: sectionNumber)
