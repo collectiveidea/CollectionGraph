@@ -70,17 +70,19 @@ extension ViewController: CollectionGraphDataSource {
                                                                          withReuseIdentifier: .graphLayoutElementKindXAxisView,
                                                                          for: indexPath) as! LabelReusableView
             
-            let labelText = convertFloatValueToDate(xLabelValue: xLabel.value)
-            xLabel.label.text = labelText
+            xLabel.delegate = self
             
             return xLabel
+            
         case .graphLayoutElementKindYAxisView:
             let yLabel = collectionView.dequeueReusableSupplementaryView(ofKind: kind,
                                                                          withReuseIdentifier: .graphLayoutElementKindYAxisView,
                                                                          for: indexPath) as! LabelReusableView
             let color = collectionView.backgroundColor?.withAlphaComponent(0.8)
             yLabel.backgroundColor = color
-            yLabel.label.text = "\(yLabel.value)"
+
+            yLabel.delegate = self
+            
             return yLabel
             
         default:
@@ -100,6 +102,19 @@ extension ViewController: CollectionGraphDataSource {
         formatter.dateFormat = customFormat
         
         return formatter.string(from: date)
+    }
+    
+}
+
+extension ViewController: LabelReusableViewDelegate {
+    
+    func labelReusableView(_ labelView: LabelReusableView, didChangeValue value: CGFloat) {
+        if labelView.reuseIdentifier == .graphLayoutElementKindXAxisView {
+            let labelText = convertFloatValueToDate(xLabelValue: labelView.value)
+            labelView.label.text = labelText
+        } else if labelView.reuseIdentifier == .graphLayoutElementKindYAxisView {
+            labelView.label.text = "\(labelView.value)"
+        }
     }
     
 }
