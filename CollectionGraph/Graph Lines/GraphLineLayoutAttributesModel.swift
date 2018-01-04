@@ -14,9 +14,8 @@ internal class GraphLineLayoutAttributesModel: LayoutAttributesModel {
     
     var cache = [IndexPath : UICollectionViewLayoutAttributes]()
     
-    init(collectionView: GraphCollectionView) {
-        
-        self.decorator = GraphLayoutDecorator(collectionView: collectionView)
+    required init(decorator: GraphLayoutDecorator) {
+        self.decorator = decorator
     }
     
     internal func indexPathsOfItems(in rect: CGRect) -> [IndexPath] {

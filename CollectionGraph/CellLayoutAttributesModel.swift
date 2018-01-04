@@ -14,12 +14,13 @@ internal class CellLayoutAttributesModel {
     
     var cache = [IndexPath: UICollectionViewLayoutAttributes]()
     
-    init(collectionView: GraphCollectionView) {
-
-        self.decorator = GraphLayoutDecorator(collectionView: collectionView)
+    required init(decorator: GraphLayoutDecorator) {
+        self.decorator = decorator
     }
     
 }
+
+
 
 extension CellLayoutAttributesModel: LayoutAttributesModel {
     

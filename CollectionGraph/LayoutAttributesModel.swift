@@ -8,13 +8,16 @@
 
 import Foundation
 
-protocol LayoutAttributesModel {
+protocol LayoutAttributesModel: class {
+    
+    var decorator: GraphLayoutDecorator { get }
     
     var cache: [IndexPath: UICollectionViewLayoutAttributes] { get set }
     
     func indexPathsOfItems(in rect: CGRect) -> [IndexPath]
     func attributesForItem(at indexPath: IndexPath) -> UICollectionViewLayoutAttributes?
     
+    init(decorator: GraphLayoutDecorator)
 }
 
 extension LayoutAttributesModel {
