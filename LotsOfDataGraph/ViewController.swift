@@ -32,6 +32,12 @@ class ViewController: UIViewController {
         ppmRepo.getPPM { (finished) in
             self.graphCollectionView.reloadData()
         }
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            self.ppmRepo.insertData()
+            
+            self.graphCollectionView.insertItems(at: [IndexPath(row: 5, section: 0)])
+        }
     }
     
 }

@@ -34,6 +34,19 @@ class PPMRepo {
         
     }
     
+    func insertData() {
+        let dateString = "2017-01-05T00:04:31Z"
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+        dateFormatter.timeZone = TimeZone(abbreviation: "UTC")
+        
+        let date = dateFormatter.date(from: dateString)
+        
+        let newData = PPMModel(date: date!, co2: 400)
+        data.insert(newData, at: 5)
+    }
+    
     func valueFor(indexPath: IndexPath) -> (xValue: CGFloat, yValue: CGFloat) {
         
         let co2 = CGFloat(data[indexPath.item].co2)
