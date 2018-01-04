@@ -75,14 +75,4 @@ open class LabelReusableView: AxisReusableView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    open override func apply(_ layoutAttributes: UICollectionViewLayoutAttributes) {
-        super.apply(layoutAttributes)
-        
-        if label.text == nil {
-            label.text = "\(value)"
-        }
-        
-        label.sizeToFit()
-    }
-    
 }

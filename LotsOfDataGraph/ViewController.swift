@@ -74,6 +74,7 @@ extension ViewController: CollectionGraphDataSource {
                                                                          for: indexPath) as! LabelReusableView
             let color = collectionView.backgroundColor?.withAlphaComponent(0.8)
             yLabel.backgroundColor = color
+            yLabel.label.text = "\(yLabel.value)"
             return yLabel
             
         default:
