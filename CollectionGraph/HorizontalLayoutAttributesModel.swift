@@ -14,9 +14,8 @@ class HorizontalLayoutAttributesModel {
     
     var cache = [IndexPath: UICollectionViewLayoutAttributes]()
     
-    init(collectionView: GraphCollectionView) {
-        
-        self.decorator = GraphLayoutDecorator(collectionView: collectionView)
+    required init(decorator: GraphLayoutDecorator) {
+        self.decorator = decorator
     }
     
 }
@@ -26,7 +25,6 @@ extension HorizontalLayoutAttributesModel: LayoutAttributesModel {
     func indexPathsOfItems(in rect: CGRect) -> [IndexPath] {
         var indexPaths = [IndexPath]()
         
-        //we
         let numberOfItems = decorator.numberOfYSteps() + 1
         
         for number in 0..<numberOfItems {

@@ -67,7 +67,8 @@ open class GraphCollectionView: UICollectionView {
         }
         
         let layout = collectionViewLayout as! GraphLayout
-        layout.cellLayoutAttributesModel = CellLayoutAttributesModel(collectionView: self)
+        let decorator = GraphLayoutDecorator(collectionView: self)
+        layout.cellLayoutAttributesModel = CellLayoutAttributesModel(decorator: decorator)
     }
     
     open override func register(_ viewClass: AnyClass?, forSupplementaryViewOfKind elementKind: String, withReuseIdentifier identifier: String) {
@@ -78,18 +79,20 @@ open class GraphCollectionView: UICollectionView {
             return
         }
         
+        let decorator = GraphLayoutDecorator(collectionView: self)
+        
         if elementKind == .graphLayoutElementKindLine {
-            graphLayout.graphLineLayoutAttributesModel = GraphLineLayoutAttributesModel(collectionView: self)
+            graphLayout.graphLineLayoutAttributesModel = GraphLineLayoutAttributesModel(decorator: decorator)
         } else if elementKind == .graphLayoutElementKindXAxisView {
             isUsingXAxisView = true
-            graphLayout.xAxisLayoutAttributesModel = XAxisLayoutAttributesModel(collectionView: self)
+            graphLayout.xAxisLayoutAttributesModel = XAxisLayoutAttributesModel(decorator: decorator)
         } else if elementKind == .graphLayoutElementKindYAxisView {
             isUsingYAxisView = true
-            graphLayout.yAxisLayoutAttributesModel = YAxisLayoutAttributesModel(collectionView: self)
+            graphLayout.yAxisLayoutAttributesModel = YAxisLayoutAttributesModel(decorator: decorator)
         } else if elementKind == .graphLayoutElementKindHorrizontalDividersView {
-            graphLayout.horizontalLayoutAttributesModel = HorizontalLayoutAttributesModel(collectionView: self)
+            graphLayout.horizontalLayoutAttributesModel = HorizontalLayoutAttributesModel(decorator: decorator)
         } else if elementKind == .graphLayoutElementKindBarGraph {
-            graphLayout.barGraphLayoutAttributesModel = BarGraphLayoutAttributesModel(collectionView: self)
+            graphLayout.barGraphLayoutAttributesModel = BarGraphLayoutAttributesModel(decorator: decorator)
         }
     }
     

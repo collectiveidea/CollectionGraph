@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		5703739D1F5F2325007251C4 /* AxisReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5703739C1F5F2325007251C4 /* AxisReusableView.swift */; };
 		5703739F1F5F23DF007251C4 /* XAxisLayoutAttributesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5703739E1F5F23DF007251C4 /* XAxisLayoutAttributesModel.swift */; };
+		570A96311FFC1F50003F7D7C /* PPMModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570A96301FFC1F50003F7D7C /* PPMModel.swift */; };
+		570A96331FFC1F7E003F7D7C /* PPMRepo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570A96321FFC1F7E003F7D7C /* PPMRepo.swift */; };
 		5726EC441F8E74A200E5F765 /* YAxisLayoutAttributesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5726EC431F8E74A200E5F765 /* YAxisLayoutAttributesModel.swift */; };
 		5726EC461F8EAD2A00E5F765 /* HorizontalLayoutAttributesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5726EC451F8EAD2A00E5F765 /* HorizontalLayoutAttributesModel.swift */; };
 		5726EC4A1F8EB3D800E5F765 /* HorizontalDividerLineReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5726EC491F8EB3C300E5F765 /* HorizontalDividerLineReusableView.swift */; };
@@ -120,6 +122,8 @@
 /* Begin PBXFileReference section */
 		5703739C1F5F2325007251C4 /* AxisReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AxisReusableView.swift; sourceTree = "<group>"; };
 		5703739E1F5F23DF007251C4 /* XAxisLayoutAttributesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XAxisLayoutAttributesModel.swift; sourceTree = "<group>"; };
+		570A96301FFC1F50003F7D7C /* PPMModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PPMModel.swift; sourceTree = "<group>"; };
+		570A96321FFC1F7E003F7D7C /* PPMRepo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PPMRepo.swift; sourceTree = "<group>"; };
 		5726EC431F8E74A200E5F765 /* YAxisLayoutAttributesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YAxisLayoutAttributesModel.swift; sourceTree = "<group>"; };
 		5726EC451F8EAD2A00E5F765 /* HorizontalLayoutAttributesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalLayoutAttributesModel.swift; sourceTree = "<group>"; };
 		5726EC491F8EB3C300E5F765 /* HorizontalDividerLineReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HorizontalDividerLineReusableView.swift; path = CollectionGraph/HorizontalDividerLineReusableView.swift; sourceTree = SOURCE_ROOT; };
@@ -218,9 +222,11 @@
 			isa = PBXGroup;
 			children = (
 				577D84E31F5EE3EB0053A980 /* AppDelegate.swift */,
+				577D84E71F5EE3EB0053A980 /* Main.storyboard */,
 				577D84E51F5EE3EB0053A980 /* ViewController.swift */,
 				577D84F31F5EE60A0053A980 /* PPMData.swift */,
-				577D84E71F5EE3EB0053A980 /* Main.storyboard */,
+				570A96301FFC1F50003F7D7C /* PPMModel.swift */,
+				570A96321FFC1F7E003F7D7C /* PPMRepo.swift */,
 				577D84EA1F5EE3EB0053A980 /* Assets.xcassets */,
 				577D84EC1F5EE3EB0053A980 /* LaunchScreen.storyboard */,
 				577D84EF1F5EE3EB0053A980 /* Info.plist */,
@@ -584,6 +590,8 @@
 				577D84E61F5EE3EB0053A980 /* ViewController.swift in Sources */,
 				577D84F41F5EE60A0053A980 /* PPMData.swift in Sources */,
 				577D84E41F5EE3EB0053A980 /* AppDelegate.swift in Sources */,
+				570A96331FFC1F7E003F7D7C /* PPMRepo.swift in Sources */,
+				570A96311FFC1F50003F7D7C /* PPMModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

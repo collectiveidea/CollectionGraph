@@ -24,6 +24,20 @@ class ViewController: UIViewController {
         graphCollectionView.register(HorizontalDividerLineReusableView.self, forSupplementaryViewOfKind: .graphLayoutElementKindHorrizontalDividersView, withReuseIdentifier: .graphLayoutElementKindHorrizontalDividersView)
         
         graphCollectionView.contentInset = UIEdgeInsets(top: 10, left: 0, bottom: 0, right: 50)
+        
+        fetchData()
+    }
+    
+    func fetchData() {
+        ppmRepo.getPPM { (finished) in
+            self.graphCollectionView.reloadData()
+        }
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            self.ppmRepo.insertData()
+            
+            self.graphCollectionView.insertItems(at: [IndexPath(row: 5, section: 0)])
+        }
     }
     
 }
@@ -56,16 +70,19 @@ extension ViewController: CollectionGraphDataSource {
                                                                          withReuseIdentifier: .graphLayoutElementKindXAxisView,
                                                                          for: indexPath) as! LabelReusableView
             
-            let labelText = convertFloatValueToDate(xLabelValue: xLabel.value)
-            xLabel.label.text = labelText
+            xLabel.delegate = self
             
             return xLabel
+            
         case .graphLayoutElementKindYAxisView:
             let yLabel = collectionView.dequeueReusableSupplementaryView(ofKind: kind,
                                                                          withReuseIdentifier: .graphLayoutElementKindYAxisView,
                                                                          for: indexPath) as! LabelReusableView
             let color = collectionView.backgroundColor?.withAlphaComponent(0.8)
             yLabel.backgroundColor = color
+
+            yLabel.delegate = self
+            
             return yLabel
             
         default:
@@ -85,6 +102,19 @@ extension ViewController: CollectionGraphDataSource {
         formatter.dateFormat = customFormat
         
         return formatter.string(from: date)
+    }
+    
+}
+
+extension ViewController: LabelReusableViewDelegate {
+    
+    func labelReusableView(_ labelView: LabelReusableView, didChangeValue value: CGFloat) {
+        if labelView.reuseIdentifier == .graphLayoutElementKindXAxisView {
+            let labelText = convertFloatValueToDate(xLabelValue: labelView.value)
+            labelView.label.text = labelText
+        } else if labelView.reuseIdentifier == .graphLayoutElementKindYAxisView {
+            labelView.label.text = "\(labelView.value)"
+        }
     }
     
 }

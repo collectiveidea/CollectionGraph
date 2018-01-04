@@ -14,9 +14,8 @@ internal class GraphLineLayoutAttributesModel: LayoutAttributesModel {
     
     var cache = [IndexPath : UICollectionViewLayoutAttributes]()
     
-    init(collectionView: GraphCollectionView) {
-        
-        self.decorator = GraphLayoutDecorator(collectionView: collectionView)
+    required init(decorator: GraphLayoutDecorator) {
+        self.decorator = decorator
     }
     
     internal func indexPathsOfItems(in rect: CGRect) -> [IndexPath] {
@@ -24,6 +23,11 @@ internal class GraphLineLayoutAttributesModel: LayoutAttributesModel {
         var intersectingPaths = [IndexPath]()
         
         for sectionNumber in 0 ..< decorator.numberOfSections {
+            
+            if decorator.numberOfItemsIn(section: sectionNumber) == 0 {
+                return intersectingPaths
+            }
+            
             for itemNumber in 0 ..< decorator.numberOfItemsIn(section: sectionNumber) - 1 {
                 
                 let indexPathOfItem = IndexPath(item: itemNumber, section: sectionNumber)

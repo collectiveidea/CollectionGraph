@@ -83,6 +83,18 @@ public class GraphLayout: UICollectionViewLayout {
         }
     }
     
+    public override func prepare() {
+        clearAttributeCaches()
+    }
+    
+    func clearAttributeCaches() {
+        attributeModels.forEach {
+            $0.cache.removeAll()
+            $0.decorator.xMinMaxValuesCache = nil
+            $0.decorator.yMinMaxValuesCache = nil
+        }
+    }
+    
     var attributeModels = [LayoutAttributesModel]()
     
     override public func shouldInvalidateLayout(forBoundsChange newBounds: CGRect) -> Bool {
@@ -103,9 +115,7 @@ public class GraphLayout: UICollectionViewLayout {
             
         } else {
             
-            for (number, _) in attributeModels.enumerated() {
-                attributeModels[number].cache.removeAll()
-            }
+            clearAttributeCaches()
             
             invalidateLayout()
         }
