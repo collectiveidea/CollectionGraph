@@ -83,19 +83,22 @@ public class GraphLayout: UICollectionViewLayout {
         }
     }
     
+    var attributeModels = [LayoutAttributesModel]()
+    
+    private var sizeCache = CGSize.zero
+    
     public override func prepare() {
-        clearAttributeCaches()
+        clearCaches()
     }
     
-    func clearAttributeCaches() {
+    func clearCaches() {
         attributeModels.forEach {
             $0.cache.removeAll()
             $0.decorator.xMinMaxValuesCache = nil
             $0.decorator.yMinMaxValuesCache = nil
         }
+        sizeCache = .zero
     }
-    
-    var attributeModels = [LayoutAttributesModel]()
     
     override public func shouldInvalidateLayout(forBoundsChange newBounds: CGRect) -> Bool {
         
@@ -115,7 +118,7 @@ public class GraphLayout: UICollectionViewLayout {
             
         } else {
             
-            clearAttributeCaches()
+            clearCaches()
             
             invalidateLayout()
         }
@@ -167,6 +170,10 @@ public class GraphLayout: UICollectionViewLayout {
     
     override public var collectionViewContentSize: CGSize {
         
+        if sizeCache != .zero {
+            return sizeCache
+        }
+        
         if let collectionView = collectionView as? GraphCollectionView {
             
             let decorator = GraphLayoutDecorator(collectionView: collectionView)
@@ -185,7 +192,9 @@ public class GraphLayout: UICollectionViewLayout {
             let width = distanceBetweenXSteps * numberOfXSteps - distanceBetweenXSteps  + cellSize.width + decorator.paddingForYAttributes
             let height = heightOfCollectionView - heightPadding
             
-            return CGSize(width: width, height: height)
+            sizeCache = CGSize(width: width, height: height)
+            
+            return sizeCache
         }
         return CGSize.zero
     }
