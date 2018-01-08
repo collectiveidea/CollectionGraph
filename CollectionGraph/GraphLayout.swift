@@ -85,7 +85,7 @@ public class GraphLayout: UICollectionViewLayout {
     
     var attributeModels = [LayoutAttributesModel]()
     
-    private var sizeCache = CGSize.zero
+    private var contentSizeCache = CGSize.zero
     
     public override func prepare() {
         clearCaches()
@@ -97,7 +97,7 @@ public class GraphLayout: UICollectionViewLayout {
             $0.decorator.xMinMaxValuesCache = nil
             $0.decorator.yMinMaxValuesCache = nil
         }
-        sizeCache = .zero
+        contentSizeCache = .zero
     }
     
     override public func shouldInvalidateLayout(forBoundsChange newBounds: CGRect) -> Bool {
@@ -170,8 +170,8 @@ public class GraphLayout: UICollectionViewLayout {
     
     override public var collectionViewContentSize: CGSize {
         
-        if sizeCache != .zero {
-            return sizeCache
+        if contentSizeCache != .zero {
+            return contentSizeCache
         }
         
         if let collectionView = collectionView as? GraphCollectionView {
@@ -192,9 +192,9 @@ public class GraphLayout: UICollectionViewLayout {
             let width = distanceBetweenXSteps * numberOfXSteps - distanceBetweenXSteps  + cellSize.width + decorator.paddingForYAttributes
             let height = heightOfCollectionView - heightPadding
             
-            sizeCache = CGSize(width: width, height: height)
+            contentSizeCache = CGSize(width: width, height: height)
             
-            return sizeCache
+            return contentSizeCache
         }
         return CGSize.zero
     }
