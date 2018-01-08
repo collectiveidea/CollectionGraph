@@ -33,11 +33,11 @@ class ViewController: UIViewController {
             self.graphCollectionView.reloadData()
         }
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-            self.ppmRepo.insertData()
-            
-            self.graphCollectionView.insertItems(at: [IndexPath(row: 5, section: 0)])
-        }
+//        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+//            self.ppmRepo.insertData()
+//
+//            self.graphCollectionView.insertItems(at: [IndexPath(row: 5, section: 0)])
+//        }
     }
     
 }
@@ -132,7 +132,7 @@ extension ViewController: CollectionGraphDelegateLayout {
     }
     
     func numberOfYStepsIn(_ graphCollectionView: GraphCollectionView) -> Int {
-        return 5
+        return 6
     }
     
     func minAndMaxXValuesIn(_ graphCollectionView: GraphCollectionView) -> (min: CGFloat, max: CGFloat) {

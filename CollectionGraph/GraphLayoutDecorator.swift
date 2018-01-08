@@ -98,10 +98,34 @@ internal class GraphLayoutDecorator {
         }
         
         if let collectionView = collectionView ,let delegate = collectionView.delegate as? CollectionGraphDelegateLayout {
-            yMinMaxValuesCache = delegate.minAndMaxYValuesIn(collectionView)
+            let userDelta = delegate.minAndMaxYValuesIn(collectionView)
+            let adjustedValues = adjustYDataRangeToWholeNumber(userDelta, steps: delegate.numberOfYStepsIn(collectionView))
+            
+            yMinMaxValuesCache = adjustedValues
             return yMinMaxValuesCache!
         }
         return (0, 0)
+    }
+    
+    internal func adjustYDataRangeToWholeNumber(_ originalRange: (min: CGFloat, max: CGFloat), steps: Int) -> (min: CGFloat, max: CGFloat) {
+        
+        var remainder = originalRange.max.truncatingRemainder(dividingBy: CGFloat(steps))
+        if remainder.isNaN {
+            remainder = 0
+        }
+        
+        var max: CGFloat = 0
+        
+        if remainder == 0 {
+            max = originalRange.max
+        } else {
+            max = originalRange.max - remainder + CGFloat(steps)
+        }
+        
+        let min = originalRange.min
+        
+        return (min, max)
+        
     }
     
     internal func numberOfXSteps() -> Int {
