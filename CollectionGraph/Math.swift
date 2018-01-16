@@ -29,7 +29,11 @@ class Math {
     
     class func adjustRangeToWholeNumber(_ originalRange: (min: CGFloat, max: CGFloat), steps: Int) -> (min: CGFloat, max: CGFloat) {
         
-        var remainder = originalRange.max.truncatingRemainder(dividingBy: CGFloat(steps))
+        let adjustedMin = floor(originalRange.min)
+        
+        let delta = originalRange.max - adjustedMin
+        
+        var remainder = delta.truncatingRemainder(dividingBy: CGFloat(steps))
         if remainder.isNaN {
             remainder = 0
         }
@@ -42,9 +46,7 @@ class Math {
             max = originalRange.max - remainder + CGFloat(steps)
         }
         
-        let min = originalRange.min
-        
-        return (min, max)
+        return (adjustedMin, max)
     }
     
 }
