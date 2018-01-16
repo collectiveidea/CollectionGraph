@@ -99,9 +99,14 @@ internal class GraphLayoutDecorator {
         
         if let collectionView = collectionView ,let delegate = collectionView.delegate as? CollectionGraphDelegateLayout {
             let userDelta = delegate.minAndMaxYValuesIn(collectionView)
-            let adjustedValues = Math.adjustRangeToWholeNumber(userDelta, steps: delegate.numberOfYStepsIn(collectionView))
             
-            yMinMaxValuesCache = adjustedValues
+            if collectionView.usesWholeNumbersOnYAxis {
+                let adjustedValues = Math.adjustRangeToWholeNumber(userDelta, steps: delegate.numberOfYStepsIn(collectionView))
+                yMinMaxValuesCache = adjustedValues
+            } else {
+                yMinMaxValuesCache = userDelta
+            }
+            
             return yMinMaxValuesCache!
         }
         return (0, 0)

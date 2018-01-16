@@ -54,6 +54,8 @@ open class GraphCollectionView: UICollectionView {
     @IBOutlet public weak var yDelegate: CollectionGraphYDelegate?
     @IBOutlet public weak var barGraphDelegate: CollectionGraphBarGraphDelegate?
     
+    public var usesWholeNumbersOnYAxis: Bool = false
+    
     internal var isUsingXAxisView = false
     internal var isUsingYAxisView = false
     

@@ -61,7 +61,11 @@ extension YAxisLayoutAttributesModel: LayoutAttributesModel {
         
         let percentOnYAxis = Math.percent(ofValue: attribute.frame.origin.y + attribute.frame.size.height / 2 - cellSize.height / 2, fromMin: 0, toMax: fullHeightForAttributes)
         
-        let value = normalizedDelta - Math.lerp(percent: percentOnYAxis, ofDistance: normalizedDelta) + delta.min
+        var value = normalizedDelta - Math.lerp(percent: percentOnYAxis, ofDistance: normalizedDelta) + delta.min
+        
+        if let collectionView = decorator.collectionView, collectionView.usesWholeNumbersOnYAxis {
+            value = value.rounded()
+        }
         
         attribute.value = value
         
@@ -69,26 +73,5 @@ extension YAxisLayoutAttributesModel: LayoutAttributesModel {
                 
         return attribute
     }
-    
-//    func adjustYDataRangeToWholeNumber(_ originalRange: (min: CGFloat, max: CGFloat), steps: Int) -> (min: CGFloat, max: CGFloat) {
-//        
-//        var remainder = originalRange.max.truncatingRemainder(dividingBy: CGFloat(steps))
-//        if remainder.isNaN {
-//            remainder = 0
-//        }
-//        
-//        var max: CGFloat = 0
-//        
-//        if remainder == 0 {
-//            max = originalRange.max
-//        } else {
-//            max = originalRange.max - remainder + CGFloat(steps)
-//        }
-//        
-//        let min = originalRange.min
-//        
-//        return (min, max)
-//        
-//    }
     
 }
