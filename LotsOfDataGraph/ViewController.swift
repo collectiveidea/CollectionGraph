@@ -24,6 +24,7 @@ class ViewController: UIViewController {
         graphCollectionView.register(HorizontalDividerLineReusableView.self, forSupplementaryViewOfKind: .graphLayoutElementKindHorrizontalDividersView, withReuseIdentifier: .graphLayoutElementKindHorrizontalDividersView)
         
         graphCollectionView.contentInset = UIEdgeInsets(top: 10, left: 0, bottom: 0, right: 50)
+        graphCollectionView.usesWholeNumbersOnYAxis = true
         
         fetchData()
     }
@@ -35,7 +36,7 @@ class ViewController: UIViewController {
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             self.ppmRepo.insertData()
-            
+
             self.graphCollectionView.insertItems(at: [IndexPath(row: 5, section: 0)])
         }
     }
@@ -113,7 +114,7 @@ extension ViewController: LabelReusableViewDelegate {
             let labelText = convertFloatValueToDate(xLabelValue: labelView.value)
             labelView.label.text = labelText
         } else if labelView.reuseIdentifier == .graphLayoutElementKindYAxisView {
-            labelView.label.text = "\(labelView.value)"
+            labelView.label.text = String(format: "%.0f", labelView.value)
         }
     }
     
@@ -132,7 +133,7 @@ extension ViewController: CollectionGraphDelegateLayout {
     }
     
     func numberOfYStepsIn(_ graphCollectionView: GraphCollectionView) -> Int {
-        return 5
+        return 6
     }
     
     func minAndMaxXValuesIn(_ graphCollectionView: GraphCollectionView) -> (min: CGFloat, max: CGFloat) {
