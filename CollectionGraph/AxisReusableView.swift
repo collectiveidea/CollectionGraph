@@ -53,17 +53,11 @@ open class AxisReusableView: UICollectionReusableView {
 
 }
 
-public protocol LabelReusableViewDelegate {
-    
-    func labelReusableView(_ labelView: LabelReusableView, didChangeValue value: CGFloat)
-    
-}
-
 open class LabelReusableView: AxisReusableView {
     
     public let label: UILabel = UILabel()
     
-    public var delegate: LabelReusableViewDelegate?
+    public var valueChanged: ((CGFloat) -> Void)?
     
     public override init(frame: CGRect) {
         super.init(frame: frame)
@@ -86,8 +80,13 @@ open class LabelReusableView: AxisReusableView {
     open override func apply(_ layoutAttributes: UICollectionViewLayoutAttributes) {
         super.apply(layoutAttributes)
         label.text = "\(value)"
-        
-        delegate?.labelReusableView(self, didChangeValue: value)
+
+        valueChanged?(value)
+    }
+    
+    open override func setNeedsLayout() {
+        super.setNeedsLayout()
+        valueChanged?(value)
     }
     
 }

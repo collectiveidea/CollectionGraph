@@ -26,7 +26,7 @@ class PPMRepo {
         let decoder = JSONDecoder()
         decoder.dateDecodingStrategy = .formatted(dateFormatter)
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
             self.data = try! decoder.decode([PPMModel].self, from: PPMData().data!)
             
             completion(true)
