@@ -34,7 +34,7 @@ class ViewController: UIViewController {
             self.graphCollectionView.reloadData()
         }
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
             self.ppmRepo.insertData()
 
             self.graphCollectionView.insertItems(at: [IndexPath(row: 5, section: 0)])
@@ -70,8 +70,11 @@ extension ViewController: CollectionGraphDataSource {
             let xLabel = collectionView.dequeueReusableSupplementaryView(ofKind: kind,
                                                                          withReuseIdentifier: .graphLayoutElementKindXAxisView,
                                                                          for: indexPath) as! LabelReusableView
-            
-            xLabel.delegate = self
+
+            xLabel.valueChanged = { [unowned self] value in
+                let labelText = self.convertFloatValueToDate(xLabelValue: value)
+                xLabel.label.text = labelText
+            }
             
             return xLabel
             
@@ -81,8 +84,10 @@ extension ViewController: CollectionGraphDataSource {
                                                                          for: indexPath) as! LabelReusableView
             let color = collectionView.backgroundColor?.withAlphaComponent(0.8)
             yLabel.backgroundColor = color
-
-            yLabel.delegate = self
+            
+            yLabel.valueChanged = { value in
+                yLabel.label.text = String(format: "%.0f", value)
+            }
             
             return yLabel
             
@@ -107,19 +112,6 @@ extension ViewController: CollectionGraphDataSource {
     
 }
 
-extension ViewController: LabelReusableViewDelegate {
-    
-    func labelReusableView(_ labelView: LabelReusableView, didChangeValue value: CGFloat) {
-        if labelView.reuseIdentifier == .graphLayoutElementKindXAxisView {
-            let labelText = convertFloatValueToDate(xLabelValue: labelView.value)
-            labelView.label.text = labelText
-        } else if labelView.reuseIdentifier == .graphLayoutElementKindYAxisView {
-            labelView.label.text = String(format: "%.0f", labelView.value)
-        }
-    }
-    
-}
-
 extension ViewController: CollectionGraphDelegateLayout {
     
     func graphCollectionView(_ graphCollectionView: GraphCollectionView, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -133,7 +125,7 @@ extension ViewController: CollectionGraphDelegateLayout {
     }
     
     func numberOfYStepsIn(_ graphCollectionView: GraphCollectionView) -> Int {
-        return 6
+        return ppmRepo.data.isEmpty ? 0 : 6
     }
     
     func minAndMaxXValuesIn(_ graphCollectionView: GraphCollectionView) -> (min: CGFloat, max: CGFloat) {
@@ -143,7 +135,7 @@ extension ViewController: CollectionGraphDelegateLayout {
     }
     
     func numberOfXStepsIn(_ graphCollectionView: GraphCollectionView) -> Int {
-        return 50
+        return ppmRepo.data.isEmpty ? 0 : 50
     }
     
     func distanceBetweenXStepsIn(_ graphCollectionView: GraphCollectionView) -> CGFloat {
