@@ -110,14 +110,14 @@ public class GraphLayout: UICollectionViewLayout, RangeFinder {
             return
         }
         
-        let dividerLineIndices = collectionView.indexPathsForVisibleSupplementaryElements(ofKind: ReuseIDs.YDividerView.rawValue)
-        context.invalidateSupplementaryElements(ofKind: ReuseIDs.YDividerView.rawValue, at: dividerLineIndices)
+        let dividerLineIndices = collectionView.indexPathsForVisibleSupplementaryElements(ofKind: ReuseIDs.yDividerView.rawValue)
+        context.invalidateSupplementaryElements(ofKind: ReuseIDs.yDividerView.rawValue, at: dividerLineIndices)
         
-        let yLabelIndices = collectionView.indexPathsForVisibleSupplementaryElements(ofKind: ReuseIDs.YLabelView.rawValue)
-        context.invalidateSupplementaryElements(ofKind: ReuseIDs.YLabelView.rawValue, at: yLabelIndices)
+        let yLabelIndices = collectionView.indexPathsForVisibleSupplementaryElements(ofKind: ReuseIDs.yLabelView.rawValue)
+        context.invalidateSupplementaryElements(ofKind: ReuseIDs.yLabelView.rawValue, at: yLabelIndices)
         
         let ySideBarIndices = [IndexPath(item: 0, section: 0)]
-        context.invalidateDecorationElements(ofKind: ReuseIDs.SideBarView.rawValue, at: ySideBarIndices)
+        context.invalidateDecorationElements(ofKind: ReuseIDs.sideBarView.rawValue, at: ySideBarIndices)
     }
 
     private func layoutAttributesForCell() -> [UICollectionViewLayoutAttributes] {
@@ -152,7 +152,7 @@ public class GraphLayout: UICollectionViewLayout, RangeFinder {
 
                     let indexPath = IndexPath(item: number, section: 0)
 
-                    let supplementaryAttribute = layoutAttributesForSupplementaryView(ofKind: ReuseIDs.YDividerView.rawValue, at: indexPath)
+                    let supplementaryAttribute = layoutAttributesForSupplementaryView(ofKind: ReuseIDs.yDividerView.rawValue, at: indexPath)
 
                     if let supplementaryAttribute = supplementaryAttribute {
                         tempAttributes += [supplementaryAttribute]
@@ -171,7 +171,7 @@ public class GraphLayout: UICollectionViewLayout, RangeFinder {
 
             let indexPath = IndexPath(item: number, section: 0)
 
-            let supplementaryAttribute = layoutAttributesForSupplementaryView(ofKind: ReuseIDs.YLabelView.rawValue, at: indexPath)
+            let supplementaryAttribute = layoutAttributesForSupplementaryView(ofKind: ReuseIDs.yLabelView.rawValue, at: indexPath)
 
             if let supplementaryAttribute = supplementaryAttribute {
                 tempAttributes += [supplementaryAttribute]
@@ -188,7 +188,7 @@ public class GraphLayout: UICollectionViewLayout, RangeFinder {
 
             let indexPath = IndexPath(item: number, section: 0)
 
-            let supplementaryAttribute = layoutAttributesForSupplementaryView(ofKind: ReuseIDs.XLabelView.rawValue, at: indexPath)
+            let supplementaryAttribute = layoutAttributesForSupplementaryView(ofKind: ReuseIDs.xLabelView.rawValue, at: indexPath)
 
             if let supplementaryAttribute = supplementaryAttribute {
                 tempAttributes += [supplementaryAttribute]
@@ -208,7 +208,7 @@ public class GraphLayout: UICollectionViewLayout, RangeFinder {
 
                     let indexPath = IndexPath(item: itemNumber, section: sectionNumber)
 
-                    let supplementaryAttributes = layoutAttributesForSupplementaryView(ofKind: ReuseIDs.LineConnectorView.rawValue, at: indexPath)
+                    let supplementaryAttributes = layoutAttributesForSupplementaryView(ofKind: ReuseIDs.lineConnectorView.rawValue, at: indexPath)
 
                     if let supplementaryAttributes = supplementaryAttributes {
                         tempAttributes += [supplementaryAttributes]
@@ -225,7 +225,7 @@ public class GraphLayout: UICollectionViewLayout, RangeFinder {
 
         if let _ = collectionView {
             let indexPath = IndexPath(item: 0, section: 0)
-            let attribute = layoutAttributesForDecorationView(ofKind: ReuseIDs.SideBarView.rawValue, at: indexPath)
+            let attribute = layoutAttributesForDecorationView(ofKind: ReuseIDs.sideBarView.rawValue, at: indexPath)
 
             if let attribute = attribute {
                 tempAttributes += [attribute]
@@ -246,7 +246,7 @@ public class GraphLayout: UICollectionViewLayout, RangeFinder {
 
                     let indexPath = IndexPath(item: itemNumber, section: sectionNumber)
 
-                    let supplementaryAttributes = layoutAttributesForSupplementaryView(ofKind: ReuseIDs.BarView.rawValue, at: indexPath)
+                    let supplementaryAttributes = layoutAttributesForSupplementaryView(ofKind: ReuseIDs.barView.rawValue, at: indexPath)
 
                     if let supplementaryAttributes = supplementaryAttributes {
                         tempAttributes += [supplementaryAttributes]
@@ -279,9 +279,9 @@ public class GraphLayout: UICollectionViewLayout, RangeFinder {
 
     public override func layoutAttributesForDecorationView(ofKind elementKind: String, at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
 
-        let attributes = UICollectionViewLayoutAttributes(forDecorationViewOfKind: ReuseIDs.SideBarView.rawValue, with: indexPath)
+        let attributes = UICollectionViewLayoutAttributes(forDecorationViewOfKind: ReuseIDs.sideBarView.rawValue, with: indexPath)
 
-        if elementKind == ReuseIDs.SideBarView.rawValue {
+        if elementKind == ReuseIDs.sideBarView.rawValue {
             if let collectionView = collectionView {
 
                 let width = collectionView.contentInset.left
@@ -298,23 +298,23 @@ public class GraphLayout: UICollectionViewLayout, RangeFinder {
 
     public override func layoutAttributesForSupplementaryView(ofKind elementKind: String, at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
 
-        if elementKind == ReuseIDs.YDividerView.rawValue {
+        if elementKind == ReuseIDs.yDividerView.rawValue {
 
             return setAttributesForYDivider(fromIndex: indexPath)
 
-        } else if elementKind == ReuseIDs.LineConnectorView.rawValue {
+        } else if elementKind == ReuseIDs.lineConnectorView.rawValue {
 
             return setAttributesForLineConnector(fromIndex: indexPath)
 
-        } else if elementKind == ReuseIDs.YLabelView.rawValue {
+        } else if elementKind == ReuseIDs.yLabelView.rawValue {
 
             return setAttributesForYLabel(fromIndex: indexPath)
 
-        } else if elementKind == ReuseIDs.XLabelView.rawValue {
+        } else if elementKind == ReuseIDs.xLabelView.rawValue {
 
             return setAttributesForXLabel(fromIndex: indexPath)
 
-        } else if elementKind == ReuseIDs.BarView.rawValue {
+        } else if elementKind == ReuseIDs.barView.rawValue {
 
             return setAttributesForBar(fromIndex: indexPath)
 
@@ -326,7 +326,7 @@ public class GraphLayout: UICollectionViewLayout, RangeFinder {
 
     private func setAttributesForYDivider(fromIndex indexPath: IndexPath) -> YDividerLayoutAttributes {
 
-        let attributes = YDividerLayoutAttributes(forSupplementaryViewOfKind: ReuseIDs.YDividerView.rawValue, with: indexPath)
+        let attributes = YDividerLayoutAttributes(forSupplementaryViewOfKind: ReuseIDs.yDividerView.rawValue, with: indexPath)
 
         if let collectionView = collectionView {
 
@@ -348,7 +348,7 @@ public class GraphLayout: UICollectionViewLayout, RangeFinder {
 
     private func setAttributesForLineConnector(fromIndex indexPath: IndexPath) -> LineConnectorAttributes? {
 
-        let attributes = LineConnectorAttributes(forSupplementaryViewOfKind: ReuseIDs.LineConnectorView.rawValue, with: indexPath)
+        let attributes = LineConnectorAttributes(forSupplementaryViewOfKind: ReuseIDs.lineConnectorView.rawValue, with: indexPath)
 
         if let graphData = graphData {
 
@@ -393,7 +393,7 @@ public class GraphLayout: UICollectionViewLayout, RangeFinder {
 
     private func setAttributesForYLabel(fromIndex indexPath: IndexPath) -> XLabelViewAttributes {
 
-        let attributes = XLabelViewAttributes(forSupplementaryViewOfKind: ReuseIDs.YLabelView.rawValue, with: indexPath)
+        let attributes = XLabelViewAttributes(forSupplementaryViewOfKind: ReuseIDs.yLabelView.rawValue, with: indexPath)
 
         if let collectionView = collectionView {
 
@@ -415,7 +415,7 @@ public class GraphLayout: UICollectionViewLayout, RangeFinder {
 
     private func setAttributesForXLabel(fromIndex indexPath: IndexPath) -> XLabelViewAttributes {
 
-        let attributes = XLabelViewAttributes(forSupplementaryViewOfKind: ReuseIDs.XLabelView.rawValue, with: indexPath)
+        let attributes = XLabelViewAttributes(forSupplementaryViewOfKind: ReuseIDs.xLabelView.rawValue, with: indexPath)
 
         if let collectionView = collectionView {
 
@@ -443,7 +443,7 @@ public class GraphLayout: UICollectionViewLayout, RangeFinder {
 
      private func setAttributesForBar(fromIndex indexPath: IndexPath) -> UICollectionViewLayoutAttributes {
 
-        let attributes = UICollectionViewLayoutAttributes(forSupplementaryViewOfKind: ReuseIDs.BarView.rawValue, with: indexPath)
+        let attributes = UICollectionViewLayoutAttributes(forSupplementaryViewOfKind: ReuseIDs.barView.rawValue, with: indexPath)
 
         var width: CGFloat = cellSize.width
 

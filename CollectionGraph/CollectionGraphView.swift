@@ -19,13 +19,13 @@ public protocol GraphDatum {
 }
 
 public enum ReuseIDs: String {
-    case GraphCell = "GraphCell"
-    case LineConnectorView = "Line"
-    case BarView = "Bar"
-    case YDividerView = "YDivider"
-    case YLabelView = "YLabel"
-    case XLabelView = "XLabel"
-    case SideBarView = "SideBar"
+    case graphCell = "GraphCell"
+    case lineConnectorView = "Line"
+    case barView = "Bar"
+    case yDividerView = "YDivider"
+    case yLabelView = "YLabel"
+    case xLabelView = "XLabel"
+    case sideBarView = "SideBar"
 }
 
 @IBDesignable
@@ -63,8 +63,8 @@ public class CollectionGraphView: UIView, UICollectionViewDelegate {
 
             self.graphCollectionView.register(
                 LineConnectorView.classForCoder(),
-                forSupplementaryViewOfKind: ReuseIDs.LineConnectorView.rawValue,
-                withReuseIdentifier: ReuseIDs.LineConnectorView.rawValue)
+                forSupplementaryViewOfKind: ReuseIDs.lineConnectorView.rawValue,
+                withReuseIdentifier: ReuseIDs.lineConnectorView.rawValue)
         }
     }
 
@@ -117,7 +117,7 @@ public class CollectionGraphView: UIView, UICollectionViewDelegate {
     public var graphCell: UICollectionViewCell? {
         didSet {
             if let graphCell = graphCell {
-                self.graphCollectionView.register(graphCell.classForCoder, forCellWithReuseIdentifier: ReuseIDs.GraphCell.rawValue)
+                self.graphCollectionView.register(graphCell.classForCoder, forCellWithReuseIdentifier: ReuseIDs.graphCell.rawValue)
             }
         }
     }
@@ -132,7 +132,7 @@ public class CollectionGraphView: UIView, UICollectionViewDelegate {
     public var barView: UICollectionReusableView? {
         didSet {
             if let barView = barView {
-                self.graphCollectionView.register(barView.classForCoder, forSupplementaryViewOfKind: ReuseIDs.BarView.rawValue, withReuseIdentifier: ReuseIDs.BarView.rawValue)
+                self.graphCollectionView.register(barView.classForCoder, forSupplementaryViewOfKind: ReuseIDs.barView.rawValue, withReuseIdentifier: ReuseIDs.barView.rawValue)
                 layout.displayBars = true
             }
         }
@@ -162,7 +162,7 @@ public class CollectionGraphView: UIView, UICollectionViewDelegate {
             if let ySideBarView = ySideBarView {
                 layout.ySideBarView = ySideBarView
 
-                graphCollectionView.collectionViewLayout.register(ySideBarView.classForCoder, forDecorationViewOfKind: ReuseIDs.SideBarView.rawValue)
+                graphCollectionView.collectionViewLayout.register(ySideBarView.classForCoder, forDecorationViewOfKind: ReuseIDs.sideBarView.rawValue)
             }
         }
     }
@@ -285,11 +285,11 @@ public class CollectionGraphView: UIView, UICollectionViewDelegate {
     }
 
     private func registerDefaultCells() {
-        self.graphCollectionView.register(YDividerLineView.classForCoder(), forSupplementaryViewOfKind: ReuseIDs.YDividerView.rawValue, withReuseIdentifier: ReuseIDs.YDividerView.rawValue)
+        self.graphCollectionView.register(YDividerLineView.classForCoder(), forSupplementaryViewOfKind: ReuseIDs.yDividerView.rawValue, withReuseIdentifier: ReuseIDs.yDividerView.rawValue)
 
-        self.graphCollectionView.register(LabelView.classForCoder(), forSupplementaryViewOfKind: ReuseIDs.XLabelView.rawValue, withReuseIdentifier: ReuseIDs.XLabelView.rawValue)
+        self.graphCollectionView.register(LabelView.classForCoder(), forSupplementaryViewOfKind: ReuseIDs.xLabelView.rawValue, withReuseIdentifier: ReuseIDs.xLabelView.rawValue)
 
-        self.graphCollectionView.register(LabelView.classForCoder(), forSupplementaryViewOfKind: ReuseIDs.YLabelView.rawValue, withReuseIdentifier: ReuseIDs.YLabelView.rawValue)
+        self.graphCollectionView.register(LabelView.classForCoder(), forSupplementaryViewOfKind: ReuseIDs.yLabelView.rawValue, withReuseIdentifier: ReuseIDs.yLabelView.rawValue)
     }
 
     public var contentOffset: CGPoint {

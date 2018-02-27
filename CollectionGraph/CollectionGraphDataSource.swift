@@ -54,7 +54,7 @@ class CollectionGraphDataSource: NSObject, UICollectionViewDataSource, RangeFind
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ReuseIDs.GraphCell.rawValue, for: indexPath)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ReuseIDs.graphCell.rawValue, for: indexPath)
 
         if let graphData = graphData {
             collectionGraphCellDelegate?.collectionGraph(cell: cell, forData: graphData[indexPath.section][indexPath.item], atIndexPath: indexPath)
@@ -66,49 +66,49 @@ class CollectionGraphDataSource: NSObject, UICollectionViewDataSource, RangeFind
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
 
         switch kind {
-        case ReuseIDs.YDividerView.rawValue:
+        case ReuseIDs.yDividerView.rawValue:
 
-            let yDividerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: ReuseIDs.YDividerView.rawValue, for: indexPath)
+            let yDividerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: ReuseIDs.yDividerView.rawValue, for: indexPath)
 
             yDividerViewSetup(yDividerView: yDividerView, indexPath: indexPath)
 
             return yDividerView
 
-        case ReuseIDs.LineConnectorView.rawValue:
+        case ReuseIDs.lineConnectorView.rawValue:
 
-            let line = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: ReuseIDs.LineConnectorView.rawValue, for: indexPath)
+            let line = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: ReuseIDs.lineConnectorView.rawValue, for: indexPath)
 
             lineConnectorViewSetup(line: line, indexPath: indexPath)
 
             return line
 
-        case ReuseIDs.YLabelView.rawValue:
+        case ReuseIDs.yLabelView.rawValue:
 
-            let labelView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: ReuseIDs.YLabelView.rawValue, for: indexPath)
+            let labelView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: ReuseIDs.yLabelView.rawValue, for: indexPath)
 
             yLabelViewSetup(labelView: labelView, indexPath: indexPath)
 
             return labelView
 
-        case ReuseIDs.XLabelView.rawValue:
+        case ReuseIDs.xLabelView.rawValue:
 
-            let labelView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: ReuseIDs.XLabelView.rawValue, for: indexPath)
+            let labelView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: ReuseIDs.xLabelView.rawValue, for: indexPath)
 
             xLabelViewSetup(labelView: labelView, indexPath: indexPath)
 
             return labelView
 
-        case ReuseIDs.BarView.rawValue:
+        case ReuseIDs.barView.rawValue:
 
-            let view = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: ReuseIDs.BarView.rawValue, for: indexPath)
+            let view = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: ReuseIDs.barView.rawValue, for: indexPath)
 
             barViewSetup(barView: view, indexPath: indexPath)
 
             return view
 
-        case ReuseIDs.SideBarView.rawValue:
+        case ReuseIDs.sideBarView.rawValue:
 
-            let sideBar = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: ReuseIDs.SideBarView.rawValue, for: indexPath)
+            let sideBar = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: ReuseIDs.sideBarView.rawValue, for: indexPath)
 
             return sideBar
 
