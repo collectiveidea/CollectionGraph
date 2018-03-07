@@ -57,7 +57,7 @@ open class LabelReusableView: AxisReusableView {
     
     public let label: UILabel = UILabel()
     
-    public var valueChanged: ((CGFloat) -> Void)?
+    public var valueChanged: ((CGFloat, _ atIndex: IndexPath) -> Void)?
     
     public override init(frame: CGRect) {
         super.init(frame: frame)
@@ -79,14 +79,10 @@ open class LabelReusableView: AxisReusableView {
     
     open override func apply(_ layoutAttributes: UICollectionViewLayoutAttributes) {
         super.apply(layoutAttributes)
+        // set an initial value
         label.text = "\(value)"
-
-        valueChanged?(value)
-    }
-    
-    open override func setNeedsLayout() {
-        super.setNeedsLayout()
-        valueChanged?(value)
+        
+        valueChanged?(value, layoutAttributes.indexPath)
     }
     
 }
