@@ -70,10 +70,11 @@ extension ViewController: CollectionGraphDataSource {
             let xLabel = collectionView.dequeueReusableSupplementaryView(ofKind: kind,
                                                                          withReuseIdentifier: .graphLayoutElementKindXAxisView,
                                                                          for: indexPath) as! LabelReusableView
-
-            xLabel.valueChanged = { [unowned self] value in
-                let labelText = self.convertFloatValueToDate(xLabelValue: value)
-                xLabel.label.text = labelText
+            
+            xLabel.label.text = textForXLabelAt(indexPath: indexPath, fromValue: xLabel.value)
+            
+            xLabel.valueChanged = { [unowned self] value, indexPath in
+                xLabel.label.text = self.textForXLabelAt(indexPath: indexPath, fromValue: value)
             }
             
             return xLabel
@@ -85,7 +86,9 @@ extension ViewController: CollectionGraphDataSource {
             let color = collectionView.backgroundColor?.withAlphaComponent(0.8)
             yLabel.backgroundColor = color
             
-            yLabel.valueChanged = { value in
+            yLabel.label.text = String(format: "%.0f", yLabel.value)
+            
+            yLabel.valueChanged = { value, indexPath in
                 yLabel.label.text = String(format: "%.0f", value)
             }
             
@@ -96,6 +99,15 @@ extension ViewController: CollectionGraphDataSource {
                                                                          withReuseIdentifier: .graphLayoutElementKindHorrizontalDividersView,
                                                                          for: indexPath) as! HorizontalDividerLineReusableView
             return horizontalView
+        }
+    }
+    
+    func textForXLabelAt(indexPath: IndexPath, fromValue value: CGFloat) -> String {
+        if indexPath.item % 2 != 0 {
+            return "•"
+        } else {
+            let labelText = self.convertFloatValueToDate(xLabelValue: value)
+            return labelText
         }
     }
     
