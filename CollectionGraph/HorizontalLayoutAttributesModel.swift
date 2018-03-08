@@ -51,7 +51,7 @@ extension HorizontalLayoutAttributesModel: LayoutAttributesModel {
         
         let frame = CGRect(x: 0, y: heightForAttributes * CGFloat(indexPath.item) + cellSize.height / 2 - heightForAttributes / 2, width: contentSize.width, height: heightForAttributes)
         
-        let attribute = AxisLayoutAttributes(forSupplementaryViewOfKind: .graphLayoutElementKindHorrizontalDividersView, with: indexPath)
+        let attribute = UICollectionViewLayoutAttributes(forSupplementaryViewOfKind: .graphLayoutElementKindHorrizontalDividersView, with: indexPath)
         attribute.frame = frame
         
         attribute.zIndex = -100

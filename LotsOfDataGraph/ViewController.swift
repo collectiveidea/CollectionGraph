@@ -23,7 +23,7 @@ class ViewController: UIViewController {
         graphCollectionView.register(LabelReusableView.self, forSupplementaryViewOfKind: .graphLayoutElementKindYAxisView, withReuseIdentifier: .graphLayoutElementKindYAxisView)
         graphCollectionView.register(HorizontalDividerLineReusableView.self, forSupplementaryViewOfKind: .graphLayoutElementKindHorrizontalDividersView, withReuseIdentifier: .graphLayoutElementKindHorrizontalDividersView)
         
-        graphCollectionView.contentInset = UIEdgeInsets(top: 10, left: 0, bottom: 0, right: 50)
+        graphCollectionView.contentInset = UIEdgeInsets(top: 10, left: 30, bottom: 0, right: 30)
         graphCollectionView.usesWholeNumbersOnYAxis = true
         
         fetchData()
@@ -98,6 +98,7 @@ extension ViewController: CollectionGraphDataSource {
             let horizontalView = collectionView.dequeueReusableSupplementaryView(ofKind: kind,
                                                                          withReuseIdentifier: .graphLayoutElementKindHorrizontalDividersView,
                                                                          for: indexPath) as! HorizontalDividerLineReusableView
+            horizontalView.line.lineDashPattern = [10, 5]
             return horizontalView
         }
     }
