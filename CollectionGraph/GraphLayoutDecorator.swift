@@ -10,70 +10,52 @@ import Foundation
 
 internal class GraphLayoutDecorator {
     
-    var collectionView: GraphCollectionView?
+    unowned var collectionGraph: CollectionGraph
     
     var xMinMaxValuesCache: (min: CGFloat, max: CGFloat)?
     var yMinMaxValuesCache: (min: CGFloat, max: CGFloat)?
     
-    init(collectionView: GraphCollectionView?) {
-        self.collectionView = collectionView
+    init(collectionGraph: CollectionGraph) {
+        self.collectionGraph = collectionGraph
     }
     
     internal var numberOfSections: Int {
         get {
-            if let collectionView = collectionView ,let dataSource = collectionView.dataSource as? CollectionGraphDataSource {
-                return dataSource.numberOfSections?(in: collectionView) ?? 1
-            }
-            return 1
+            return collectionGraph.collectionView.dataSource?.numberOfSections?(in: collectionGraph.collectionView) ?? 1
         }
     }
     
     internal var collectionViewContentInsets: UIEdgeInsets {
         get {
-            if let collectionView = collectionView {
-                return collectionView.contentInset
-            }
-            return UIEdgeInsets.zero
+            return collectionGraph.collectionView.contentInset
         }
     }
     
     internal var paddingForXAttributes: CGFloat {
         get {
-            guard let collectionView = collectionView else {
-                return 0
-            }
-            
-            if let xDelegate = collectionView.xDelegate {
-                return xDelegate.bottomPaddingFor(collectionView)
-            } else if collectionView.isUsingXAxisView {
+            if let xDelegate = collectionGraph.xDelegate {
+                return xDelegate.bottomPaddingFor(collectionGraph.collectionView)
+            } else if collectionGraph.isUsingXAxisView {
                 return 50 //default value if there is a xAxisView and user did not specify the bottom X padding
             }
-            
             return 0
         }
     }
     
     internal var paddingForYAttributes: CGFloat {
         get {
-            guard let collectionView = collectionView else {
-                return 0
-            }
-            
-            if let yDelegate = collectionView.yDelegate {
-                return yDelegate.leftSidePaddingFor(collectionView)
-            } else if collectionView.isUsingYAxisView {
+            if let yDelegate = collectionGraph.yDelegate {
+                return yDelegate.leftSidePaddingFor(collectionGraph.collectionView)
+            } else if collectionGraph.isUsingYAxisView {
                 return 50 //default value if there is a yAxisView and user did not specify the left Y padding
             }
-            
             return 0
         }
     }
     
     internal func numberOfItemsIn(section: Int) -> Int {
-        
-        if let collectionView = collectionView ,let dataSource = collectionView.dataSource as? CollectionGraphDataSource {
-            
-            return dataSource.collectionView(collectionView, numberOfItemsInSection: section)
+        if let dataSource = collectionGraph.collectionView.dataSource as? CollectionGraphDataSource {
+            return dataSource.collectionView(collectionGraph.collectionView, numberOfItemsInSection: section)
         }
         return 0
     }
@@ -84,8 +66,8 @@ internal class GraphLayoutDecorator {
             return xMinMaxValuesCache
         }
         
-        if let collectionView = collectionView ,let delegate = collectionView.delegate as? CollectionGraphDelegateLayout {
-            xMinMaxValuesCache = delegate.minAndMaxXValuesIn(collectionView)
+        if let delegate = collectionGraph.collectionView.delegate as? CollectionGraphDelegateLayout {
+            xMinMaxValuesCache = delegate.minAndMaxXValuesIn(collectionGraph.collectionView)
             return xMinMaxValuesCache!
         }
         return (0, 0)
@@ -97,11 +79,11 @@ internal class GraphLayoutDecorator {
             return yMinMaxValuesCache
         }
         
-        if let collectionView = collectionView ,let delegate = collectionView.delegate as? CollectionGraphDelegateLayout {
-            let userDelta = delegate.minAndMaxYValuesIn(collectionView)
+        if let delegate = collectionGraph.collectionView.delegate as? CollectionGraphDelegateLayout {
+            let userDelta = delegate.minAndMaxYValuesIn(collectionGraph.collectionView)
             
-            if collectionView.usesWholeNumbersOnYAxis {
-                let adjustedValues = Math.adjustRangeToWholeNumber(userDelta, steps: delegate.numberOfYStepsIn(collectionView))
+            if collectionGraph.usesWholeNumbersOnYAxis {
+                let adjustedValues = Math.adjustRangeToWholeNumber(userDelta, steps: delegate.numberOfYStepsIn(collectionGraph.collectionView))
                 yMinMaxValuesCache = adjustedValues
             } else {
                 yMinMaxValuesCache = userDelta
@@ -113,55 +95,43 @@ internal class GraphLayoutDecorator {
     }
     
     internal func numberOfXSteps() -> Int {
-        if let collectionView = collectionView ,let delegate = collectionView.delegate as? CollectionGraphDelegateLayout {
-            
-            return delegate.numberOfXStepsIn(collectionView)
+        if let delegate = collectionGraph.collectionView.delegate as? CollectionGraphDelegateLayout {
+            return delegate.numberOfXStepsIn(collectionGraph.collectionView)
         }
-        
         return 0
     }
     
     internal func numberOfYSteps() -> Int {
-        if let collectionView = collectionView ,let delegate = collectionView.delegate as? CollectionGraphDelegateLayout {
-            
-            let numberOfSteps = delegate.numberOfYStepsIn(collectionView) == 0 ? 1 : delegate.numberOfYStepsIn(collectionView)
-            
+        if let delegate = collectionGraph.collectionView.delegate as? CollectionGraphDelegateLayout {
+            let numberOfSteps = delegate.numberOfYStepsIn(collectionGraph.collectionView) == 0 ? 1 : delegate.numberOfYStepsIn(collectionGraph.collectionView)
             return numberOfSteps
         }
-        
         return 1
     }
     
     internal func distanceOfXSteps() -> CGFloat {
-        if let collectionView = collectionView ,let delegate = collectionView.delegate as? CollectionGraphDelegateLayout {
-            
-            return delegate.distanceBetweenXStepsIn(collectionView)
+        if let delegate = collectionGraph.collectionView.delegate as? CollectionGraphDelegateLayout {
+            return delegate.distanceBetweenXStepsIn(collectionGraph.collectionView)
         }
-        
         return 0
     }
     
     internal func sizeOfCell(at indexPath: IndexPath) -> CGSize {
-        if let collectionView = collectionView ,let delegate = collectionView.delegate as? CollectionGraphDelegateLayout {
-            
-            return delegate.graphCollectionView(collectionView, sizeForItemAt: indexPath)
+        if let delegate = collectionGraph.collectionView.delegate as? CollectionGraphDelegateLayout {
+            return delegate.graphCollectionView(collectionGraph.collectionView, sizeForItemAt: indexPath)
         }
         return CGSize.zero
     }
     
     internal func userValue(at indexPath: IndexPath) -> (xValue: CGFloat, yValue: CGFloat) {
-        if let collectionView = collectionView ,let dataSource = collectionView.dataSource as? CollectionGraphDataSource {
-            
-            return dataSource.collectionView(collectionView, valueFor: indexPath)
+        if let dataSource = collectionGraph.collectionView.dataSource as? CollectionGraphDataSource {
+            return dataSource.collectionView(collectionGraph.collectionView, valueFor: indexPath)
         }
         return (0, 0)
     }
     
     internal func widthOfBar(at indexPath: IndexPath) -> CGFloat {
-        if let collectionView = collectionView {
-            return collectionView.barGraphDelegate?.widthOfBarFor(collectionView) ?? 2
-        }
-        return 2
+        return collectionGraph.barGraphDelegate?.widthOfBarFor(collectionGraph.collectionView) ?? 2
     }
     
     internal func pointInGraph(at indexPath: IndexPath) -> CGPoint {
@@ -200,7 +170,7 @@ internal class GraphLayoutDecorator {
     }
     
     func contentSize() -> CGSize {
-        if let layout = collectionView?.collectionViewLayout as? GraphLayout {
+        if let layout = collectionGraph.collectionView.collectionViewLayout as? GraphLayout {
             return layout.collectionViewContentSize
         }
         return CGSize.zero
