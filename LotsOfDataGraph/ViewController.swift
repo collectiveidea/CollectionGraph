@@ -17,14 +17,14 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        graphCollectionView.register(GraphLineReusableView.self, forSupplementaryViewOfKind: .graphLayoutElementKindLine, withReuseIdentifier: .graphLayoutElementKindLine)
-        graphCollectionView.register(LabelReusableView.self, forSupplementaryViewOfKind: .graphLayoutElementKindXAxisView, withReuseIdentifier: .graphLayoutElementKindXAxisView)
-        graphCollectionView.register(LabelReusableView.self, forSupplementaryViewOfKind: .graphLayoutElementKindYAxisView, withReuseIdentifier: .graphLayoutElementKindYAxisView)
-        graphCollectionView.register(HorizontalDividerLineReusableView.self, forSupplementaryViewOfKind: .graphLayoutElementKindHorrizontalDividersView, withReuseIdentifier: .graphLayoutElementKindHorrizontalDividersView)
         
         graphCollectionView.contentInset = UIEdgeInsets(top: 10, left: 30, bottom: 0, right: 30)
         graphCollectionView.usesWholeNumbersOnYAxis = true
+        graphCollectionView.isLineGraph = true
+        graphCollectionView.hasXAxisLabels = true
+        graphCollectionView.hasYAxisLabels = true
+        graphCollectionView.hasHorizontalGraphLines = true
+        graphCollectionView.isBarGraph = true
         
         fetchData()
     }
@@ -93,6 +93,9 @@ extension ViewController: CollectionGraphDataSource {
             }
             
             return yLabel
+            
+        case .graphLayoutElementKindBarGraph:
+            return collectionView.dequeueReusableSupplementaryView(ofKind: .graphLayoutElementKindBarGraph, withReuseIdentifier: .graphLayoutElementKindBarGraph, for: indexPath)
             
         default:
             let horizontalView = collectionView.dequeueReusableSupplementaryView(ofKind: kind,
