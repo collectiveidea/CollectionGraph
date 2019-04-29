@@ -17,7 +17,6 @@
 		5726EC4A1F8EB3D800E5F765 /* HorizontalDividerLineReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5726EC491F8EB3C300E5F765 /* HorizontalDividerLineReusableView.swift */; };
 		57317A921EE1F88900FF2CF2 /* Math.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57317A911EE1F88900FF2CF2 /* Math.swift */; };
 		57317A931EE1F88900FF2CF2 /* Math.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57317A911EE1F88900FF2CF2 /* Math.swift */; };
-		57317A941EE1F88900FF2CF2 /* Math.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57317A911EE1F88900FF2CF2 /* Math.swift */; };
 		573CA48A1F59C0E700D3F056 /* MilesPerDayData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573CA4891F59C0E700D3F056 /* MilesPerDayData.swift */; };
 		57472B341FD5A3B7000FADFD /* BarGraphLayoutAttributesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57472B321FD5A3B7000FADFD /* BarGraphLayoutAttributesModel.swift */; };
 		57472B351FD5A3B7000FADFD /* BarGraphReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57472B331FD5A3B7000FADFD /* BarGraphReusableView.swift */; };
@@ -35,6 +34,9 @@
 		578FB0BD1F583FEF005099D7 /* GraphLineLayoutAttributesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578FB0B81F583FEF005099D7 /* GraphLineLayoutAttributesModel.swift */; };
 		578FB0BE1F583FEF005099D7 /* LayoutAttributesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578FB0B91F583FEF005099D7 /* LayoutAttributesModel.swift */; };
 		5799EC352007FBB8002EBDDA /* MathTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5799EC342007FBB8002EBDDA /* MathTests.swift */; };
+		57BD349B22775D3900E1F3F8 /* CollectionGraphProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570DE8BA2273505A00F369A5 /* CollectionGraphProtocols.swift */; };
+		57BD349E2277823D00E1F3F8 /* DotGraphCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57BD349C2277823D00E1F3F8 /* DotGraphCollectionViewCell.swift */; };
+		57BD349F2277823D00E1F3F8 /* DotGraphCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 57BD349D2277823D00E1F3F8 /* DotGraphCollectionViewCell.xib */; };
 		57DCC2791ED492F3000AD389 /* CollectionGraph.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57DCC26F1ED492F3000AD389 /* CollectionGraph.framework */; };
 		57DCC27E1ED492F3000AD389 /* CollectionGraphTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57DCC27D1ED492F3000AD389 /* CollectionGraphTests.swift */; };
 		57DCC2801ED492F3000AD389 /* CollectionGraph.h in Headers */ = {isa = PBXBuildFile; fileRef = 57DCC2721ED492F3000AD389 /* CollectionGraph.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -148,6 +150,8 @@
 		578FB0B81F583FEF005099D7 /* GraphLineLayoutAttributesModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GraphLineLayoutAttributesModel.swift; sourceTree = "<group>"; };
 		578FB0B91F583FEF005099D7 /* LayoutAttributesModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LayoutAttributesModel.swift; sourceTree = "<group>"; };
 		5799EC342007FBB8002EBDDA /* MathTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MathTests.swift; sourceTree = "<group>"; };
+		57BD349C2277823D00E1F3F8 /* DotGraphCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DotGraphCollectionViewCell.swift; sourceTree = "<group>"; };
+		57BD349D2277823D00E1F3F8 /* DotGraphCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DotGraphCollectionViewCell.xib; sourceTree = "<group>"; };
 		57DCC26F1ED492F3000AD389 /* CollectionGraph.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CollectionGraph.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		57DCC2721ED492F3000AD389 /* CollectionGraph.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CollectionGraph.h; sourceTree = "<group>"; };
 		57DCC2731ED492F3000AD389 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -228,6 +232,8 @@
 				577D84E31F5EE3EB0053A980 /* AppDelegate.swift */,
 				577D84E71F5EE3EB0053A980 /* Main.storyboard */,
 				577D84E51F5EE3EB0053A980 /* ViewController.swift */,
+				57BD349C2277823D00E1F3F8 /* DotGraphCollectionViewCell.swift */,
+				57BD349D2277823D00E1F3F8 /* DotGraphCollectionViewCell.xib */,
 				577D84F31F5EE60A0053A980 /* PPMData.swift */,
 				570A96301FFC1F50003F7D7C /* PPMModel.swift */,
 				570A96321FFC1F7E003F7D7C /* PPMRepo.swift */,
@@ -542,6 +548,7 @@
 				577D84EE1F5EE3EB0053A980 /* LaunchScreen.storyboard in Resources */,
 				577D84EB1F5EE3EB0053A980 /* Assets.xcassets in Resources */,
 				577D84E91F5EE3EB0053A980 /* Main.storyboard in Resources */,
+				57BD349F2277823D00E1F3F8 /* DotGraphCollectionViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -596,6 +603,7 @@
 			files = (
 				577D84E61F5EE3EB0053A980 /* ViewController.swift in Sources */,
 				577D84F41F5EE60A0053A980 /* PPMData.swift in Sources */,
+				57BD349E2277823D00E1F3F8 /* DotGraphCollectionViewCell.swift in Sources */,
 				577D84E41F5EE3EB0053A980 /* AppDelegate.swift in Sources */,
 				570A96331FFC1F7E003F7D7C /* PPMRepo.swift in Sources */,
 				570A96311FFC1F50003F7D7C /* PPMModel.swift in Sources */,
@@ -629,6 +637,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				57BD349B22775D3900E1F3F8 /* CollectionGraphProtocols.swift in Sources */,
 				5799EC352007FBB8002EBDDA /* MathTests.swift in Sources */,
 				57DCC27E1ED492F3000AD389 /* CollectionGraphTests.swift in Sources */,
 				57317A931EE1F88900FF2CF2 /* Math.swift in Sources */,
@@ -643,7 +652,6 @@
 				57DCC2901ED49316000AD389 /* AppDelegate.swift in Sources */,
 				57DCC2BF1ED4AF9B000AD389 /* PeopleCollectionViewCell.swift in Sources */,
 				573CA48A1F59C0E700D3F056 /* MilesPerDayData.swift in Sources */,
-				57317A941EE1F88900FF2CF2 /* Math.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CollectionGraph
 
 class PPMRepo {
     
@@ -47,17 +48,17 @@ class PPMRepo {
         data.insert(newData, at: 5)
     }
     
-    func valueFor(indexPath: IndexPath) -> (xValue: CGFloat, yValue: CGFloat) {
+    func valueFor(indexPath: IndexPath) -> GraphValue {
         
         let co2 = CGFloat(data[indexPath.item].co2)
         let date = data[indexPath.item].date
         
         let dateToCGFloat = CGFloat(date.timeIntervalSince1970)
         
-        return (dateToCGFloat, co2)
+        return GraphValue(dateToCGFloat, co2)
     }
     
-    func getMinAndMaxCo2Values() -> (min: CGFloat, max: CGFloat) {
+    func getMinAndMaxCo2Values() -> MinMaxValues {
         let co2 = data.map {
             $0.co2
         }
@@ -65,10 +66,10 @@ class PPMRepo {
         let min = CGFloat(co2.min() ?? 0)
         let max = CGFloat(co2.max() ?? 0)
         
-        return (min, max)
+        return MinMaxValues(min: min, max: max)
     }
     
-    func getMinAndMaxDateFloatValues() -> (min: CGFloat, max: CGFloat) {
+    func getMinAndMaxDateFloatValues() -> MinMaxValues {
         var minFloat: CGFloat = 0
         var maxFloat: CGFloat = 0
         
@@ -87,7 +88,7 @@ class PPMRepo {
             maxFloat = CGFloat(maxDate.timeIntervalSince1970)
         }
         
-        return (minFloat, maxFloat)
+        return MinMaxValues(min: minFloat, max: maxFloat)
     }
     
 }

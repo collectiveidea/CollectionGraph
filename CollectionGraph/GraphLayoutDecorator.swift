@@ -6,14 +6,14 @@
 //  Copyright © 2017 collectiveidea. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 internal class GraphLayoutDecorator {
     
     unowned var collectionGraph: CollectionGraph
     
-    var xMinMaxValuesCache: (min: CGFloat, max: CGFloat)?
-    var yMinMaxValuesCache: (min: CGFloat, max: CGFloat)?
+    var xMinMaxValuesCache: MinMaxValues?
+    var yMinMaxValuesCache: MinMaxValues?
     
     init(collectionGraph: CollectionGraph) {
         self.collectionGraph = collectionGraph
@@ -54,13 +54,13 @@ internal class GraphLayoutDecorator {
     }
     
     internal func numberOfItemsIn(section: Int) -> Int {
-        if let dataSource = collectionGraph.collectionView.dataSource as? CollectionGraphDataSource {
+        if let dataSource = collectionGraph.collectionGraphDataSource {
             return dataSource.collectionView(collectionGraph.collectionView, numberOfItemsInSection: section)
         }
         return 0
     }
     
-    internal func minAndMaxXValues() -> (min: CGFloat, max: CGFloat) {
+    internal func minAndMaxXValues() -> MinMaxValues {
         
         if let xMinMaxValuesCache = xMinMaxValuesCache {
             return xMinMaxValuesCache
@@ -70,10 +70,10 @@ internal class GraphLayoutDecorator {
             xMinMaxValuesCache = delegate.minAndMaxXValuesIn(collectionGraph.collectionView)
             return xMinMaxValuesCache!
         }
-        return (0, 0)
+        return MinMaxValues(min: 0, max: 0)
     }
     
-    internal func minAndMaxYValues() -> (min: CGFloat, max: CGFloat) {
+    internal func minAndMaxYValues() -> MinMaxValues {
         
         if let yMinMaxValuesCache = yMinMaxValuesCache {
             return yMinMaxValuesCache
@@ -91,7 +91,7 @@ internal class GraphLayoutDecorator {
             
             return yMinMaxValuesCache!
         }
-        return (0, 0)
+        return MinMaxValues(min: 0, max: 0)
     }
     
     internal func numberOfXSteps() -> Int {
@@ -123,11 +123,11 @@ internal class GraphLayoutDecorator {
         return CGSize.zero
     }
     
-    internal func userValue(at indexPath: IndexPath) -> (xValue: CGFloat, yValue: CGFloat) {
-        if let dataSource = collectionGraph.collectionView.dataSource as? CollectionGraphDataSource {
+    internal func userValue(at indexPath: IndexPath) -> GraphValue {
+        if let dataSource = collectionGraph.collectionGraphDataSource {
             return dataSource.collectionView(collectionGraph.collectionView, valueFor: indexPath)
         }
-        return (0, 0)
+        return GraphValue(0, 0)
     }
     
     internal func widthOfBar(at indexPath: IndexPath) -> CGFloat {
