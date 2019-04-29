@@ -86,7 +86,17 @@ public class GraphLayout: UICollectionViewLayout {
     var attributeModels = [LayoutAttributesModel]()
     
     private var contentSizeCache = CGSize.zero
+    var decorator: GraphLayoutDecorator?
     
+    init(decorator: GraphLayoutDecorator) {
+        self.decorator = decorator
+        super.init()
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+    }
+
     public override func prepare() {
         clearCaches()
     }
@@ -174,29 +184,28 @@ public class GraphLayout: UICollectionViewLayout {
             return contentSizeCache
         }
         
-        if let collectionView = collectionView as? GraphCollectionView {
+        guard let collectionView = collectionView else {
+            return CGSize.zero
+        }
+        
+            let distanceBetweenXSteps = decorator?.distanceOfXSteps() ?? 20
             
-            let decorator = GraphLayoutDecorator(collectionView: collectionView)
-            
-            let distanceBetweenXSteps = decorator.distanceOfXSteps()
-            
-            let numberOfXSteps: CGFloat = CGFloat(decorator.numberOfXSteps())
+            let numberOfXSteps: CGFloat = CGFloat(decorator?.numberOfXSteps() ?? 1)
             
             // TODO: Should be a delegate call incase there are numerous sections with different cell sizes at the first index.  For now we will just grab the first.
-            let cellSize = decorator.sizeOfCell(at: IndexPath(item: 0, section: 0))
+            let cellSize = decorator?.sizeOfCell(at: IndexPath(item: 0, section: 0)) ?? CGSize(width: 10, height: 10)
             
             let heightOfCollectionView = collectionView.frame.height
             
             let heightPadding = collectionView.contentInset.top + collectionView.contentInset.bottom
             
-            let width = distanceBetweenXSteps * numberOfXSteps - distanceBetweenXSteps  + cellSize.width + decorator.paddingForYAttributes
+            let width = distanceBetweenXSteps * numberOfXSteps - distanceBetweenXSteps  + cellSize.width + (decorator?.paddingForYAttributes ?? 10)
             let height = heightOfCollectionView - heightPadding
             
             contentSizeCache = CGSize(width: width, height: height)
             
             return contentSizeCache
-        }
-        return CGSize.zero
+
     }
     
 }

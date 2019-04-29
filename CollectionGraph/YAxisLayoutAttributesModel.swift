@@ -25,7 +25,6 @@ extension YAxisLayoutAttributesModel: LayoutAttributesModel {
     func indexPathsOfItems(in rect: CGRect) -> [IndexPath] {
         var indexPaths = [IndexPath]()
         
-        //we
         let numberOfItems = decorator.numberOfYSteps() + 1
         
         for number in 0..<numberOfItems {
@@ -50,7 +49,7 @@ extension YAxisLayoutAttributesModel: LayoutAttributesModel {
         
         let leftInset = decorator.collectionViewContentInsets.left
         
-        let frame = CGRect(x: decorator.collectionView!.contentOffset.x, y: heightForAttributes * CGFloat(indexPath.item) + cellSize.height / 2 - heightForAttributes / 2, width: decorator.paddingForYAttributes + leftInset, height: heightForAttributes)
+        let frame = CGRect(x: decorator.collectionGraph.collectionView.contentOffset.x, y: heightForAttributes * CGFloat(indexPath.item) + cellSize.height / 2 - heightForAttributes / 2, width: decorator.paddingForYAttributes + leftInset, height: heightForAttributes)
         
         let attribute = AxisLayoutAttributes(forSupplementaryViewOfKind: .graphLayoutElementKindYAxisView, with: indexPath)
         attribute.frame = frame
@@ -63,7 +62,7 @@ extension YAxisLayoutAttributesModel: LayoutAttributesModel {
         
         var value = normalizedDelta - Math.lerp(percent: percentOnYAxis, ofDistance: normalizedDelta) + delta.min
         
-        if let collectionView = decorator.collectionView, collectionView.usesWholeNumbersOnYAxis {
+        if decorator.collectionGraph.usesWholeNumbersOnYAxis {
             value = value.rounded()
         }
         

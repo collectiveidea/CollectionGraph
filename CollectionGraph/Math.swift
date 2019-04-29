@@ -27,7 +27,7 @@ class Math {
         return distance * percent
     }
     
-    class func adjustRangeToWholeNumber(_ originalRange: (min: CGFloat, max: CGFloat), steps: Int) -> (min: CGFloat, max: CGFloat) {
+    class func adjustRangeToWholeNumber(_ originalRange: MinMaxValues, steps: Int) -> MinMaxValues {
         
         let adjustedMin = floor(originalRange.min)
         
@@ -46,7 +46,7 @@ class Math {
             max = originalRange.max - remainder + CGFloat(steps)
         }
         
-        return (adjustedMin, max)
+        return MinMaxValues(min: adjustedMin, max: max)
     }
     
 }
