@@ -18,13 +18,13 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        graphCollectionView.register(GraphLineReusableView.self, forSupplementaryViewOfKind: .graphLayoutElementKindLine, withReuseIdentifier: .graphLayoutElementKindLine)
-        graphCollectionView.register(LabelReusableView.self, forSupplementaryViewOfKind: .graphLayoutElementKindXAxisView, withReuseIdentifier: .graphLayoutElementKindXAxisView)
-        graphCollectionView.register(LabelReusableView.self, forSupplementaryViewOfKind: .graphLayoutElementKindYAxisView, withReuseIdentifier: .graphLayoutElementKindYAxisView)
-        graphCollectionView.register(HorizontalDividerLineReusableView.self, forSupplementaryViewOfKind: .graphLayoutElementKindHorrizontalDividersView, withReuseIdentifier: .graphLayoutElementKindHorrizontalDividersView)
+//        graphCollectionView.register(GraphLineReusableView.self, forSupplementaryViewOfKind: .graphLayoutElementKindLine, withReuseIdentifier: .graphLayoutElementKindLine)
+//        graphCollectionView.register(LabelReusableView.self, forSupplementaryViewOfKind: .graphLayoutElementKindXAxisView, withReuseIdentifier: .graphLayoutElementKindXAxisView)
+//        graphCollectionView.register(LabelReusableView.self, forSupplementaryViewOfKind: .graphLayoutElementKindYAxisView, withReuseIdentifier: .graphLayoutElementKindYAxisView)
+//        graphCollectionView.register(HorizontalDividerLineReusableView.self, forSupplementaryViewOfKind: .graphLayoutElementKindHorrizontalDividersView, withReuseIdentifier: .graphLayoutElementKindHorrizontalDividersView)
         
         graphCollectionView.contentInset = UIEdgeInsets(top: 10, left: 30, bottom: 0, right: 30)
-        graphCollectionView.usesWholeNumbersOnYAxis = true
+//        graphCollectionView.usesWholeNumbersOnYAxis = true
         
         fetchData()
     }
@@ -36,8 +36,29 @@ class ViewController: UIViewController {
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
             self.ppmRepo.insertData()
+            
+            
+//                 self.graphCollectionView.collectionViewLayout.invalidateLayout() // causes crash when reaching the end
+//                self.graphCollectionView.collectionViewLayout.invalidateLayout()
+//                self.graphCollectionView.reloadSections(IndexSet(integer: 0))
 
-            self.graphCollectionView.insertItems(at: [IndexPath(row: 5, section: 0)])
+            
+            
+            
+//            self.graphCollectionView.performBatchUpdates({
+//
+                self.graphCollectionView.insertItems(at: [IndexPath(row: 6, section: 0)])
+//            }, completion: { (finished) in
+            if let poop = self.graphCollectionView.collectionViewLayout as? GraphLayout {
+                poop.clearShit()
+            }
+            UIView.animate(withDuration: 10, animations: {
+                self.graphCollectionView.collectionViewLayout.invalidateLayout()
+            })
+            
+//            })
+            
+            
         }
     }
     

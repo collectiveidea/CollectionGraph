@@ -88,21 +88,62 @@ public class GraphLayout: UICollectionViewLayout {
     private var contentSizeCache = CGSize.zero
     
     public override func prepare() {
+        print("Preapared")
         clearCaches()
+    }
+    
+    public func clearShit() {
+        attributeModels.forEach {
+//            $0.cache.removeAll()
+                        $0.decorator.xMinMaxValuesCache = nil
+                        $0.decorator.yMinMaxValuesCache = nil
+        }
     }
     
     func clearCaches() {
         attributeModels.forEach {
             $0.cache.removeAll()
-            $0.decorator.xMinMaxValuesCache = nil
-            $0.decorator.yMinMaxValuesCache = nil
+//            $0.decorator.xMinMaxValuesCache = nil
+//            $0.decorator.yMinMaxValuesCache = nil
         }
         contentSizeCache = .zero
     }
     
+//    public override func invalidateLayout() {
+//        super.invalidateLayout()
+//        attributeModels.forEach {
+////            $0.cache.removeAll()
+//            $0.decorator.xMinMaxValuesCache = nil
+//            $0.decorator.yMinMaxValuesCache = nil
+//        }
+//    }
+    
     override public func shouldInvalidateLayout(forBoundsChange newBounds: CGRect) -> Bool {
         
         return true
+    }
+    
+    
+    public override func initialLayoutAttributesForAppearingItem(at itemIndexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
+        guard let attribute = layoutAttributesForItem(at: itemIndexPath) else {
+            return UICollectionViewLayoutAttributes()
+        }
+//        attribute = UICollectionViewLayoutAttributes(forCellWith: itemIndexPath)
+        attribute.frame = CGRect(x: attribute.frame.minX, y: attribute.frame.minY, width: attribute.frame.width, height: attribute.frame.height)
+        attribute.alpha = 1
+//        print("initial layouts")
+        return attribute
+    }
+
+    public override func finalLayoutAttributesForDisappearingItem(at itemIndexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
+        guard let attribute = layoutAttributesForItem(at: itemIndexPath) else {
+            return UICollectionViewLayoutAttributes()
+        }
+        //        attribute = UICollectionViewLayoutAttributes(forCellWith: itemIndexPath)
+        attribute.frame = CGRect(x: attribute.frame.minX, y: attribute.frame.minY, width: attribute.frame.width, height: attribute.frame.height)
+        attribute.alpha = 1
+//        print("finla layouts")
+        return attribute
     }
     
     public override func invalidationContext(forBoundsChange newBounds: CGRect) -> UICollectionViewLayoutInvalidationContext {
