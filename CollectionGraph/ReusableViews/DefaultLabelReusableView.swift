@@ -1,7 +1,7 @@
 
 import UIKit
 
-open class DefaultLabelReusableView: AxisReusableView {
+public class DefaultLabelReusableView: BaseAxisReusableView {
     
     public let label: UILabel = UILabel()
     

@@ -32,26 +32,16 @@ internal class GraphLineLayoutAttributes: UICollectionViewLayoutAttributes {
     }
 }
 
-open class GraphLineReusableView: UICollectionReusableView {
-    
-    public var color = UIColor.black {
-        didSet {
-            line.strokeColor = color.cgColor
-        }
-    }
+open class BaseGraphLineReusableView: UICollectionReusableView {
     
     public var straightLines = true
-    
-    let line = CAShapeLayer()
+    public let line = CAShapeLayer()
     
     var firstPoint = CGPoint.zero
     var secondPoint = CGPoint.zero
     
     public override init(frame: CGRect) {
         super.init(frame: frame)
-        
-        line.strokeColor = color.cgColor
-        line.fillColor = UIColor.clear.cgColor
         
         layer.addSublayer(line)
     }
@@ -60,7 +50,7 @@ open class GraphLineReusableView: UICollectionReusableView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    open override func apply(_ layoutAttributes: UICollectionViewLayoutAttributes) {
+    override open func apply(_ layoutAttributes: UICollectionViewLayoutAttributes) {
         if let attributes = layoutAttributes as? GraphLineLayoutAttributes {
             self.firstPoint = attributes.firstPoint
             self.secondPoint = attributes.secondPoint

@@ -8,7 +8,7 @@
 
 import UIKit
 
-open class DefaultBarGraphReusableView: UICollectionReusableView {
+public class DefaultBarGraphReusableView: UICollectionReusableView {
     
     public var topColor: UIColor = UIColor.lightGray
     public var bottomColor: UIColor = UIColor.darkGray
@@ -23,7 +23,7 @@ open class DefaultBarGraphReusableView: UICollectionReusableView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override open class var layerClass: AnyClass {
+    override public class var layerClass: AnyClass {
         get {
             return CAGradientLayer.self
         }
