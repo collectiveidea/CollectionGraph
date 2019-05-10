@@ -26,11 +26,13 @@
 import UIKit
 
 public extension String {
+    
     static let graphLayoutElementKindLine = "graphLayoutElementKindLine"
     static let graphLayoutElementKindXAxisView = "graphLayoutElementKindXAxisView"
     static let graphLayoutElementKindYAxisView = "graphLayoutElementKindYAxisView"
     static let graphLayoutElementKindHorrizontalDividersView = "graphLayoutElementKindHorrizontalDividersView"
     static let graphLayoutElementKindBarGraph = "graphLayoutElementKindBarGraph"
+    
 }
 
 public class GraphLayout: UICollectionViewLayout {

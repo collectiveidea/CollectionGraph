@@ -25,7 +25,7 @@ class ViewController: UIViewController {
         let nib = UINib(nibName: "PeopleCollectionViewCell", bundle: nil)
         graphCollectionView.register(nib, forCellWithReuseIdentifier: "PeopleCell")
         
-        graphCollectionView.register(GraphLineReusableView.self, forSupplementaryViewOfKind: .graphLayoutElementKindLine, withReuseIdentifier: "GraphLine")
+        graphCollectionView.register(BaseGraphLineReusableView.self, forSupplementaryViewOfKind: .graphLayoutElementKindLine, withReuseIdentifier: "GraphLine")
     }
 
 }
@@ -51,7 +51,7 @@ extension ViewController: CollectionGraphDataSource {
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         
-        let graphLine = collectionView.dequeueReusableSupplementaryView(ofKind: .graphLayoutElementKindLine, withReuseIdentifier: "GraphLine", for: indexPath) as! GraphLineReusableView
+        let graphLine = collectionView.dequeueReusableSupplementaryView(ofKind: .graphLayoutElementKindLine, withReuseIdentifier: "GraphLine", for: indexPath) as! BaseGraphLineReusableView
         
         graphLine.straightLines = false
         graphLine.color = .red

@@ -31,7 +31,7 @@ internal class AxisLayoutAttributes: UICollectionViewLayoutAttributes {
     
 }
 
-open class AxisReusableView: UICollectionReusableView {
+open class BaseAxisReusableView: UICollectionReusableView {
 
     public var value: CGFloat = 0.0
     

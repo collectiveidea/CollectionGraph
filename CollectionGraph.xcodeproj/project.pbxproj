@@ -8,7 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		5700CD282285EEA7009A764E /* DefaultLabelReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5700CD272285EEA7009A764E /* DefaultLabelReusableView.swift */; };
-		5703739D1F5F2325007251C4 /* AxisReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5703739C1F5F2325007251C4 /* AxisReusableView.swift */; };
+		5700CD2F22861284009A764E /* DefaultGraphLineReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5700CD2B22860DFD009A764E /* DefaultGraphLineReusableView.swift */; };
+		5700CD302286128A009A764E /* BaseHorizontalDividerLineReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5700CD2D22860FF7009A764E /* BaseHorizontalDividerLineReusableView.swift */; };
+		5700CD3222861414009A764E /* GraphLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5700CD3122861414009A764E /* GraphLine.swift */; };
+		5703739D1F5F2325007251C4 /* BaseAxisReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5703739C1F5F2325007251C4 /* BaseAxisReusableView.swift */; };
 		5703739F1F5F23DF007251C4 /* XAxisLayoutAttributesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5703739E1F5F23DF007251C4 /* XAxisLayoutAttributesModel.swift */; };
 		570A96311FFC1F50003F7D7C /* PPMModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570A96301FFC1F50003F7D7C /* PPMModel.swift */; };
 		570A96331FFC1F7E003F7D7C /* PPMRepo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570A96321FFC1F7E003F7D7C /* PPMRepo.swift */; };
@@ -31,7 +34,7 @@
 		577D84F41F5EE60A0053A980 /* PPMData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 577D84F31F5EE60A0053A980 /* PPMData.swift */; };
 		577D84F51F5EEE120053A980 /* CollectionGraph.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57DCC26F1ED492F3000AD389 /* CollectionGraph.framework */; };
 		577D84F61F5EEE130053A980 /* CollectionGraph.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 57DCC26F1ED492F3000AD389 /* CollectionGraph.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		578FB0BA1F583FEF005099D7 /* GraphLineReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578FB0B51F583FEE005099D7 /* GraphLineReusableView.swift */; };
+		578FB0BA1F583FEF005099D7 /* BaseGraphLineReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578FB0B51F583FEE005099D7 /* BaseGraphLineReusableView.swift */; };
 		578FB0BC1F583FEF005099D7 /* CellLayoutAttributesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578FB0B71F583FEF005099D7 /* CellLayoutAttributesModel.swift */; };
 		578FB0BD1F583FEF005099D7 /* GraphLineLayoutAttributesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578FB0B81F583FEF005099D7 /* GraphLineLayoutAttributesModel.swift */; };
 		578FB0BE1F583FEF005099D7 /* LayoutAttributesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578FB0B91F583FEF005099D7 /* LayoutAttributesModel.swift */; };
@@ -124,7 +127,10 @@
 
 /* Begin PBXFileReference section */
 		5700CD272285EEA7009A764E /* DefaultLabelReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultLabelReusableView.swift; sourceTree = "<group>"; };
-		5703739C1F5F2325007251C4 /* AxisReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AxisReusableView.swift; sourceTree = "<group>"; };
+		5700CD2B22860DFD009A764E /* DefaultGraphLineReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultGraphLineReusableView.swift; sourceTree = "<group>"; };
+		5700CD2D22860FF7009A764E /* BaseHorizontalDividerLineReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseHorizontalDividerLineReusableView.swift; sourceTree = "<group>"; };
+		5700CD3122861414009A764E /* GraphLine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphLine.swift; sourceTree = "<group>"; };
+		5703739C1F5F2325007251C4 /* BaseAxisReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseAxisReusableView.swift; sourceTree = "<group>"; };
 		5703739E1F5F23DF007251C4 /* XAxisLayoutAttributesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XAxisLayoutAttributesModel.swift; sourceTree = "<group>"; };
 		570A96301FFC1F50003F7D7C /* PPMModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PPMModel.swift; sourceTree = "<group>"; };
 		570A96321FFC1F7E003F7D7C /* PPMRepo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PPMRepo.swift; sourceTree = "<group>"; };
@@ -145,7 +151,7 @@
 		577D84ED1F5EE3EB0053A980 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		577D84EF1F5EE3EB0053A980 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		577D84F31F5EE60A0053A980 /* PPMData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PPMData.swift; sourceTree = "<group>"; };
-		578FB0B51F583FEE005099D7 /* GraphLineReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GraphLineReusableView.swift; sourceTree = "<group>"; };
+		578FB0B51F583FEE005099D7 /* BaseGraphLineReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseGraphLineReusableView.swift; sourceTree = "<group>"; };
 		578FB0B71F583FEF005099D7 /* CellLayoutAttributesModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellLayoutAttributesModel.swift; sourceTree = "<group>"; };
 		578FB0B81F583FEF005099D7 /* GraphLineLayoutAttributesModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GraphLineLayoutAttributesModel.swift; sourceTree = "<group>"; };
 		578FB0B91F583FEF005099D7 /* LayoutAttributesModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LayoutAttributesModel.swift; sourceTree = "<group>"; };
@@ -241,10 +247,12 @@
 		5700CD2A2285F22F009A764E /* ReusableViews */ = {
 			isa = PBXGroup;
 			children = (
-				578FB0B51F583FEE005099D7 /* GraphLineReusableView.swift */,
+				578FB0B51F583FEE005099D7 /* BaseGraphLineReusableView.swift */,
+				5700CD2B22860DFD009A764E /* DefaultGraphLineReusableView.swift */,
 				57472B331FD5A3B7000FADFD /* DefaultBarGraphReusableView.swift */,
-				5703739C1F5F2325007251C4 /* AxisReusableView.swift */,
+				5703739C1F5F2325007251C4 /* BaseAxisReusableView.swift */,
 				5700CD272285EEA7009A764E /* DefaultLabelReusableView.swift */,
+				5700CD2D22860FF7009A764E /* BaseHorizontalDividerLineReusableView.swift */,
 				5726EC491F8EB3C300E5F765 /* DefaultHorizontalDividerLineReusableView.swift */,
 			);
 			path = ReusableViews;
@@ -257,6 +265,7 @@
 				577D84E71F5EE3EB0053A980 /* Main.storyboard */,
 				577D84E51F5EE3EB0053A980 /* ViewController.swift */,
 				577D84F31F5EE60A0053A980 /* PPMData.swift */,
+				5700CD3122861414009A764E /* GraphLine.swift */,
 				570A96301FFC1F50003F7D7C /* PPMModel.swift */,
 				570A96321FFC1F7E003F7D7C /* PPMRepo.swift */,
 				577D84EA1F5EE3EB0053A980 /* Assets.xcassets */,
@@ -609,6 +618,7 @@
 				577D84F41F5EE60A0053A980 /* PPMData.swift in Sources */,
 				577D84E41F5EE3EB0053A980 /* AppDelegate.swift in Sources */,
 				570A96331FFC1F7E003F7D7C /* PPMRepo.swift in Sources */,
+				5700CD3222861414009A764E /* GraphLine.swift in Sources */,
 				570A96311FFC1F50003F7D7C /* PPMModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -628,11 +638,13 @@
 				5726EC441F8E74A200E5F765 /* YAxisLayoutAttributesModel.swift in Sources */,
 				57DCC2D61ED4CB0C000AD389 /* GraphCollectionView.swift in Sources */,
 				57472B351FD5A3B7000FADFD /* DefaultBarGraphReusableView.swift in Sources */,
-				578FB0BA1F583FEF005099D7 /* GraphLineReusableView.swift in Sources */,
+				578FB0BA1F583FEF005099D7 /* BaseGraphLineReusableView.swift in Sources */,
 				5700CD282285EEA7009A764E /* DefaultLabelReusableView.swift in Sources */,
 				570DE8BB2273505A00F369A5 /* CollectionGraphProtocols.swift in Sources */,
-				5703739D1F5F2325007251C4 /* AxisReusableView.swift in Sources */,
+				5700CD302286128A009A764E /* BaseHorizontalDividerLineReusableView.swift in Sources */,
+				5703739D1F5F2325007251C4 /* BaseAxisReusableView.swift in Sources */,
 				578FB0BE1F583FEF005099D7 /* LayoutAttributesModel.swift in Sources */,
+				5700CD2F22861284009A764E /* DefaultGraphLineReusableView.swift in Sources */,
 				57317A921EE1F88900FF2CF2 /* Math.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
