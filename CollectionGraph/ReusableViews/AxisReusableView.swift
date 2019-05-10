@@ -52,37 +52,3 @@ open class AxisReusableView: UICollectionReusableView {
     }
 
 }
-
-open class LabelReusableView: AxisReusableView {
-    
-    public let label: UILabel = UILabel()
-    
-    public var valueChanged: ((CGFloat, _ atIndex: IndexPath) -> Void)?
-    
-    public override init(frame: CGRect) {
-        super.init(frame: frame)
-        
-        label.font = UIFont.systemFont(ofSize: 12)
-        label.translatesAutoresizingMaskIntoConstraints = false
-        addSubview(label)
-        addConstraintsToLabel()
-    }
-    
-    func addConstraintsToLabel() {
-        label.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-        label.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
-    }
-    
-    required public init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    open override func apply(_ layoutAttributes: UICollectionViewLayoutAttributes) {
-        super.apply(layoutAttributes)
-        // set an initial value
-        label.text = "\(value)"
-        
-        valueChanged?(value, layoutAttributes.indexPath)
-    }
-    
-}

@@ -19,9 +19,9 @@ class ViewController: UIViewController {
         super.viewDidLoad()
 
         graphCollectionView.register(GraphLineReusableView.self, forSupplementaryViewOfKind: .graphLayoutElementKindLine, withReuseIdentifier: .graphLayoutElementKindLine)
-        graphCollectionView.register(LabelReusableView.self, forSupplementaryViewOfKind: .graphLayoutElementKindXAxisView, withReuseIdentifier: .graphLayoutElementKindXAxisView)
-        graphCollectionView.register(LabelReusableView.self, forSupplementaryViewOfKind: .graphLayoutElementKindYAxisView, withReuseIdentifier: .graphLayoutElementKindYAxisView)
-        graphCollectionView.register(HorizontalDividerLineReusableView.self, forSupplementaryViewOfKind: .graphLayoutElementKindHorrizontalDividersView, withReuseIdentifier: .graphLayoutElementKindHorrizontalDividersView)
+        graphCollectionView.register(DefaultLabelReusableView.self, forSupplementaryViewOfKind: .graphLayoutElementKindXAxisView, withReuseIdentifier: .graphLayoutElementKindXAxisView)
+        graphCollectionView.register(DefaultLabelReusableView.self, forSupplementaryViewOfKind: .graphLayoutElementKindYAxisView, withReuseIdentifier: .graphLayoutElementKindYAxisView)
+        graphCollectionView.register(DefaultHorizontalDividerLineReusableView.self, forSupplementaryViewOfKind: .graphLayoutElementKindHorrizontalDividersView, withReuseIdentifier: .graphLayoutElementKindHorrizontalDividersView)
         
         graphCollectionView.contentInset = UIEdgeInsets(top: 10, left: 30, bottom: 0, right: 30)
         graphCollectionView.usesWholeNumbersOnYAxis = true
@@ -37,7 +37,12 @@ class ViewController: UIViewController {
         DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
             self.ppmRepo.insertData()
 
-            self.graphCollectionView.insertItems(at: [IndexPath(row: 5, section: 0)])
+            self.graphCollectionView.performBatchUpdates({
+                self.graphCollectionView.insertItems(at: [IndexPath(row: 5, section: 0)])
+            }, completion: { (finished) in
+                self.graphCollectionView.reloadData()
+            })
+            
         }
     }
     
@@ -69,35 +74,27 @@ extension ViewController: CollectionGraphDataSource {
         case .graphLayoutElementKindXAxisView:
             let xLabel = collectionView.dequeueReusableSupplementaryView(ofKind: kind,
                                                                          withReuseIdentifier: .graphLayoutElementKindXAxisView,
-                                                                         for: indexPath) as! LabelReusableView
+                                                                         for: indexPath) as! DefaultLabelReusableView
             
             xLabel.label.text = textForXLabelAt(indexPath: indexPath, fromValue: xLabel.value)
-            
-            xLabel.valueChanged = { [unowned self] value, indexPath in
-                xLabel.label.text = self.textForXLabelAt(indexPath: indexPath, fromValue: value)
-            }
             
             return xLabel
             
         case .graphLayoutElementKindYAxisView:
             let yLabel = collectionView.dequeueReusableSupplementaryView(ofKind: kind,
                                                                          withReuseIdentifier: .graphLayoutElementKindYAxisView,
-                                                                         for: indexPath) as! LabelReusableView
+                                                                         for: indexPath) as! DefaultLabelReusableView
             let color = collectionView.backgroundColor?.withAlphaComponent(0.8)
             yLabel.backgroundColor = color
             
             yLabel.label.text = String(format: "%.0f", yLabel.value)
-            
-            yLabel.valueChanged = { value, indexPath in
-                yLabel.label.text = String(format: "%.0f", value)
-            }
             
             return yLabel
             
         default:
             let horizontalView = collectionView.dequeueReusableSupplementaryView(ofKind: kind,
                                                                          withReuseIdentifier: .graphLayoutElementKindHorrizontalDividersView,
-                                                                         for: indexPath) as! HorizontalDividerLineReusableView
+                                                                         for: indexPath) as! DefaultHorizontalDividerLineReusableView
             horizontalView.line.lineDashPattern = [10, 5]
             return horizontalView
         }

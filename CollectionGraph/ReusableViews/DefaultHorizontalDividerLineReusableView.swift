@@ -8,7 +8,7 @@
 
 import UIKit
 
-open class HorizontalDividerLineReusableView: UICollectionReusableView {
+open class DefaultHorizontalDividerLineReusableView: UICollectionReusableView {
     
     public let line: CAShapeLayer = CAShapeLayer()
     
@@ -16,6 +16,10 @@ open class HorizontalDividerLineReusableView: UICollectionReusableView {
         super.init(frame: frame)
         
         layer.addSublayer(line)
+        
+        line.lineWidth = 1
+        line.lineDashPattern = [1, 3]
+        line.strokeColor = UIColor.lightGray.cgColor
     }
     
     required public init?(coder aDecoder: NSCoder) {
@@ -30,10 +34,6 @@ open class HorizontalDividerLineReusableView: UICollectionReusableView {
         path.addLine(to: CGPoint(x: frame.width, y: frame.height / 2))
         
         line.path = path.cgPath
-        
-        line.lineWidth = 1
-        line.lineDashPattern = [1, 3]
-        line.strokeColor = UIColor.lightGray.cgColor
     }
     
     open override func layoutSubviews() {
