@@ -8,9 +8,9 @@
 
 import UIKit
 
-open class BarGraphReusableView: UICollectionReusableView {
+open class DefaultBarGraphReusableView: UICollectionReusableView {
     
-    public var topColor: UIColor = UIColor.darkText
+    public var topColor: UIColor = UIColor.lightGray
     public var bottomColor: UIColor = UIColor.darkGray
     
     override public init(frame: CGRect) {
