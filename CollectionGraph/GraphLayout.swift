@@ -37,29 +37,58 @@ public extension String {
 
 public class GraphLayout: UICollectionViewLayout {
     
-    internal var cellLayoutAttributesModel: CellLayoutAttributesModel? {
-        didSet {
-            if let cellLayoutAttributesModel = cellLayoutAttributesModel {
-                attributeModels += [cellLayoutAttributesModel]
-            }
-        }
-    }
+    public var usesWholeNumbersOnYAxis = true
     
-    internal var graphLineLayoutAttributesModel: GraphLineLayoutAttributesModel? {
-        didSet {
-            if let graphLineLayoutAttributesModel = graphLineLayoutAttributesModel {
-                attributeModels += [graphLineLayoutAttributesModel]
-            }
-        }
-    }
+    internal var isUsingXAxisView = false
+    internal var isUsingYAxisView = false
     
-    internal var xAxisLayoutAttributesModel: XAxisLayoutAttributesModel? {
-        didSet {
-            if let xAxisLayoutAttributesModel = xAxisLayoutAttributesModel {
-                attributeModels += [xAxisLayoutAttributesModel]
-            }
-        }
-    }
+    lazy var decorator: GraphLayoutDecorator = GraphLayoutDecorator(layout: self)
+    
+    
+    lazy var cellLayoutAttributesModel: CellLayoutAttributesModel = {
+        let model = CellLayoutAttributesModel(decorator: decorator)
+        self.attributeModels += [model]
+        return model
+    }()
+    
+//    internal var cellLayoutAttributesModel: CellLayoutAttributesModel? {
+//        didSet {
+//            if let cellLayoutAttributesModel = cellLayoutAttributesModel {
+//                attributeModels += [cellLayoutAttributesModel]
+//            }
+//        }
+//    }
+    
+    
+    
+    lazy var graphLineLayoutAttributesModel: GraphLineLayoutAttributesModel = {
+        let model = GraphLineLayoutAttributesModel(decorator: decorator)
+        self.attributeModels += [model]
+        return model
+    }()
+    
+//    internal var graphLineLayoutAttributesModel: GraphLineLayoutAttributesModel? {
+//        didSet {
+//            if let graphLineLayoutAttributesModel = graphLineLayoutAttributesModel {
+//                attributeModels += [graphLineLayoutAttributesModel]
+//            }
+//        }
+//    }
+    
+    
+    lazy var xAxisLayoutAttributesModel: XAxisLayoutAttributesModel = {
+        isUsingXAxisView = true
+        return XAxisLayoutAttributesModel(decorator: decorator)
+    }()
+    
+//    internal var xAxisLayoutAttributesModel: XAxisLayoutAttributesModel? {
+//        didSet {
+//            if let xAxisLayoutAttributesModel = xAxisLayoutAttributesModel {
+//                isUsingXAxisView = true
+//                attributeModels += [xAxisLayoutAttributesModel]
+//            }
+//        }
+//    }
     
     internal var yAxisLayoutAttributesModel: YAxisLayoutAttributesModel? {
         didSet {
@@ -143,7 +172,7 @@ public class GraphLayout: UICollectionViewLayout {
 
     override public func layoutAttributesForItem(at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
         
-        return cellLayoutAttributesModel?.attributesForItem(at: indexPath)
+        return cellLayoutAttributesModel.attributesForItem(at: indexPath)
     }
     
     override public func layoutAttributesForSupplementaryView(ofKind elementKind: String, at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
@@ -151,10 +180,10 @@ public class GraphLayout: UICollectionViewLayout {
         switch elementKind {
         
         case .graphLayoutElementKindLine:
-            return graphLineLayoutAttributesModel?.attributesForItem(at: indexPath)
+            return graphLineLayoutAttributesModel.attributesForItem(at: indexPath)
         
         case .graphLayoutElementKindXAxisView:
-            return xAxisLayoutAttributesModel?.attributesForItem(at: indexPath)
+            return xAxisLayoutAttributesModel.attributesForItem(at: indexPath)
         
         case .graphLayoutElementKindYAxisView:
             return yAxisLayoutAttributesModel?.attributesForItem(at: indexPath)
@@ -176,10 +205,8 @@ public class GraphLayout: UICollectionViewLayout {
             return contentSizeCache
         }
         
-        if let collectionView = collectionView as? GraphCollectionView {
-            
-            let decorator = GraphLayoutDecorator(collectionView: collectionView)
-            
+        if let collectionView = collectionView {
+                        
             let distanceBetweenXSteps = decorator.distanceOfXSteps()
             
             let numberOfXSteps: CGFloat = CGFloat(decorator.numberOfXSteps())

@@ -11,7 +11,7 @@ import CollectionGraph
 
 class ViewController: UIViewController {
 
-    @IBOutlet weak var graphCollectionView: GraphCollectionView!
+    @IBOutlet weak var graphCollectionView: UICollectionView!
     
     let ppmRepo = PPMRepo()
     
@@ -24,7 +24,9 @@ class ViewController: UIViewController {
         graphCollectionView.register(DefaultHorizontalDividerLineReusableView.self, forSupplementaryViewOfKind: .graphLayoutElementKindHorrizontalDividersView, withReuseIdentifier: .graphLayoutElementKindHorrizontalDividersView)
         
         graphCollectionView.contentInset = UIEdgeInsets(top: 10, left: 30, bottom: 0, right: 30)
-        graphCollectionView.usesWholeNumbersOnYAxis = true
+        if let layout = graphCollectionView.collectionViewLayout as? GraphLayout {
+            layout.usesWholeNumbersOnYAxis = true
+        }
         
         fetchData()
     }
@@ -34,16 +36,15 @@ class ViewController: UIViewController {
             self.graphCollectionView.reloadData()
         }
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-            self.ppmRepo.insertData()
-
-            self.graphCollectionView.performBatchUpdates({
-                self.graphCollectionView.insertItems(at: [IndexPath(row: 5, section: 0)])
-            }, completion: { (finished) in
-                self.graphCollectionView.reloadData()
-            })
-            
-        }
+//        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+//            self.ppmRepo.insertData()
+//
+//            self.graphCollectionView.performBatchUpdates({
+//                self.graphCollectionView.insertItems(at: [IndexPath(row: 5, section: 0)])
+//            }, completion: { (finished) in
+//                self.graphCollectionView.reloadData()
+//            })
+//        }
     }
     
 }
@@ -59,7 +60,7 @@ extension ViewController: CollectionGraphDataSource {
         return cell
     }
     
-    func collectionView(_ collectionView: GraphCollectionView, valueFor indexPath: IndexPath) -> (xValue: CGFloat, yValue: CGFloat) {
+    func collectionView(_ collectionView: UICollectionView, valueFor indexPath: IndexPath) -> (xValue: CGFloat, yValue: CGFloat) {
         return ppmRepo.valueFor(indexPath: indexPath)
     }
     
@@ -124,31 +125,31 @@ extension ViewController: CollectionGraphDataSource {
 
 extension ViewController: CollectionGraphDelegateLayout {
     
-    func graphCollectionView(_ graphCollectionView: GraphCollectionView, sizeForItemAt indexPath: IndexPath) -> CGSize {
+    func graphCollectionView(_ graphCollectionView: UICollectionView, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: 10, height: 10)
     }
     
-    func minAndMaxYValuesIn(_ graphCollectionView: GraphCollectionView) -> (min: CGFloat, max: CGFloat) {
+    func minAndMaxYValuesIn(_ graphCollectionView: UICollectionView) -> (min: CGFloat, max: CGFloat) {
         let values = ppmRepo.getMinAndMaxCo2Values()
         
         return values
     }
     
-    func numberOfYStepsIn(_ graphCollectionView: GraphCollectionView) -> Int {
+    func numberOfYStepsIn(_ graphCollectionView: UICollectionView) -> Int {
         return ppmRepo.data.isEmpty ? 0 : 6
     }
     
-    func minAndMaxXValuesIn(_ graphCollectionView: GraphCollectionView) -> (min: CGFloat, max: CGFloat) {
+    func minAndMaxXValuesIn(_ graphCollectionView: UICollectionView) -> (min: CGFloat, max: CGFloat) {
         let values = ppmRepo.getMinAndMaxDateFloatValues()
         
         return values
     }
     
-    func numberOfXStepsIn(_ graphCollectionView: GraphCollectionView) -> Int {
+    func numberOfXStepsIn(_ graphCollectionView: UICollectionView) -> Int {
         return ppmRepo.data.isEmpty ? 0 : 50
     }
     
-    func distanceBetweenXStepsIn(_ graphCollectionView: GraphCollectionView) -> CGFloat {
+    func distanceBetweenXStepsIn(_ graphCollectionView: UICollectionView) -> CGFloat {
         return 150
     }
     

@@ -1,49 +1,42 @@
-//
-//  CollectionGraphProtocols.swift
-//  CollectionGraph
-//
-//  Created by Ben Lambert on 4/26/19.
-//  Copyright © 2019 collectiveidea. All rights reserved.
-//
 
 import Foundation
 
 public protocol CollectionGraphDataSource: UICollectionViewDataSource {
     
-    func collectionView(_ collectionView: GraphCollectionView, valueFor indexPath: IndexPath) -> (xValue: CGFloat, yValue: CGFloat)
+    func collectionView(_ collectionView: UICollectionView, valueFor indexPath: IndexPath) -> (xValue: CGFloat, yValue: CGFloat)
     
 }
 
 public protocol CollectionGraphDelegateLayout: UICollectionViewDelegate {
     
-    func graphCollectionView(_ graphCollectionView: GraphCollectionView, sizeForItemAt indexPath: IndexPath) -> CGSize
+    func graphCollectionView(_ graphCollectionView: UICollectionView, sizeForItemAt indexPath: IndexPath) -> CGSize
     
-    func minAndMaxYValuesIn(_ graphCollectionView: GraphCollectionView) -> (min: CGFloat, max: CGFloat)
+    func minAndMaxYValuesIn(_ graphCollectionView: UICollectionView) -> (min: CGFloat, max: CGFloat)
     
-    func numberOfYStepsIn(_ graphCollectionView: GraphCollectionView) -> Int
+    func numberOfYStepsIn(_ graphCollectionView: UICollectionView) -> Int
     
-    func minAndMaxXValuesIn(_ graphCollectionView: GraphCollectionView) -> (min: CGFloat, max: CGFloat)
+    func minAndMaxXValuesIn(_ graphCollectionView: UICollectionView) -> (min: CGFloat, max: CGFloat)
     
-    func numberOfXStepsIn(_ graphCollectionView: GraphCollectionView) -> Int
+    func numberOfXStepsIn(_ graphCollectionView: UICollectionView) -> Int
     
-    func distanceBetweenXStepsIn(_ graphCollectionView: GraphCollectionView) -> CGFloat
+    func distanceBetweenXStepsIn(_ graphCollectionView: UICollectionView) -> CGFloat
     
 }
 
 @objc public protocol CollectionGraphXDelegate: class {
     
-    func bottomPaddingFor(_ graphCollectionView: GraphCollectionView) -> CGFloat
+    func bottomPaddingFor(_ graphCollectionView: UICollectionView) -> CGFloat
     
 }
 
 @objc public protocol CollectionGraphYDelegate: class {
     
-    func leftSidePaddingFor(_ graphCollectionView: GraphCollectionView) -> CGFloat
+    func leftSidePaddingFor(_ graphCollectionView: UICollectionView) -> CGFloat
     
 }
 
 @objc public protocol CollectionGraphBarGraphDelegate: class {
     
-    func widthOfBarFor(_ graphCollectionView: GraphCollectionView) -> CGFloat
+    func widthOfBarFor(_ graphCollectionView: UICollectionView) -> CGFloat
     
 }

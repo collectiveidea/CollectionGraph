@@ -50,7 +50,7 @@ extension YAxisLayoutAttributesModel: LayoutAttributesModel {
         
         let leftInset = decorator.collectionViewContentInsets.left
         
-        let frame = CGRect(x: decorator.collectionView!.contentOffset.x, y: heightForAttributes * CGFloat(indexPath.item) + cellSize.height / 2 - heightForAttributes / 2, width: decorator.paddingForYAttributes + leftInset, height: heightForAttributes)
+        let frame = CGRect(x: decorator.layout.collectionView!.contentOffset.x, y: heightForAttributes * CGFloat(indexPath.item) + cellSize.height / 2 - heightForAttributes / 2, width: decorator.paddingForYAttributes + leftInset, height: heightForAttributes)
         
         let attribute = AxisLayoutAttributes(forSupplementaryViewOfKind: .graphLayoutElementKindYAxisView, with: indexPath)
         attribute.frame = frame
@@ -63,7 +63,7 @@ extension YAxisLayoutAttributesModel: LayoutAttributesModel {
         
         var value = normalizedDelta - Math.lerp(percent: percentOnYAxis, ofDistance: normalizedDelta) + delta.min
         
-        if let collectionView = decorator.collectionView, collectionView.usesWholeNumbersOnYAxis {
+        if decorator.layout.usesWholeNumbersOnYAxis {
             value = value.rounded()
         }
         
