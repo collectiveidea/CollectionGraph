@@ -17,7 +17,7 @@
 		570A96331FFC1F7E003F7D7C /* PPMRepo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570A96321FFC1F7E003F7D7C /* PPMRepo.swift */; };
 		570DE8BB2273505A00F369A5 /* CollectionGraphProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570DE8BA2273505A00F369A5 /* CollectionGraphProtocols.swift */; };
 		5726EC441F8E74A200E5F765 /* YAxisLayoutAttributesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5726EC431F8E74A200E5F765 /* YAxisLayoutAttributesModel.swift */; };
-		5726EC461F8EAD2A00E5F765 /* HorizontalLayoutAttributesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5726EC451F8EAD2A00E5F765 /* HorizontalLayoutAttributesModel.swift */; };
+		5726EC461F8EAD2A00E5F765 /* HorizontalDividersLayoutAttributesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5726EC451F8EAD2A00E5F765 /* HorizontalDividersLayoutAttributesModel.swift */; };
 		5726EC4A1F8EB3D800E5F765 /* DefaultHorizontalDividerLineReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5726EC491F8EB3C300E5F765 /* DefaultHorizontalDividerLineReusableView.swift */; };
 		57317A921EE1F88900FF2CF2 /* Math.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57317A911EE1F88900FF2CF2 /* Math.swift */; };
 		57317A931EE1F88900FF2CF2 /* Math.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57317A911EE1F88900FF2CF2 /* Math.swift */; };
@@ -136,7 +136,7 @@
 		570A96321FFC1F7E003F7D7C /* PPMRepo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PPMRepo.swift; sourceTree = "<group>"; };
 		570DE8BA2273505A00F369A5 /* CollectionGraphProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionGraphProtocols.swift; sourceTree = "<group>"; };
 		5726EC431F8E74A200E5F765 /* YAxisLayoutAttributesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YAxisLayoutAttributesModel.swift; sourceTree = "<group>"; };
-		5726EC451F8EAD2A00E5F765 /* HorizontalLayoutAttributesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalLayoutAttributesModel.swift; sourceTree = "<group>"; };
+		5726EC451F8EAD2A00E5F765 /* HorizontalDividersLayoutAttributesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalDividersLayoutAttributesModel.swift; sourceTree = "<group>"; };
 		5726EC491F8EB3C300E5F765 /* DefaultHorizontalDividerLineReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DefaultHorizontalDividerLineReusableView.swift; path = CollectionGraph/ReusableViews/DefaultHorizontalDividerLineReusableView.swift; sourceTree = SOURCE_ROOT; };
 		57317A911EE1F88900FF2CF2 /* Math.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Math.swift; sourceTree = "<group>"; };
 		573CA4891F59C0E700D3F056 /* MilesPerDayData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MilesPerDayData.swift; sourceTree = "<group>"; };
@@ -239,7 +239,7 @@
 				57472B321FD5A3B7000FADFD /* BarGraphLayoutAttributesModel.swift */,
 				5703739E1F5F23DF007251C4 /* XAxisLayoutAttributesModel.swift */,
 				5726EC431F8E74A200E5F765 /* YAxisLayoutAttributesModel.swift */,
-				5726EC451F8EAD2A00E5F765 /* HorizontalLayoutAttributesModel.swift */,
+				5726EC451F8EAD2A00E5F765 /* HorizontalDividersLayoutAttributesModel.swift */,
 			);
 			path = Attributes;
 			sourceTree = "<group>";
@@ -632,7 +632,7 @@
 				578FB0BC1F583FEF005099D7 /* CellLayoutAttributesModel.swift in Sources */,
 				574DF25C1EEEC61D00333469 /* GraphLayoutDecorator.swift in Sources */,
 				57DCC2D81ED4CC00000AD389 /* GraphLayout.swift in Sources */,
-				5726EC461F8EAD2A00E5F765 /* HorizontalLayoutAttributesModel.swift in Sources */,
+				5726EC461F8EAD2A00E5F765 /* HorizontalDividersLayoutAttributesModel.swift in Sources */,
 				578FB0BD1F583FEF005099D7 /* LineGraphLayoutAttributesModel.swift in Sources */,
 				57472B341FD5A3B7000FADFD /* BarGraphLayoutAttributesModel.swift in Sources */,
 				5726EC441F8E74A200E5F765 /* YAxisLayoutAttributesModel.swift in Sources */,

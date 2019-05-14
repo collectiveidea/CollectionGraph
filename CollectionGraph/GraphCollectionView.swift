@@ -64,7 +64,7 @@ open class GraphCollectionView: UICollectionView {
             graphLayout.yAxisLayoutAttributesModel = YAxisLayoutAttributesModel(decorator: decorator)
             
         } else if elementKind == GraphCollectionView.elementKindHorizontalDividers {
-            graphLayout.horizontalLayoutAttributesModel = HorizontalLayoutAttributesModel(decorator: decorator)
+            graphLayout.horizontalDividersLayoutAttributesModel = HorizontalDividersLayoutAttributesModel(decorator: decorator)
         }
     }
     

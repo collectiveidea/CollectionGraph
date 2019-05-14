@@ -37,8 +37,8 @@ public class GraphLayout: UICollectionViewLayout {
     
     internal var lineGraphLayoutAttributesModel: LineGraphLayoutAttributesModel? {
         didSet {
-            if let graphLineLayoutAttributesModel = lineGraphLayoutAttributesModel {
-                attributeModels += [graphLineLayoutAttributesModel]
+            if let lineGraphLayoutAttributesModel = lineGraphLayoutAttributesModel {
+                attributeModels += [lineGraphLayoutAttributesModel]
             }
         }
     }
@@ -59,10 +59,10 @@ public class GraphLayout: UICollectionViewLayout {
         }
     }
     
-    internal var horizontalLayoutAttributesModel: HorizontalLayoutAttributesModel? {
+    internal var horizontalDividersLayoutAttributesModel: HorizontalDividersLayoutAttributesModel? {
         didSet {
-            if let horizontalLayoutAttributesModel = horizontalLayoutAttributesModel {
-                attributeModels += [horizontalLayoutAttributesModel]
+            if let horizontalDividersLayoutAttributesModel = horizontalDividersLayoutAttributesModel {
+                attributeModels += [horizontalDividersLayoutAttributesModel]
             }
         }
     }
@@ -153,7 +153,7 @@ public class GraphLayout: UICollectionViewLayout {
             return yAxisLayoutAttributesModel?.attributesForItem(at: indexPath)
         
         case GraphCollectionView.elementKindHorizontalDividers:
-            return horizontalLayoutAttributesModel?.attributesForItem(at: indexPath)
+            return horizontalDividersLayoutAttributesModel?.attributesForItem(at: indexPath)
         
         default:
             return nil

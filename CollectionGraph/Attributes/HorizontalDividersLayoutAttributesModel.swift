@@ -8,7 +8,7 @@
 
 import Foundation
 
-class HorizontalLayoutAttributesModel {
+class HorizontalDividersLayoutAttributesModel {
     
     let decorator: GraphLayoutDecorator
     
@@ -20,7 +20,7 @@ class HorizontalLayoutAttributesModel {
     
 }
 
-extension HorizontalLayoutAttributesModel: LayoutAttributesModel {
+extension HorizontalDividersLayoutAttributesModel: LayoutAttributesModel {
     
     func indexPathsOfItems(in rect: CGRect) -> [IndexPath] {
         var indexPaths = [IndexPath]()
