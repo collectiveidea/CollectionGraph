@@ -8,13 +8,13 @@
 
 import Foundation
 
-public protocol CollectionGraphDataSource: UICollectionViewDataSource {
+public protocol GraphCollectionViewDataSource: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: GraphCollectionView, valueFor indexPath: IndexPath) -> (xValue: CGFloat, yValue: CGFloat)
     
 }
 
-public protocol CollectionGraphDelegateLayout: UICollectionViewDelegate {
+public protocol GraphCollectionViewDelegateLayout: UICollectionViewDelegate {
     
     func graphCollectionView(_ graphCollectionView: GraphCollectionView, sizeForItemAt indexPath: IndexPath) -> CGSize
     
@@ -30,19 +30,19 @@ public protocol CollectionGraphDelegateLayout: UICollectionViewDelegate {
     
 }
 
-@objc public protocol CollectionGraphXDelegate: class {
+@objc public protocol GraphCollectionViewXDelegate: class {
     
     func bottomPaddingFor(_ graphCollectionView: GraphCollectionView) -> CGFloat
     
 }
 
-@objc public protocol CollectionGraphYDelegate: class {
+@objc public protocol GraphCollectionViewYDelegate: class {
     
     func leftSidePaddingFor(_ graphCollectionView: GraphCollectionView) -> CGFloat
     
 }
 
-@objc public protocol CollectionGraphBarGraphDelegate: class {
+@objc public protocol GraphCollectionViewBarGraphDelegate: class {
     
     func widthOfBarFor(_ graphCollectionView: GraphCollectionView) -> CGFloat
     

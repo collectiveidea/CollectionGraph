@@ -30,7 +30,7 @@ class ViewController: UIViewController {
 
 }
 
-extension ViewController: CollectionGraphDataSource {
+extension ViewController: GraphCollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let peopleCell = collectionView.dequeueReusableCell(withReuseIdentifier: "PeopleCell", for: indexPath)
@@ -61,7 +61,7 @@ extension ViewController: CollectionGraphDataSource {
     
 }
 
-extension ViewController: CollectionGraphDelegateLayout {
+extension ViewController: GraphCollectionViewDelegateLayout {
     
     func graphCollectionView(_ graphCollectionView: GraphCollectionView, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if indexPath.item == 2 { return CGSize(width: 50, height: 20) }
