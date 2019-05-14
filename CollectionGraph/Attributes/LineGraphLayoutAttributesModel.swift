@@ -8,7 +8,7 @@
 
 import UIKit
 
-internal class GraphLineLayoutAttributesModel: LayoutAttributesModel {
+internal class LineGraphLayoutAttributesModel: LayoutAttributesModel {
     
     let decorator: GraphLayoutDecorator
     
@@ -58,7 +58,7 @@ internal class GraphLineLayoutAttributesModel: LayoutAttributesModel {
         
         if decorator.numberOfItemsIn(section: indexPath.section) > indexPath.item {
             
-            let attribute = GraphLineLayoutAttributes(forSupplementaryViewOfKind: GraphCollectionView.elementKindLineGraph, with: indexPath)
+            let attribute = LineGraphLayoutAttributes(forSupplementaryViewOfKind: GraphCollectionView.elementKindLineGraph, with: indexPath)
             
             let firstPointInTheGraph = decorator.pointInGraph(at: indexPath)
             

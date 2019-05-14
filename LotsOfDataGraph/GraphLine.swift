@@ -9,7 +9,7 @@
 import UIKit
 import CollectionGraph
 
-class GraphLine: BaseGraphLineReusableView {
+class GraphLine: BaseLineGraphReusableView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)

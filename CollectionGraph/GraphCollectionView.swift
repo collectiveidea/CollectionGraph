@@ -50,7 +50,7 @@ open class GraphCollectionView: UICollectionView {
         let decorator = GraphLayoutDecorator(collectionView: self)
         
         if elementKind == GraphCollectionView.elementKindLineGraph {
-            graphLayout.graphLineLayoutAttributesModel = GraphLineLayoutAttributesModel(decorator: decorator)
+            graphLayout.lineGraphLayoutAttributesModel = LineGraphLayoutAttributesModel(decorator: decorator)
             
         } else if elementKind == GraphCollectionView.elementKindBarGraph {
             graphLayout.barGraphLayoutAttributesModel = BarGraphLayoutAttributesModel(decorator: decorator)

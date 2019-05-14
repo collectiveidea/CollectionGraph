@@ -8,14 +8,14 @@
 
 import UIKit
 
-internal class GraphLineLayoutAttributes: UICollectionViewLayoutAttributes {
+internal class LineGraphLayoutAttributes: UICollectionViewLayoutAttributes {
     
     var firstPoint: CGPoint = CGPoint.zero
     var secondPoint: CGPoint = CGPoint.zero
     
     override func copy(with zone: NSZone? = nil) -> Any {
         let copy = super.copy(with: zone)
-        if let copy = copy as? GraphLineLayoutAttributes {
+        if let copy = copy as? LineGraphLayoutAttributes {
             copy.firstPoint = firstPoint
             copy.secondPoint = secondPoint
         }
@@ -23,7 +23,7 @@ internal class GraphLineLayoutAttributes: UICollectionViewLayoutAttributes {
     }
     
     override func isEqual(_ object: Any?) -> Bool {
-        if let attributes = object as? GraphLineLayoutAttributes {
+        if let attributes = object as? LineGraphLayoutAttributes {
             if attributes.firstPoint == firstPoint && attributes.secondPoint == secondPoint {
                 return super.isEqual(object)
             }
@@ -32,7 +32,7 @@ internal class GraphLineLayoutAttributes: UICollectionViewLayoutAttributes {
     }
 }
 
-open class BaseGraphLineReusableView: UICollectionReusableView {
+open class BaseLineGraphReusableView: UICollectionReusableView {
     
     public var straightLines = true
     public let line = CAShapeLayer()
@@ -51,7 +51,7 @@ open class BaseGraphLineReusableView: UICollectionReusableView {
     }
     
     override open func apply(_ layoutAttributes: UICollectionViewLayoutAttributes) {
-        if let attributes = layoutAttributes as? GraphLineLayoutAttributes {
+        if let attributes = layoutAttributes as? LineGraphLayoutAttributes {
             self.firstPoint = attributes.firstPoint
             self.secondPoint = attributes.secondPoint
             setNeedsLayout()

@@ -35,9 +35,9 @@ public class GraphLayout: UICollectionViewLayout {
         }
     }
     
-    internal var graphLineLayoutAttributesModel: GraphLineLayoutAttributesModel? {
+    internal var lineGraphLayoutAttributesModel: LineGraphLayoutAttributesModel? {
         didSet {
-            if let graphLineLayoutAttributesModel = graphLineLayoutAttributesModel {
+            if let graphLineLayoutAttributesModel = lineGraphLayoutAttributesModel {
                 attributeModels += [graphLineLayoutAttributesModel]
             }
         }
@@ -141,7 +141,7 @@ public class GraphLayout: UICollectionViewLayout {
         switch elementKind {
         
         case GraphCollectionView.elementKindLineGraph:
-            return graphLineLayoutAttributesModel?.attributesForItem(at: indexPath)
+            return lineGraphLayoutAttributesModel?.attributesForItem(at: indexPath)
             
         case GraphCollectionView.elementKindBarGraph:
             return barGraphLayoutAttributesModel?.attributesForItem(at: indexPath)
