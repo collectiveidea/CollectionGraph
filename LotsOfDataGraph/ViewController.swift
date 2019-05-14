@@ -18,10 +18,10 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        graphCollectionView.register(GraphLine.self, forSupplementaryViewOfKind: .graphLayoutElementKindLine, withReuseIdentifier: .graphLayoutElementKindLine)
-        graphCollectionView.register(DefaultLabelReusableView.self, forSupplementaryViewOfKind: .graphLayoutElementKindXAxisView, withReuseIdentifier: .graphLayoutElementKindXAxisView)
-        graphCollectionView.register(DefaultLabelReusableView.self, forSupplementaryViewOfKind: .graphLayoutElementKindYAxisView, withReuseIdentifier: .graphLayoutElementKindYAxisView)
-        graphCollectionView.register(DefaultHorizontalDividerLineReusableView.self, forSupplementaryViewOfKind: .graphLayoutElementKindHorrizontalDividersView, withReuseIdentifier: .graphLayoutElementKindHorrizontalDividersView)
+        graphCollectionView.register(GraphLine.self, forSupplementaryViewOfKind: GraphCollectionView.elementKindLineGraph, withReuseIdentifier: GraphCollectionView.elementKindLineGraph)
+        graphCollectionView.register(DefaultLabelReusableView.self, forSupplementaryViewOfKind: GraphCollectionView.elementKindBottomXAxisView, withReuseIdentifier: GraphCollectionView.elementKindBottomXAxisView)
+        graphCollectionView.register(DefaultLabelReusableView.self, forSupplementaryViewOfKind: GraphCollectionView.elementKindLeftYAxisView, withReuseIdentifier: GraphCollectionView.elementKindLeftYAxisView)
+        graphCollectionView.register(DefaultHorizontalDividerLineReusableView.self, forSupplementaryViewOfKind: GraphCollectionView.elementKindHorizontalDividers, withReuseIdentifier: GraphCollectionView.elementKindHorizontalDividers)
         
         graphCollectionView.contentInset = UIEdgeInsets(top: 10, left: 30, bottom: 0, right: 30)
         graphCollectionView.usesWholeNumbersOnYAxis = true
@@ -66,23 +66,23 @@ extension ViewController: CollectionGraphDataSource {
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         
         switch kind {
-        case .graphLayoutElementKindLine:
+        case GraphCollectionView.elementKindLineGraph:
             let line = collectionView.dequeueReusableSupplementaryView(ofKind: kind,
-                                                                       withReuseIdentifier: .graphLayoutElementKindLine,
+                                                                       withReuseIdentifier: GraphCollectionView.elementKindLineGraph,
                                                                        for: indexPath)
             return line
-        case .graphLayoutElementKindXAxisView:
+        case GraphCollectionView.elementKindBottomXAxisView:
             let xLabel = collectionView.dequeueReusableSupplementaryView(ofKind: kind,
-                                                                         withReuseIdentifier: .graphLayoutElementKindXAxisView,
+                                                                         withReuseIdentifier: GraphCollectionView.elementKindBottomXAxisView,
                                                                          for: indexPath) as! DefaultLabelReusableView
             
             xLabel.label.text = textForXLabelAt(indexPath: indexPath, fromValue: xLabel.value)
             
             return xLabel
             
-        case .graphLayoutElementKindYAxisView:
+        case GraphCollectionView.elementKindLeftYAxisView:
             let yLabel = collectionView.dequeueReusableSupplementaryView(ofKind: kind,
-                                                                         withReuseIdentifier: .graphLayoutElementKindYAxisView,
+                                                                         withReuseIdentifier: GraphCollectionView.elementKindLeftYAxisView,
                                                                          for: indexPath) as! DefaultLabelReusableView
             let color = collectionView.backgroundColor?.withAlphaComponent(0.8)
             yLabel.backgroundColor = color
@@ -93,7 +93,7 @@ extension ViewController: CollectionGraphDataSource {
             
         default:
             let horizontalView = collectionView.dequeueReusableSupplementaryView(ofKind: kind,
-                                                                         withReuseIdentifier: .graphLayoutElementKindHorrizontalDividersView,
+                                                                         withReuseIdentifier: GraphCollectionView.elementKindHorizontalDividers,
                                                                          for: indexPath) as! DefaultHorizontalDividerLineReusableView
             horizontalView.line.lineDashPattern = [10, 5]
             return horizontalView

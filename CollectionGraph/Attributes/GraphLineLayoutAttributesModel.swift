@@ -58,7 +58,7 @@ internal class GraphLineLayoutAttributesModel: LayoutAttributesModel {
         
         if decorator.numberOfItemsIn(section: indexPath.section) > indexPath.item {
             
-            let attribute = GraphLineLayoutAttributes(forSupplementaryViewOfKind: .graphLayoutElementKindLine, with: indexPath)
+            let attribute = GraphLineLayoutAttributes(forSupplementaryViewOfKind: GraphCollectionView.elementKindLineGraph, with: indexPath)
             
             let firstPointInTheGraph = decorator.pointInGraph(at: indexPath)
             
