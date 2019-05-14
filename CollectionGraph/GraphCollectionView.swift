@@ -10,9 +10,9 @@ import UIKit
 
 open class GraphCollectionView: UICollectionView {
     
-    @IBOutlet public weak var xDelegate: CollectionGraphXDelegate?
-    @IBOutlet public weak var yDelegate: CollectionGraphYDelegate?
-    @IBOutlet public weak var barGraphDelegate: CollectionGraphBarGraphDelegate?
+    @IBOutlet public weak var xDelegate: GraphCollectionViewXDelegate?
+    @IBOutlet public weak var yDelegate: GraphCollectionViewYDelegate?
+    @IBOutlet public weak var barGraphDelegate: GraphCollectionViewBarGraphDelegate?
     
     public static let elementKindLineGraph = "elementKindLineGraph"
     public static let elementKindBarGraph = "elementKindBarGraph"

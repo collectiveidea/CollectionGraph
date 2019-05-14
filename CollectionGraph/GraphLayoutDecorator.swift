@@ -21,7 +21,7 @@ internal class GraphLayoutDecorator {
     
     internal var numberOfSections: Int {
         get {
-            if let collectionView = collectionView ,let dataSource = collectionView.dataSource as? CollectionGraphDataSource {
+            if let collectionView = collectionView ,let dataSource = collectionView.dataSource as? GraphCollectionViewDataSource {
                 return dataSource.numberOfSections?(in: collectionView) ?? 1
             }
             return 1
@@ -71,7 +71,7 @@ internal class GraphLayoutDecorator {
     
     internal func numberOfItemsIn(section: Int) -> Int {
         
-        if let collectionView = collectionView ,let dataSource = collectionView.dataSource as? CollectionGraphDataSource {
+        if let collectionView = collectionView ,let dataSource = collectionView.dataSource as? GraphCollectionViewDataSource {
             
             return dataSource.collectionView(collectionView, numberOfItemsInSection: section)
         }
@@ -84,7 +84,7 @@ internal class GraphLayoutDecorator {
             return xMinMaxValuesCache
         }
         
-        if let collectionView = collectionView ,let delegate = collectionView.delegate as? CollectionGraphDelegateLayout {
+        if let collectionView = collectionView ,let delegate = collectionView.delegate as? GraphCollectionViewDelegateLayout {
             xMinMaxValuesCache = delegate.minAndMaxXValuesIn(collectionView)
             return xMinMaxValuesCache!
         }
@@ -97,7 +97,7 @@ internal class GraphLayoutDecorator {
             return yMinMaxValuesCache
         }
         
-        if let collectionView = collectionView ,let delegate = collectionView.delegate as? CollectionGraphDelegateLayout {
+        if let collectionView = collectionView ,let delegate = collectionView.delegate as? GraphCollectionViewDelegateLayout {
             let userDelta = delegate.minAndMaxYValuesIn(collectionView)
             
             if collectionView.usesWholeNumbersOnYAxis {
@@ -113,7 +113,7 @@ internal class GraphLayoutDecorator {
     }
     
     internal func numberOfXSteps() -> Int {
-        if let collectionView = collectionView ,let delegate = collectionView.delegate as? CollectionGraphDelegateLayout {
+        if let collectionView = collectionView ,let delegate = collectionView.delegate as? GraphCollectionViewDelegateLayout {
             
             return delegate.numberOfXStepsIn(collectionView)
         }
@@ -122,7 +122,7 @@ internal class GraphLayoutDecorator {
     }
     
     internal func numberOfYSteps() -> Int {
-        if let collectionView = collectionView ,let delegate = collectionView.delegate as? CollectionGraphDelegateLayout {
+        if let collectionView = collectionView ,let delegate = collectionView.delegate as? GraphCollectionViewDelegateLayout {
             
             let numberOfSteps = delegate.numberOfYStepsIn(collectionView) == 0 ? 1 : delegate.numberOfYStepsIn(collectionView)
             
@@ -133,7 +133,7 @@ internal class GraphLayoutDecorator {
     }
     
     internal func distanceOfXSteps() -> CGFloat {
-        if let collectionView = collectionView ,let delegate = collectionView.delegate as? CollectionGraphDelegateLayout {
+        if let collectionView = collectionView ,let delegate = collectionView.delegate as? GraphCollectionViewDelegateLayout {
             
             return delegate.distanceBetweenXStepsIn(collectionView)
         }
@@ -142,7 +142,7 @@ internal class GraphLayoutDecorator {
     }
     
     internal func sizeOfCell(at indexPath: IndexPath) -> CGSize {
-        if let collectionView = collectionView ,let delegate = collectionView.delegate as? CollectionGraphDelegateLayout {
+        if let collectionView = collectionView ,let delegate = collectionView.delegate as? GraphCollectionViewDelegateLayout {
             
             return delegate.graphCollectionView(collectionView, sizeForItemAt: indexPath)
         }
@@ -150,7 +150,7 @@ internal class GraphLayoutDecorator {
     }
     
     internal func userValue(at indexPath: IndexPath) -> (xValue: CGFloat, yValue: CGFloat) {
-        if let collectionView = collectionView ,let dataSource = collectionView.dataSource as? CollectionGraphDataSource {
+        if let collectionView = collectionView ,let dataSource = collectionView.dataSource as? GraphCollectionViewDataSource {
             
             return dataSource.collectionView(collectionView, valueFor: indexPath)
         }

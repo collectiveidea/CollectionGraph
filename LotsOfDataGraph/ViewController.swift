@@ -48,7 +48,7 @@ class ViewController: UIViewController {
     
 }
 
-extension ViewController: CollectionGraphDataSource {
+extension ViewController: GraphCollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return ppmRepo.data.count
     }
@@ -122,7 +122,7 @@ extension ViewController: CollectionGraphDataSource {
     
 }
 
-extension ViewController: CollectionGraphDelegateLayout {
+extension ViewController: GraphCollectionViewDelegateLayout {
     
     func graphCollectionView(_ graphCollectionView: GraphCollectionView, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: 10, height: 10)

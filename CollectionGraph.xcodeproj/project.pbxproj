@@ -15,7 +15,7 @@
 		5703739F1F5F23DF007251C4 /* XAxisLayoutAttributesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5703739E1F5F23DF007251C4 /* XAxisLayoutAttributesModel.swift */; };
 		570A96311FFC1F50003F7D7C /* PPMModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570A96301FFC1F50003F7D7C /* PPMModel.swift */; };
 		570A96331FFC1F7E003F7D7C /* PPMRepo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570A96321FFC1F7E003F7D7C /* PPMRepo.swift */; };
-		570DE8BB2273505A00F369A5 /* CollectionGraphProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570DE8BA2273505A00F369A5 /* CollectionGraphProtocols.swift */; };
+		570DE8BB2273505A00F369A5 /* GraphCollectionViewProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570DE8BA2273505A00F369A5 /* GraphCollectionViewProtocols.swift */; };
 		5726EC441F8E74A200E5F765 /* YAxisLayoutAttributesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5726EC431F8E74A200E5F765 /* YAxisLayoutAttributesModel.swift */; };
 		5726EC461F8EAD2A00E5F765 /* HorizontalDividersLayoutAttributesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5726EC451F8EAD2A00E5F765 /* HorizontalDividersLayoutAttributesModel.swift */; };
 		5726EC4A1F8EB3D800E5F765 /* DefaultHorizontalDividerLineReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5726EC491F8EB3C300E5F765 /* DefaultHorizontalDividerLineReusableView.swift */; };
@@ -134,7 +134,7 @@
 		5703739E1F5F23DF007251C4 /* XAxisLayoutAttributesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XAxisLayoutAttributesModel.swift; sourceTree = "<group>"; };
 		570A96301FFC1F50003F7D7C /* PPMModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PPMModel.swift; sourceTree = "<group>"; };
 		570A96321FFC1F7E003F7D7C /* PPMRepo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PPMRepo.swift; sourceTree = "<group>"; };
-		570DE8BA2273505A00F369A5 /* CollectionGraphProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionGraphProtocols.swift; sourceTree = "<group>"; };
+		570DE8BA2273505A00F369A5 /* GraphCollectionViewProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphCollectionViewProtocols.swift; sourceTree = "<group>"; };
 		5726EC431F8E74A200E5F765 /* YAxisLayoutAttributesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YAxisLayoutAttributesModel.swift; sourceTree = "<group>"; };
 		5726EC451F8EAD2A00E5F765 /* HorizontalDividersLayoutAttributesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalDividersLayoutAttributesModel.swift; sourceTree = "<group>"; };
 		5726EC491F8EB3C300E5F765 /* DefaultHorizontalDividerLineReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DefaultHorizontalDividerLineReusableView.swift; path = CollectionGraph/ReusableViews/DefaultHorizontalDividerLineReusableView.swift; sourceTree = SOURCE_ROOT; };
@@ -306,7 +306,7 @@
 			children = (
 				57DCC2721ED492F3000AD389 /* CollectionGraph.h */,
 				57DCC2D51ED4CB0C000AD389 /* GraphCollectionView.swift */,
-				570DE8BA2273505A00F369A5 /* CollectionGraphProtocols.swift */,
+				570DE8BA2273505A00F369A5 /* GraphCollectionViewProtocols.swift */,
 				57DCC2D71ED4CC00000AD389 /* GraphLayout.swift */,
 				574DF25B1EEEC61D00333469 /* GraphLayoutDecorator.swift */,
 				5700CD292285F1D0009A764E /* Attributes */,
@@ -640,7 +640,7 @@
 				57472B351FD5A3B7000FADFD /* DefaultBarGraphReusableView.swift in Sources */,
 				578FB0BA1F583FEF005099D7 /* BaseLineGraphReusableView.swift in Sources */,
 				5700CD282285EEA7009A764E /* DefaultLabelReusableView.swift in Sources */,
-				570DE8BB2273505A00F369A5 /* CollectionGraphProtocols.swift in Sources */,
+				570DE8BB2273505A00F369A5 /* GraphCollectionViewProtocols.swift in Sources */,
 				5700CD302286128A009A764E /* BaseHorizontalDividerLineReusableView.swift in Sources */,
 				5703739D1F5F2325007251C4 /* BaseAxisReusableView.swift in Sources */,
 				578FB0BE1F583FEF005099D7 /* LayoutAttributesModel.swift in Sources */,
