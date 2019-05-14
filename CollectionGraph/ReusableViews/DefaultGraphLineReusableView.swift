@@ -1,7 +1,7 @@
 
 import UIKit
 
-public class DefaultGraphLineReusableView: BaseGraphLineReusableView {
+public class DefaultGraphLineReusableView: BaseLineGraphReusableView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)

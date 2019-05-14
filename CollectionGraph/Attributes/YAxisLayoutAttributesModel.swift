@@ -52,7 +52,7 @@ extension YAxisLayoutAttributesModel: LayoutAttributesModel {
         
         let frame = CGRect(x: decorator.collectionView!.contentOffset.x, y: heightForAttributes * CGFloat(indexPath.item) + cellSize.height / 2 - heightForAttributes / 2, width: decorator.paddingForYAttributes + leftInset, height: heightForAttributes)
         
-        let attribute = AxisLayoutAttributes(forSupplementaryViewOfKind: .graphLayoutElementKindYAxisView, with: indexPath)
+        let attribute = AxisLayoutAttributes(forSupplementaryViewOfKind: GraphCollectionView.elementKindLeftYAxisView, with: indexPath)
         attribute.frame = frame
         
         // Figure Out value

@@ -14,6 +14,12 @@ open class GraphCollectionView: UICollectionView {
     @IBOutlet public weak var yDelegate: CollectionGraphYDelegate?
     @IBOutlet public weak var barGraphDelegate: CollectionGraphBarGraphDelegate?
     
+    public static let elementKindLineGraph = "elementKindLineGraph"
+    public static let elementKindBarGraph = "elementKindBarGraph"
+    public static let elementKindBottomXAxisView = "elementKindBottomXAxisView"
+    public static let elementKindLeftYAxisView = "elementKindLeftYAxisView"
+    public static let elementKindHorizontalDividers = "elementKindHorizontalDividers"
+    
     public var usesWholeNumbersOnYAxis: Bool = false
     
     internal var isUsingXAxisView = false
@@ -43,18 +49,22 @@ open class GraphCollectionView: UICollectionView {
         
         let decorator = GraphLayoutDecorator(collectionView: self)
         
-        if elementKind == .graphLayoutElementKindLine {
-            graphLayout.graphLineLayoutAttributesModel = GraphLineLayoutAttributesModel(decorator: decorator)
-        } else if elementKind == .graphLayoutElementKindXAxisView {
+        if elementKind == GraphCollectionView.elementKindLineGraph {
+            graphLayout.lineGraphLayoutAttributesModel = LineGraphLayoutAttributesModel(decorator: decorator)
+            
+        } else if elementKind == GraphCollectionView.elementKindBarGraph {
+            graphLayout.barGraphLayoutAttributesModel = BarGraphLayoutAttributesModel(decorator: decorator)
+            
+        } else if elementKind == GraphCollectionView.elementKindBottomXAxisView {
             isUsingXAxisView = true
             graphLayout.xAxisLayoutAttributesModel = XAxisLayoutAttributesModel(decorator: decorator)
-        } else if elementKind == .graphLayoutElementKindYAxisView {
+            
+        } else if elementKind == GraphCollectionView.elementKindLeftYAxisView {
             isUsingYAxisView = true
             graphLayout.yAxisLayoutAttributesModel = YAxisLayoutAttributesModel(decorator: decorator)
-        } else if elementKind == .graphLayoutElementKindHorrizontalDividersView {
-            graphLayout.horizontalLayoutAttributesModel = HorizontalLayoutAttributesModel(decorator: decorator)
-        } else if elementKind == .graphLayoutElementKindBarGraph {
-            graphLayout.barGraphLayoutAttributesModel = BarGraphLayoutAttributesModel(decorator: decorator)
+            
+        } else if elementKind == GraphCollectionView.elementKindHorizontalDividers {
+            graphLayout.horizontalDividersLayoutAttributesModel = HorizontalDividersLayoutAttributesModel(decorator: decorator)
         }
     }
     

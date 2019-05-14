@@ -52,7 +52,7 @@ extension BarGraphLayoutAttributesModel: LayoutAttributesModel {
             return cachedAttribute
         }
         
-        let attribute = UICollectionViewLayoutAttributes(forSupplementaryViewOfKind: .graphLayoutElementKindBarGraph, with: indexPath)
+        let attribute = UICollectionViewLayoutAttributes(forSupplementaryViewOfKind: GraphCollectionView.elementKindBarGraph, with: indexPath)
         
         let point = decorator.pointInGraph(at: indexPath)
         

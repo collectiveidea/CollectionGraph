@@ -17,7 +17,7 @@
 		570A96331FFC1F7E003F7D7C /* PPMRepo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570A96321FFC1F7E003F7D7C /* PPMRepo.swift */; };
 		570DE8BB2273505A00F369A5 /* CollectionGraphProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570DE8BA2273505A00F369A5 /* CollectionGraphProtocols.swift */; };
 		5726EC441F8E74A200E5F765 /* YAxisLayoutAttributesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5726EC431F8E74A200E5F765 /* YAxisLayoutAttributesModel.swift */; };
-		5726EC461F8EAD2A00E5F765 /* HorizontalLayoutAttributesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5726EC451F8EAD2A00E5F765 /* HorizontalLayoutAttributesModel.swift */; };
+		5726EC461F8EAD2A00E5F765 /* HorizontalDividersLayoutAttributesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5726EC451F8EAD2A00E5F765 /* HorizontalDividersLayoutAttributesModel.swift */; };
 		5726EC4A1F8EB3D800E5F765 /* DefaultHorizontalDividerLineReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5726EC491F8EB3C300E5F765 /* DefaultHorizontalDividerLineReusableView.swift */; };
 		57317A921EE1F88900FF2CF2 /* Math.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57317A911EE1F88900FF2CF2 /* Math.swift */; };
 		57317A931EE1F88900FF2CF2 /* Math.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57317A911EE1F88900FF2CF2 /* Math.swift */; };
@@ -34,9 +34,9 @@
 		577D84F41F5EE60A0053A980 /* PPMData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 577D84F31F5EE60A0053A980 /* PPMData.swift */; };
 		577D84F51F5EEE120053A980 /* CollectionGraph.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57DCC26F1ED492F3000AD389 /* CollectionGraph.framework */; };
 		577D84F61F5EEE130053A980 /* CollectionGraph.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 57DCC26F1ED492F3000AD389 /* CollectionGraph.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		578FB0BA1F583FEF005099D7 /* BaseGraphLineReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578FB0B51F583FEE005099D7 /* BaseGraphLineReusableView.swift */; };
+		578FB0BA1F583FEF005099D7 /* BaseLineGraphReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578FB0B51F583FEE005099D7 /* BaseLineGraphReusableView.swift */; };
 		578FB0BC1F583FEF005099D7 /* CellLayoutAttributesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578FB0B71F583FEF005099D7 /* CellLayoutAttributesModel.swift */; };
-		578FB0BD1F583FEF005099D7 /* GraphLineLayoutAttributesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578FB0B81F583FEF005099D7 /* GraphLineLayoutAttributesModel.swift */; };
+		578FB0BD1F583FEF005099D7 /* LineGraphLayoutAttributesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578FB0B81F583FEF005099D7 /* LineGraphLayoutAttributesModel.swift */; };
 		578FB0BE1F583FEF005099D7 /* LayoutAttributesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578FB0B91F583FEF005099D7 /* LayoutAttributesModel.swift */; };
 		5799EC352007FBB8002EBDDA /* MathTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5799EC342007FBB8002EBDDA /* MathTests.swift */; };
 		57DCC2791ED492F3000AD389 /* CollectionGraph.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57DCC26F1ED492F3000AD389 /* CollectionGraph.framework */; };
@@ -136,7 +136,7 @@
 		570A96321FFC1F7E003F7D7C /* PPMRepo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PPMRepo.swift; sourceTree = "<group>"; };
 		570DE8BA2273505A00F369A5 /* CollectionGraphProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionGraphProtocols.swift; sourceTree = "<group>"; };
 		5726EC431F8E74A200E5F765 /* YAxisLayoutAttributesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YAxisLayoutAttributesModel.swift; sourceTree = "<group>"; };
-		5726EC451F8EAD2A00E5F765 /* HorizontalLayoutAttributesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalLayoutAttributesModel.swift; sourceTree = "<group>"; };
+		5726EC451F8EAD2A00E5F765 /* HorizontalDividersLayoutAttributesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalDividersLayoutAttributesModel.swift; sourceTree = "<group>"; };
 		5726EC491F8EB3C300E5F765 /* DefaultHorizontalDividerLineReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DefaultHorizontalDividerLineReusableView.swift; path = CollectionGraph/ReusableViews/DefaultHorizontalDividerLineReusableView.swift; sourceTree = SOURCE_ROOT; };
 		57317A911EE1F88900FF2CF2 /* Math.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Math.swift; sourceTree = "<group>"; };
 		573CA4891F59C0E700D3F056 /* MilesPerDayData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MilesPerDayData.swift; sourceTree = "<group>"; };
@@ -151,9 +151,9 @@
 		577D84ED1F5EE3EB0053A980 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		577D84EF1F5EE3EB0053A980 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		577D84F31F5EE60A0053A980 /* PPMData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PPMData.swift; sourceTree = "<group>"; };
-		578FB0B51F583FEE005099D7 /* BaseGraphLineReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseGraphLineReusableView.swift; sourceTree = "<group>"; };
+		578FB0B51F583FEE005099D7 /* BaseLineGraphReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseLineGraphReusableView.swift; sourceTree = "<group>"; };
 		578FB0B71F583FEF005099D7 /* CellLayoutAttributesModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellLayoutAttributesModel.swift; sourceTree = "<group>"; };
-		578FB0B81F583FEF005099D7 /* GraphLineLayoutAttributesModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GraphLineLayoutAttributesModel.swift; sourceTree = "<group>"; };
+		578FB0B81F583FEF005099D7 /* LineGraphLayoutAttributesModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LineGraphLayoutAttributesModel.swift; sourceTree = "<group>"; };
 		578FB0B91F583FEF005099D7 /* LayoutAttributesModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LayoutAttributesModel.swift; sourceTree = "<group>"; };
 		5799EC342007FBB8002EBDDA /* MathTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MathTests.swift; sourceTree = "<group>"; };
 		57DCC26F1ED492F3000AD389 /* CollectionGraph.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CollectionGraph.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -235,11 +235,11 @@
 			children = (
 				578FB0B91F583FEF005099D7 /* LayoutAttributesModel.swift */,
 				578FB0B71F583FEF005099D7 /* CellLayoutAttributesModel.swift */,
-				578FB0B81F583FEF005099D7 /* GraphLineLayoutAttributesModel.swift */,
+				578FB0B81F583FEF005099D7 /* LineGraphLayoutAttributesModel.swift */,
 				57472B321FD5A3B7000FADFD /* BarGraphLayoutAttributesModel.swift */,
 				5703739E1F5F23DF007251C4 /* XAxisLayoutAttributesModel.swift */,
 				5726EC431F8E74A200E5F765 /* YAxisLayoutAttributesModel.swift */,
-				5726EC451F8EAD2A00E5F765 /* HorizontalLayoutAttributesModel.swift */,
+				5726EC451F8EAD2A00E5F765 /* HorizontalDividersLayoutAttributesModel.swift */,
 			);
 			path = Attributes;
 			sourceTree = "<group>";
@@ -247,7 +247,7 @@
 		5700CD2A2285F22F009A764E /* ReusableViews */ = {
 			isa = PBXGroup;
 			children = (
-				578FB0B51F583FEE005099D7 /* BaseGraphLineReusableView.swift */,
+				578FB0B51F583FEE005099D7 /* BaseLineGraphReusableView.swift */,
 				5700CD2B22860DFD009A764E /* DefaultGraphLineReusableView.swift */,
 				57472B331FD5A3B7000FADFD /* DefaultBarGraphReusableView.swift */,
 				5703739C1F5F2325007251C4 /* BaseAxisReusableView.swift */,
@@ -632,13 +632,13 @@
 				578FB0BC1F583FEF005099D7 /* CellLayoutAttributesModel.swift in Sources */,
 				574DF25C1EEEC61D00333469 /* GraphLayoutDecorator.swift in Sources */,
 				57DCC2D81ED4CC00000AD389 /* GraphLayout.swift in Sources */,
-				5726EC461F8EAD2A00E5F765 /* HorizontalLayoutAttributesModel.swift in Sources */,
-				578FB0BD1F583FEF005099D7 /* GraphLineLayoutAttributesModel.swift in Sources */,
+				5726EC461F8EAD2A00E5F765 /* HorizontalDividersLayoutAttributesModel.swift in Sources */,
+				578FB0BD1F583FEF005099D7 /* LineGraphLayoutAttributesModel.swift in Sources */,
 				57472B341FD5A3B7000FADFD /* BarGraphLayoutAttributesModel.swift in Sources */,
 				5726EC441F8E74A200E5F765 /* YAxisLayoutAttributesModel.swift in Sources */,
 				57DCC2D61ED4CB0C000AD389 /* GraphCollectionView.swift in Sources */,
 				57472B351FD5A3B7000FADFD /* DefaultBarGraphReusableView.swift in Sources */,
-				578FB0BA1F583FEF005099D7 /* BaseGraphLineReusableView.swift in Sources */,
+				578FB0BA1F583FEF005099D7 /* BaseLineGraphReusableView.swift in Sources */,
 				5700CD282285EEA7009A764E /* DefaultLabelReusableView.swift in Sources */,
 				570DE8BB2273505A00F369A5 /* CollectionGraphProtocols.swift in Sources */,
 				5700CD302286128A009A764E /* BaseHorizontalDividerLineReusableView.swift in Sources */,

@@ -25,16 +25,6 @@
 
 import UIKit
 
-public extension String {
-    
-    static let graphLayoutElementKindLine = "graphLayoutElementKindLine"
-    static let graphLayoutElementKindXAxisView = "graphLayoutElementKindXAxisView"
-    static let graphLayoutElementKindYAxisView = "graphLayoutElementKindYAxisView"
-    static let graphLayoutElementKindHorrizontalDividersView = "graphLayoutElementKindHorrizontalDividersView"
-    static let graphLayoutElementKindBarGraph = "graphLayoutElementKindBarGraph"
-    
-}
-
 public class GraphLayout: UICollectionViewLayout {
     
     internal var cellLayoutAttributesModel: CellLayoutAttributesModel? {
@@ -45,10 +35,10 @@ public class GraphLayout: UICollectionViewLayout {
         }
     }
     
-    internal var graphLineLayoutAttributesModel: GraphLineLayoutAttributesModel? {
+    internal var lineGraphLayoutAttributesModel: LineGraphLayoutAttributesModel? {
         didSet {
-            if let graphLineLayoutAttributesModel = graphLineLayoutAttributesModel {
-                attributeModels += [graphLineLayoutAttributesModel]
+            if let lineGraphLayoutAttributesModel = lineGraphLayoutAttributesModel {
+                attributeModels += [lineGraphLayoutAttributesModel]
             }
         }
     }
@@ -69,10 +59,10 @@ public class GraphLayout: UICollectionViewLayout {
         }
     }
     
-    internal var horizontalLayoutAttributesModel: HorizontalLayoutAttributesModel? {
+    internal var horizontalDividersLayoutAttributesModel: HorizontalDividersLayoutAttributesModel? {
         didSet {
-            if let horizontalLayoutAttributesModel = horizontalLayoutAttributesModel {
-                attributeModels += [horizontalLayoutAttributesModel]
+            if let horizontalDividersLayoutAttributesModel = horizontalDividersLayoutAttributesModel {
+                attributeModels += [horizontalDividersLayoutAttributesModel]
             }
         }
     }
@@ -114,9 +104,9 @@ public class GraphLayout: UICollectionViewLayout {
         if collectionView?.bounds.size == newBounds.size {
             // invalidate the y axis
             
-            guard let visibleItems = collectionView?.indexPathsForVisibleSupplementaryElements(ofKind: .graphLayoutElementKindYAxisView) else { return context }
+            guard let visibleItems = collectionView?.indexPathsForVisibleSupplementaryElements(ofKind: GraphCollectionView.elementKindLeftYAxisView) else { return context }
             
-            context.invalidateSupplementaryElements(ofKind: .graphLayoutElementKindYAxisView, at: visibleItems)
+            context.invalidateSupplementaryElements(ofKind: GraphCollectionView.elementKindLeftYAxisView, at: visibleItems)
             
         } else {
             
@@ -150,20 +140,20 @@ public class GraphLayout: UICollectionViewLayout {
         
         switch elementKind {
         
-        case .graphLayoutElementKindLine:
-            return graphLineLayoutAttributesModel?.attributesForItem(at: indexPath)
+        case GraphCollectionView.elementKindLineGraph:
+            return lineGraphLayoutAttributesModel?.attributesForItem(at: indexPath)
+            
+        case GraphCollectionView.elementKindBarGraph:
+            return barGraphLayoutAttributesModel?.attributesForItem(at: indexPath)
         
-        case .graphLayoutElementKindXAxisView:
+        case GraphCollectionView.elementKindBottomXAxisView:
             return xAxisLayoutAttributesModel?.attributesForItem(at: indexPath)
         
-        case .graphLayoutElementKindYAxisView:
+        case GraphCollectionView.elementKindLeftYAxisView:
             return yAxisLayoutAttributesModel?.attributesForItem(at: indexPath)
         
-        case .graphLayoutElementKindHorrizontalDividersView:
-            return horizontalLayoutAttributesModel?.attributesForItem(at: indexPath)
-        
-        case .graphLayoutElementKindBarGraph:
-            return barGraphLayoutAttributesModel?.attributesForItem(at: indexPath)
+        case GraphCollectionView.elementKindHorizontalDividers:
+            return horizontalDividersLayoutAttributesModel?.attributesForItem(at: indexPath)
         
         default:
             return nil

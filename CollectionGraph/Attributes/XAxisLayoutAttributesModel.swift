@@ -52,7 +52,7 @@ extension XAxisLayoutAttributesModel: LayoutAttributesModel {
             return cachedAttribute
         }
         
-        let attribute = AxisLayoutAttributes(forSupplementaryViewOfKind: .graphLayoutElementKindXAxisView, with: indexPath)
+        let attribute = AxisLayoutAttributes(forSupplementaryViewOfKind: GraphCollectionView.elementKindBottomXAxisView, with: indexPath)
         
         let contentSize = decorator.contentSize()
         

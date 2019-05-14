@@ -8,7 +8,7 @@
 
 import Foundation
 
-class HorizontalLayoutAttributesModel {
+class HorizontalDividersLayoutAttributesModel {
     
     let decorator: GraphLayoutDecorator
     
@@ -20,7 +20,7 @@ class HorizontalLayoutAttributesModel {
     
 }
 
-extension HorizontalLayoutAttributesModel: LayoutAttributesModel {
+extension HorizontalDividersLayoutAttributesModel: LayoutAttributesModel {
     
     func indexPathsOfItems(in rect: CGRect) -> [IndexPath] {
         var indexPaths = [IndexPath]()
@@ -51,7 +51,7 @@ extension HorizontalLayoutAttributesModel: LayoutAttributesModel {
         
         let frame = CGRect(x: 0, y: heightForAttributes * CGFloat(indexPath.item) + cellSize.height / 2 - heightForAttributes / 2, width: contentSize.width, height: heightForAttributes)
         
-        let attribute = UICollectionViewLayoutAttributes(forSupplementaryViewOfKind: .graphLayoutElementKindHorrizontalDividersView, with: indexPath)
+        let attribute = UICollectionViewLayoutAttributes(forSupplementaryViewOfKind: GraphCollectionView.elementKindHorizontalDividers, with: indexPath)
         attribute.frame = frame
         
         attribute.zIndex = -100
